@@ -1,0 +1,3831 @@
+{
+  "generatedFrom": {
+    "moosIvP": "/Users/charlesbenjamin/moos-ivp"
+  },
+  "items": {
+    "BHV_AbortToPoint": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "desired_speed",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "ipf-type",
+        "name",
+        "nm_radius",
+        "osx",
+        "osy",
+        "perpetual",
+        "point",
+        "priority",
+        "ptx",
+        "pty",
+        "pwt",
+        "radius",
+        "runflag",
+        "spawnx_flag",
+        "speed",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_AvdColregsV22": {
+      "parameters": [
+        "activeflag",
+        "all_clear_distance",
+        "avoid_mode",
+        "avoid_submode",
+        "bearing_line_config",
+        "bearing_line_label_show",
+        "bearing_line_show",
+        "build_info",
+        "can_disable",
+        "check_plateaus",
+        "check_validity",
+        "collision_distance",
+        "completed_dist",
+        "condition",
+        "contact",
+        "contact_type_required",
+        "decay",
+        "descriptor",
+        "duration",
+        "endflag",
+        "eval_tol",
+        "exit_on_filter_group",
+        "exit_on_filter_region",
+        "exit_on_filter_vname",
+        "exit_on_filter_vtype",
+        "extrapolate",
+        "full_avoid_mode",
+        "giveway_bow_dist",
+        "headon_only",
+        "idleflag",
+        "ignore_group",
+        "ignore_name",
+        "ignore_region",
+        "ignore_type",
+        "inactiveflag",
+        "match_group",
+        "match_name",
+        "match_region",
+        "match_type",
+        "max_util_cpa_dist",
+        "min_util_cpa_dist",
+        "name",
+        "no_alert_request",
+        "on_no_contact_ok",
+        "osh",
+        "osv",
+        "passing_side",
+        "pcheck_thresh",
+        "perpetual",
+        "plateau_region",
+        "post_mapping",
+        "post_per_contact_info",
+        "post_status_info_on_idle",
+        "priority",
+        "pts_port_turns_ok",
+        "pwt",
+        "pwt_grade",
+        "pwt_inner_dist",
+        "pwt_outer_dist",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "tol",
+        "turn_radius",
+        "updates",
+        "use_refinery",
+        "velocity_filter",
+        "verbose",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_AvoidCollision": {
+      "parameters": [
+        "activeflag",
+        "all_clear_distance",
+        "bearing_line_config",
+        "bearing_line_label_show",
+        "bearing_lines",
+        "build_info",
+        "can_disable",
+        "check_plateaus",
+        "check_validity",
+        "cnh",
+        "cnv",
+        "cnx",
+        "cny",
+        "collision_depth",
+        "collision_distance",
+        "completed_dist",
+        "condition",
+        "contact",
+        "contact_type_required",
+        "decay",
+        "decay_end",
+        "descriptor",
+        "duration",
+        "endflag",
+        "exit_on_filter_group",
+        "exit_on_filter_region",
+        "exit_on_filter_vname",
+        "exit_on_filter_vtype",
+        "extrapolate",
+        "idleflag",
+        "ignore_contact_group",
+        "ignore_group",
+        "ignore_name",
+        "ignore_region",
+        "ignore_type",
+        "inactiveflag",
+        "match_contact_group",
+        "match_group",
+        "match_name",
+        "match_region",
+        "match_type",
+        "max_util_cpa_dist",
+        "min_util_cpa_dist",
+        "name",
+        "no_alert_request",
+        "on_no_contact_ok",
+        "osh",
+        "osv",
+        "osx",
+        "osy",
+        "pcheck_thresh",
+        "perpetual",
+        "plateau_region",
+        "post_mapping",
+        "post_per_contact_info",
+        "priority",
+        "pwt",
+        "pwt_grade",
+        "pwt_inner_dist",
+        "pwt_outer_dist",
+        "refine_piece",
+        "refine_region",
+        "roc_max_dampen",
+        "roc_max_heighten",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "them",
+        "time_on_leg",
+        "tol",
+        "uniform_amount",
+        "updates",
+        "use_refinery",
+        "verbose",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_AvoidObstacleV24": {
+      "parameters": [
+        "action",
+        "activeflag",
+        "allowable_ttc",
+        "allstop_on_breach",
+        "basin_region",
+        "can_disable",
+        "completed_dist",
+        "condition",
+        "cpa_flag",
+        "descriptor",
+        "draw_buff_max_poly",
+        "draw_buff_min_poly",
+        "duration",
+        "endflag",
+        "holonomic_ok",
+        "id",
+        "idleflag",
+        "inactiveflag",
+        "max_util_cpa_dist",
+        "min_util_cpa_dist",
+        "name",
+        "no_alert_request",
+        "obid",
+        "obstacle_id",
+        "obstacle_key",
+        "perpetual",
+        "plateau_region",
+        "poly",
+        "polygon",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "pwt_inner_dist",
+        "pwt_outer_dist",
+        "radius",
+        "rng_flag",
+        "runflag",
+        "spawnx_flag",
+        "spoke_degs",
+        "templating",
+        "turn_model_degs",
+        "turn_radius",
+        "uniform_grid",
+        "uniform_piece",
+        "updates",
+        "use_refinery",
+        "visual_hints",
+        "vsource"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_BearingLine": {
+      "parameters": [
+        "activeflag",
+        "bearing_point",
+        "condition",
+        "descriptor",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "line_pct",
+        "name",
+        "perpetual",
+        "priority",
+        "pwt",
+        "runflag",
+        "show_pt",
+        "spawnx_flag",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_BearingLine.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_ConstantDepth": {
+      "parameters": [
+        "activeflag",
+        "basewidth",
+        "condition",
+        "depth",
+        "depth_mismatch_var",
+        "descriptor",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "name",
+        "peakwidth",
+        "perpetual",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "summitdelta",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantDepth.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_ConstantHeading": {
+      "parameters": [
+        "activeflag",
+        "basewidth",
+        "complete_thresh",
+        "condition",
+        "descriptor",
+        "duration",
+        "endflag",
+        "heading",
+        "heading_mismatch_var",
+        "idleflag",
+        "inactiveflag",
+        "name",
+        "peakwidth",
+        "perpetual",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "summitdelta",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantHeading.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_ConstantSpeed": {
+      "parameters": [
+        "activeflag",
+        "basewidth",
+        "condition",
+        "descriptor",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "name",
+        "peakwidth",
+        "perpetual",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "speed",
+        "speed_mismatch_var",
+        "summitdelta",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantSpeed.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_Convoy": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "contact",
+        "cruise_speed",
+        "descriptor",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "inter_mark_range",
+        "max_mark_range",
+        "name",
+        "nm_radius",
+        "perpetual",
+        "post_mapping",
+        "post_per_contact_info",
+        "priority",
+        "pwt",
+        "radius",
+        "range_estop",
+        "range_lagging",
+        "range_tailgating",
+        "rng_estop",
+        "rng_lagging",
+        "rng_safety",
+        "rng_tgating",
+        "runflag",
+        "spawnx_flag",
+        "spd_faster",
+        "spd_max",
+        "spd_slower",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_CutRange": {
+      "parameters": [
+        "activeflag",
+        "bearing_line_config",
+        "build_info",
+        "cncrs",
+        "cnlat",
+        "cnlon",
+        "cnspd",
+        "condition",
+        "contact",
+        "decay",
+        "decay_end",
+        "descriptor",
+        "duration",
+        "endflag",
+        "exit_on_filter_group",
+        "exit_on_filter_region",
+        "exit_on_filter_vname",
+        "exit_on_filter_vtype",
+        "extrapolate",
+        "giveup_dist",
+        "giveup_range",
+        "giveupflag",
+        "idleflag",
+        "ignore_group",
+        "ignore_name",
+        "ignore_region",
+        "ignore_type",
+        "inactiveflag",
+        "match_group",
+        "match_name",
+        "match_region",
+        "match_type",
+        "max_patience",
+        "name",
+        "on_no_contact_ok",
+        "oslat",
+        "oslon",
+        "patience",
+        "perpetual",
+        "post_mapping",
+        "post_per_contact_info",
+        "priority",
+        "pursueflag",
+        "pwt",
+        "pwt_inner_dist",
+        "pwt_outer_dist",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "them",
+        "time_on_leg",
+        "tol",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_CutRange.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_FixedTurn": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "descriptor",
+        "duration",
+        "endflag",
+        "fix_turn",
+        "idleflag",
+        "inactiveflag",
+        "mod_hdg",
+        "name",
+        "perpetual",
+        "priority",
+        "pwt",
+        "radius_rep_var",
+        "runflag",
+        "schedule_repeat",
+        "spawnx_flag",
+        "speed",
+        "stale_nav_thresh",
+        "templating",
+        "timeout",
+        "turn_delay",
+        "turn_dir",
+        "turn_spec",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_FixedTurn.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_FullStop": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "delay_complete",
+        "descriptor",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "mark_duration",
+        "mark_flag",
+        "name",
+        "perpetual",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "stop_thresh",
+        "templating",
+        "unmark_flag",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_FullStop.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_GoToDepth": {
+      "parameters": [
+        "activeflag",
+        "arrival_delta",
+        "arrival_flag",
+        "capture_delta",
+        "capture_flag",
+        "condition",
+        "depth",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "name",
+        "perpetual",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "repeat",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_GoToDepth.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_Guide": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "name",
+        "perpetual",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/app_bweb/BHV_Guide.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_Guide_Info": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "name",
+        "perpetual",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/app_bweb/BHV_Guide_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_HSLine": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "descriptor",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "name",
+        "perpetual",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "time_on_leg",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_HSLine.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_HeadingBias": {
+      "parameters": [
+        "activeflag",
+        "bias",
+        "condition",
+        "descriptor",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "name",
+        "perpetual",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_HeadingBias.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_HeadingChange": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "duration",
+        "endflag",
+        "heading_delta",
+        "idleflag",
+        "inactiveflag",
+        "name",
+        "perpetual",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "turn_speed",
+        "turn_type",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_HeadingChange.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_HeadingHysteresis": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "descriptor",
+        "duration",
+        "endflag",
+        "filter_var",
+        "idleflag",
+        "inactiveflag",
+        "memory_time",
+        "name",
+        "perpetual",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_HeadingHysteresis.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_Hysteresis": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "descriptor",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "max_heading_window",
+        "max_window_utility",
+        "memory_time",
+        "min_heading_window",
+        "name",
+        "perpetual",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_LegRun": {
+      "parameters": [
+        "activeflag",
+        "capture_line",
+        "capture_radius",
+        "condition",
+        "cycleflag",
+        "duration",
+        "endflag",
+        "full_leg",
+        "idleflag",
+        "inactiveflag",
+        "init_leg_mode",
+        "lead",
+        "lead_damper",
+        "leg",
+        "leg1_end_flag",
+        "leg1_endflag",
+        "leg2_end_flag",
+        "leg2_endflag",
+        "leg_end_flag",
+        "leg_endflag",
+        "leg_length",
+        "leg_length_mod",
+        "leg_spds",
+        "leg_spds_onturn",
+        "leg_spds_repeat",
+        "mid_leg_flag",
+        "mid_leg_pct",
+        "mid_turn_flag",
+        "mid_turn_pct",
+        "midflag",
+        "midlegflag",
+        "midpct",
+        "midturnflag",
+        "name",
+        "patience",
+        "perpetual",
+        "priority",
+        "pwt",
+        "radius",
+        "repeat",
+        "runflag",
+        "shift_point",
+        "shift_pt",
+        "slip_radius",
+        "spawnx_flag",
+        "speed",
+        "templating",
+        "turn1_bias",
+        "turn1_bias_mod",
+        "turn1_dir",
+        "turn1_end_flag",
+        "turn1_endflag",
+        "turn1_rad",
+        "turn1_rad_mod",
+        "turn2_bias",
+        "turn2_bias_mod",
+        "turn2_dir",
+        "turn2_end_flag",
+        "turn2_endflag",
+        "turn2_rad",
+        "turn2_rad_mod",
+        "turn_bias_mod",
+        "turn_end_flag",
+        "turn_endflag",
+        "turn_pt_gap",
+        "turn_rad_min",
+        "turn_rad_mod",
+        "updates",
+        "visual_hints",
+        "vx1",
+        "vx2",
+        "warn_overshoot",
+        "wpt_status_var",
+        "wptflag"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_Loiter": {
+      "parameters": [
+        "acquire_dist",
+        "acquire_distance",
+        "activeflag",
+        "capture_radius",
+        "center_activate",
+        "center_assign",
+        "clockwise",
+        "condition",
+        "duration",
+        "edge_color",
+        "edge_size",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "ipf-type",
+        "ipf_type",
+        "label",
+        "label_color",
+        "lcolor",
+        "mod_poly_rad",
+        "name",
+        "nextpt_color",
+        "nextpt_lcolor",
+        "nextpt_vertex_size",
+        "nm_radius",
+        "patience",
+        "perpetual",
+        "polygon",
+        "post_mapping",
+        "post_suffix",
+        "priority",
+        "pwt",
+        "radius",
+        "runflag",
+        "slingshot",
+        "slip_radius",
+        "spawnx_flag",
+        "speed",
+        "speed_alt",
+        "spiral_factor",
+        "templating",
+        "updates",
+        "use_alt_speed",
+        "vertex_color",
+        "vertex_size",
+        "visual_hints",
+        "xcenter_assign",
+        "ycenter_assign"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_MaintainHeading": {
+      "parameters": [
+        "activeflag",
+        "basewidth",
+        "condition",
+        "duration",
+        "endflag",
+        "heading",
+        "idleflag",
+        "inactiveflag",
+        "name",
+        "peakwidth",
+        "perpetual",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "summitdelta",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_MaxDepth": {
+      "parameters": [
+        "activeflag",
+        "basewidth",
+        "condition",
+        "depth_slack_var",
+        "descriptor",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "max_depth",
+        "name",
+        "perpetual",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "tolerance",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxDepth.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_MaxSpeed": {
+      "parameters": [
+        "activeflag",
+        "basewidth",
+        "condition",
+        "descriptor",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "max_speed",
+        "name",
+        "perpetual",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "speed_slack_var",
+        "templating",
+        "tolerance",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxSpeed.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_MemoryTurnLimit": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "memory_time",
+        "name",
+        "perpetual",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "turn_range",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MemoryTurnLimit.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_MinAltitudeX": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "min_altitude",
+        "missing_altitude_critical",
+        "name",
+        "perpetual",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MinAltitudeX.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_OpRegionRecover": {
+      "parameters": [
+        "activeflag",
+        "breached_poly_flag",
+        "buffer_dist",
+        "condition",
+        "duration",
+        "dynamic_region_var",
+        "edge_color",
+        "edge_size",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "label_color",
+        "name",
+        "opregion_poly_var",
+        "perpetual",
+        "polygon",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "reset_var",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "trigger_entry_time",
+        "trigger_exit_time",
+        "updates",
+        "vertex_color",
+        "vertex_size",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_OpRegionV24": {
+      "parameters": [
+        "activeflag",
+        "breached_altitude_flag",
+        "breached_depth_flag",
+        "breached_poly_flag",
+        "breached_time_flag",
+        "condition",
+        "core_poly",
+        "draw_halt_status",
+        "draw_save_statue",
+        "draw_save_status",
+        "duration",
+        "dynamic_region_var",
+        "endflag",
+        "halt_dist",
+        "halt_poly",
+        "idleflag",
+        "inactiveflag",
+        "max_depth",
+        "max_time",
+        "min_altitude",
+        "name",
+        "perpetual",
+        "polygon",
+        "priority",
+        "pwt",
+        "recover_spd",
+        "recover_speed",
+        "reset",
+        "runflag",
+        "save_dist",
+        "save_flag",
+        "save_poly",
+        "savex_flag",
+        "spawnx_flag",
+        "templating",
+        "trigger_entry_time",
+        "trigger_exit_time",
+        "trigger_on_poly_entry",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_PModelView": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "descriptor",
+        "duration",
+        "edge_color",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "name",
+        "perpetual",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "updates",
+        "vertex_color",
+        "vertex_size",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PModelView.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_PeriodicSpeed": {
+      "parameters": [
+        "activeflag",
+        "basewidth",
+        "condition",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "initially_busy",
+        "name",
+        "peakwidth",
+        "period_basewidth",
+        "period_busy",
+        "period_lazy",
+        "period_peakwidth",
+        "period_speed",
+        "perpetual",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "reset_upon_running",
+        "runflag",
+        "spawnx_flag",
+        "summit_delta",
+        "templating",
+        "updates",
+        "visual_hints",
+        "zaic_basewidth",
+        "zaic_peakwidth",
+        "zaic_summit_delta"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_PeriodicSurface": {
+      "parameters": [
+        "acomms_mark_variable",
+        "activeflag",
+        "ascent_grade",
+        "ascent_speed",
+        "atsurface_status_var",
+        "atsurface_status_variable",
+        "condition",
+        "descriptor",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "mark_variable",
+        "max_time_at_surface",
+        "name",
+        "pending_status_var",
+        "pending_status_variable",
+        "period",
+        "perpetual",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "speed_to_surface",
+        "templating",
+        "updates",
+        "visual_hints",
+        "zero_speed_depth"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_RStationKeep": {
+      "parameters": [
+        "activeflag",
+        "center_activate",
+        "condition",
+        "contact",
+        "descriptor",
+        "duration",
+        "endflag",
+        "extra_speed",
+        "idleflag",
+        "inactiveflag",
+        "inner_radius",
+        "name",
+        "outer_radius",
+        "outer_speed",
+        "perpetual",
+        "priority",
+        "pwt",
+        "rstation_position",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "them",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_RStationKeep.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_RangePulse": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "descriptor",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "name",
+        "perpetual",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_RangePulse.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_Shadow": {
+      "parameters": [
+        "activeflag",
+        "bearing_line_config",
+        "condition",
+        "contact",
+        "decay",
+        "decay_end",
+        "descriptor",
+        "duration",
+        "endflag",
+        "exit_on_filter_group",
+        "exit_on_filter_region",
+        "exit_on_filter_vname",
+        "exit_on_filter_vtype",
+        "extrapolate",
+        "hdg_basewidth",
+        "hdg_peakwidth",
+        "heading_basewidth",
+        "heading_peakwidth",
+        "idleflag",
+        "ignore_group",
+        "ignore_name",
+        "ignore_region",
+        "ignore_type",
+        "inactiveflag",
+        "match_group",
+        "match_name",
+        "match_region",
+        "match_type",
+        "name",
+        "on_no_contact_ok",
+        "perpetual",
+        "post_mapping",
+        "post_per_contact_info",
+        "priority",
+        "pwt",
+        "pwt_outer_dist",
+        "runflag",
+        "spawnx_flag",
+        "spd_basewidth",
+        "spd_peakwidth",
+        "speed_basewidth",
+        "speed_peakwidth",
+        "templating",
+        "them",
+        "time_on_leg",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_StationKeep": {
+      "parameters": [
+        "activeflag",
+        "center_activate",
+        "condition",
+        "duration",
+        "edge_color",
+        "edge_size",
+        "endflag",
+        "extra_speed",
+        "hibernation_radius",
+        "idleflag",
+        "inactiveflag",
+        "inner_radius",
+        "label_color",
+        "name",
+        "outer_radius",
+        "outer_speed",
+        "perpetual",
+        "point",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "station_pt",
+        "swing_time",
+        "templating",
+        "transit_speed",
+        "updates",
+        "vertex_color",
+        "vertex_size",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_TestFailure": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "descriptor",
+        "duration",
+        "endflag",
+        "failure_type",
+        "idleflag",
+        "inactiveflag",
+        "name",
+        "perpetual",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_TestFailure.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_TimeOut": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "descriptor",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "max_time",
+        "name",
+        "perpetual",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_TimeOut.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_Timer": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "duration",
+        "endflag",
+        "idleflag",
+        "inactiveflag",
+        "name",
+        "perpetual",
+        "post_mapping",
+        "priority",
+        "pwt",
+        "runflag",
+        "spawnx_flag",
+        "status_suffix",
+        "templating",
+        "updates",
+        "var_status_idle",
+        "var_status_running",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_Trail": {
+      "parameters": [
+        "activeflag",
+        "bearing_line_config",
+        "build_info",
+        "cncrs",
+        "cnlat",
+        "cnlon",
+        "cnspd",
+        "condition",
+        "contact",
+        "decay",
+        "decay_end",
+        "descriptor",
+        "duration",
+        "endflag",
+        "exit_on_filter_group",
+        "exit_on_filter_region",
+        "exit_on_filter_vname",
+        "exit_on_filter_vtype",
+        "extrapolate",
+        "idleflag",
+        "inactiveflag",
+        "mod_trail_range",
+        "mod_trail_range_pct",
+        "n_alert_request",
+        "name",
+        "nm_radius",
+        "no_alert_request",
+        "on_no_contact_ok",
+        "oslat",
+        "oslon",
+        "perpetual",
+        "post_mapping",
+        "post_per_contact_info",
+        "post_trail_dist_on_idle",
+        "priority",
+        "pwt",
+        "pwt_outer_dist",
+        "radius",
+        "runflag",
+        "spawnx_flag",
+        "templating",
+        "them",
+        "time_on_leg",
+        "tol",
+        "trail_angle",
+        "trail_angle_type",
+        "trail_range",
+        "updates",
+        "visual_hints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Trail.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_Waypoint": {
+      "parameters": [
+        "activeflag",
+        "capture_line",
+        "capture_radius",
+        "condition",
+        "crs_spd_zaic_ratio",
+        "currix",
+        "cycle_index_var",
+        "cycleflag",
+        "desired_speed",
+        "draw_path_loop",
+        "duration",
+        "eager_prev_index_flag",
+        "efficiency_measure",
+        "end_spd",
+        "endflag",
+        "greedy_tour",
+        "idleflag",
+        "inactiveflag",
+        "ipf-type",
+        "ipf_type",
+        "lead",
+        "lead_condition",
+        "lead_damper",
+        "lead_to_start",
+        "name",
+        "newpt",
+        "nm_radius",
+        "order",
+        "osx",
+        "osy",
+        "patience",
+        "perpetual",
+        "point",
+        "points",
+        "polygon",
+        "post_mapping",
+        "post_suffix",
+        "priority",
+        "ptx",
+        "pty",
+        "pwt",
+        "radius",
+        "repeat",
+        "reset_on_idle",
+        "runflag",
+        "shortest_tour",
+        "slip_radius",
+        "slow_dist",
+        "spawnx_flag",
+        "speed",
+        "speed_alt",
+        "stop_dist",
+        "templating",
+        "uniform_piece",
+        "updates",
+        "use_alt_speed",
+        "visual_hints",
+        "wpt_dist_to_next",
+        "wpt_dist_to_prev",
+        "wpt_index",
+        "wpt_index_var",
+        "wpt_status",
+        "wpt_status_var",
+        "wptflag",
+        "wptflag_on_start",
+        "xpoints"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "BHV_ZigZag": {
+      "parameters": [
+        "activeflag",
+        "condition",
+        "delta_heading",
+        "descriptor",
+        "draw_req_hdg",
+        "draw_set_hdg",
+        "duration",
+        "endflag",
+        "fierce_zigging",
+        "hdg_thresh",
+        "idleflag",
+        "inactiveflag",
+        "max_stem_dist",
+        "max_stem_odo",
+        "max_zig_legs",
+        "max_zig_zags",
+        "mod_speed",
+        "name",
+        "perpetual",
+        "portflag",
+        "portflagx",
+        "priority",
+        "pwt",
+        "req_hdg_color",
+        "runflag",
+        "set_hdg_color",
+        "spawnx_flag",
+        "spd_on_active",
+        "speed",
+        "speed_on_active",
+        "starflag",
+        "starflagx",
+        "stem_hdg",
+        "stem_on_active",
+        "templating",
+        "updates",
+        "visual_hints",
+        "zagflag",
+        "zig_angle",
+        "zig_angle_fierce",
+        "zig_first",
+        "zigflag"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-bhvs.el",
+        "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    }
+  },
+  "parameters": {
+    "acomms_mark_variable": [
+      "BHV_PeriodicSurface"
+    ],
+    "acquire_dist": [
+      "BHV_Loiter"
+    ],
+    "acquire_distance": [
+      "BHV_Loiter"
+    ],
+    "action": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "activeflag": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "all_clear_distance": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision"
+    ],
+    "allowable_ttc": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "allstop_on_breach": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "arrival_delta": [
+      "BHV_GoToDepth"
+    ],
+    "arrival_flag": [
+      "BHV_GoToDepth"
+    ],
+    "ascent_grade": [
+      "BHV_PeriodicSurface"
+    ],
+    "ascent_speed": [
+      "BHV_PeriodicSurface"
+    ],
+    "atsurface_status_var": [
+      "BHV_PeriodicSurface"
+    ],
+    "atsurface_status_variable": [
+      "BHV_PeriodicSurface"
+    ],
+    "avoid_mode": [
+      "BHV_AvdColregsV22"
+    ],
+    "avoid_submode": [
+      "BHV_AvdColregsV22"
+    ],
+    "basewidth": [
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_PeriodicSpeed"
+    ],
+    "basin_region": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "bearing_line_config": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow",
+      "BHV_Trail"
+    ],
+    "bearing_line_label_show": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision"
+    ],
+    "bearing_line_show": [
+      "BHV_AvdColregsV22"
+    ],
+    "bearing_lines": [
+      "BHV_AvoidCollision"
+    ],
+    "bearing_point": [
+      "BHV_BearingLine"
+    ],
+    "bias": [
+      "BHV_HeadingBias"
+    ],
+    "breached_altitude_flag": [
+      "BHV_OpRegionV24"
+    ],
+    "breached_depth_flag": [
+      "BHV_OpRegionV24"
+    ],
+    "breached_poly_flag": [
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24"
+    ],
+    "breached_time_flag": [
+      "BHV_OpRegionV24"
+    ],
+    "buffer_dist": [
+      "BHV_OpRegionRecover"
+    ],
+    "build_info": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Trail"
+    ],
+    "can_disable": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24"
+    ],
+    "capture_delta": [
+      "BHV_GoToDepth"
+    ],
+    "capture_flag": [
+      "BHV_GoToDepth"
+    ],
+    "capture_line": [
+      "BHV_LegRun",
+      "BHV_Waypoint"
+    ],
+    "capture_radius": [
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_Waypoint"
+    ],
+    "center_activate": [
+      "BHV_Loiter",
+      "BHV_RStationKeep",
+      "BHV_StationKeep"
+    ],
+    "center_assign": [
+      "BHV_Loiter"
+    ],
+    "check_plateaus": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision"
+    ],
+    "check_validity": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision"
+    ],
+    "clockwise": [
+      "BHV_Loiter"
+    ],
+    "cncrs": [
+      "BHV_CutRange",
+      "BHV_Trail"
+    ],
+    "cnh": [
+      "BHV_AvoidCollision"
+    ],
+    "cnlat": [
+      "BHV_CutRange",
+      "BHV_Trail"
+    ],
+    "cnlon": [
+      "BHV_CutRange",
+      "BHV_Trail"
+    ],
+    "cnspd": [
+      "BHV_CutRange",
+      "BHV_Trail"
+    ],
+    "cnv": [
+      "BHV_AvoidCollision"
+    ],
+    "cnx": [
+      "BHV_AvoidCollision"
+    ],
+    "cny": [
+      "BHV_AvoidCollision"
+    ],
+    "collision_depth": [
+      "BHV_AvoidCollision"
+    ],
+    "collision_distance": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision"
+    ],
+    "complete_thresh": [
+      "BHV_ConstantHeading"
+    ],
+    "completed_dist": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24"
+    ],
+    "condition": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "contact": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_RStationKeep",
+      "BHV_Shadow",
+      "BHV_Trail"
+    ],
+    "contact_type_required": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision"
+    ],
+    "core_poly": [
+      "BHV_OpRegionV24"
+    ],
+    "cpa_flag": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "crs_spd_zaic_ratio": [
+      "BHV_Waypoint"
+    ],
+    "cruise_speed": [
+      "BHV_Convoy"
+    ],
+    "currix": [
+      "BHV_Waypoint"
+    ],
+    "cycle_index_var": [
+      "BHV_Waypoint"
+    ],
+    "cycleflag": [
+      "BHV_LegRun",
+      "BHV_Waypoint"
+    ],
+    "decay": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow",
+      "BHV_Trail"
+    ],
+    "decay_end": [
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow",
+      "BHV_Trail"
+    ],
+    "delay_complete": [
+      "BHV_FullStop"
+    ],
+    "delta_heading": [
+      "BHV_ZigZag"
+    ],
+    "depth": [
+      "BHV_ConstantDepth",
+      "BHV_GoToDepth"
+    ],
+    "depth_mismatch_var": [
+      "BHV_ConstantDepth"
+    ],
+    "depth_slack_var": [
+      "BHV_MaxDepth"
+    ],
+    "descriptor": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_PModelView",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Trail",
+      "BHV_ZigZag"
+    ],
+    "desired_speed": [
+      "BHV_AbortToPoint",
+      "BHV_Waypoint"
+    ],
+    "draw_buff_max_poly": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "draw_buff_min_poly": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "draw_halt_status": [
+      "BHV_OpRegionV24"
+    ],
+    "draw_path_loop": [
+      "BHV_Waypoint"
+    ],
+    "draw_req_hdg": [
+      "BHV_ZigZag"
+    ],
+    "draw_save_statue": [
+      "BHV_OpRegionV24"
+    ],
+    "draw_save_status": [
+      "BHV_OpRegionV24"
+    ],
+    "draw_set_hdg": [
+      "BHV_ZigZag"
+    ],
+    "duration": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "dynamic_region_var": [
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24"
+    ],
+    "eager_prev_index_flag": [
+      "BHV_Waypoint"
+    ],
+    "edge_color": [
+      "BHV_Loiter",
+      "BHV_OpRegionRecover",
+      "BHV_PModelView",
+      "BHV_StationKeep"
+    ],
+    "edge_size": [
+      "BHV_Loiter",
+      "BHV_OpRegionRecover",
+      "BHV_StationKeep"
+    ],
+    "efficiency_measure": [
+      "BHV_Waypoint"
+    ],
+    "end_spd": [
+      "BHV_Waypoint"
+    ],
+    "endflag": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "eval_tol": [
+      "BHV_AvdColregsV22"
+    ],
+    "exit_on_filter_group": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow",
+      "BHV_Trail"
+    ],
+    "exit_on_filter_region": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow",
+      "BHV_Trail"
+    ],
+    "exit_on_filter_vname": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow",
+      "BHV_Trail"
+    ],
+    "exit_on_filter_vtype": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow",
+      "BHV_Trail"
+    ],
+    "extra_speed": [
+      "BHV_RStationKeep",
+      "BHV_StationKeep"
+    ],
+    "extrapolate": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow",
+      "BHV_Trail"
+    ],
+    "failure_type": [
+      "BHV_TestFailure"
+    ],
+    "fierce_zigging": [
+      "BHV_ZigZag"
+    ],
+    "filter_var": [
+      "BHV_HeadingHysteresis"
+    ],
+    "fix_turn": [
+      "BHV_FixedTurn"
+    ],
+    "full_avoid_mode": [
+      "BHV_AvdColregsV22"
+    ],
+    "full_leg": [
+      "BHV_LegRun"
+    ],
+    "giveup_dist": [
+      "BHV_CutRange"
+    ],
+    "giveup_range": [
+      "BHV_CutRange"
+    ],
+    "giveupflag": [
+      "BHV_CutRange"
+    ],
+    "giveway_bow_dist": [
+      "BHV_AvdColregsV22"
+    ],
+    "greedy_tour": [
+      "BHV_Waypoint"
+    ],
+    "halt_dist": [
+      "BHV_OpRegionV24"
+    ],
+    "halt_poly": [
+      "BHV_OpRegionV24"
+    ],
+    "hdg_basewidth": [
+      "BHV_Shadow"
+    ],
+    "hdg_peakwidth": [
+      "BHV_Shadow"
+    ],
+    "hdg_thresh": [
+      "BHV_ZigZag"
+    ],
+    "heading": [
+      "BHV_ConstantHeading",
+      "BHV_MaintainHeading"
+    ],
+    "heading_basewidth": [
+      "BHV_Shadow"
+    ],
+    "heading_delta": [
+      "BHV_HeadingChange"
+    ],
+    "heading_mismatch_var": [
+      "BHV_ConstantHeading"
+    ],
+    "heading_peakwidth": [
+      "BHV_Shadow"
+    ],
+    "headon_only": [
+      "BHV_AvdColregsV22"
+    ],
+    "hibernation_radius": [
+      "BHV_StationKeep"
+    ],
+    "holonomic_ok": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "id": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "idleflag": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "ignore_contact_group": [
+      "BHV_AvoidCollision"
+    ],
+    "ignore_group": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow"
+    ],
+    "ignore_name": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow"
+    ],
+    "ignore_region": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow"
+    ],
+    "ignore_type": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow"
+    ],
+    "inactiveflag": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "init_leg_mode": [
+      "BHV_LegRun"
+    ],
+    "initially_busy": [
+      "BHV_PeriodicSpeed"
+    ],
+    "inner_radius": [
+      "BHV_RStationKeep",
+      "BHV_StationKeep"
+    ],
+    "inter_mark_range": [
+      "BHV_Convoy"
+    ],
+    "ipf_type": [
+      "BHV_Loiter",
+      "BHV_Waypoint"
+    ],
+    "ipf-type": [
+      "BHV_AbortToPoint",
+      "BHV_Loiter",
+      "BHV_Waypoint"
+    ],
+    "label": [
+      "BHV_Loiter"
+    ],
+    "label_color": [
+      "BHV_Loiter",
+      "BHV_OpRegionRecover",
+      "BHV_StationKeep"
+    ],
+    "lcolor": [
+      "BHV_Loiter"
+    ],
+    "lead": [
+      "BHV_LegRun",
+      "BHV_Waypoint"
+    ],
+    "lead_condition": [
+      "BHV_Waypoint"
+    ],
+    "lead_damper": [
+      "BHV_LegRun",
+      "BHV_Waypoint"
+    ],
+    "lead_to_start": [
+      "BHV_Waypoint"
+    ],
+    "leg": [
+      "BHV_LegRun"
+    ],
+    "leg_end_flag": [
+      "BHV_LegRun"
+    ],
+    "leg_endflag": [
+      "BHV_LegRun"
+    ],
+    "leg_length": [
+      "BHV_LegRun"
+    ],
+    "leg_length_mod": [
+      "BHV_LegRun"
+    ],
+    "leg_spds": [
+      "BHV_LegRun"
+    ],
+    "leg_spds_onturn": [
+      "BHV_LegRun"
+    ],
+    "leg_spds_repeat": [
+      "BHV_LegRun"
+    ],
+    "leg1_end_flag": [
+      "BHV_LegRun"
+    ],
+    "leg1_endflag": [
+      "BHV_LegRun"
+    ],
+    "leg2_end_flag": [
+      "BHV_LegRun"
+    ],
+    "leg2_endflag": [
+      "BHV_LegRun"
+    ],
+    "line_pct": [
+      "BHV_BearingLine"
+    ],
+    "mark_duration": [
+      "BHV_FullStop"
+    ],
+    "mark_flag": [
+      "BHV_FullStop"
+    ],
+    "mark_variable": [
+      "BHV_PeriodicSurface"
+    ],
+    "match_contact_group": [
+      "BHV_AvoidCollision"
+    ],
+    "match_group": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow"
+    ],
+    "match_name": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow"
+    ],
+    "match_region": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow"
+    ],
+    "match_type": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow"
+    ],
+    "max_depth": [
+      "BHV_MaxDepth",
+      "BHV_OpRegionV24"
+    ],
+    "max_heading_window": [
+      "BHV_Hysteresis"
+    ],
+    "max_mark_range": [
+      "BHV_Convoy"
+    ],
+    "max_patience": [
+      "BHV_CutRange"
+    ],
+    "max_speed": [
+      "BHV_MaxSpeed"
+    ],
+    "max_stem_dist": [
+      "BHV_ZigZag"
+    ],
+    "max_stem_odo": [
+      "BHV_ZigZag"
+    ],
+    "max_time": [
+      "BHV_OpRegionV24",
+      "BHV_TimeOut"
+    ],
+    "max_time_at_surface": [
+      "BHV_PeriodicSurface"
+    ],
+    "max_util_cpa_dist": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24"
+    ],
+    "max_window_utility": [
+      "BHV_Hysteresis"
+    ],
+    "max_zig_legs": [
+      "BHV_ZigZag"
+    ],
+    "max_zig_zags": [
+      "BHV_ZigZag"
+    ],
+    "memory_time": [
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_MemoryTurnLimit"
+    ],
+    "mid_leg_flag": [
+      "BHV_LegRun"
+    ],
+    "mid_leg_pct": [
+      "BHV_LegRun"
+    ],
+    "mid_turn_flag": [
+      "BHV_LegRun"
+    ],
+    "mid_turn_pct": [
+      "BHV_LegRun"
+    ],
+    "midflag": [
+      "BHV_LegRun"
+    ],
+    "midlegflag": [
+      "BHV_LegRun"
+    ],
+    "midpct": [
+      "BHV_LegRun"
+    ],
+    "midturnflag": [
+      "BHV_LegRun"
+    ],
+    "min_altitude": [
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionV24"
+    ],
+    "min_heading_window": [
+      "BHV_Hysteresis"
+    ],
+    "min_util_cpa_dist": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24"
+    ],
+    "missing_altitude_critical": [
+      "BHV_MinAltitudeX"
+    ],
+    "mod_hdg": [
+      "BHV_FixedTurn"
+    ],
+    "mod_poly_rad": [
+      "BHV_Loiter"
+    ],
+    "mod_speed": [
+      "BHV_ZigZag"
+    ],
+    "mod_trail_range": [
+      "BHV_Trail"
+    ],
+    "mod_trail_range_pct": [
+      "BHV_Trail"
+    ],
+    "n_alert_request": [
+      "BHV_Trail"
+    ],
+    "name": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "newpt": [
+      "BHV_Waypoint"
+    ],
+    "nextpt_color": [
+      "BHV_Loiter"
+    ],
+    "nextpt_lcolor": [
+      "BHV_Loiter"
+    ],
+    "nextpt_vertex_size": [
+      "BHV_Loiter"
+    ],
+    "nm_radius": [
+      "BHV_AbortToPoint",
+      "BHV_Convoy",
+      "BHV_Loiter",
+      "BHV_Trail",
+      "BHV_Waypoint"
+    ],
+    "no_alert_request": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_Trail"
+    ],
+    "obid": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "obstacle_id": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "obstacle_key": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "on_no_contact_ok": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Shadow",
+      "BHV_Trail"
+    ],
+    "opregion_poly_var": [
+      "BHV_OpRegionRecover"
+    ],
+    "order": [
+      "BHV_Waypoint"
+    ],
+    "osh": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision"
+    ],
+    "oslat": [
+      "BHV_CutRange",
+      "BHV_Trail"
+    ],
+    "oslon": [
+      "BHV_CutRange",
+      "BHV_Trail"
+    ],
+    "osv": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision"
+    ],
+    "osx": [
+      "BHV_AbortToPoint",
+      "BHV_AvoidCollision",
+      "BHV_Waypoint"
+    ],
+    "osy": [
+      "BHV_AbortToPoint",
+      "BHV_AvoidCollision",
+      "BHV_Waypoint"
+    ],
+    "outer_radius": [
+      "BHV_RStationKeep",
+      "BHV_StationKeep"
+    ],
+    "outer_speed": [
+      "BHV_RStationKeep",
+      "BHV_StationKeep"
+    ],
+    "passing_side": [
+      "BHV_AvdColregsV22"
+    ],
+    "patience": [
+      "BHV_CutRange",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_Waypoint"
+    ],
+    "pcheck_thresh": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision"
+    ],
+    "peakwidth": [
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_MaintainHeading",
+      "BHV_PeriodicSpeed"
+    ],
+    "pending_status_var": [
+      "BHV_PeriodicSurface"
+    ],
+    "pending_status_variable": [
+      "BHV_PeriodicSurface"
+    ],
+    "period": [
+      "BHV_PeriodicSurface"
+    ],
+    "period_basewidth": [
+      "BHV_PeriodicSpeed"
+    ],
+    "period_busy": [
+      "BHV_PeriodicSpeed"
+    ],
+    "period_lazy": [
+      "BHV_PeriodicSpeed"
+    ],
+    "period_peakwidth": [
+      "BHV_PeriodicSpeed"
+    ],
+    "period_speed": [
+      "BHV_PeriodicSpeed"
+    ],
+    "perpetual": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "plateau_region": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24"
+    ],
+    "point": [
+      "BHV_AbortToPoint",
+      "BHV_StationKeep",
+      "BHV_Waypoint"
+    ],
+    "points": [
+      "BHV_Waypoint"
+    ],
+    "poly": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "polygon": [
+      "BHV_AvoidObstacleV24",
+      "BHV_Loiter",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_Waypoint"
+    ],
+    "portflag": [
+      "BHV_ZigZag"
+    ],
+    "portflagx": [
+      "BHV_ZigZag"
+    ],
+    "post_mapping": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_GoToDepth",
+      "BHV_HSLine",
+      "BHV_Loiter",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_OpRegionRecover",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint"
+    ],
+    "post_per_contact_info": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_Shadow",
+      "BHV_Trail"
+    ],
+    "post_status_info_on_idle": [
+      "BHV_AvdColregsV22"
+    ],
+    "post_suffix": [
+      "BHV_Loiter",
+      "BHV_Waypoint"
+    ],
+    "post_trail_dist_on_idle": [
+      "BHV_Trail"
+    ],
+    "priority": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "pts_port_turns_ok": [
+      "BHV_AvdColregsV22"
+    ],
+    "ptx": [
+      "BHV_AbortToPoint",
+      "BHV_Waypoint"
+    ],
+    "pty": [
+      "BHV_AbortToPoint",
+      "BHV_Waypoint"
+    ],
+    "pursueflag": [
+      "BHV_CutRange"
+    ],
+    "pwt": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "pwt_grade": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision"
+    ],
+    "pwt_inner_dist": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_CutRange"
+    ],
+    "pwt_outer_dist": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_CutRange",
+      "BHV_Shadow",
+      "BHV_Trail"
+    ],
+    "radius": [
+      "BHV_AbortToPoint",
+      "BHV_AvoidObstacleV24",
+      "BHV_Convoy",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_Trail",
+      "BHV_Waypoint"
+    ],
+    "radius_rep_var": [
+      "BHV_FixedTurn"
+    ],
+    "range_estop": [
+      "BHV_Convoy"
+    ],
+    "range_lagging": [
+      "BHV_Convoy"
+    ],
+    "range_tailgating": [
+      "BHV_Convoy"
+    ],
+    "recover_spd": [
+      "BHV_OpRegionV24"
+    ],
+    "recover_speed": [
+      "BHV_OpRegionV24"
+    ],
+    "refine_piece": [
+      "BHV_AvoidCollision"
+    ],
+    "refine_region": [
+      "BHV_AvoidCollision"
+    ],
+    "repeat": [
+      "BHV_GoToDepth",
+      "BHV_LegRun",
+      "BHV_Waypoint"
+    ],
+    "req_hdg_color": [
+      "BHV_ZigZag"
+    ],
+    "reset": [
+      "BHV_OpRegionV24"
+    ],
+    "reset_on_idle": [
+      "BHV_Waypoint"
+    ],
+    "reset_upon_running": [
+      "BHV_PeriodicSpeed"
+    ],
+    "reset_var": [
+      "BHV_OpRegionRecover"
+    ],
+    "rng_estop": [
+      "BHV_Convoy"
+    ],
+    "rng_flag": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "rng_lagging": [
+      "BHV_Convoy"
+    ],
+    "rng_safety": [
+      "BHV_Convoy"
+    ],
+    "rng_tgating": [
+      "BHV_Convoy"
+    ],
+    "roc_max_dampen": [
+      "BHV_AvoidCollision"
+    ],
+    "roc_max_heighten": [
+      "BHV_AvoidCollision"
+    ],
+    "rstation_position": [
+      "BHV_RStationKeep"
+    ],
+    "runflag": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "save_dist": [
+      "BHV_OpRegionV24"
+    ],
+    "save_flag": [
+      "BHV_OpRegionV24"
+    ],
+    "save_poly": [
+      "BHV_OpRegionV24"
+    ],
+    "savex_flag": [
+      "BHV_OpRegionV24"
+    ],
+    "schedule_repeat": [
+      "BHV_FixedTurn"
+    ],
+    "set_hdg_color": [
+      "BHV_ZigZag"
+    ],
+    "shift_point": [
+      "BHV_LegRun"
+    ],
+    "shift_pt": [
+      "BHV_LegRun"
+    ],
+    "shortest_tour": [
+      "BHV_Waypoint"
+    ],
+    "show_pt": [
+      "BHV_BearingLine"
+    ],
+    "slingshot": [
+      "BHV_Loiter"
+    ],
+    "slip_radius": [
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_Waypoint"
+    ],
+    "slow_dist": [
+      "BHV_Waypoint"
+    ],
+    "spawnx_flag": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "spd_basewidth": [
+      "BHV_Shadow"
+    ],
+    "spd_faster": [
+      "BHV_Convoy"
+    ],
+    "spd_max": [
+      "BHV_Convoy"
+    ],
+    "spd_on_active": [
+      "BHV_ZigZag"
+    ],
+    "spd_peakwidth": [
+      "BHV_Shadow"
+    ],
+    "spd_slower": [
+      "BHV_Convoy"
+    ],
+    "speed": [
+      "BHV_AbortToPoint",
+      "BHV_ConstantSpeed",
+      "BHV_FixedTurn",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "speed_alt": [
+      "BHV_Loiter",
+      "BHV_Waypoint"
+    ],
+    "speed_basewidth": [
+      "BHV_Shadow"
+    ],
+    "speed_mismatch_var": [
+      "BHV_ConstantSpeed"
+    ],
+    "speed_on_active": [
+      "BHV_ZigZag"
+    ],
+    "speed_peakwidth": [
+      "BHV_Shadow"
+    ],
+    "speed_slack_var": [
+      "BHV_MaxSpeed"
+    ],
+    "speed_to_surface": [
+      "BHV_PeriodicSurface"
+    ],
+    "spiral_factor": [
+      "BHV_Loiter"
+    ],
+    "spoke_degs": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "stale_nav_thresh": [
+      "BHV_FixedTurn"
+    ],
+    "starflag": [
+      "BHV_ZigZag"
+    ],
+    "starflagx": [
+      "BHV_ZigZag"
+    ],
+    "station_pt": [
+      "BHV_StationKeep"
+    ],
+    "status_suffix": [
+      "BHV_Timer"
+    ],
+    "stem_hdg": [
+      "BHV_ZigZag"
+    ],
+    "stem_on_active": [
+      "BHV_ZigZag"
+    ],
+    "stop_dist": [
+      "BHV_Waypoint"
+    ],
+    "stop_thresh": [
+      "BHV_FullStop"
+    ],
+    "summit_delta": [
+      "BHV_PeriodicSpeed"
+    ],
+    "summitdelta": [
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_MaintainHeading"
+    ],
+    "swing_time": [
+      "BHV_StationKeep"
+    ],
+    "templating": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "them": [
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_RStationKeep",
+      "BHV_Shadow",
+      "BHV_Trail"
+    ],
+    "time_on_leg": [
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_HSLine",
+      "BHV_Shadow",
+      "BHV_Trail"
+    ],
+    "timeout": [
+      "BHV_FixedTurn"
+    ],
+    "tol": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_CutRange",
+      "BHV_Trail"
+    ],
+    "tolerance": [
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed"
+    ],
+    "trail_angle": [
+      "BHV_Trail"
+    ],
+    "trail_angle_type": [
+      "BHV_Trail"
+    ],
+    "trail_range": [
+      "BHV_Trail"
+    ],
+    "transit_speed": [
+      "BHV_StationKeep"
+    ],
+    "trigger_entry_time": [
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24"
+    ],
+    "trigger_exit_time": [
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24"
+    ],
+    "trigger_on_poly_entry": [
+      "BHV_OpRegionV24"
+    ],
+    "turn_bias_mod": [
+      "BHV_LegRun"
+    ],
+    "turn_delay": [
+      "BHV_FixedTurn"
+    ],
+    "turn_dir": [
+      "BHV_FixedTurn"
+    ],
+    "turn_end_flag": [
+      "BHV_LegRun"
+    ],
+    "turn_endflag": [
+      "BHV_LegRun"
+    ],
+    "turn_model_degs": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "turn_pt_gap": [
+      "BHV_LegRun"
+    ],
+    "turn_rad_min": [
+      "BHV_LegRun"
+    ],
+    "turn_rad_mod": [
+      "BHV_LegRun"
+    ],
+    "turn_radius": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidObstacleV24"
+    ],
+    "turn_range": [
+      "BHV_MemoryTurnLimit"
+    ],
+    "turn_spec": [
+      "BHV_FixedTurn"
+    ],
+    "turn_speed": [
+      "BHV_HeadingChange"
+    ],
+    "turn_type": [
+      "BHV_HeadingChange"
+    ],
+    "turn1_bias": [
+      "BHV_LegRun"
+    ],
+    "turn1_bias_mod": [
+      "BHV_LegRun"
+    ],
+    "turn1_dir": [
+      "BHV_LegRun"
+    ],
+    "turn1_end_flag": [
+      "BHV_LegRun"
+    ],
+    "turn1_endflag": [
+      "BHV_LegRun"
+    ],
+    "turn1_rad": [
+      "BHV_LegRun"
+    ],
+    "turn1_rad_mod": [
+      "BHV_LegRun"
+    ],
+    "turn2_bias": [
+      "BHV_LegRun"
+    ],
+    "turn2_bias_mod": [
+      "BHV_LegRun"
+    ],
+    "turn2_dir": [
+      "BHV_LegRun"
+    ],
+    "turn2_end_flag": [
+      "BHV_LegRun"
+    ],
+    "turn2_endflag": [
+      "BHV_LegRun"
+    ],
+    "turn2_rad": [
+      "BHV_LegRun"
+    ],
+    "turn2_rad_mod": [
+      "BHV_LegRun"
+    ],
+    "uniform_amount": [
+      "BHV_AvoidCollision"
+    ],
+    "uniform_grid": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "uniform_piece": [
+      "BHV_AvoidObstacleV24",
+      "BHV_Waypoint"
+    ],
+    "unmark_flag": [
+      "BHV_FullStop"
+    ],
+    "updates": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "use_alt_speed": [
+      "BHV_Loiter",
+      "BHV_Waypoint"
+    ],
+    "use_refinery": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24"
+    ],
+    "var_status_idle": [
+      "BHV_Timer"
+    ],
+    "var_status_running": [
+      "BHV_Timer"
+    ],
+    "velocity_filter": [
+      "BHV_AvdColregsV22"
+    ],
+    "verbose": [
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision"
+    ],
+    "vertex_color": [
+      "BHV_Loiter",
+      "BHV_OpRegionRecover",
+      "BHV_PModelView",
+      "BHV_StationKeep"
+    ],
+    "vertex_size": [
+      "BHV_Loiter",
+      "BHV_OpRegionRecover",
+      "BHV_PModelView",
+      "BHV_StationKeep"
+    ],
+    "visual_hints": [
+      "BHV_AbortToPoint",
+      "BHV_AvdColregsV22",
+      "BHV_AvoidCollision",
+      "BHV_AvoidObstacleV24",
+      "BHV_BearingLine",
+      "BHV_ConstantDepth",
+      "BHV_ConstantHeading",
+      "BHV_ConstantSpeed",
+      "BHV_Convoy",
+      "BHV_CutRange",
+      "BHV_FixedTurn",
+      "BHV_FullStop",
+      "BHV_GoToDepth",
+      "BHV_Guide",
+      "BHV_Guide_Info",
+      "BHV_HSLine",
+      "BHV_HeadingBias",
+      "BHV_HeadingChange",
+      "BHV_HeadingHysteresis",
+      "BHV_Hysteresis",
+      "BHV_LegRun",
+      "BHV_Loiter",
+      "BHV_MaintainHeading",
+      "BHV_MaxDepth",
+      "BHV_MaxSpeed",
+      "BHV_MemoryTurnLimit",
+      "BHV_MinAltitudeX",
+      "BHV_OpRegionRecover",
+      "BHV_OpRegionV24",
+      "BHV_PModelView",
+      "BHV_PeriodicSpeed",
+      "BHV_PeriodicSurface",
+      "BHV_RStationKeep",
+      "BHV_RangePulse",
+      "BHV_Shadow",
+      "BHV_StationKeep",
+      "BHV_TestFailure",
+      "BHV_TimeOut",
+      "BHV_Timer",
+      "BHV_Trail",
+      "BHV_Waypoint",
+      "BHV_ZigZag"
+    ],
+    "vsource": [
+      "BHV_AvoidObstacleV24"
+    ],
+    "vx1": [
+      "BHV_LegRun"
+    ],
+    "vx2": [
+      "BHV_LegRun"
+    ],
+    "warn_overshoot": [
+      "BHV_LegRun"
+    ],
+    "wpt_dist_to_next": [
+      "BHV_Waypoint"
+    ],
+    "wpt_dist_to_prev": [
+      "BHV_Waypoint"
+    ],
+    "wpt_index": [
+      "BHV_Waypoint"
+    ],
+    "wpt_index_var": [
+      "BHV_Waypoint"
+    ],
+    "wpt_status": [
+      "BHV_Waypoint"
+    ],
+    "wpt_status_var": [
+      "BHV_LegRun",
+      "BHV_Waypoint"
+    ],
+    "wptflag": [
+      "BHV_LegRun",
+      "BHV_Waypoint"
+    ],
+    "wptflag_on_start": [
+      "BHV_Waypoint"
+    ],
+    "xcenter_assign": [
+      "BHV_Loiter"
+    ],
+    "xpoints": [
+      "BHV_Waypoint"
+    ],
+    "ycenter_assign": [
+      "BHV_Loiter"
+    ],
+    "zagflag": [
+      "BHV_ZigZag"
+    ],
+    "zaic_basewidth": [
+      "BHV_PeriodicSpeed"
+    ],
+    "zaic_peakwidth": [
+      "BHV_PeriodicSpeed"
+    ],
+    "zaic_summit_delta": [
+      "BHV_PeriodicSpeed"
+    ],
+    "zero_speed_depth": [
+      "BHV_PeriodicSurface"
+    ],
+    "zig_angle": [
+      "BHV_ZigZag"
+    ],
+    "zig_angle_fierce": [
+      "BHV_ZigZag"
+    ],
+    "zig_first": [
+      "BHV_ZigZag"
+    ],
+    "zigflag": [
+      "BHV_ZigZag"
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "behaviors": {
+    "BHV_Loiter": "Keeps the vehicle loitering around a point or polygon.",
+    "BHV_StationKeep": "Keeps the vehicle near a station point using inner and outer radii.",
+    "BHV_Waypoint": "Drives the vehicle through one or more waypoint points or a waypoint polygon."
+  },
+  "parameters": {
+    "Behavior": "Begins an IvP behavior block.",
+    "activeflag": "Posts a flag when the behavior becomes active.",
+    "capture_line": "Waypoint option allowing capture by crossing a line near the waypoint.",
+    "capture_radius": "Radius within which a waypoint is considered captured.",
+    "center_activate": "Station-keep option that centers the behavior when it activates.",
+    "clockwise": "Loiter option controlling polygon traversal direction.",
+    "condition": "Boolean condition that must be true for the behavior to run.",
+    "duration": "Maximum or intended duration for a behavior when supported.",
+    "endflag": "Posts a flag when the behavior completes.",
+    "idleflag": "Posts a flag when the behavior is idle.",
+    "initialize": "Initializes a helm variable before mode logic runs.",
+    "inner_radius": "Station-keep radius inside which the vehicle is considered close to station.",
+    "name": "Unique name for this behavior instance.",
+    "outer_radius": "Station-keep radius outside which the vehicle transits back toward station.",
+    "outer_speed": "Station-keep speed used outside the outer radius.",
+    "perpetual": "Controls whether the behavior can complete or should keep running.",
+    "point": "Waypoint or station point coordinate.",
+    "polygon": "Polygon or waypoint list used by a behavior.",
+    "priority": "Behavior priority weight. Often equivalent in use to pwt.",
+    "pwt": "Behavior priority weight used by the IvP Helm objective function.",
+    "repeat": "Number of times to repeat a waypoint sequence when supported.",
+    "runflag": "Posts a flag when the behavior is running.",
+    "set": "Defines a helm mode and its conditions.",
+    "slip_radius": "Waypoint radius outside capture radius where capture behavior may still apply.",
+    "speed": "Desired behavior speed.",
+    "transit_speed": "Station-keep speed used while transiting back toward station.",
+    "updates": "MOOS variable used for runtime behavior updates.",
+    "visual_hints": "Display hints for visual objects posted by a behavior."
+  }
+}
