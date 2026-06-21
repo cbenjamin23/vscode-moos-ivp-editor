@@ -82,90 +82,92 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
       "parameters": {
         "alert": {
-          "description": "A description of a single alert.",
+          "description": "Defines one contact-alert rule. Alert entries may set the posted flag, alert range, CPA range, display colors, and match/ignore filters; multiple lines with the same alert id combine into one alert definition.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-          "example": "alert                        = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "alert = id=say, var=SAY_MOOS, val=\"$(VNAME) sees $([VNAME])\"",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: Section 4.1, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:115"
         },
         "contact_local_coords": {
-          "description": "Determines if the local coordinates of incoming node reports are filled by translated latitude longitude coordinates. Legal values: verbatim, lazy lat lon, force lat lon. The default is verbatim, meaning no translation action is taken.",
+          "description": "Controls whether local x/y coordinates in incoming node reports are filled from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
           "default": "verbatim",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-          "example": "contact_local_coords         = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "contact_local_coords = verbatim",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
         },
         "default_alert_range": {
-          "description": "The range to a contact, in meters, within which an alert is posted. Legal values: any positive number. The default is 1000.",
+          "description": "Sets the default alert range, in meters, used by alert rules that do not specify their own alert_range. Contacts inside this range can trigger the alert posting.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
           "default": "1000",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-          "example": "default_alert_range          = 10",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "default_alert_range = 1000",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
         },
         "default_cpa_range": {
-          "description": "The range to a contact, in meters, within which an alert is posted if the closest point of approach (CPA) falls within this range. Legal values: any positive number. The default is 1000.",
+          "description": "Sets the default CPA range, in meters, used by alert rules that do not specify their own cpa_range. A contact can trigger when its closest point of approach falls inside this range.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
           "default": "1000",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-          "example": "default_cpa_range            = 10",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "default_cpa_range = 1000",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
         },
         "default_alert_range_color": {
-          "description": "The default color for rendering the alert range radius. Legal values: any color in Colors Appendix. The default is gray70.",
+          "description": "Sets the default display color for alert range circles when an alert rule does not provide its own color. The source example uses gray65.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
           "default": "gray65",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-          "example": "default_alert_range_color    = yellow",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "default_alert_range_color = gray65",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:310, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:104"
         },
         "default_cpa_range_color": {
-          "description": "The default color for rendering the cpa range radius. Legal values: any color in the Colors Appendix. The default is gray30.",
+          "description": "Sets the default display color for CPA range circles when an alert rule does not provide its own color. The source example uses gray35.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
           "default": "gray35",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-          "example": "default_cpa_range_color      = yellow",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "default_cpa_range_color = gray35",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:320, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:105"
         },
         "contact_max_age": {
-          "description": "Seconds between reports before a contact is dropped from the list. Legal values: any non-negative number. The default is 600.",
+          "description": "Sets how many seconds may pass without a fresh contact report before the contact is dropped from the active contact list. This bounds stale contact state in the manager.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
           "default": "600",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-          "example": "contact_max_age              = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "contact_max_age = 600",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:57"
         },
         "contact_max_age_history": {
-          "description": "Seconds after a contact is retired before it is removed entirely from the contact manager memory, and thus even the posted retired lists. This is guard against unbounded memory growth. The default is 60.",
+          "description": "Sets how long a retired contact remains in contact-manager memory and retired-contact postings after it leaves the active list. This guards against unbounded retired-contact history.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
           "default": "60",
-          "defaultSource": "documentation text",
+          "defaultSource": "manual review",
           "example": "contact_max_age_history = 60",
-          "exampleSource": "generated from parameter name"
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
         },
         "display_radii": {
-          "description": "If true, the two alert ranges are posted as viewable circles. Legal values: true, false. The default is false.",
+          "description": "Enables posting visual range circles for configured alert and CPA radii. This affects viewer output and does not change alert triggering.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:55",
-          "example": "display_radii                = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "display_radii = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
         },
         "post_closest_range": {
-          "description": "If true, the range to the closest contact is posted, rounded to the nearest meter. The default is false (In the release after 17.7).",
+          "description": "Posts the range to the closest current contact, rounded to the nearest meter. This is a reporting option and does not affect alert logic.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
           "default": "false",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-          "example": "post_closest_range           = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "post_closest_range = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: closest-contact reporting"
         }
       },
       "description": "The pBasicContactMgr app has been replaced by pContactMgrV20.  Users of the latest code releases where pContactMgrV20 is available, are encouraged to use this instead."
@@ -174,257 +176,271 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
       "parameters": {
         "able_flag": {
-          "description": "A flag to be posted whenever a contact is disabled or (re)enabled.",
+          "description": "Posts a MOOS variable-value flag whenever a contact is disabled or re-enabled. Use this for mission logic that needs to react to any contact availability transition.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "example": "able_flag                    = EXAMPLE_FLAG = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "able_flag = CONTACT_ABLE = $(VNAME)",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
         },
         "alert": {
-          "description": "A description of a single alert.",
+          "description": "Defines one contact-alert rule. Alert entries may set the posted flag, alert range, CPA range, visual display options, early-warning behavior, and match/ignore filters; multiple lines with the same id combine into one alert definition.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "example": "alert                        = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "alert = id=say, var=SAY_MOOS, val=\"$(VNAME) sees $([VNAME])\"",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact alert configuration, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp:123"
         },
         "alert_range_color": {
-          "description": "The default color for rendering the alert range radius. Legal values: any color in Colors Appendix. The default is gray70.",
+          "description": "Sets the default display color for alert range circles. This color is used when an alert rule does not specify its own alert range color.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "gray65",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "alert_range_color            = yellow",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "alert_range_color = gray65",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp:121, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:280"
         },
         "alert_verbose": {
-          "description": "If true, verbose debugging output will be published to the variable ALERT VERBOSE. The default is false.",
+          "description": "Enables verbose debugging output for contact-alert evaluation. This is useful while tuning alert logic, but it can add noisy ALERT_VERBOSE output.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "false",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "alert_verbose                = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "alert_verbose = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:61, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:276"
         },
         "cease_warning_flag": {
-          "description": "A flag to be posted when or if an early warning event is configured and had been triggered, but is now no longer relevant.",
+          "description": "Posts a MOOS variable-value flag when a previously triggered early warning is no longer relevant. This pairs with early_warning_flag for warning lifecycle reporting.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "example": "cease_warning_flag           = EXAMPLE_FLAG = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "cease_warning_flag = CONTACT_WARNING = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
         },
         "contact_local_coords": {
-          "description": "Determines if the local coordinates of incoming node reports are filled by translated latitude longitude coordinates. Legal values: verbatim, lazy lat lon, force lat lon. The default is verbatim, meaning no trans- lation action is taken.",
+          "description": "Controls whether local x/y coordinates in incoming node reports are filled from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "verbatim",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "contact_local_coords         = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "contact_local_coords = verbatim",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
         },
         "contact_max_age": {
-          "description": "Seconds between reports before a contact is retired and dropped from the list. Legal values: any non-negative number. The default is 600. Sections 4.3, and 7.",
+          "description": "Sets how many seconds may pass without a fresh contact report before the contact is retired and dropped from the active contact list. The current pContactMgrV20 source initializes this to 60 seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "60",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "contact_max_age              = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "contact_max_age = 60",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:57, MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
         },
         "cpa_range_color": {
-          "description": "The default color for rendering the cpa range radius. Legal values: any color in the Colors Appendix. The default is gray30.",
+          "description": "Sets the default display color for CPA range circles. This color is used when an alert rule does not specify its own CPA range color.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "gray30",
-          "defaultSource": "documentation text",
-          "example": "cpa_range_color              = yellow",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "cpa_range_color = gray30",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp:122, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:281"
         },
         "decay": {
-          "description": "An optional way of treating delays in between incoming contact reports. Legal values are comma-separated pair of numbers, e.g., \"15,30\", where the first number represents the interval of time where the contact position will be extrapolated linearly into the future given its last known heading and speed. After 15 seconds, the contact speed used for extrapolation will linearly reduce to zero at 30 seconds. The default value is \"15,30\". Extrapolation may be turned off by setting this value to \"0,0\".",
+          "description": "Controls extrapolation of stale contact reports as start,end seconds. Before the start time the last reported speed/heading are used, between start and end the speed decays toward zero, and 0,0 disables extrapolation.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "15,30",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "decay                        = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "decay = 15,30",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:62, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:611"
         },
         "display_radii": {
-          "description": "If true, the two alert ranges are posted as viewable circles. Legal values: true, false. The default is false.",
+          "description": "Enables posting visual range circles for configured alert and CPA radii. This affects viewer output and does not change alert triggering.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "false",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "display_radii                = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "display_radii = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
         },
         "disable_var": {
-          "description": "The name of a MOOS variable for receiving requests for disabling contacts. If no variable is configured, the contact manager will not be able to receive requests for disabling.",
+          "description": "Names the MOOS variable pContactMgrV20 listens to for contact-disable requests. If it is unset, external disable requests are not accepted.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "null string",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "disable_var                  = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "disable_var = CONTACT_DISABLE",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact enable/disable configuration"
         },
         "disable_flag": {
-          "description": "A flag to be posted whenever a contact is disabled.",
+          "description": "Posts a MOOS variable-value flag whenever a contact is disabled. Use this for mission logic or logging that needs to observe disable events.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "example": "disable_flag                 = EXAMPLE_FLAG = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "disable_flag = CONTACT_DISABLED = $(VNAME)",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact enable/disable configuration"
         },
         "display_radii_id": {
-          "description": "If multiple alert IDs are configured, this parameter can be used to indicate which alert will have its range circles rendered when rendering is enabled.",
+          "description": "Selects which configured alert id should have its alert/CPA radii rendered when display_radii is enabled. This matters when multiple alert definitions are present.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:54",
-          "example": "display_radii_id             = example_id",
-          "exampleSource": "generated coverage fixture"
+          "example": "display_radii_id = say",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:259"
         },
         "early_warning_flag": {
-          "description": "A flag to be posted when or if an early warning event is configured.",
+          "description": "Posts a MOOS variable-value flag when an early warning is triggered before the full contact alert condition. Use this to react before the alert range or CPA condition is reached.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "example": "early_warning_flag           = EXAMPLE_FLAG = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "early_warning_flag = CONTACT_WARNING = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
         },
         "early_warning_radii": {
-          "description": "If true, a visual range circle is posted to convey the range at which an early warning will be triggered. The default is false.",
+          "description": "Enables posting a visual range circle for the early-warning distance. This is a viewer aid for warning geometry and does not itself trigger alerts.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "false",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "early_warning_radii          = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "early_warning_radii = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
         },
         "early_warning_time": {
-          "description": "The number of seconds, before a contact alert is generated, when an early warning event posting is made, if configured.",
+          "description": "Sets how many seconds before the predicted contact alert an early-warning event should be posted. A negative value leaves early warning timing off.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "-1 (off)",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "early_warning_time           = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "early_warning_time = 5",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
         },
         "enable_var": {
-          "description": "The name of a MOOS variable for receiving requests for enabling contacts. If no variable is configured, the contact manager will not be able to receive requests for enabling.",
+          "description": "Names the MOOS variable pContactMgrV20 listens to for contact-enable requests. If it is unset, external enable requests are not accepted.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "null string",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "enable_var                   = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "enable_var = CONTACT_ENABLE",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact enable/disable configuration"
         },
         "enable_flag": {
-          "description": "A flag to be posted whenever a contact is enabled.",
+          "description": "Posts a MOOS variable-value flag whenever a contact is enabled. Use this for mission logic or logging that needs to observe re-enable events.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "example": "enable_flag                  = EXAMPLE_FLAG = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "enable_flag = CONTACT_ENABLED = $(VNAME)",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact enable/disable configuration"
         },
         "ewarn_radii_color": {
-          "description": "The color of a range circle associated with a configured early warning.",
+          "description": "Sets the display color for the early-warning range circle. This affects viewer output when early_warning_radii is enabled.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "yellow",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "ewarn_radii_color            = yellow",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "ewarn_radii_color = yellow",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
         },
         "ignore_group": {
-          "description": "A comma-separated list of contact groups to ignore, defined at the global contact manager level.",
+          "description": "Adds one or more contact groups to the global ignore filter. Contacts in ignored groups are excluded from contact-manager alert/range processing.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "example": "ignore_group                 = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
         },
         "ignore_name": {
-          "description": "A comma-separated list of contact names to ignore, defined at the global contact manager level.",
+          "description": "Adds one or more contact names to the global ignore filter. Contacts with ignored names are excluded from contact-manager alert/range processing.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "example": "ignore_name                  = example_name",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_name = abe",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
         },
         "ignore_region": {
-          "description": "A convex polygon wherein contacts will be ignored, defined at the global contact manager level.",
+          "description": "Adds a polygon region where contacts are ignored by the global filter. Use this to suppress alerts for contacts inside a known safe or irrelevant operating area.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "example": "ignore_region                = op_region",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_region = pts={0,0:50,0:50,50:0,50}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
         },
         "ignore_type": {
-          "description": "A comma-separated list of contact types to ignore, defined at the global contact manager level.",
+          "description": "Adds one or more contact types to the global ignore filter. Contacts reporting ignored types are excluded from contact-manager alert/range processing.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "example": "ignore_type                  = kayak",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
         },
         "match_group": {
-          "description": "A comma-separated list of contact groups to match, defined at the global contact manager level.",
+          "description": "Adds one or more contact groups to the global match filter. When match filters are configured, contacts must match the accepted group criteria to be processed.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "example": "match_group                  = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
         },
         "match_name": {
-          "description": "A comma-separated list of contact names to match, defined at the global contact manager level.",
+          "description": "Adds one or more contact names to the global match filter. When configured, only contacts with accepted names pass this part of filtering.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "example": "match_name                   = example_name",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_name = abe",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
         },
         "match_region": {
-          "description": "A convex polygon outside of which contacts will be ignored, defined at the global contact manager level.",
+          "description": "Adds a polygon region that contacts must match to pass the global filter. Contacts outside the matched region are ignored for contact-manager processing.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "example": "match_region                 = op_region",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_region = pts={0,0:50,0:50,50:0,50}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
         },
         "match_type": {
-          "description": "A comma-separated list of contact types to match, defined at the global contact manager level.",
+          "description": "Adds one or more contact types to the global match filter. When configured, only contacts with accepted types pass this part of filtering.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "example": "match_type                   = kayak",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
         },
         "max_retired_hist": {
-          "description": "Maximum amount of contacts held in the contact managers memory at any given time before increasingly more dire measures are taken to remove/retire contacts. Limit the number of contacts listed in the CONTACTS RETIRED list to this number. The default is 5, and legal values are in the range [1, 50]. Regardless of this setting, all retired contacts will be included in a CONTACTS RETIRED posting at least once. (Section 3.2).",
+          "description": "Limits how many retired contacts are listed in CONTACTS_RETIRED history. Legal values are clamped to the supported range, and retired contacts are still reported at least once.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-          "default": "5, and legal values are in the range [1, 50]",
-          "defaultSource": "documentation text",
-          "example": "max_retired_hist = 5, and legal values are in the range [1, 50]",
-          "exampleSource": "generated from parameter name"
+          "default": "5",
+          "defaultSource": "manual review",
+          "example": "max_retired_hist = 5",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
         },
         "post_all_ranges": {
-          "description": "If true, the range to all contacts is posted in an ordered, comma-separated list. The default is false.",
+          "description": "Posts ordered range reports for all current contacts. This is a reporting option and can increase MOOSDB traffic when many contacts are present.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "false",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "post_all_ranges              = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "post_all_ranges = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: range reports"
         },
         "post_closest_range": {
-          "description": "If true, the range to the closest contact is posted, rounded to the nearest meter. The default is false.",
+          "description": "Posts the range to the closest current contact, rounded to the nearest meter. This is a reporting option and does not affect alert logic.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "false",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "post_closest_range           = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "post_closest_range = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: closest-contact reporting"
         },
         "recap_interval": {
-          "description": "Sets a threshold number of seconds between successive postings of the CONTACTS RECAP variable. This variable may be just too verbose for certain use cases, and if logged, can contribute to log file bloat. The default is one second. It can be shut off completely by setting it to string value \"off\".",
+          "description": "Sets the minimum time, in seconds, between CONTACTS_RECAP postings. Use off to suppress recap posting when it is too verbose for logging.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "1",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "recap_interval               = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "recap_interval = 1",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: CONTACTS_RECAP, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:997"
         },
         "reject_range": {
-          "description": "A range, in meters, beyond which new contacts will be ignored, and existing contacts will be dropped. This is one of the guards against unbounded memory growth, discussed in The default value is 2000 meters.",
+          "description": "Sets a range, in meters, beyond which new contacts are ignored and existing contacts may be dropped. This is a guard against tracking unbounded distant contacts.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "2000",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "reject_range                 = 10",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "reject_range = 2000",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: reject_range, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:70"
         },
         "strict_ignore": {
-          "description": "if true, both group and type exclusion filtering will reject a contact if the contact is not reporting its group or type information and there are ignore filters.",
+          "description": "Controls how strictly group/type ignore filters treat contacts that omit those fields. When true, missing group or type information can cause a contact to be rejected by an ignore filter.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "true",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "strict_ignore                = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "strict_ignore = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:246"
         }
       },
       "description": "Note: The pContactMgrV20 app is a substantially re-written version of its predecessor, pBasicContactMgr.  The new version is meant to be largely backward compatible with the previous version."
@@ -3184,196 +3200,221 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
       "parameters": {
         "buoyancy_rate": {
-          "description": "Rate, in meters per second, at which vehicle floats to surface at zero speed. The default is zero.",
+          "description": "Sets the upward buoyancy-driven depth-change rate, in meters per second, applied when the vehicle has no opposing vertical control. Positive values make the simulated vehicle naturally rise toward the surface.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "0.025",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:45",
-          "example": "buoyancy_rate                = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "buoyancy_rate = 0.025",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:45"
         },
         "current_field": {
-          "description": "A file containing the specification of a current field.",
+          "description": "Loads a file describing a spatial current field for the simulator. When active, the current field contributes environmental drift to simulated vehicle motion.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-          "example": "current_field = example",
-          "exampleSource": "generated from parameter name"
+          "example": "current_field = currents.txt",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: current field configuration"
         },
         "current_field_active": {
-          "description": "If true, simulator uses the current field if specified.",
+          "description": "Enables or disables use of the configured current field. This lets a mission keep the current-field file configured while toggling whether the simulator applies it.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-          "example": "current_field_active = example",
-          "exampleSource": "generated from parameter name"
+          "example": "current_field_active = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: current field configuration"
         },
         "default_water_depth": {
-          "description": "Default value for local water depth for calculating altitude (0).",
+          "description": "Sets the default local water depth, in meters, used for altitude calculations. A value of zero means no known water depth, so altitude is not reported from depth alone.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-          "example": "default_water_depth          = 5",
-          "exampleSource": "generated coverage fixture"
+          "example": "default_water_depth = 0",
+          "exampleSource": "manual review",
+          "default": "0",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:65, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:823"
         },
         "drift_vector": {
-          "description": "A pair of external drift values, direction and magnitude.",
+          "description": "Sets the environmental drift as heading,magnitude. The simulator converts this vector into x/y drift components and applies it to vehicle motion.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-          "example": "drift_vector                 = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "drift_vector = 0,0",
+          "exampleSource": "manual review",
+          "default": "0,0",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:514"
         },
         "rotate_speed": {
-          "description": "An external rotational speed in degrees per second (0).",
+          "description": "Applies an external rotational drift rate, in degrees per second, to simulated heading updates. This is added to heading change independently of rudder-induced turning.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:63",
-          "example": "rotate_speed                 = 1.2",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "rotate_speed = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:63"
         },
         "drift_x": {
-          "description": "An external drift value applied in the x direction (0).",
+          "description": "Sets the environmental drift component in the local x direction, in meters per second. This drift is added to simulated vehicle position updates.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-          "example": "drift_x                      = 0",
-          "exampleSource": "generated coverage fixture"
+          "example": "drift_x = 0",
+          "exampleSource": "manual review",
+          "default": "0",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:61"
         },
         "drift_y": {
-          "description": "An external drift value applied in the y direction (0).",
+          "description": "Sets the environmental drift component in the local y direction, in meters per second. This drift is added to simulated vehicle position updates.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-          "example": "drift_y                      = 0",
-          "exampleSource": "generated coverage fixture"
+          "example": "drift_y = 0",
+          "exampleSource": "manual review",
+          "default": "0",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:62"
         },
         "max_acceleration": {
-          "description": "Maximum rate of vehicle acceleration in m/s2 (0.5).",
+          "description": "Limits the simulated acceleration rate in meters per second squared. A zero value disables acceleration limiting.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:43",
-          "example": "max_acceleration             = 0.5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "max_acceleration = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:43"
         },
         "max_deceleration": {
-          "description": "Maximum rate of vehicle deceleration in m/s2 (0.5).",
+          "description": "Limits the simulated deceleration rate in meters per second squared. This caps how quickly commanded thrust changes can slow the vehicle.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "0.5",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:44",
-          "example": "max_deceleration             = 0.5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "max_deceleration = 0.5",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:44"
         },
         "max_depth_rate": {
-          "description": "Maximum rate of vehicle depth change, meters per second. The defauls is 0.5.",
+          "description": "Limits how quickly simulated depth can change, in meters per second. This cap applies to the vertical-motion model.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "0.5",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:46",
-          "example": "max_depth_rate               = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "max_depth_rate = 0.5",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:46"
         },
         "max_depth_rate_speed": {
-          "description": "Vehicle speed at which max depth rate is achievable (2.5).",
+          "description": "Sets the vehicle speed at which the configured maximum depth-change rate is achievable. It shapes how speed affects vertical maneuvering authority.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "2.0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:47",
-          "example": "max_depth_rate_speed         = 1.2",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "max_depth_rate_speed = 2.0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:47"
         },
         "prefix": {
-          "description": "Prefix of MOOS variables published. The default is USM.",
+          "description": "Sets the prefix used for navigation variables published by the simulator, such as PREFIX_X, PREFIX_Y, PREFIX_HEADING, and PREFIX_SPEED. The default source prefix is USM.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "USM",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:42",
-          "example": "prefix                       = NAV",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "prefix = NAV",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:42"
         },
         "sim_pause": {
-          "description": "If true, the simulation is paused. The default is false.",
+          "description": "Starts or places the simulator in a paused state. While paused, simulated state advancement is suspended until unpaused.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "false",
-          "defaultSource": "documentation text",
-          "example": "sim_pause                    = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "sim_pause = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:41"
         },
         "start_depth": {
-          "description": "Initial vehicle depth in meters. The default is zero.",
+          "description": "Sets the initial simulated vehicle depth in meters. This is part of the starting vehicle state.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "0",
-          "defaultSource": "documentation text",
-          "example": "start_depth                  = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "start_depth = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
         },
         "start_heading": {
-          "description": "Initial vehicle heading in degrees. The default is zero.",
+          "description": "Sets the initial simulated vehicle heading in degrees. This is part of the starting vehicle state.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "0",
-          "defaultSource": "documentation text",
-          "example": "start_heading                = 90",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "start_heading = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
         },
         "start_pos": {
-          "description": "A full starting position and trajectory specification.",
+          "description": "Sets the starting vehicle position using a full position specification. This can initialize multiple state fields in one configuration line.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-          "example": "start_pos                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "start_pos = x=0,y=0,heading=0,speed=0,depth=0",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:369"
         },
         "start_speed": {
-          "description": "Initial vehicle speed in meters per second. The default is zero.",
+          "description": "Sets the initial simulated vehicle speed in meters per second. This is part of the starting vehicle state.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "0",
-          "defaultSource": "documentation text",
-          "example": "start_speed                  = 1.2",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "start_speed = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
         },
         "start_x": {
-          "description": "Initial vehicle x position in local coordinates. The default is zero.",
+          "description": "Sets the initial simulated vehicle x position in local coordinates. This is part of the starting vehicle state.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "0",
-          "defaultSource": "documentation text",
-          "example": "start_x                      = 0",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "start_x = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
         },
         "start_y": {
-          "description": "Initial vehicle y position in local coordinates. The default is zero.",
+          "description": "Sets the initial simulated vehicle y position in local coordinates. This is part of the starting vehicle state.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "0",
-          "defaultSource": "documentation text",
-          "example": "start_y                      = 0",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "start_y = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
         },
         "thrust_factor": {
-          "description": "A scalar correlation between thrust and speed. The default is 20.",
+          "description": "Sets the simple linear thrust-to-speed conversion factor used when a thrust map is not active. Speed is calculated from thrust divided by this factor.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "20",
-          "defaultSource": "documentation text",
-          "example": "thrust_factor                = 100",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "thrust_factor = 20",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/ThrustMap.cpp:110"
         },
         "thrust_map": {
-          "description": "A mapping between thrust and speed values.",
+          "description": "Defines a piecewise mapping between thrust commands and simulated speed. When provided, this map replaces the simple thrust_factor relationship.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-          "example": "thrust_map                   = 100",
-          "exampleSource": "generated coverage fixture"
+          "example": "thrust_map = 0:0,20:1,40:2,60:3,80:5,100:5",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:378"
         },
         "thrust_reflect": {
-          "description": "If true, negative thrust is simply opposite positive thrust. The default is false.",
+          "description": "Controls whether negative thrust mirrors positive thrust in the thrust-to-speed mapping. When true, reverse thrust is treated as the opposite of positive thrust.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "false",
-          "defaultSource": "documentation text",
-          "example": "thrust_reflect               = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "thrust_reflect = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
         },
         "turn_loss": {
-          "description": "A range [0, 1] affecting speed lost during a turn. The default is 0.85.",
+          "description": "Sets the speed-loss factor applied while the simulated vehicle is turning. Values are in the range 0 to 1, where larger values impose more speed loss at high rudder.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-          "default": "0",
-          "defaultSource": "documentation text",
-          "example": "turn_loss = 0",
-          "exampleSource": "generated from parameter name"
+          "default": "0.85",
+          "defaultSource": "manual review",
+          "example": "turn_loss = 0.85",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/SimEngine.cpp:37"
         },
         "turn_rate": {
-          "description": "A range [0, 100] affecting vehicle turn radius, e.g., 0 is an infinite turn radius. The default is 70.",
+          "description": "Sets the nominal vehicle turn-rate authority as a percentage scale from 0 to 100. The simulator clips the value to that range before applying rudder-induced heading changes.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
           "default": "70",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:42",
-          "example": "turn_rate                    = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "turn_rate = 70",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:42"
         }
       },
       "description": "The uSimMarineV22 application is a 3D vehicle simulator that updates vehicle state, position and trajectory, based on the present actuator values and prior vehicle state.  This app is the successor to the uSimMarine app."
@@ -3878,10 +3919,11 @@
     "able_flag": [
       {
         "owner": "pContactMgrV20",
-        "description": "A flag to be posted whenever a contact is disabled or (re)enabled.",
+        "description": "Posts a MOOS variable-value flag whenever a contact is disabled or re-enabled. Use this for mission logic that needs to react to any contact availability transition.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "example": "able_flag                    = EXAMPLE_FLAG = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "able_flag = CONTACT_ABLE = $(VNAME)",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
       }
     ],
     "action": [
@@ -3911,17 +3953,19 @@
     "alert": [
       {
         "owner": "pBasicContactMgr",
-        "description": "A description of a single alert.",
+        "description": "Defines one contact-alert rule. Alert entries may set the posted flag, alert range, CPA range, display colors, and match/ignore filters; multiple lines with the same alert id combine into one alert definition.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-        "example": "alert                        = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "alert = id=say, var=SAY_MOOS, val=\"$(VNAME) sees $([VNAME])\"",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager.pdf: Section 4.1, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:115"
       },
       {
         "owner": "pContactMgrV20",
-        "description": "A description of a single alert.",
+        "description": "Defines one contact-alert rule. Alert entries may set the posted flag, alert range, CPA range, visual display options, early-warning behavior, and match/ignore filters; multiple lines with the same id combine into one alert definition.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "example": "alert                        = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "alert = id=say, var=SAY_MOOS, val=\"$(VNAME) sees $([VNAME])\"",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact alert configuration, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp:123"
       }
     ],
     "alert_range": [
@@ -3939,25 +3983,25 @@
     "alert_range_color": [
       {
         "owner": "pContactMgrV20",
-        "description": "The default color for rendering the alert range radius. Legal values: any color in Colors Appendix. The default is gray70.",
+        "description": "Sets the default display color for alert range circles. This color is used when an alert rule does not specify its own alert range color.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "gray65",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "alert_range_color            = yellow",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "alert_range_color = gray65",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp:121, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:280"
       }
     ],
     "alert_verbose": [
       {
         "owner": "pContactMgrV20",
-        "description": "If true, verbose debugging output will be published to the variable ALERT VERBOSE. The default is false.",
+        "description": "Enables verbose debugging output for contact-alert evaluation. This is useful while tuning alert logic, but it can add noisy ALERT_VERBOSE output.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "false",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "alert_verbose                = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "alert_verbose = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:61, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:276"
       }
     ],
     "allow_color_change": [
@@ -4252,13 +4296,13 @@
     "buoyancy_rate": [
       {
         "owner": "uSimMarineV22",
-        "description": "Rate, in meters per second, at which vehicle floats to surface at zero speed. The default is zero.",
+        "description": "Sets the upward buoyancy-driven depth-change rate, in meters per second, applied when the vehicle has no opposing vertical control. Positive values make the simulated vehicle naturally rise toward the surface.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "0.025",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:45",
-        "example": "buoyancy_rate                = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "buoyancy_rate = 0.025",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:45"
       }
     ],
     "button_five_twenty": [
@@ -4321,10 +4365,11 @@
     "cease_warning_flag": [
       {
         "owner": "pContactMgrV20",
-        "description": "A flag to be posted when or if an early warning event is configured and had been triggered, but is now no longer relevant.",
+        "description": "Posts a MOOS variable-value flag when a previously triggered early warning is no longer relevant. This pairs with early_warning_flag for warning lifecycle reporting.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "example": "cease_warning_flag           = EXAMPLE_FLAG = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "cease_warning_flag = CONTACT_WARNING = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
       }
     ],
     "center_view": [
@@ -4506,56 +4551,57 @@
     "contact_local_coords": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Determines if the local coordinates of incoming node reports are filled by translated latitude longitude coordinates. Legal values: verbatim, lazy lat lon, force lat lon. The default is verbatim, meaning no translation action is taken.",
+        "description": "Controls whether local x/y coordinates in incoming node reports are filled from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
         "default": "verbatim",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-        "example": "contact_local_coords         = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "contact_local_coords = verbatim",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
       },
       {
         "owner": "pContactMgrV20",
-        "description": "Determines if the local coordinates of incoming node reports are filled by translated latitude longitude coordinates. Legal values: verbatim, lazy lat lon, force lat lon. The default is verbatim, meaning no trans- lation action is taken.",
+        "description": "Controls whether local x/y coordinates in incoming node reports are filled from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "verbatim",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "contact_local_coords         = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "contact_local_coords = verbatim",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
       }
     ],
     "contact_max_age": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Seconds between reports before a contact is dropped from the list. Legal values: any non-negative number. The default is 600.",
+        "description": "Sets how many seconds may pass without a fresh contact report before the contact is dropped from the active contact list. This bounds stale contact state in the manager.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
         "default": "600",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-        "example": "contact_max_age              = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "contact_max_age = 600",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:57"
       },
       {
         "owner": "pContactMgrV20",
-        "description": "Seconds between reports before a contact is retired and dropped from the list. Legal values: any non-negative number. The default is 600. Sections 4.3, and 7.",
+        "description": "Sets how many seconds may pass without a fresh contact report before the contact is retired and dropped from the active contact list. The current pContactMgrV20 source initializes this to 60 seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "60",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "contact_max_age              = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "contact_max_age = 60",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:57, MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
       }
     ],
     "contact_max_age_history": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Seconds after a contact is retired before it is removed entirely from the contact manager memory, and thus even the posted retired lists. This is guard against unbounded memory growth. The default is 60.",
+        "description": "Sets how long a retired contact remains in contact-manager memory and retired-contact postings after it leaves the active list. This guards against unbounded retired-contact history.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
         "default": "60",
-        "defaultSource": "documentation text",
+        "defaultSource": "manual review",
         "example": "contact_max_age_history = 60",
-        "exampleSource": "generated from parameter name"
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
       }
     ],
     "content_mode": [
@@ -4605,12 +4651,13 @@
     "cpa_range_color": [
       {
         "owner": "pContactMgrV20",
-        "description": "The default color for rendering the cpa range radius. Legal values: any color in the Colors Appendix. The default is gray30.",
+        "description": "Sets the default display color for CPA range circles. This color is used when an alert rule does not specify its own CPA range color.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "gray30",
-        "defaultSource": "documentation text",
-        "example": "cpa_range_color              = yellow",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "cpa_range_color = gray30",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp:122, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:281"
       }
     ],
     "critical_range": [
@@ -4640,19 +4687,21 @@
     "current_field": [
       {
         "owner": "uSimMarineV22",
-        "description": "A file containing the specification of a current field.",
+        "description": "Loads a file describing a spatial current field for the simulator. When active, the current field contributes environmental drift to simulated vehicle motion.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-        "example": "current_field = example",
-        "exampleSource": "generated from parameter name"
+        "example": "current_field = currents.txt",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: current field configuration"
       }
     ],
     "current_field_active": [
       {
         "owner": "uSimMarineV22",
-        "description": "If true, simulator uses the current field if specified.",
+        "description": "Enables or disables use of the configured current field. This lets a mission keep the current-field file configured while toggling whether the simulator applies it.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-        "example": "current_field_active = example",
-        "exampleSource": "generated from parameter name"
+        "example": "current_field_active = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: current field configuration"
       }
     ],
     "datum_color": [
@@ -4711,37 +4760,37 @@
     "decay": [
       {
         "owner": "pContactMgrV20",
-        "description": "An optional way of treating delays in between incoming contact reports. Legal values are comma-separated pair of numbers, e.g., \"15,30\", where the first number represents the interval of time where the contact position will be extrapolated linearly into the future given its last known heading and speed. After 15 seconds, the contact speed used for extrapolation will linearly reduce to zero at 30 seconds. The default value is \"15,30\". Extrapolation may be turned off by setting this value to \"0,0\".",
+        "description": "Controls extrapolation of stale contact reports as start,end seconds. Before the start time the last reported speed/heading are used, between start and end the speed decays toward zero, and 0,0 disables extrapolation.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "15,30",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "decay                        = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "decay = 15,30",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:62, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:611"
       }
     ],
     "default_alert_range": [
       {
         "owner": "pBasicContactMgr",
-        "description": "The range to a contact, in meters, within which an alert is posted. Legal values: any positive number. The default is 1000.",
+        "description": "Sets the default alert range, in meters, used by alert rules that do not specify their own alert_range. Contacts inside this range can trigger the alert posting.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
         "default": "1000",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-        "example": "default_alert_range          = 10",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "default_alert_range = 1000",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
       }
     ],
     "default_alert_range_color": [
       {
         "owner": "pBasicContactMgr",
-        "description": "The default color for rendering the alert range radius. Legal values: any color in Colors Appendix. The default is gray70.",
+        "description": "Sets the default display color for alert range circles when an alert rule does not provide its own color. The source example uses gray65.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
         "default": "gray65",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-        "example": "default_alert_range_color    = yellow",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "default_alert_range_color = gray65",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:310, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:104"
       }
     ],
     "default_beacon_color": [
@@ -4813,25 +4862,25 @@
     "default_cpa_range": [
       {
         "owner": "pBasicContactMgr",
-        "description": "The range to a contact, in meters, within which an alert is posted if the closest point of approach (CPA) falls within this range. Legal values: any positive number. The default is 1000.",
+        "description": "Sets the default CPA range, in meters, used by alert rules that do not specify their own cpa_range. A contact can trigger when its closest point of approach falls inside this range.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
         "default": "1000",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-        "example": "default_cpa_range            = 10",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "default_cpa_range = 1000",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
       }
     ],
     "default_cpa_range_color": [
       {
         "owner": "pBasicContactMgr",
-        "description": "The default color for rendering the cpa range radius. Legal values: any color in the Colors Appendix. The default is gray30.",
+        "description": "Sets the default display color for CPA range circles when an alert rule does not provide its own color. The source example uses gray35.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
         "default": "gray35",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-        "example": "default_cpa_range_color      = yellow",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "default_cpa_range_color = gray35",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:320, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:105"
       }
     ],
     "default_duration": [
@@ -4963,10 +5012,13 @@
     "default_water_depth": [
       {
         "owner": "uSimMarineV22",
-        "description": "Default value for local water depth for calculating altitude (0).",
+        "description": "Sets the default local water depth, in meters, used for altitude calculations. A value of zero means no known water depth, so altitude is not reported from depth alone.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-        "example": "default_water_depth          = 5",
-        "exampleSource": "generated coverage fixture"
+        "default": "0",
+        "defaultSource": "manual review",
+        "example": "default_water_depth = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:65, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:823"
       }
     ],
     "delay_reset": [
@@ -5010,22 +5062,23 @@
     "disable_flag": [
       {
         "owner": "pContactMgrV20",
-        "description": "A flag to be posted whenever a contact is disabled.",
+        "description": "Posts a MOOS variable-value flag whenever a contact is disabled. Use this for mission logic or logging that needs to observe disable events.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "example": "disable_flag                 = EXAMPLE_FLAG = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "disable_flag = CONTACT_DISABLED = $(VNAME)",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact enable/disable configuration"
       }
     ],
     "disable_var": [
       {
         "owner": "pContactMgrV20",
-        "description": "The name of a MOOS variable for receiving requests for disabling contacts. If no variable is configured, the contact manager will not be able to receive requests for disabling.",
+        "description": "Names the MOOS variable pContactMgrV20 listens to for contact-disable requests. If it is unset, external disable requests are not accepted.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "null string",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "disable_var                  = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "disable_var = CONTACT_DISABLE",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact enable/disable configuration"
       }
     ],
     "display_all": [
@@ -5101,35 +5154,33 @@
     "display_radii": [
       {
         "owner": "pBasicContactMgr",
-        "description": "If true, the two alert ranges are posted as viewable circles. Legal values: true, false. The default is false.",
+        "description": "Enables posting visual range circles for configured alert and CPA radii. This affects viewer output and does not change alert triggering.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:55",
-        "example": "display_radii                = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "display_radii = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
       },
       {
         "owner": "pContactMgrV20",
-        "description": "If true, the two alert ranges are posted as viewable circles. Legal values: true, false. The default is false.",
+        "description": "Enables posting visual range circles for configured alert and CPA radii. This affects viewer output and does not change alert triggering.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "false",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "display_radii                = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "display_radii = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
       }
     ],
     "display_radii_id": [
       {
         "owner": "pContactMgrV20",
-        "description": "If multiple alert IDs are configured, this parameter can be used to indicate which alert will have its range circles rendered when rendering is enabled.",
+        "description": "Selects which configured alert id should have its alert/CPA radii rendered when display_radii is enabled. This matters when multiple alert definitions are present.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:54",
-        "example": "display_radii_id             = example_id",
-        "exampleSource": "generated coverage fixture"
+        "example": "display_radii_id = say",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:259"
       }
     ],
     "display_source": [
@@ -5192,28 +5243,37 @@
     "drift_vector": [
       {
         "owner": "uSimMarineV22",
-        "description": "A pair of external drift values, direction and magnitude.",
+        "description": "Sets the environmental drift as heading,magnitude. The simulator converts this vector into x/y drift components and applies it to vehicle motion.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-        "example": "drift_vector                 = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "0,0",
+        "defaultSource": "manual review",
+        "example": "drift_vector = 0,0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:514"
       }
     ],
     "drift_x": [
       {
         "owner": "uSimMarineV22",
-        "description": "An external drift value applied in the x direction (0).",
+        "description": "Sets the environmental drift component in the local x direction, in meters per second. This drift is added to simulated vehicle position updates.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-        "example": "drift_x                      = 0",
-        "exampleSource": "generated coverage fixture"
+        "default": "0",
+        "defaultSource": "manual review",
+        "example": "drift_x = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:61"
       }
     ],
     "drift_y": [
       {
         "owner": "uSimMarineV22",
-        "description": "An external drift value applied in the y direction (0).",
+        "description": "Sets the environmental drift component in the local y direction, in meters per second. This drift is added to simulated vehicle position updates.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-        "example": "drift_y                      = 0",
-        "exampleSource": "generated coverage fixture"
+        "default": "0",
+        "defaultSource": "manual review",
+        "example": "drift_y = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:62"
       }
     ],
     "drop_point_coords": [
@@ -5264,34 +5324,35 @@
     "early_warning_flag": [
       {
         "owner": "pContactMgrV20",
-        "description": "A flag to be posted when or if an early warning event is configured.",
+        "description": "Posts a MOOS variable-value flag when an early warning is triggered before the full contact alert condition. Use this to react before the alert range or CPA condition is reached.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "example": "early_warning_flag           = EXAMPLE_FLAG = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "early_warning_flag = CONTACT_WARNING = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
       }
     ],
     "early_warning_radii": [
       {
         "owner": "pContactMgrV20",
-        "description": "If true, a visual range circle is posted to convey the range at which an early warning will be triggered. The default is false.",
+        "description": "Enables posting a visual range circle for the early-warning distance. This is a viewer aid for warning geometry and does not itself trigger alerts.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "false",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "early_warning_radii          = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "early_warning_radii = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
       }
     ],
     "early_warning_time": [
       {
         "owner": "pContactMgrV20",
-        "description": "The number of seconds, before a contact alert is generated, when an early warning event posting is made, if configured.",
+        "description": "Sets how many seconds before the predicted contact alert an early-warning event should be posted. A negative value leaves early warning timing off.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "-1 (off)",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "early_warning_time           = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "early_warning_time = 5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
       }
     ],
     "echo": [
@@ -5318,22 +5379,23 @@
     "enable_flag": [
       {
         "owner": "pContactMgrV20",
-        "description": "A flag to be posted whenever a contact is enabled.",
+        "description": "Posts a MOOS variable-value flag whenever a contact is enabled. Use this for mission logic or logging that needs to observe re-enable events.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "example": "enable_flag                  = EXAMPLE_FLAG = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "enable_flag = CONTACT_ENABLED = $(VNAME)",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact enable/disable configuration"
       }
     ],
     "enable_var": [
       {
         "owner": "pContactMgrV20",
-        "description": "The name of a MOOS variable for receiving requests for enabling contacts. If no variable is configured, the contact manager will not be able to receive requests for enabling.",
+        "description": "Names the MOOS variable pContactMgrV20 listens to for contact-enable requests. If it is unset, external enable requests are not accepted.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "null string",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "enable_var                   = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "enable_var = CONTACT_ENABLE",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact enable/disable configuration"
       }
     ],
     "encounter_dist": [
@@ -5409,13 +5471,13 @@
     "ewarn_radii_color": [
       {
         "owner": "pContactMgrV20",
-        "description": "The color of a range circle associated with a configured early warning.",
+        "description": "Sets the display color for the early-warning range circle. This affects viewer output when early_warning_radii is enabled.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "yellow",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "ewarn_radii_color            = yellow",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "ewarn_radii_color = yellow",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
       }
     ],
     "exponential_decay": [
@@ -5739,10 +5801,11 @@
     "ignore_group": [
       {
         "owner": "pContactMgrV20",
-        "description": "A comma-separated list of contact groups to ignore, defined at the global contact manager level.",
+        "description": "Adds one or more contact groups to the global ignore filter. Contacts in ignored groups are excluded from contact-manager alert/range processing.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "example": "ignore_group                 = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
       },
       {
         "owner": "uFldCollisionDetect",
@@ -5769,10 +5832,11 @@
     "ignore_name": [
       {
         "owner": "pContactMgrV20",
-        "description": "A comma-separated list of contact names to ignore, defined at the global contact manager level.",
+        "description": "Adds one or more contact names to the global ignore filter. Contacts with ignored names are excluded from contact-manager alert/range processing.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "example": "ignore_name                  = example_name",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_name = abe",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
       }
     ],
     "ignore_range": [
@@ -5790,19 +5854,21 @@
     "ignore_region": [
       {
         "owner": "pContactMgrV20",
-        "description": "A convex polygon wherein contacts will be ignored, defined at the global contact manager level.",
+        "description": "Adds a polygon region where contacts are ignored by the global filter. Use this to suppress alerts for contacts inside a known safe or irrelevant operating area.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "example": "ignore_region                = op_region",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_region = pts={0,0:50,0:50,50:0,50}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
       }
     ],
     "ignore_type": [
       {
         "owner": "pContactMgrV20",
-        "description": "A comma-separated list of contact types to ignore, defined at the global contact manager level.",
+        "description": "Adds one or more contact types to the global ignore filter. Contacts reporting ignored types are excluded from contact-manager alert/range processing.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "example": "ignore_type                  = kayak",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
       }
     ],
     "infocast_font_size": [
@@ -6057,10 +6123,11 @@
     "match_group": [
       {
         "owner": "pContactMgrV20",
-        "description": "A comma-separated list of contact groups to match, defined at the global contact manager level.",
+        "description": "Adds one or more contact groups to the global match filter. When match filters are configured, contacts must match the accepted group criteria to be processed.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "example": "match_group                  = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
       },
       {
         "owner": "uFldObstacleSim",
@@ -6073,40 +6140,43 @@
     "match_name": [
       {
         "owner": "pContactMgrV20",
-        "description": "A comma-separated list of contact names to match, defined at the global contact manager level.",
+        "description": "Adds one or more contact names to the global match filter. When configured, only contacts with accepted names pass this part of filtering.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "example": "match_name                   = example_name",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_name = abe",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
       }
     ],
     "match_region": [
       {
         "owner": "pContactMgrV20",
-        "description": "A convex polygon outside of which contacts will be ignored, defined at the global contact manager level.",
+        "description": "Adds a polygon region that contacts must match to pass the global filter. Contacts outside the matched region are ignored for contact-manager processing.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "example": "match_region                 = op_region",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_region = pts={0,0:50,0:50,50:0,50}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
       }
     ],
     "match_type": [
       {
         "owner": "pContactMgrV20",
-        "description": "A comma-separated list of contact types to match, defined at the global contact manager level.",
+        "description": "Adds one or more contact types to the global match filter. When configured, only contacts with accepted types pass this part of filtering.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "example": "match_type                   = kayak",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
       }
     ],
     "max_acceleration": [
       {
         "owner": "uSimMarineV22",
-        "description": "Maximum rate of vehicle acceleration in m/s2 (0.5).",
+        "description": "Limits the simulated acceleration rate in meters per second squared. A zero value disables acceleration limiting.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:43",
-        "example": "max_acceleration             = 0.5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "max_acceleration = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:43"
       }
     ],
     "max_age_per_point": [
@@ -6136,37 +6206,37 @@
     "max_deceleration": [
       {
         "owner": "uSimMarineV22",
-        "description": "Maximum rate of vehicle deceleration in m/s2 (0.5).",
+        "description": "Limits the simulated deceleration rate in meters per second squared. This caps how quickly commanded thrust changes can slow the vehicle.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "0.5",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:44",
-        "example": "max_deceleration             = 0.5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "max_deceleration = 0.5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:44"
       }
     ],
     "max_depth_rate": [
       {
         "owner": "uSimMarineV22",
-        "description": "Maximum rate of vehicle depth change, meters per second. The defauls is 0.5.",
+        "description": "Limits how quickly simulated depth can change, in meters per second. This cap applies to the vertical-motion model.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "0.5",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:46",
-        "example": "max_depth_rate               = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "max_depth_rate = 0.5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:46"
       }
     ],
     "max_depth_rate_speed": [
       {
         "owner": "uSimMarineV22",
-        "description": "Vehicle speed at which max depth rate is achievable (2.5).",
+        "description": "Sets the vehicle speed at which the configured maximum depth-change rate is achievable. It shapes how speed affects vertical maneuvering authority.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "2.0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:47",
-        "example": "max_depth_rate_speed         = 1.2",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "max_depth_rate_speed = 2.0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:47"
       }
     ],
     "max_msg_length": [
@@ -6208,12 +6278,13 @@
     "max_retired_hist": [
       {
         "owner": "pContactMgrV20",
-        "description": "Maximum amount of contacts held in the contact managers memory at any given time before increasingly more dire measures are taken to remove/retire contacts. Limit the number of contacts listed in the CONTACTS RETIRED list to this number. The default is 5, and legal values are in the range [1, 50]. Regardless of this setting, all retired contacts will be included in a CONTACTS RETIRED posting at least once. (Section 3.2).",
+        "description": "Limits how many retired contacts are listed in CONTACTS_RETIRED history. Legal values are clamped to the supported range, and retired contacts are still reported at least once.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
-        "default": "5, and legal values are in the range [1, 50]",
-        "defaultSource": "documentation text",
-        "example": "max_retired_hist = 5, and legal values are in the range [1, 50]",
-        "exampleSource": "generated from parameter name"
+        "default": "5",
+        "defaultSource": "manual review",
+        "example": "max_retired_hist = 5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
       }
     ],
     "mhash_short_var": [
@@ -6985,35 +7056,35 @@
     "post_all_ranges": [
       {
         "owner": "pContactMgrV20",
-        "description": "If true, the range to all contacts is posted in an ordered, comma-separated list. The default is false.",
+        "description": "Posts ordered range reports for all current contacts. This is a reporting option and can increase MOOSDB traffic when many contacts are present.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "false",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "post_all_ranges              = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "post_all_ranges = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: range reports"
       }
     ],
     "post_closest_range": [
       {
         "owner": "pBasicContactMgr",
-        "description": "If true, the range to the closest contact is posted, rounded to the nearest meter. The default is false (In the release after 17.7).",
+        "description": "Posts the range to the closest current contact, rounded to the nearest meter. This is a reporting option and does not affect alert logic.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
         "default": "false",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-        "example": "post_closest_range           = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "post_closest_range = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager.pdf: closest-contact reporting"
       },
       {
         "owner": "pContactMgrV20",
-        "description": "If true, the range to the closest contact is posted, rounded to the nearest meter. The default is false.",
+        "description": "Posts the range to the closest current contact, rounded to the nearest meter. This is a reporting option and does not affect alert logic.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "false",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "post_closest_range           = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "post_closest_range = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: closest-contact reporting"
       }
     ],
     "post_dist_to_polys": [
@@ -7100,13 +7171,13 @@
     "prefix": [
       {
         "owner": "uSimMarineV22",
-        "description": "Prefix of MOOS variables published. The default is USM.",
+        "description": "Sets the prefix used for navigation variables published by the simulator, such as PREFIX_X, PREFIX_Y, PREFIX_HEADING, and PREFIX_SPEED. The default source prefix is USM.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "USM",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:42",
-        "example": "prefix                       = NAV",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "prefix = NAV",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:42"
       }
     ],
     "procs_font_size": [
@@ -7463,13 +7534,13 @@
     "recap_interval": [
       {
         "owner": "pContactMgrV20",
-        "description": "Sets a threshold number of seconds between successive postings of the CONTACTS RECAP variable. This variable may be just too verbose for certain use cases, and if logged, can contribute to log file bloat. The default is one second. It can be shut off completely by setting it to string value \"off\".",
+        "description": "Sets the minimum time, in seconds, between CONTACTS_RECAP postings. Use off to suppress recap posting when it is too verbose for logging.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "1",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "recap_interval               = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "recap_interval = 1",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: CONTACTS_RECAP, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:997"
       }
     ],
     "refresh_interval": [
@@ -7554,13 +7625,13 @@
     "reject_range": [
       {
         "owner": "pContactMgrV20",
-        "description": "A range, in meters, beyond which new contacts will be ignored, and existing contacts will be dropped. This is one of the guards against unbounded memory growth, discussed in The default value is 2000 meters.",
+        "description": "Sets a range, in meters, beyond which new contacts are ignored and existing contacts may be dropped. This is a guard against tracking unbounded distant contacts.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "2000",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "reject_range                 = 10",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "reject_range = 2000",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: reject_range, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:70"
       }
     ],
     "relcast_interval": [
@@ -7819,13 +7890,13 @@
     "rotate_speed": [
       {
         "owner": "uSimMarineV22",
-        "description": "An external rotational speed in degrees per second (0).",
+        "description": "Applies an external rotational drift rate, in degrees per second, to simulated heading updates. This is added to heading change independently of rudder-induced turning.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:63",
-        "example": "rotate_speed                 = 1.2",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "rotate_speed = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:63"
       }
     ],
     "scope": [
@@ -7971,12 +8042,13 @@
     "sim_pause": [
       {
         "owner": "uSimMarineV22",
-        "description": "If true, the simulation is paused. The default is false.",
+        "description": "Starts or places the simulator in a paused state. While paused, simulated state advancement is suspended until unpaused.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "false",
-        "defaultSource": "documentation text",
-        "example": "sim_pause                    = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "sim_pause = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:41"
       }
     ],
     "source": [
@@ -8041,65 +8113,71 @@
     "start_depth": [
       {
         "owner": "uSimMarineV22",
-        "description": "Initial vehicle depth in meters. The default is zero.",
+        "description": "Sets the initial simulated vehicle depth in meters. This is part of the starting vehicle state.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "0",
-        "defaultSource": "documentation text",
-        "example": "start_depth                  = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "start_depth = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
       }
     ],
     "start_heading": [
       {
         "owner": "uSimMarineV22",
-        "description": "Initial vehicle heading in degrees. The default is zero.",
+        "description": "Sets the initial simulated vehicle heading in degrees. This is part of the starting vehicle state.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "0",
-        "defaultSource": "documentation text",
-        "example": "start_heading                = 90",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "start_heading = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
       }
     ],
     "start_pos": [
       {
         "owner": "uSimMarineV22",
-        "description": "A full starting position and trajectory specification.",
+        "description": "Sets the starting vehicle position using a full position specification. This can initialize multiple state fields in one configuration line.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-        "example": "start_pos                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "start_pos = x=0,y=0,heading=0,speed=0,depth=0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:369"
       }
     ],
     "start_speed": [
       {
         "owner": "uSimMarineV22",
-        "description": "Initial vehicle speed in meters per second. The default is zero.",
+        "description": "Sets the initial simulated vehicle speed in meters per second. This is part of the starting vehicle state.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "0",
-        "defaultSource": "documentation text",
-        "example": "start_speed                  = 1.2",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "start_speed = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
       }
     ],
     "start_x": [
       {
         "owner": "uSimMarineV22",
-        "description": "Initial vehicle x position in local coordinates. The default is zero.",
+        "description": "Sets the initial simulated vehicle x position in local coordinates. This is part of the starting vehicle state.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "0",
-        "defaultSource": "documentation text",
-        "example": "start_x                      = 0",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "start_x = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
       }
     ],
     "start_y": [
       {
         "owner": "uSimMarineV22",
-        "description": "Initial vehicle y position in local coordinates. The default is zero.",
+        "description": "Sets the initial simulated vehicle y position in local coordinates. This is part of the starting vehicle state.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "0",
-        "defaultSource": "documentation text",
-        "example": "start_y                      = 0",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "start_y = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
       }
     ],
     "status_var": [
@@ -8151,13 +8229,13 @@
     "strict_ignore": [
       {
         "owner": "pContactMgrV20",
-        "description": "if true, both group and type exclusion filtering will reject a contact if the contact is not reporting its group or type information and there are ignore filters.",
+        "description": "Controls how strictly group/type ignore filters treat contacts that omit those fields. When true, missing group or type information can cause a contact to be rejected by an ignore filter.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "true",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "strict_ignore                = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "strict_ignore = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:246"
       }
     ],
     "summary_interval": [
@@ -8234,32 +8312,35 @@
     "thrust_factor": [
       {
         "owner": "uSimMarineV22",
-        "description": "A scalar correlation between thrust and speed. The default is 20.",
+        "description": "Sets the simple linear thrust-to-speed conversion factor used when a thrust map is not active. Speed is calculated from thrust divided by this factor.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "20",
-        "defaultSource": "documentation text",
-        "example": "thrust_factor                = 100",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "thrust_factor = 20",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/ThrustMap.cpp:110"
       }
     ],
     "thrust_map": [
       {
         "owner": "uSimMarineV22",
-        "description": "A mapping between thrust and speed values.",
+        "description": "Defines a piecewise mapping between thrust commands and simulated speed. When provided, this map replaces the simple thrust_factor relationship.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-        "example": "thrust_map                   = 100",
-        "exampleSource": "generated coverage fixture"
+        "example": "thrust_map = 0:0,20:1,40:2,60:3,80:5,100:5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:378"
       }
     ],
     "thrust_reflect": [
       {
         "owner": "uSimMarineV22",
-        "description": "If true, negative thrust is simply opposite positive thrust. The default is false.",
+        "description": "Controls whether negative thrust mirrors positive thrust in the thrust-to-speed mapping. When true, reverse thrust is treated as the opposite of positive thrust.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "false",
-        "defaultSource": "documentation text",
-        "example": "thrust_reflect               = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "thrust_reflect = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
       }
     ],
     "tiff_file": [
@@ -8460,24 +8541,25 @@
     "turn_loss": [
       {
         "owner": "uSimMarineV22",
-        "description": "A range [0, 1] affecting speed lost during a turn. The default is 0.85.",
+        "description": "Sets the speed-loss factor applied while the simulated vehicle is turning. Values are in the range 0 to 1, where larger values impose more speed loss at high rudder.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
-        "default": "0",
-        "defaultSource": "documentation text",
-        "example": "turn_loss = 0",
-        "exampleSource": "generated from parameter name"
+        "default": "0.85",
+        "defaultSource": "manual review",
+        "example": "turn_loss = 0.85",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/SimEngine.cpp:37"
       }
     ],
     "turn_rate": [
       {
         "owner": "uSimMarineV22",
-        "description": "A range [0, 100] affecting vehicle turn radius, e.g., 0 is an infinite turn radius. The default is 70.",
+        "description": "Sets the nominal vehicle turn-rate authority as a percentage scale from 0 to 100. The simulator clips the value to that range before applying rudder-induced heading changes.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_usimmarine_v22.pdf",
         "default": "70",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:42",
-        "example": "turn_rate                    = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "turn_rate = 70",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:42"
       }
     ],
     "upon_awake": [

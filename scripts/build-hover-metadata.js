@@ -9,6 +9,12 @@ function loadJson(relativePath) {
   return JSON.parse(fs.readFileSync(path.join(REPO_ROOT, relativePath), "utf8"));
 }
 
+function loadOptionalJson(relativePath) {
+  const file = path.join(REPO_ROOT, relativePath);
+  if (!fs.existsSync(file)) return {};
+  return JSON.parse(fs.readFileSync(file, "utf8"));
+}
+
 function writeJson(relativePath, data) {
   fs.writeFileSync(path.join(REPO_ROOT, relativePath), `${JSON.stringify(data, null, 2)}\n`);
 }
@@ -246,7 +252,36 @@ function synthesizeExample(param, defaultValue) {
   return `${param} = example`;
 }
 
-function applyMetadata(data, examples, sourceDefaults) {
+function applyManualOverride(entry, override) {
+  if (!override) return;
+
+  if (override.description) entry.description = override.description;
+  if (override.example) {
+    entry.example = override.example;
+    entry.exampleSource = "manual review";
+  }
+  if (Object.prototype.hasOwnProperty.call(override, "default")) {
+    if (override.default === null) {
+      delete entry.default;
+      delete entry.defaultSource;
+      delete entry.defaultReference;
+    } else {
+      entry.default = override.default;
+      entry.defaultSource = "manual review";
+      delete entry.defaultReference;
+    }
+  }
+  if (override.reviewSource) entry.reviewSource = override.reviewSource;
+  if (override.reviewNote) entry.reviewNote = override.reviewNote;
+}
+
+function manualOverrideFor(overrides, kind, owner, paramName) {
+  const item = overrides?.[kind]?.[owner];
+  if (!item) return undefined;
+  return item.parameters?.[normalizeName(paramName)];
+}
+
+function applyMetadata(data, examples, sourceDefaults, overrides, kind) {
   let entries = 0;
   let defaults = 0;
   let sourceDefaultCount = 0;
@@ -272,6 +307,7 @@ function applyMetadata(data, examples, sourceDefaults) {
 
       entry.example = examples.get(lookupKey) || synthesizeExample(paramName, defaultValue);
       entry.exampleSource = examples.has(lookupKey) ? "generated coverage fixture" : "generated from parameter name";
+      applyManualOverride(entry, manualOverrideFor(overrides, kind, owner, paramName));
       examplesApplied++;
       entries++;
     }
@@ -293,6 +329,8 @@ function applyMetadata(data, examples, sourceDefaults) {
         ...(entry.defaultReference ? { defaultReference: entry.defaultReference } : {}),
         ...(entry.example ? { example: entry.example } : {}),
         ...(entry.exampleSource ? { exampleSource: entry.exampleSource } : {}),
+        ...(entry.reviewSource ? { reviewSource: entry.reviewSource } : {}),
+        ...(entry.reviewNote ? { reviewNote: entry.reviewNote } : {}),
         ...(item.aliasOf ? { aliasOf: item.aliasOf } : {})
       });
     }
@@ -316,12 +354,13 @@ const moosDocs = loadJson("data/moos-docs.json");
 const moosSource = loadJson("data/moos-source.json");
 const bhvDocs = loadJson("data/bhv-docs.json");
 const bhvSource = loadJson("data/bhv-source.json");
+const manualOverrides = loadOptionalJson("data/parameter-overrides.json");
 
 const results = {
-  moosDocs: applyMetadata(moosDocs, moosExamples, moosDefaults),
-  moosSource: applyMetadata(moosSource, moosExamples, moosDefaults),
-  bhvDocs: applyMetadata(bhvDocs, bhvExamples, bhvDefaults),
-  bhvSource: applyMetadata(bhvSource, bhvExamples, bhvDefaults)
+  moosDocs: applyMetadata(moosDocs, moosExamples, moosDefaults, manualOverrides, "moos"),
+  moosSource: applyMetadata(moosSource, moosExamples, moosDefaults, manualOverrides, "moos"),
+  bhvDocs: applyMetadata(bhvDocs, bhvExamples, bhvDefaults, manualOverrides, "ivp-behavior"),
+  bhvSource: applyMetadata(bhvSource, bhvExamples, bhvDefaults, manualOverrides, "ivp-behavior")
 };
 
 writeJson("data/moos-docs.json", moosDocs);

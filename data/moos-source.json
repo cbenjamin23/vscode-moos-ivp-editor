@@ -11,15 +11,15 @@
       "parameters": {
         "qblink": {
           "name": "qblink",
-          "description": "Names the MOOS variable iBlinkStick subscribes to for blink/color commands.",
+          "description": "Names the MOOS variable iBlinkStick subscribes to for LED blink/color commands. Incoming mail on this variable is translated into qblink.sh commands for the BlinkStick device.",
           "source": "../moos-ivp/ivp/src/iBlinkStick",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "QBLINK",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/iBlinkStick/BlinkStick.cpp:20",
-          "example": "qblink                       = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "qblink = QBLINK",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/iBlinkStick/BlinkStick.cpp:20, moos-ivp/ivp/src/iBlinkStick/BlinkStick_Info.cpp:84"
         }
       }
     },
@@ -30,36 +30,37 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for iSay.",
+          "description": "Enables AppCastingMOOSApp logging for iSay. This records app-level diagnostics and is separate from the speech/audio output itself.",
           "source": "../moos-ivp/ivp/src/iSay",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/iSay/Sayer_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/iSay/Sayer_Info.cpp:106"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in iSay reports.",
+          "description": "Limits how many appcast events iSay retains in its appcast report history. This affects diagnostic reporting, not which utterances are spoken.",
           "source": "../moos-ivp/ivp/src/iSay",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "volume": {
           "name": "volume",
-          "description": "Sets the default playback volume for iSay.",
+          "description": "Sets the default playback volume for iSay utterances and audio files. Named values include mute, vsoft, soft, normal, loud, and vloud; numeric values are clipped to the supported volume range.",
           "source": "../moos-ivp/ivp/src/iSay",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "1.0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/iSay/Sayer.cpp:43",
-          "example": "volume                       = example",
-          "exampleSource": "generated coverage fixture"
+          "default": "normal",
+          "defaultSource": "manual review",
+          "example": "volume = normal",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/iSay/Sayer.cpp:46, moos-ivp/ivp/src/iSay/Sayer.cpp:265"
         }
       }
     },
@@ -70,210 +71,225 @@
       "parameters": {
         "alert_range_color": {
           "name": "alert_range_color",
-          "description": "Sets the display color for alert range.",
+          "description": "Sets the display color for the VIEW_CIRCLE used to render an alert range. This is normally used with display_radii so the configured alert radius is visible in a viewer.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "alert_range_color            = yellow",
-          "exampleSource": "generated coverage fixture"
+          "example": "alert_range_color = gray65",
+          "exampleSource": "manual review",
+          "default": "gray65",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:310, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:104"
         },
         "alert_verbose": {
           "name": "alert_verbose",
-          "description": "Enables verbose contact-alert reporting.",
+          "description": "Enables verbose debugging output for contact-alert evaluation. This is useful when tuning alert logic and filters, but it can make the MOOSDB output noisier.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:62",
-          "example": "alert_verbose                = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "alert_verbose = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:62, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:304"
         },
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for pBasicContactMgr.",
+          "description": "Enables AppCastingMOOSApp logging for pBasicContactMgr. This records app-level diagnostics and is separate from contact alert or range-report postings.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "contacts_recap_interval": {
           "name": "contacts_recap_interval",
-          "description": "Sets the interval between contact-recap postings.",
+          "description": "Sets the minimum time, in seconds, between CONTACTS_RECAP postings. Increase this or turn recap posting off when recap output is too verbose for logging.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "1",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-          "example": "contacts_recap_interval      = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "contacts_recap_interval = 1",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:58, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:277"
         },
         "cpa_range_color": {
           "name": "cpa_range_color",
-          "description": "Sets the display color for CPA range.",
+          "description": "Sets the display color for the VIEW_CIRCLE used to render a CPA range. This is normally used with display_radii so the configured closest-point-of-approach radius is visible in a viewer.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "cpa_range_color              = yellow",
-          "exampleSource": "generated coverage fixture"
+          "example": "cpa_range_color = gray35",
+          "exampleSource": "manual review",
+          "default": "gray35",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:320, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:105"
         },
         "decay": {
           "name": "decay",
-          "description": "Sets how quickly stale contacts are retired by the contact manager.",
+          "description": "Controls extrapolation of stale contact reports as start,end seconds. Before the start time the last reported speed/heading are used, between start and end the speed decays toward zero, and 0,0 disables extrapolation.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "15,30",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-          "example": "decay                        = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "decay = 15,30",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:63, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:208"
         },
         "display_radii_id": {
           "name": "display_radii_id",
-          "description": "Selects which configured alert/range radius is rendered.",
+          "description": "Selects which configured alert id should have its alert/CPA radii rendered when display_radii is enabled. This matters when multiple alert definitions are present.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "display_radii_id             = example_id",
-          "exampleSource": "generated coverage fixture"
+          "example": "display_radii_id = say",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:319"
         },
         "eval_range_far": {
           "name": "eval_range_far",
-          "description": "Sets the eval range far threshold or measurement distance.",
+          "description": "Sets the far threshold used when evaluating the closest approach of contacts. Contacts whose closest range falls inside this threshold are classified as a near encounter in summary metrics.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "20",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-          "example": "eval_range_far               = 10",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "eval_range_far = 20",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:66, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:1019"
         },
         "eval_range_near": {
           "name": "eval_range_near",
-          "description": "Sets the eval range near threshold or measurement distance.",
+          "description": "Sets the near threshold used when evaluating closest approach of contacts. Contacts whose closest range falls inside this tighter threshold are classified as a very near encounter.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "10",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-          "example": "eval_range_near              = 10",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "eval_range_near = 10",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:67, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:1019"
         },
         "ignore_group": {
           "name": "ignore_group",
-          "description": "Excludes contacts matching the configured group.",
+          "description": "Adds a contact group to the global ignore filter. Contacts in ignored groups are excluded from contact-manager alert/range processing unless another rule overrides the filtering.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "ignore_group                 = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
         },
         "ignore_region": {
           "name": "ignore_region",
-          "description": "Excludes contacts matching the configured region.",
+          "description": "Adds a polygon region where contacts are ignored by the global filter. Use this to suppress alerts for contacts inside a known safe or irrelevant operating area.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "ignore_region                = op_region",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_region = pts={0,0:50,0:50,50:0,50}",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
         },
         "ignore_type": {
           "name": "ignore_type",
-          "description": "Excludes contacts matching the configured type.",
+          "description": "Adds a contact type to the global ignore filter. Contacts reporting one of these types are excluded from contact-manager alert/range processing.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "ignore_type                  = kayak",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
         },
         "match_group": {
           "name": "match_group",
-          "description": "Accepts only contacts matching the configured group.",
+          "description": "Adds a contact group to the global match filter. When match filters are configured, contacts must match the accepted group criteria to be processed.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "match_group                  = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
         },
         "match_region": {
           "name": "match_region",
-          "description": "Accepts only contacts matching the configured region.",
+          "description": "Adds a polygon region that contacts must match to pass the global filter. Contacts outside the matched region are ignored for contact-manager processing.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "match_region                 = op_region",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_region = pts={0,0:50,0:50,50:0,50}",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
         },
         "match_type": {
           "name": "match_type",
-          "description": "Accepts only contacts matching the configured type.",
+          "description": "Adds a contact type to the global match filter. When configured, only contacts with accepted types pass this part of contact-manager filtering.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "match_type                   = kayak",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in pBasicContactMgr reports.",
+          "description": "Limits how many appcast events pBasicContactMgr retains for diagnostic reporting. This affects appcast history, not contact alert decisions.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "max_retired_history": {
           "name": "max_retired_history",
-          "description": "Limits how much retired-contact history is retained.",
+          "description": "Limits how many retired contacts remain in the CONTACTS_RETIRED history. Values are clamped to the supported history range.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "5",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-          "example": "max_retired_history          = 1",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "max_retired_history = 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:70, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:242"
         },
         "range_report_timeout": {
           "name": "range_report_timeout",
-          "description": "Sets the range report timeout threshold or measurement distance.",
+          "description": "Sets how long range-report data remains fresh before it is removed from range reports. This prevents stale contact ranges from lingering in posted summaries.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "10",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-          "example": "range_report_timeout         = 10",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "range_report_timeout = 10",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:73, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:226"
         },
         "reject_range": {
           "name": "reject_range",
-          "description": "Sets the reject range threshold or measurement distance.",
+          "description": "Sets a range, in meters, beyond which new contacts are rejected and existing contacts may be dropped. This is a guard against tracking unbounded distant contacts.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "2000",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:75",
-          "example": "reject_range                 = 10",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "reject_range = 2000",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:75, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:472"
         },
         "strict_ignore": {
           "name": "strict_ignore",
-          "description": "Excludes contacts matching the configured strict ignore.",
+          "description": "Controls how strictly group/type ignore filters treat contacts that omit those fields. When true, missing group or type information can cause a contact to be rejected by an ignore filter.",
           "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "strict_ignore                = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "strict_ignore = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp"
         }
       }
     },
@@ -284,132 +300,137 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for pContactMgrV20.",
+          "description": "Enables AppCastingMOOSApp logging for pContactMgrV20. This records app-level diagnostics and is separate from contact alert, range, and recap postings.",
           "source": "../moos-ivp/ivp/src/pContactMgrV20",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "false",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "eval_range_far": {
           "name": "eval_range_far",
-          "description": "Sets the eval range far threshold or measurement distance.",
+          "description": "Sets the far threshold used when evaluating closest approach of contacts. Contacts whose closest range falls inside this threshold are counted as near encounters in summary metrics.",
           "source": "../moos-ivp/ivp/src/pContactMgrV20",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "eval_range_far               = 10",
-          "exampleSource": "generated coverage fixture"
+          "example": "eval_range_far = 20",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp"
         },
         "eval_range_near": {
           "name": "eval_range_near",
-          "description": "Sets the eval range near threshold or measurement distance.",
+          "description": "Sets the near threshold used when evaluating closest approach of contacts. Contacts whose closest range falls inside this tighter threshold are counted as very near encounters.",
           "source": "../moos-ivp/ivp/src/pContactMgrV20",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "eval_range_near              = 10",
-          "exampleSource": "generated coverage fixture"
+          "example": "eval_range_near = 10",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp"
         },
         "hold_alerts_for_helm": {
           "name": "hold_alerts_for_helm",
-          "description": "Holds contact alerts until the helm is ready to receive them.",
+          "description": "Holds or delays contact-alert postings until pHelmIvP is ready to receive them. This prevents contact alerts from being sent before the helm is active.",
           "source": "../moos-ivp/ivp/src/pContactMgrV20",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "false",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "hold_alerts_for_helm         = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "hold_alerts_for_helm = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:89, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:285"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in pContactMgrV20 reports.",
+          "description": "Limits how many appcast events pContactMgrV20 retains for diagnostic reporting. This affects appcast history, not contact alert decisions.",
           "source": "../moos-ivp/ivp/src/pContactMgrV20",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "max_contacts": {
           "name": "max_contacts",
-          "description": "Limits the number of contacts tracked by the contact manager.",
+          "description": "Sets the maximum number of contacts pContactMgrV20 tracks before removing or retiring contacts to stay within the limit. This is a memory and scalability guard.",
           "source": "../moos-ivp/ivp/src/pContactMgrV20",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "500",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "max_contacts                 = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "max_contacts = 500",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:52, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:1303"
         },
         "max_retired_history": {
           "name": "max_retired_history",
-          "description": "Limits how much retired-contact history is retained.",
+          "description": "Limits how many retired contacts remain in the CONTACTS_RETIRED history. Values are clamped to the supported history range, and retired contacts are still reported at least once.",
           "source": "../moos-ivp/ivp/src/pContactMgrV20",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "5",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "max_retired_history          = 1",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "max_retired_history = 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:65, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:636"
         },
         "ownship_group": {
           "name": "ownship_group",
-          "description": "Sets the contact or object ownship group.",
+          "description": "Sets the group label assigned to ownship for contact-manager filtering and alert context. This lets global match/ignore logic distinguish ownship metadata from contact metadata.",
           "source": "../moos-ivp/ivp/src/pContactMgrV20",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "ownship_group                = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "ownship_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:287"
         },
         "ownship_type": {
           "name": "ownship_type",
-          "description": "Sets the contact or object ownship type.",
+          "description": "Sets the type label assigned to ownship for contact-manager filtering and alert context. This lets global match/ignore logic distinguish ownship metadata from contact metadata.",
           "source": "../moos-ivp/ivp/src/pContactMgrV20",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "ownship_type                 = kayak",
-          "exampleSource": "generated coverage fixture"
+          "example": "ownship_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:289"
         },
         "post_closest_relbng": {
           "name": "post_closest_relbng",
-          "description": "Enables posting of the closest relbng output.",
+          "description": "Posts the relative bearing to the closest current contact along with closest-contact reporting. This is a reporting option and does not affect alert logic.",
           "source": "../moos-ivp/ivp/src/pContactMgrV20",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "false",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "post_closest_relbng          = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "post_closest_relbng = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:55, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:958"
         },
         "range_report_maxsize": {
           "name": "range_report_maxsize",
-          "description": "Sets the range report maxsize.",
+          "description": "Limits how many contact range reports are retained and posted in range-report summaries. This keeps range-report output bounded when many contacts are present.",
           "source": "../moos-ivp/ivp/src/pContactMgrV20",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "20 reports",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "range_report_maxsize         = 10",
-          "exampleSource": "generated coverage fixture"
+          "default": "20",
+          "defaultSource": "manual review",
+          "example": "range_report_maxsize = 20",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:68, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:819"
         },
         "range_report_timeout": {
           "name": "range_report_timeout",
-          "description": "Sets the range report timeout threshold or measurement distance.",
+          "description": "Sets how long range-report data remains fresh before it is removed from range reports. This prevents stale contact ranges from lingering in posted summaries.",
           "source": "../moos-ivp/ivp/src/pContactMgrV20",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "10",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-          "example": "range_report_timeout         = 10",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "range_report_timeout = 10",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:67, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:791"
         }
       }
     },
@@ -420,24 +441,25 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for pDeadManPost.",
+          "description": "Enables AppCastingMOOSApp logging for pDeadManPost. This records app-level diagnostics and is separate from the heartbeat/deadflag logic.",
           "source": "../moos-ivp/ivp/src/pDeadManPost",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pDeadManPost/DeadManPost_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pDeadManPost/DeadManPost_Info.cpp:103"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in pDeadManPost reports.",
+          "description": "Limits how many appcast events pDeadManPost retains in its report history. This affects diagnostic reporting, not deadflag posting behavior.",
           "source": "../moos-ivp/ivp/src/pDeadManPost",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
         }
       }
     },
@@ -448,42 +470,45 @@
       "parameters": {
         "flip:1": {
           "name": "FLIP:1",
-          "description": "Defines a pEchoVar field-mapping rule from a source variable into a destination variable.",
+          "description": "Defines one pEchoVar flip rule that extracts or transforms fields from a source MOOS variable and posts the result to a destination variable. Numbered flip blocks group fields such as source_variable, dest_variable, separators, filters, and components.",
           "source": "../moos-ivp/ivp/src/pEchoVar",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "FLIP:1                       = source_variable = MVIEWER_LCLICK",
-          "exampleSource": "generated coverage fixture"
+          "example": "flip:1 = source_variable = MVIEWER_LCLICK",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pEchoVar/EchoVar.cpp:143, moos-ivp/ivp/src/pEchoVar/EchoVar.cpp:300"
         },
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for pEchoVar.",
+          "description": "Enables AppCastingMOOSApp logging for pEchoVar. This records app-level diagnostics and is separate from echo/flip message forwarding.",
           "source": "../moos-ivp/ivp/src/pEchoVar",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pEchoVar/EchoVar_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "flip:2": {
           "name": "flip:2",
-          "description": "Defines a pEchoVar field-mapping rule from a source variable into a destination variable.",
+          "description": "Defines a second pEchoVar flip rule. Use additional numbered flip entries when multiple independent source-to-destination field transformations are needed.",
           "source": "../moos-ivp/ivp/src/pEchoVar",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "flip:2                       = source_variable = MVIEWER_LCLICK",
-          "exampleSource": "generated coverage fixture"
+          "example": "flip:2 = source_variable = MVIEWER_RCLICK",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pEchoVar/EchoVar.cpp:143, moos-ivp/ivp/src/pEchoVar/EchoVar.cpp:300"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in pEchoVar reports.",
+          "description": "Limits how many appcast events pEchoVar retains in its report history. This affects diagnostic reporting, not echo or flip forwarding.",
           "source": "../moos-ivp/ivp/src/pEchoVar",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
         }
       }
     },
@@ -494,207 +519,221 @@
       "parameters": {
         "allow_park": {
           "name": "allow_park",
-          "description": "Allows the helm to enter PARK mode when parking commands are received.",
+          "description": "Allows pHelmIvP to enter PARK mode when override/all-stop handling requests it. If false, the helm may stay in DRIVE even when a parking-style override is active.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "true",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:84",
-          "example": "allow_park                   = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "allow_park = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:84, moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:111"
         },
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for pHelmIvP.",
+          "description": "Enables AppCastingMOOSApp logging for pHelmIvP. The value may be true or a logging target/file depending on the appcasting logging support.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:132"
         },
         "bhv_dir_not_found_ok": {
           "name": "bhv_dir_not_found_ok",
-          "description": "Allows pHelmIvP startup to continue when a configured behavior directory is missing.",
+          "description": "Allows startup to continue when an ivp_behavior_dir entry cannot be found. This is useful when mission files are shared across machines where optional behavior-library paths may not exist.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "bhv_dir_not_found_ok         = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "bhv_dir_not_found_ok = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1240, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1316"
         },
         "contact_max_age": {
           "name": "contact_max_age",
-          "description": "Sets how old a contact report may be before pHelmIvP stops considering it current.",
+          "description": "Sets how long contact information remains usable before pHelmIvP treats the contact as stale and removes related contact behavior state. Values are accepted in the range 10 to 1800 seconds.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "contact_max_age              = 5",
-          "exampleSource": "generated coverage fixture"
+          "example": "contact_max_age = 45",
+          "exampleSource": "manual review",
+          "default": "45",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1268, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1312"
         },
         "goals_mandatory": {
           "name": "goals_mandatory",
-          "description": "Requires the helm to receive mandatory goal information before producing decisions.",
+          "description": "Requires at least one non-constraint active goal behavior before the helm will produce normal decisions. When true, pHelmIvP warns or withholds action if only constraints are active.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:67",
-          "example": "goals_mandatory              = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "goals_mandatory = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:67, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:507"
         },
         "helm_prefix": {
           "name": "helm_prefix",
-          "description": "Sets the prefix applied to selected pHelmIvP status variables.",
+          "description": "Sets a prefix added to selected helm status or decision variables posted by pHelmIvP. Use this when a mission needs helm output variables to be namespaced.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "helm_prefix                  = NAV",
-          "exampleSource": "generated coverage fixture"
+          "example": "helm_prefix = NAV",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1306, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:546"
         },
         "hold_on_app": {
           "name": "hold_on_app",
-          "description": "Keeps the helm held until a named app is present.",
+          "description": "Names one MOOS app that must appear in DB_CLIENTS before pHelmIvP considers its startup hold satisfied. This delays helm-start messages until required support apps are connected.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "5",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:101",
-          "example": "hold_on_app                  = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "hold_on_app = pBasicContactMgr",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1308, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1522"
         },
         "hold_on_apps": {
           "name": "hold_on_apps",
-          "description": "Keeps the helm held until all named apps are present.",
+          "description": "Names a comma-separated list of MOOS apps that must appear in DB_CLIENTS before pHelmIvP releases its startup hold. Each app name must be non-empty, unique, and contain no whitespace.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "hold_on_apps                 = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "hold_on_apps = pBasicContactMgr, pTaskManager",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:130, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1522"
         },
         "ivp_behavior_dir": {
           "name": "ivp_behavior_dir",
-          "description": "Adds a directory for pHelmIvP to search for behavior libraries.",
+          "description": "Adds a directory searched for IvP behavior libraries referenced by the helm behavior file. Multiple ivp_behavior_dir lines may be used to add multiple search paths.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "ivp_behavior_dir             = ./",
-          "exampleSource": "generated coverage fixture"
+          "example": "ivp_behavior_dir = /Users/bob/moos-ivp-bob/lib/",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:103, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1318"
         },
         "kcache": {
           "name": "kcache",
-          "description": "Controls pHelmIvP behavior-set caching.",
+          "description": "Controls behavior-set caching in pHelmIvP. This is an advanced/debug setting for how the helm caches behavior-related information rather than an ordinary mission tuning knob.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "kcache                       = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "kcache = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in pHelmIvP reports.",
+          "description": "Limits how many appcast events pHelmIvP retains for reporting. This affects diagnostic history in appcast output, not helm decision logic.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "nav_grace": {
           "name": "nav_grace",
-          "description": "Sets the grace period for accepting stale ownship navigation data.",
+          "description": "Sets how many seconds old ownship navigation data may be before pHelmIvP treats it as stale. If NAV_* data exceeds this age, the helm can warn or withhold decisions that require current navigation.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "5",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:101",
-          "example": "nav_grace                    = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "nav_grace = 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:101, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1310"
         },
         "node_skew": {
           "name": "node_skew",
-          "description": "Sets the allowed clock skew for incoming node reports.",
+          "description": "Declares the expected clock skew for a named external vehicle or node, using the form vehicle_name,seconds. pHelmIvP uses this when checking timestamps from external communities.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "node_skew                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "node_skew = charlie,45",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:118, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1413"
         },
         "ok_skew": {
           "name": "ok_skew",
-          "description": "Sets the allowed clock-skew tolerance before pHelmIvP warns.",
+          "description": "Sets the maximum acceptable timestamp skew, in seconds, before pHelmIvP treats external node timing as a problem. The special value any disables skew enforcement.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:75",
-          "example": "ok_skew                      = example",
-          "exampleSource": "generated coverage fixture"
+          "default": "60",
+          "defaultSource": "manual review",
+          "example": "ok_skew = 60",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:65, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1433"
         },
         "other_override_var": {
           "name": "other_override_var",
-          "description": "Names the MOOS variable used to accept override commands from other communities.",
+          "description": "Names an additional MOOS variable that pHelmIvP treats as a manual/autonomy override input. This provides an alternative to the standard MOOS_MANUAL_OVERRIDE directive.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "other_override_var           = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "example": "other_override_var = AUTONOMY_OVERRIDE",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:114, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1324"
         },
         "park_on_allstop": {
           "name": "park_on_allstop",
-          "description": "Parks the helm when an all-stop command is active.",
+          "description": "Requests that pHelmIvP enter PARK when an all-stop condition is active. This only has practical effect when parking/override handling is allowed.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:85",
-          "example": "park_on_allstop              = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "park_on_allstop = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:85, moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:112"
         },
         "pmgen": {
           "name": "pmgen",
-          "description": "Configures the platform-model generator used by pHelmIvP.",
+          "description": "Configures the platform-model generator used by pHelmIvP for platform-aware helm calculations. The value is passed directly to the platform model generator, so it should be a generator parameter string rather than a free-form label.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "pmgen                        = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "pmgen = turn_rate=45",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1322, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1546"
         },
         "start_engaged": {
           "name": "start_engaged",
-          "description": "Starts pHelmIvP in the engaged state.",
+          "description": "Starts pHelmIvP with helm control already engaged instead of waiting for an engagement command. This is equivalent to setting the helm's initial control state true.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:75",
-          "example": "start_engaged                = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "start_engaged = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:110, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1293"
         },
         "start_in_drive": {
           "name": "start_in_drive",
-          "description": "Starts pHelmIvP in drive rather than park.",
+          "description": "Starts pHelmIvP in DRIVE/control mode rather than PARK/standby. The parser also accepts the legacy spelling start_indrive.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "start_in_drive               = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "start_in_drive = false",
+          "exampleSource": "manual review",
+          "default": "false",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1295"
         },
         "term_report_interval": {
           "name": "term_report_interval",
-          "description": "Sets how often pHelmIvP writes terminal status reports.",
+          "description": "Sets the interval between terminal status reports from pHelmIvP. Use this to reduce or increase how often helm status is printed to the terminal.",
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "term_report_interval         = 5",
-          "exampleSource": "generated coverage fixture"
+          "example": "term_report_interval = 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP"
         }
       }
     },
@@ -705,27 +744,25 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for pHostInfo.",
+          "description": "Enables AppCastingMOOSApp logging for pHostInfo. This records app-level diagnostics and is separate from the host/interface report values.",
           "source": "../moos-ivp/ivp/src/pHostInfo",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pHostInfo/HostInfo_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "prefer_interface": {
           "name": "prefer_interface",
-          "description": "Selects the preferred network interface for host reporting.",
+          "description": "Selects the preferred network interface pHostInfo should use when reporting host address information. Use this when the machine has multiple interfaces and the default selection is not the desired mission network.",
           "source": "../moos-ivp/ivp/src/pHostInfo",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "localhost",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:42",
-          "example": "prefer_interface             = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "prefer_interface = en0",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pHostInfo"
         }
       }
     },
@@ -2067,12 +2104,13 @@
       "parameters": {
         "output": {
           "name": "output",
-          "description": "Defines an outbound pShare route.",
+          "description": "Defines an outbound pShare route for forwarding MOOS mail to another community or endpoint. The value is a route specification rather than a simple variable name.",
           "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pShare",
           "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
           "sourceStatus": "local-moos-source",
-          "example": "output                       = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "output = src_name=NODE_REPORT, dest_name=NODE_REPORT",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pShare"
         }
       }
     },
@@ -2102,21 +2140,23 @@
       "parameters": {
         "incoming_var": {
           "name": "INCOMING_VAR",
-          "description": "INCOMING_VAR names one side of the pXRelay variable relay.",
+          "description": "Names the MOOS variable pXRelay listens to as the source side of the relay. Mail on this variable is republished on OUTGOING_VAR.",
           "source": "../moos-ivp/ivp/src/pXRelay",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "INCOMING_VAR                 = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "example": "INCOMING_VAR = RELAY_IN",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pXRelay"
         },
         "outgoing_var": {
           "name": "OUTGOING_VAR",
-          "description": "OUTGOING_VAR names one side of the pXRelay variable relay.",
+          "description": "Names the MOOS variable pXRelay posts as the destination side of the relay. This receives the values read from INCOMING_VAR.",
           "source": "../moos-ivp/ivp/src/pXRelay",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "OUTGOING_VAR                 = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "example": "OUTGOING_VAR = RELAY_OUT",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pXRelay"
         }
       }
     },
@@ -2127,12 +2167,13 @@
       "parameters": {
         "cmd": {
           "name": "cmd",
-          "description": "Defines a command or MOOS post handled by uCommand.",
+          "description": "Defines a command entry that uCommand can post to the MOOSDB. The value is a configured MOOS variable-value command, not a shell command.",
           "source": "../moos-ivp/ivp/src/uCommand",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "cmd                          = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "cmd = DEPLOY = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uCommand"
         }
       }
     },
@@ -3001,15 +3042,13 @@
       "parameters": {
         "poke": {
           "name": "poke",
-          "description": "Defines a MOOS variable-value post for uPokeDB.",
+          "description": "Defines a MOOS variable-value post for uPokeDB to send to the MOOSDB. Multiple poke entries may be used when several startup or scripted posts are needed.",
           "source": "../moos-ivp/ivp/src/uPokeDB",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uPokeDB/PokeDB.cpp:52",
-          "example": "poke                         = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "poke = DEPLOY = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uPokeDB"
         }
       }
     },
@@ -3048,30 +3087,33 @@
       "parameters": {
         "halt_condition": {
           "name": "halt_condition",
-          "description": "Stops uQueryDB when the named MOOS logic condition becomes true.",
+          "description": "Stops uQueryDB when the given MOOS logic condition evaluates true. Use this to make a query session terminate after a mission state or variable condition is reached.",
           "source": "../moos-ivp/ivp/src/uQueryDB",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "halt_condition               = DEPLOY = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "halt_condition = DEPLOY = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uQueryDB"
         },
         "halt_max_time": {
           "name": "halt_max_time",
-          "description": "Stops uQueryDB after the configured maximum wait time.",
+          "description": "Stops uQueryDB after the configured maximum elapsed time even if the halt condition has not become true. This is a timeout for bounded query sessions.",
           "source": "../moos-ivp/ivp/src/uQueryDB",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "halt_max_time                = 5",
-          "exampleSource": "generated coverage fixture"
+          "example": "halt_max_time = 30",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uQueryDB"
         },
         "max_time": {
           "name": "max_time",
-          "description": "Sets the maximum time uQueryDB waits before halting.",
+          "description": "Sets the maximum time uQueryDB should run before exiting. This is an alias-style timeout used to keep query runs finite.",
           "source": "../moos-ivp/ivp/src/uQueryDB",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_time                     = 5",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_time = 30",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uQueryDB"
         }
       }
     },
@@ -3082,141 +3124,151 @@
       "parameters": {
         "dual_state": {
           "name": "dual_state",
-          "description": "Enables the dual-state simulator output mode in uSimMarineV22.",
+          "description": "Enables dual-state simulator output mode, causing the simulator to publish both ordinary navigation state and a separate ground-truth state where supported.",
           "source": "../moos-ivp/ivp/src/uSimMarineV22",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "dual_state                   = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "dual_state = false",
+          "exampleSource": "manual review",
+          "default": "false",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:40"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in uSimMarineV22 reports.",
+          "description": "Limits how many appcast events uSimMarineV22 retains for diagnostic reporting. This affects appcast history, not simulated vehicle motion.",
           "source": "../moos-ivp/ivp/src/uSimMarineV22",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "max_rudder_degs_per_sec": {
           "name": "max_rudder_degs_per_sec",
-          "description": "Limits how quickly the simulated rudder angle may change, in degrees per second.",
+          "description": "Limits how quickly the simulated rudder command may change, in degrees per second. A zero value leaves rudder changes effectively unconstrained by this limiter.",
           "source": "../moos-ivp/ivp/src/uSimMarineV22",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_rudder_degs_per_sec      = 100",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_rudder_degs_per_sec = 0",
+          "exampleSource": "manual review",
+          "default": "0",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:49, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:421"
         },
         "max_trim_delay": {
           "name": "max_trim_delay",
-          "description": "Sets how long uSimMarineV22 waits before applying a requested trim change.",
+          "description": "Sets the maximum wait time, in seconds, for a trim request to complete before it is treated as delayed or failed. This is part of the buoyancy/trim handshake logic.",
           "source": "../moos-ivp/ivp/src/uSimMarineV22",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "10",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:46",
-          "example": "max_trim_delay               = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "max_trim_delay = 10",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:45, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:386"
         },
         "polar_plot": {
           "name": "polar_plot",
-          "description": "Defines the sailing polar plot used by the uSimMarineV22 wind model.",
+          "description": "Defines or loads the sailing polar plot used by the wind model. The polar plot maps wind angle/speed context into sailing performance behavior.",
           "source": "../moos-ivp/ivp/src/uSimMarineV22",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "polar_plot                   = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "polar_plot = file=polar.csv",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:339"
         },
         "post_navpos_summary": {
           "name": "post_navpos_summary",
-          "description": "Enables posting of the navpos summary output.",
+          "description": "Enables posting a compact navigation-position summary from the simulator. This is additional reporting and does not change the simulated dynamics.",
           "source": "../moos-ivp/ivp/src/uSimMarineV22",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:54",
-          "example": "post_navpos_summary          = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "post_navpos_summary = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:56, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:394"
         },
         "trim_tolerance": {
           "name": "trim_tolerance",
-          "description": "Sets the tolerance for accepting a simulator trim request as achieved.",
+          "description": "Sets the tolerance used when deciding whether a trim request has reached its target. This is part of the buoyancy/trim control handshake.",
           "source": "../moos-ivp/ivp/src/uSimMarineV22",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "5",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:50",
-          "example": "trim_tolerance               = 10",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "trim_tolerance = 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:51, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:384"
         },
         "turn_spd_map_full_rate": {
           "name": "turn_spd_map_full_rate",
-          "description": "Sets the turn-rate scale used at the full-speed point in the simulator turn-speed map.",
+          "description": "Sets the turn-rate percentage used at the full-speed point in the turn-speed map. This shapes how available turning authority changes with simulated speed.",
           "source": "../moos-ivp/ivp/src/uSimMarineV22",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "100)",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Info.cpp",
-          "example": "turn_spd_map_full_rate       = 1.2",
-          "exampleSource": "generated coverage fixture"
+          "default": "100",
+          "defaultSource": "manual review",
+          "example": "turn_spd_map_full_rate = 100",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:344"
         },
         "turn_spd_map_full_speed": {
           "name": "turn_spd_map_full_speed",
-          "description": "Sets the speed corresponding to full turn-rate authority in the simulator turn-speed map.",
+          "description": "Sets the speed associated with the full-speed point in the turn-speed map. This pairs with turn_spd_map_full_rate to define speed-dependent turn authority.",
           "source": "../moos-ivp/ivp/src/uSimMarineV22",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "1)",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Info.cpp",
-          "example": "turn_spd_map_full_speed      = 1.2",
-          "exampleSource": "generated coverage fixture"
+          "default": "1",
+          "defaultSource": "manual review",
+          "example": "turn_spd_map_full_speed = 1",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:340"
         },
         "turn_spd_map_null_rate": {
           "name": "turn_spd_map_null_rate",
-          "description": "Sets the turn-rate scale used at the null-speed point in the simulator turn-speed map.",
+          "description": "Sets the turn-rate percentage used at the null-speed point in the turn-speed map. This shapes how much turning authority exists near zero speed.",
           "source": "../moos-ivp/ivp/src/uSimMarineV22",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0)",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Info.cpp",
-          "example": "turn_spd_map_null_rate       = 1.2",
-          "exampleSource": "generated coverage fixture"
+          "default": "0",
+          "defaultSource": "manual review",
+          "example": "turn_spd_map_null_rate = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:346"
         },
         "turn_spd_map_null_speed": {
           "name": "turn_spd_map_null_speed",
-          "description": "Sets the speed corresponding to no turn-rate authority in the simulator turn-speed map.",
+          "description": "Sets the speed associated with the null-speed point in the turn-speed map. This pairs with turn_spd_map_null_rate to define speed-dependent turn authority.",
           "source": "../moos-ivp/ivp/src/uSimMarineV22",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0)",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Info.cpp",
-          "example": "turn_spd_map_null_speed      = 1.2",
-          "exampleSource": "generated coverage fixture"
+          "default": "0",
+          "defaultSource": "manual review",
+          "example": "turn_spd_map_null_speed = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:342"
         },
         "wind_conditions": {
           "name": "wind_conditions",
-          "description": "Defines the wind speed and direction used by the uSimMarineV22 wind model.",
+          "description": "Defines wind speed and direction for the simulator wind model. This is used with sailing/polar-plot simulation support.",
           "source": "../moos-ivp/ivp/src/uSimMarineV22",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "wind_conditions              = DEPLOY = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "wind_conditions = speed=5, direction=270",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:336"
         },
         "wormhole": {
           "name": "wormhole",
-          "description": "Defines a simulator wormhole region and its destination behavior.",
+          "description": "Defines one wormhole configuration component, such as the entry polygon, exit polygon, connection direction, id-change behavior, or delay. Multiple wormhole lines with the same tag combine into one wormhole definition.",
           "source": "../moos-ivp/ivp/src/uSimMarineV22",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "wormhole                     = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "wormhole = tag=one, connection=from_madrid",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: Section 9.2, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:388"
         }
       }
     },
@@ -3227,12 +3279,13 @@
       "parameters": {
         "cmd": {
           "name": "CMD",
-          "description": "Defines a command or MOOS post handled by uTermCommand.",
+          "description": "Defines a terminal-selectable command that posts a MOOS variable-value pair. This is a MOOS command menu entry, not an operating-system shell command.",
           "source": "../moos-ivp/ivp/src/uTermCommand",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "CMD                          = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "CMD = DEPLOY = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uTermCommand"
         }
       }
     },
@@ -3243,51 +3296,55 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for uTimerScript.",
+          "description": "Enables AppCastingMOOSApp logging for uTimerScript. This records app-level diagnostics and is separate from scripted MOOS posts.",
           "source": "../moos-ivp/ivp/src/uTimerScript",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uTimerScript/TS_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uTimerScript/TS_Info.cpp:146"
         },
         "forward_variable": {
           "name": "forward_variable",
-          "description": "Names the MOOS variable used to advance uTimerScript forwarding.",
+          "description": "Names the MOOS variable used to request that uTimerScript advance through scripted events. This provides an external control input for script progression.",
           "source": "../moos-ivp/ivp/src/uTimerScript",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "forward_variable             = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "example": "forward_variable = UTS_FORWARD",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uTimerScript"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in uTimerScript reports.",
+          "description": "Limits how many appcast events uTimerScript retains in its report history. This affects diagnostics, not the scheduled event list.",
           "source": "../moos-ivp/ivp/src/uTimerScript",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "pause_variable": {
           "name": "pause_variable",
-          "description": "Names the MOOS variable used to pause or resume uTimerScript.",
+          "description": "Names the MOOS variable used to pause or resume uTimerScript execution. This lets another app control whether scheduled posts are currently advancing.",
           "source": "../moos-ivp/ivp/src/uTimerScript",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "pause_variable               = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "example": "pause_variable = UTS_PAUSE",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uTimerScript"
         },
         "randvar": {
           "name": "randvar",
-          "description": "Defines a random variable used by uTimerScript event generation.",
+          "description": "Defines a random variable generator used by uTimerScript events, including fields such as variable name, minimum, maximum, and key timing. Generated values can then be used in scripted posts.",
           "source": "../moos-ivp/ivp/src/uTimerScript",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "randvar                      = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "example": "randvar = varname=ANG, min=0, max=359, key=at_reset",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uTimerScript/TS_Info.cpp:122"
         }
       }
     },
@@ -3298,36 +3355,35 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for uXMS.",
+          "description": "Enables AppCastingMOOSApp logging for uXMS. This records app-level diagnostics and is separate from the scoped MOOS mail display.",
           "source": "../moos-ivp/ivp/src/uXMS",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uXMS/XMS_Info.cpp:157"
         },
         "color_map": {
           "name": "color_map",
-          "description": "Sets the display color for map.",
+          "description": "Associates a variable, source, or community pattern with a display color in uXMS output. Use this to make selected scoped entries visually distinct in the terminal view.",
           "source": "../moos-ivp/ivp/src/uXMS",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "color_map                    = yellow",
-          "exampleSource": "generated coverage fixture"
+          "example": "color_map = DEPLOY,green",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uXMS/XMS.cpp:754"
         },
         "paused": {
           "name": "paused",
-          "description": "Starts or keeps uXMS paused when the app supports pausing.",
+          "description": "Starts or keeps the uXMS display in a paused state when supported by the app's display loop. This affects live display updating, not whether uXMS receives MOOS mail.",
           "source": "../moos-ivp/ivp/src/uXMS",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "events",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:55",
-          "example": "paused                       = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "paused = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uXMS"
         }
       }
     }
@@ -3364,126 +3420,129 @@
     "alert_range_color": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Sets the display color for alert range.",
+        "description": "Sets the display color for the VIEW_CIRCLE used to render an alert range. This is normally used with display_radii so the configured alert radius is visible in a viewer.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "alert_range_color            = yellow",
-        "exampleSource": "generated coverage fixture"
+        "default": "gray65",
+        "defaultSource": "manual review",
+        "example": "alert_range_color = gray65",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:310, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:104"
       }
     ],
     "alert_verbose": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Enables verbose contact-alert reporting.",
+        "description": "Enables verbose debugging output for contact-alert evaluation. This is useful when tuning alert logic and filters, but it can make the MOOSDB output noisier.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:62",
-        "example": "alert_verbose                = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "alert_verbose = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:62, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:304"
       }
     ],
     "allow_park": [
       {
         "owner": "pHelmIvP",
-        "description": "Allows the helm to enter PARK mode when parking commands are received.",
+        "description": "Allows pHelmIvP to enter PARK mode when override/all-stop handling requests it. If false, the helm may stay in DRIVE even when a parking-style override is active.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "true",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:84",
-        "example": "allow_park                   = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "allow_park = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:84, moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:111"
       }
     ],
     "app_logging": [
       {
         "owner": "iSay",
-        "description": "Enables app-level logging for iSay.",
+        "description": "Enables AppCastingMOOSApp logging for iSay. This records app-level diagnostics and is separate from the speech/audio output itself.",
         "source": "../moos-ivp/ivp/src/iSay",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/iSay/Sayer_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/iSay/Sayer_Info.cpp:106"
       },
       {
         "owner": "pBasicContactMgr",
-        "description": "Enables app-level logging for pBasicContactMgr.",
+        "description": "Enables AppCastingMOOSApp logging for pBasicContactMgr. This records app-level diagnostics and is separate from contact alert or range-report postings.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       },
       {
         "owner": "pContactMgrV20",
-        "description": "Enables app-level logging for pContactMgrV20.",
+        "description": "Enables AppCastingMOOSApp logging for pContactMgrV20. This records app-level diagnostics and is separate from contact alert, range, and recap postings.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "false",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       },
       {
         "owner": "pDeadManPost",
-        "description": "Enables app-level logging for pDeadManPost.",
+        "description": "Enables AppCastingMOOSApp logging for pDeadManPost. This records app-level diagnostics and is separate from the heartbeat/deadflag logic.",
         "source": "../moos-ivp/ivp/src/pDeadManPost",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pDeadManPost/DeadManPost_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pDeadManPost/DeadManPost_Info.cpp:103"
       },
       {
         "owner": "pEchoVar",
-        "description": "Enables app-level logging for pEchoVar.",
+        "description": "Enables AppCastingMOOSApp logging for pEchoVar. This records app-level diagnostics and is separate from echo/flip message forwarding.",
         "source": "../moos-ivp/ivp/src/pEchoVar",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pEchoVar/EchoVar_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       },
       {
         "owner": "pHelmIvP",
-        "description": "Enables app-level logging for pHelmIvP.",
+        "description": "Enables AppCastingMOOSApp logging for pHelmIvP. The value may be true or a logging target/file depending on the appcasting logging support.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:132"
       },
       {
         "owner": "pHostInfo",
-        "description": "Enables app-level logging for pHostInfo.",
+        "description": "Enables AppCastingMOOSApp logging for pHostInfo. This records app-level diagnostics and is separate from the host/interface report values.",
         "source": "../moos-ivp/ivp/src/pHostInfo",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pHostInfo/HostInfo_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       },
       {
         "owner": "pMarineViewer",
@@ -3667,27 +3726,27 @@
       },
       {
         "owner": "uTimerScript",
-        "description": "Enables app-level logging for uTimerScript.",
+        "description": "Enables AppCastingMOOSApp logging for uTimerScript. This records app-level diagnostics and is separate from scripted MOOS posts.",
         "source": "../moos-ivp/ivp/src/uTimerScript",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uTimerScript/TS_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uTimerScript/TS_Info.cpp:146"
       },
       {
         "owner": "uXMS",
-        "description": "Enables app-level logging for uXMS.",
+        "description": "Enables AppCastingMOOSApp logging for uXMS. This records app-level diagnostics and is separate from the scoped MOOS mail display.",
         "source": "../moos-ivp/ivp/src/uXMS",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uXMS/XMS_Info.cpp:157"
       }
     ],
     "appcast_font_size": [
@@ -3822,12 +3881,13 @@
     "bhv_dir_not_found_ok": [
       {
         "owner": "pHelmIvP",
-        "description": "Allows pHelmIvP startup to continue when a configured behavior directory is missing.",
+        "description": "Allows startup to continue when an ivp_behavior_dir entry cannot be found. This is useful when mission files are shared across machines where optional behavior-library paths may not exist.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "bhv_dir_not_found_ok         = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "bhv_dir_not_found_ok = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1240, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1316"
       }
     ],
     "bin_delta": [
@@ -4284,21 +4344,23 @@
       },
       {
         "owner": "uCommand",
-        "description": "Defines a command or MOOS post handled by uCommand.",
+        "description": "Defines a command entry that uCommand can post to the MOOSDB. The value is a configured MOOS variable-value command, not a shell command.",
         "source": "../moos-ivp/ivp/src/uCommand",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "cmd                          = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "cmd = DEPLOY = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uCommand"
       },
       {
         "owner": "uTermCommand",
-        "description": "Defines a command or MOOS post handled by uTermCommand.",
+        "description": "Defines a terminal-selectable command that posts a MOOS variable-value pair. This is a MOOS command menu entry, not an operating-system shell command.",
         "source": "../moos-ivp/ivp/src/uTermCommand",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "CMD                          = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "CMD = DEPLOY = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uTermCommand"
       }
     ],
     "collision_dist": [
@@ -4315,12 +4377,13 @@
     "color_map": [
       {
         "owner": "uXMS",
-        "description": "Sets the display color for map.",
+        "description": "Associates a variable, source, or community pattern with a display color in uXMS output. Use this to make selected scoped entries visually distinct in the terminal view.",
         "source": "../moos-ivp/ivp/src/uXMS",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "color_map                    = yellow",
-        "exampleSource": "generated coverage fixture"
+        "example": "color_map = DEPLOY,green",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uXMS/XMS.cpp:754"
       }
     ],
     "color_source_pts": [
@@ -4354,37 +4417,43 @@
     "contact_max_age": [
       {
         "owner": "pHelmIvP",
-        "description": "Sets how old a contact report may be before pHelmIvP stops considering it current.",
+        "description": "Sets how long contact information remains usable before pHelmIvP treats the contact as stale and removes related contact behavior state. Values are accepted in the range 10 to 1800 seconds.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "contact_max_age              = 5",
-        "exampleSource": "generated coverage fixture"
+        "default": "45",
+        "defaultSource": "manual review",
+        "example": "contact_max_age = 45",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1268, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1312"
       }
     ],
     "contacts_recap_interval": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Sets the interval between contact-recap postings.",
+        "description": "Sets the minimum time, in seconds, between CONTACTS_RECAP postings. Increase this or turn recap posting off when recap output is too verbose for logging.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "1",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-        "example": "contacts_recap_interval      = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "contacts_recap_interval = 1",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:58, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:277"
       }
     ],
     "cpa_range_color": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Sets the display color for CPA range.",
+        "description": "Sets the display color for the VIEW_CIRCLE used to render a CPA range. This is normally used with display_radii so the configured closest-point-of-approach radius is visible in a viewer.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "cpa_range_color              = yellow",
-        "exampleSource": "generated coverage fixture"
+        "default": "gray35",
+        "defaultSource": "manual review",
+        "example": "cpa_range_color = gray35",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:320, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:105"
       }
     ],
     "cross_fill_policy": [
@@ -4426,15 +4495,15 @@
     "decay": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Sets how quickly stale contacts are retired by the contact manager.",
+        "description": "Controls extrapolation of stale contact reports as start,end seconds. Before the start time the last reported speed/heading are used, between start and end the speed decays toward zero, and 0,0 disables extrapolation.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "15,30",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-        "example": "decay                        = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "decay = 15,30",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:63, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:208"
       }
     ],
     "default": [
@@ -4508,12 +4577,13 @@
     "display_radii_id": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Selects which configured alert/range radius is rendered.",
+        "description": "Selects which configured alert id should have its alert/CPA radii rendered when display_radii is enabled. This matters when multiple alert definitions are present.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "display_radii_id             = example_id",
-        "exampleSource": "generated coverage fixture"
+        "example": "display_radii_id = say",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:319"
       }
     ],
     "doubleprecision": [
@@ -4544,12 +4614,15 @@
     "dual_state": [
       {
         "owner": "uSimMarineV22",
-        "description": "Enables the dual-state simulator output mode in uSimMarineV22.",
+        "description": "Enables dual-state simulator output mode, causing the simulator to publish both ordinary navigation state and a separate ground-truth state where supported.",
         "source": "../moos-ivp/ivp/src/uSimMarineV22",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "dual_state                   = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "false",
+        "defaultSource": "manual review",
+        "example": "dual_state = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:40"
       }
     ],
     "echo_color": [
@@ -4608,47 +4681,49 @@
     "eval_range_far": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Sets the eval range far threshold or measurement distance.",
+        "description": "Sets the far threshold used when evaluating the closest approach of contacts. Contacts whose closest range falls inside this threshold are classified as a near encounter in summary metrics.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "20",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-        "example": "eval_range_far               = 10",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "eval_range_far = 20",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:66, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:1019"
       },
       {
         "owner": "pContactMgrV20",
-        "description": "Sets the eval range far threshold or measurement distance.",
+        "description": "Sets the far threshold used when evaluating closest approach of contacts. Contacts whose closest range falls inside this threshold are counted as near encounters in summary metrics.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "eval_range_far               = 10",
-        "exampleSource": "generated coverage fixture"
+        "example": "eval_range_far = 20",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp"
       }
     ],
     "eval_range_near": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Sets the eval range near threshold or measurement distance.",
+        "description": "Sets the near threshold used when evaluating closest approach of contacts. Contacts whose closest range falls inside this tighter threshold are classified as a very near encounter.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "10",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-        "example": "eval_range_near              = 10",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "eval_range_near = 10",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:67, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:1019"
       },
       {
         "owner": "pContactMgrV20",
-        "description": "Sets the eval range near threshold or measurement distance.",
+        "description": "Sets the near threshold used when evaluating closest approach of contacts. Contacts whose closest range falls inside this tighter threshold are counted as very near encounters.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "eval_range_near              = 10",
-        "exampleSource": "generated coverage fixture"
+        "example": "eval_range_near = 10",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp"
       }
     ],
     "expunge_var": [
@@ -4721,34 +4796,37 @@
     "flip:1": [
       {
         "owner": "pEchoVar",
-        "description": "Defines a pEchoVar field-mapping rule from a source variable into a destination variable.",
+        "description": "Defines one pEchoVar flip rule that extracts or transforms fields from a source MOOS variable and posts the result to a destination variable. Numbered flip blocks group fields such as source_variable, dest_variable, separators, filters, and components.",
         "source": "../moos-ivp/ivp/src/pEchoVar",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "FLIP:1                       = source_variable = MVIEWER_LCLICK",
-        "exampleSource": "generated coverage fixture"
+        "example": "flip:1 = source_variable = MVIEWER_LCLICK",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pEchoVar/EchoVar.cpp:143, moos-ivp/ivp/src/pEchoVar/EchoVar.cpp:300"
       }
     ],
     "flip:2": [
       {
         "owner": "pEchoVar",
-        "description": "Defines a pEchoVar field-mapping rule from a source variable into a destination variable.",
+        "description": "Defines a second pEchoVar flip rule. Use additional numbered flip entries when multiple independent source-to-destination field transformations are needed.",
         "source": "../moos-ivp/ivp/src/pEchoVar",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "flip:2                       = source_variable = MVIEWER_LCLICK",
-        "exampleSource": "generated coverage fixture"
+        "example": "flip:2 = source_variable = MVIEWER_RCLICK",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pEchoVar/EchoVar.cpp:143, moos-ivp/ivp/src/pEchoVar/EchoVar.cpp:300"
       }
     ],
     "forward_variable": [
       {
         "owner": "uTimerScript",
-        "description": "Names the MOOS variable used to advance uTimerScript forwarding.",
+        "description": "Names the MOOS variable used to request that uTimerScript advance through scripted events. This provides an external control input for script progression.",
         "source": "../moos-ivp/ivp/src/uTimerScript",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "forward_variable             = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "example": "forward_variable = UTS_FORWARD",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uTimerScript"
       }
     ],
     "general_alert": [
@@ -4792,15 +4870,15 @@
     "goals_mandatory": [
       {
         "owner": "pHelmIvP",
-        "description": "Requires the helm to receive mandatory goal information before producing decisions.",
+        "description": "Requires at least one non-constraint active goal behavior before the helm will produce normal decisions. When true, pHelmIvP warns or withholds action if only constraints are active.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:67",
-        "example": "goals_mandatory              = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "goals_mandatory = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:67, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:507"
       }
     ],
     "grid_label": [
@@ -4870,34 +4948,37 @@
     "halt_condition": [
       {
         "owner": "uQueryDB",
-        "description": "Stops uQueryDB when the named MOOS logic condition becomes true.",
+        "description": "Stops uQueryDB when the given MOOS logic condition evaluates true. Use this to make a query session terminate after a mission state or variable condition is reached.",
         "source": "../moos-ivp/ivp/src/uQueryDB",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "halt_condition               = DEPLOY = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "halt_condition = DEPLOY = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uQueryDB"
       }
     ],
     "halt_max_time": [
       {
         "owner": "uQueryDB",
-        "description": "Stops uQueryDB after the configured maximum wait time.",
+        "description": "Stops uQueryDB after the configured maximum elapsed time even if the halt condition has not become true. This is a timeout for bounded query sessions.",
         "source": "../moos-ivp/ivp/src/uQueryDB",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "halt_max_time                = 5",
-        "exampleSource": "generated coverage fixture"
+        "example": "halt_max_time = 30",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uQueryDB"
       }
     ],
     "helm_prefix": [
       {
         "owner": "pHelmIvP",
-        "description": "Sets the prefix applied to selected pHelmIvP status variables.",
+        "description": "Sets a prefix added to selected helm status or decision variables posted by pHelmIvP. Use this when a mission needs helm output variables to be namespaced.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "helm_prefix                  = NAV",
-        "exampleSource": "generated coverage fixture"
+        "example": "helm_prefix = NAV",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1306, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:546"
       }
     ],
     "hist_var": [
@@ -4928,40 +5009,39 @@
     "hold_alerts_for_helm": [
       {
         "owner": "pContactMgrV20",
-        "description": "Holds contact alerts until the helm is ready to receive them.",
+        "description": "Holds or delays contact-alert postings until pHelmIvP is ready to receive them. This prevents contact alerts from being sent before the helm is active.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "false",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "hold_alerts_for_helm         = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "hold_alerts_for_helm = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:89, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:285"
       }
     ],
     "hold_on_app": [
       {
         "owner": "pHelmIvP",
-        "description": "Keeps the helm held until a named app is present.",
+        "description": "Names one MOOS app that must appear in DB_CLIENTS before pHelmIvP considers its startup hold satisfied. This delays helm-start messages until required support apps are connected.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "5",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:101",
-        "example": "hold_on_app                  = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "hold_on_app = pBasicContactMgr",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1308, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1522"
       }
     ],
     "hold_on_apps": [
       {
         "owner": "pHelmIvP",
-        "description": "Keeps the helm held until all named apps are present.",
+        "description": "Names a comma-separated list of MOOS apps that must appear in DB_CLIENTS before pHelmIvP releases its startup hold. Each app name must be non-empty, unique, and contain no whitespace.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "hold_on_apps                 = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "hold_on_apps = pBasicContactMgr, pTaskManager",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:130, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1522"
       }
     ],
     "ignore": [
@@ -4978,12 +5058,13 @@
     "ignore_group": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Excludes contacts matching the configured group.",
+        "description": "Adds a contact group to the global ignore filter. Contacts in ignored groups are excluded from contact-manager alert/range processing unless another rule overrides the filtering.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "ignore_group                 = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
       },
       {
         "owner": "uFldCollObDetect",
@@ -5018,34 +5099,37 @@
     "ignore_region": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Excludes contacts matching the configured region.",
+        "description": "Adds a polygon region where contacts are ignored by the global filter. Use this to suppress alerts for contacts inside a known safe or irrelevant operating area.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "ignore_region                = op_region",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_region = pts={0,0:50,0:50,50:0,50}",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
       }
     ],
     "ignore_type": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Excludes contacts matching the configured type.",
+        "description": "Adds a contact type to the global ignore filter. Contacts reporting one of these types are excluded from contact-manager alert/range processing.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "ignore_type                  = kayak",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
       }
     ],
     "incoming_var": [
       {
         "owner": "pXRelay",
-        "description": "INCOMING_VAR names one side of the pXRelay variable relay.",
+        "description": "Names the MOOS variable pXRelay listens to as the source side of the relay. Mail on this variable is republished on OUTGOING_VAR.",
         "source": "../moos-ivp/ivp/src/pXRelay",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "INCOMING_VAR                 = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "example": "INCOMING_VAR = RELAY_IN",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pXRelay"
       }
     ],
     "infocast_nodes_width": [
@@ -5065,23 +5149,25 @@
     "ivp_behavior_dir": [
       {
         "owner": "pHelmIvP",
-        "description": "Adds a directory for pHelmIvP to search for behavior libraries.",
+        "description": "Adds a directory searched for IvP behavior libraries referenced by the helm behavior file. Multiple ivp_behavior_dir lines may be used to add multiple search paths.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "ivp_behavior_dir             = ./",
-        "exampleSource": "generated coverage fixture"
+        "example": "ivp_behavior_dir = /Users/bob/moos-ivp-bob/lib/",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:103, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1318"
       }
     ],
     "kcache": [
       {
         "owner": "pHelmIvP",
-        "description": "Controls pHelmIvP behavior-set caching.",
+        "description": "Controls behavior-set caching in pHelmIvP. This is an advanced/debug setting for how the helm caches behavior-related information rather than an ordinary mission tuning knob.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "kcache                       = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "kcache = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP"
       }
     ],
     "keyword": [
@@ -5257,12 +5343,13 @@
     "match_group": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Accepts only contacts matching the configured group.",
+        "description": "Adds a contact group to the global match filter. When match filters are configured, contacts must match the accepted group criteria to be processed.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "match_group                  = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
       }
     ],
     "match_name": [
@@ -5288,79 +5375,87 @@
     "match_region": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Accepts only contacts matching the configured region.",
+        "description": "Adds a polygon region that contacts must match to pass the global filter. Contacts outside the matched region are ignored for contact-manager processing.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "match_region                 = op_region",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_region = pts={0,0:50,0:50,50:0,50}",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
       }
     ],
     "match_type": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Accepts only contacts matching the configured type.",
+        "description": "Adds a contact type to the global match filter. When configured, only contacts with accepted types pass this part of contact-manager filtering.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "match_type                   = kayak",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
       }
     ],
     "max_appcast_events": [
       {
         "owner": "iSay",
-        "description": "Limits how many appcast events are retained in iSay reports.",
+        "description": "Limits how many appcast events iSay retains in its appcast report history. This affects diagnostic reporting, not which utterances are spoken.",
         "source": "../moos-ivp/ivp/src/iSay",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       },
       {
         "owner": "pBasicContactMgr",
-        "description": "Limits how many appcast events are retained in pBasicContactMgr reports.",
+        "description": "Limits how many appcast events pBasicContactMgr retains for diagnostic reporting. This affects appcast history, not contact alert decisions.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       },
       {
         "owner": "pContactMgrV20",
-        "description": "Limits how many appcast events are retained in pContactMgrV20 reports.",
+        "description": "Limits how many appcast events pContactMgrV20 retains for diagnostic reporting. This affects appcast history, not contact alert decisions.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       },
       {
         "owner": "pDeadManPost",
-        "description": "Limits how many appcast events are retained in pDeadManPost reports.",
+        "description": "Limits how many appcast events pDeadManPost retains in its report history. This affects diagnostic reporting, not deadflag posting behavior.",
         "source": "../moos-ivp/ivp/src/pDeadManPost",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       },
       {
         "owner": "pEchoVar",
-        "description": "Limits how many appcast events are retained in pEchoVar reports.",
+        "description": "Limits how many appcast events pEchoVar retains in its report history. This affects diagnostic reporting, not echo or flip forwarding.",
         "source": "../moos-ivp/ivp/src/pEchoVar",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       },
       {
         "owner": "pHelmIvP",
-        "description": "Limits how many appcast events are retained in pHelmIvP reports.",
+        "description": "Limits how many appcast events pHelmIvP retains for reporting. This affects diagnostic history in appcast output, not helm decision logic.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       },
       {
         "owner": "pMarinePIDV22",
@@ -5526,35 +5621,37 @@
       },
       {
         "owner": "uSimMarineV22",
-        "description": "Limits how many appcast events are retained in uSimMarineV22 reports.",
+        "description": "Limits how many appcast events uSimMarineV22 retains for diagnostic reporting. This affects appcast history, not simulated vehicle motion.",
         "source": "../moos-ivp/ivp/src/uSimMarineV22",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       },
       {
         "owner": "uTimerScript",
-        "description": "Limits how many appcast events are retained in uTimerScript reports.",
+        "description": "Limits how many appcast events uTimerScript retains in its report history. This affects diagnostics, not the scheduled event list.",
         "source": "../moos-ivp/ivp/src/uTimerScript",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       }
     ],
     "max_contacts": [
       {
         "owner": "pContactMgrV20",
-        "description": "Limits the number of contacts tracked by the contact manager.",
+        "description": "Sets the maximum number of contacts pContactMgrV20 tracks before removing or retiring contacts to stay within the limit. This is a memory and scalability guard.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "500",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "max_contacts                 = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "max_contacts = 500",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:52, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:1303"
       }
     ],
     "max_duration": [
@@ -5574,63 +5671,67 @@
     "max_retired_history": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Limits how much retired-contact history is retained.",
+        "description": "Limits how many retired contacts remain in the CONTACTS_RETIRED history. Values are clamped to the supported history range.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "5",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-        "example": "max_retired_history          = 1",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "max_retired_history = 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:70, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:242"
       },
       {
         "owner": "pContactMgrV20",
-        "description": "Limits how much retired-contact history is retained.",
+        "description": "Limits how many retired contacts remain in the CONTACTS_RETIRED history. Values are clamped to the supported history range, and retired contacts are still reported at least once.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "5",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "max_retired_history          = 1",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "max_retired_history = 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:65, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:636"
       }
     ],
     "max_rudder_degs_per_sec": [
       {
         "owner": "uSimMarineV22",
-        "description": "Limits how quickly the simulated rudder angle may change, in degrees per second.",
+        "description": "Limits how quickly the simulated rudder command may change, in degrees per second. A zero value leaves rudder changes effectively unconstrained by this limiter.",
         "source": "../moos-ivp/ivp/src/uSimMarineV22",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_rudder_degs_per_sec      = 100",
-        "exampleSource": "generated coverage fixture"
+        "default": "0",
+        "defaultSource": "manual review",
+        "example": "max_rudder_degs_per_sec = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:49, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:421"
       }
     ],
     "max_time": [
       {
         "owner": "uQueryDB",
-        "description": "Sets the maximum time uQueryDB waits before halting.",
+        "description": "Sets the maximum time uQueryDB should run before exiting. This is an alias-style timeout used to keep query runs finite.",
         "source": "../moos-ivp/ivp/src/uQueryDB",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_time                     = 5",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_time = 30",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uQueryDB"
       }
     ],
     "max_trim_delay": [
       {
         "owner": "uSimMarineV22",
-        "description": "Sets how long uSimMarineV22 waits before applying a requested trim change.",
+        "description": "Sets the maximum wait time, in seconds, for a trim request to complete before it is treated as delayed or failed. This is part of the buoyancy/trim handshake logic.",
         "source": "../moos-ivp/ivp/src/uSimMarineV22",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "10",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:46",
-        "example": "max_trim_delay               = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "max_trim_delay = 10",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:45, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:386"
       }
     ],
     "min_reset_interval": [
@@ -5700,15 +5801,15 @@
     "nav_grace": [
       {
         "owner": "pHelmIvP",
-        "description": "Sets the grace period for accepting stale ownship navigation data.",
+        "description": "Sets how many seconds old ownship navigation data may be before pHelmIvP treats it as stale. If NAV_* data exceeds this age, the helm can warn or withhold decisions that require current navigation.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "5",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:101",
-        "example": "nav_grace                    = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "nav_grace = 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:101, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1310"
       }
     ],
     "nav_grace_periode": [
@@ -5758,26 +5859,27 @@
     "node_skew": [
       {
         "owner": "pHelmIvP",
-        "description": "Sets the allowed clock skew for incoming node reports.",
+        "description": "Declares the expected clock skew for a named external vehicle or node, using the form vehicle_name,seconds. pHelmIvP uses this when checking timestamps from external communities.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "node_skew                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "node_skew = charlie,45",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:118, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1413"
       }
     ],
     "ok_skew": [
       {
         "owner": "pHelmIvP",
-        "description": "Sets the allowed clock-skew tolerance before pHelmIvP warns.",
+        "description": "Sets the maximum acceptable timestamp skew, in seconds, before pHelmIvP treats external node timing as a problem. The special value any disables skew enforcement.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:75",
-        "example": "ok_skew                      = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "60",
+        "defaultSource": "manual review",
+        "example": "ok_skew = 60",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:65, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1433"
       }
     ],
     "op_vertex": [
@@ -5805,70 +5907,75 @@
     "other_override_var": [
       {
         "owner": "pHelmIvP",
-        "description": "Names the MOOS variable used to accept override commands from other communities.",
+        "description": "Names an additional MOOS variable that pHelmIvP treats as a manual/autonomy override input. This provides an alternative to the standard MOOS_MANUAL_OVERRIDE directive.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "other_override_var           = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "example": "other_override_var = AUTONOMY_OVERRIDE",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:114, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1324"
       }
     ],
     "outgoing_var": [
       {
         "owner": "pXRelay",
-        "description": "OUTGOING_VAR names one side of the pXRelay variable relay.",
+        "description": "Names the MOOS variable pXRelay posts as the destination side of the relay. This receives the values read from INCOMING_VAR.",
         "source": "../moos-ivp/ivp/src/pXRelay",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "OUTGOING_VAR                 = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "example": "OUTGOING_VAR = RELAY_OUT",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pXRelay"
       }
     ],
     "output": [
       {
         "owner": "pShare",
-        "description": "Defines an outbound pShare route.",
+        "description": "Defines an outbound pShare route for forwarding MOOS mail to another community or endpoint. The value is a route specification rather than a simple variable name.",
         "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pShare",
         "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
         "sourceStatus": "local-moos-source",
-        "example": "output                       = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "output = src_name=NODE_REPORT, dest_name=NODE_REPORT",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pShare"
       }
     ],
     "ownship_group": [
       {
         "owner": "pContactMgrV20",
-        "description": "Sets the contact or object ownship group.",
+        "description": "Sets the group label assigned to ownship for contact-manager filtering and alert context. This lets global match/ignore logic distinguish ownship metadata from contact metadata.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "ownship_group                = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "ownship_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:287"
       }
     ],
     "ownship_type": [
       {
         "owner": "pContactMgrV20",
-        "description": "Sets the contact or object ownship type.",
+        "description": "Sets the type label assigned to ownship for contact-manager filtering and alert context. This lets global match/ignore logic distinguish ownship metadata from contact metadata.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "ownship_type                 = kayak",
-        "exampleSource": "generated coverage fixture"
+        "example": "ownship_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:289"
       }
     ],
     "park_on_allstop": [
       {
         "owner": "pHelmIvP",
-        "description": "Parks the helm when an all-stop command is active.",
+        "description": "Requests that pHelmIvP enter PARK when an all-stop condition is active. This only has practical effect when parking/override handling is allowed.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:85",
-        "example": "park_on_allstop              = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "park_on_allstop = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:85, moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:112"
       }
     ],
     "path": [
@@ -5888,26 +5995,25 @@
     "pause_variable": [
       {
         "owner": "uTimerScript",
-        "description": "Names the MOOS variable used to pause or resume uTimerScript.",
+        "description": "Names the MOOS variable used to pause or resume uTimerScript execution. This lets another app control whether scheduled posts are currently advancing.",
         "source": "../moos-ivp/ivp/src/uTimerScript",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "pause_variable               = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "example": "pause_variable = UTS_PAUSE",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uTimerScript"
       }
     ],
     "paused": [
       {
         "owner": "uXMS",
-        "description": "Starts or keeps uXMS paused when the app supports pausing.",
+        "description": "Starts or keeps the uXMS display in a paused state when supported by the app's display loop. This affects live display updating, not whether uXMS receives MOOS mail.",
         "source": "../moos-ivp/ivp/src/uXMS",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "events",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:55",
-        "example": "paused                       = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "paused = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uXMS"
       }
     ],
     "ping_wait": [
@@ -5946,12 +6052,13 @@
     "pmgen": [
       {
         "owner": "pHelmIvP",
-        "description": "Configures the platform-model generator used by pHelmIvP.",
+        "description": "Configures the platform-model generator used by pHelmIvP for platform-aware helm calculations. The value is passed directly to the platform model generator, so it should be a generator parameter string rather than a free-form label.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "pmgen                        = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "pmgen = turn_rate=45",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1322, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1546"
       }
     ],
     "point_size": [
@@ -5971,26 +6078,25 @@
     "poke": [
       {
         "owner": "uPokeDB",
-        "description": "Defines a MOOS variable-value post for uPokeDB.",
+        "description": "Defines a MOOS variable-value post for uPokeDB to send to the MOOSDB. Multiple poke entries may be used when several startup or scripted posts are needed.",
         "source": "../moos-ivp/ivp/src/uPokeDB",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uPokeDB/PokeDB.cpp:52",
-        "example": "poke                         = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "poke = DEPLOY = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uPokeDB"
       }
     ],
     "polar_plot": [
       {
         "owner": "uSimMarineV22",
-        "description": "Defines the sailing polar plot used by the uSimMarineV22 wind model.",
+        "description": "Defines or loads the sailing polar plot used by the wind model. The polar plot maps wind angle/speed context into sailing performance behavior.",
         "source": "../moos-ivp/ivp/src/uSimMarineV22",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "polar_plot                   = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "polar_plot = file=polar.csv",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:339"
       }
     ],
     "post_closest_range": [
@@ -6010,43 +6116,41 @@
     "post_closest_relbng": [
       {
         "owner": "pContactMgrV20",
-        "description": "Enables posting of the closest relbng output.",
+        "description": "Posts the relative bearing to the closest current contact along with closest-contact reporting. This is a reporting option and does not affect alert logic.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "false",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "post_closest_relbng          = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "post_closest_relbng = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:55, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:958"
       }
     ],
     "post_navpos_summary": [
       {
         "owner": "uSimMarineV22",
-        "description": "Enables posting of the navpos summary output.",
+        "description": "Enables posting a compact navigation-position summary from the simulator. This is additional reporting and does not change the simulated dynamics.",
         "source": "../moos-ivp/ivp/src/uSimMarineV22",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:54",
-        "example": "post_navpos_summary          = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "post_navpos_summary = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:56, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:394"
       }
     ],
     "prefer_interface": [
       {
         "owner": "pHostInfo",
-        "description": "Selects the preferred network interface for host reporting.",
+        "description": "Selects the preferred network interface pHostInfo should use when reporting host address information. Use this when the machine has multiple interfaces and the default selection is not the desired mission network.",
         "source": "../moos-ivp/ivp/src/pHostInfo",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "localhost",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:42",
-        "example": "prefer_interface             = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "prefer_interface = en0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHostInfo"
       }
     ],
     "pull_dist": [
@@ -6096,66 +6200,67 @@
     "qblink": [
       {
         "owner": "iBlinkStick",
-        "description": "Names the MOOS variable iBlinkStick subscribes to for blink/color commands.",
+        "description": "Names the MOOS variable iBlinkStick subscribes to for LED blink/color commands. Incoming mail on this variable is translated into qblink.sh commands for the BlinkStick device.",
         "source": "../moos-ivp/ivp/src/iBlinkStick",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "QBLINK",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/iBlinkStick/BlinkStick.cpp:20",
-        "example": "qblink                       = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "qblink = QBLINK",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/iBlinkStick/BlinkStick.cpp:20, moos-ivp/ivp/src/iBlinkStick/BlinkStick_Info.cpp:84"
       }
     ],
     "randvar": [
       {
         "owner": "uTimerScript",
-        "description": "Defines a random variable used by uTimerScript event generation.",
+        "description": "Defines a random variable generator used by uTimerScript events, including fields such as variable name, minimum, maximum, and key timing. Generated values can then be used in scripted posts.",
         "source": "../moos-ivp/ivp/src/uTimerScript",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "randvar                      = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "example": "randvar = varname=ANG, min=0, max=359, key=at_reset",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uTimerScript/TS_Info.cpp:122"
       }
     ],
     "range_report_maxsize": [
       {
         "owner": "pContactMgrV20",
-        "description": "Sets the range report maxsize.",
+        "description": "Limits how many contact range reports are retained and posted in range-report summaries. This keeps range-report output bounded when many contacts are present.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "20 reports",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "range_report_maxsize         = 10",
-        "exampleSource": "generated coverage fixture"
+        "default": "20",
+        "defaultSource": "manual review",
+        "example": "range_report_maxsize = 20",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:68, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:819"
       }
     ],
     "range_report_timeout": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Sets the range report timeout threshold or measurement distance.",
+        "description": "Sets how long range-report data remains fresh before it is removed from range reports. This prevents stale contact ranges from lingering in posted summaries.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "10",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp",
-        "example": "range_report_timeout         = 10",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "range_report_timeout = 10",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:73, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:226"
       },
       {
         "owner": "pContactMgrV20",
-        "description": "Sets the range report timeout threshold or measurement distance.",
+        "description": "Sets how long range-report data remains fresh before it is removed from range reports. This prevents stale contact ranges from lingering in posted summaries.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "10",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp",
-        "example": "range_report_timeout         = 10",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "range_report_timeout = 10",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:67, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:791"
       }
     ],
     "rate_frame": [
@@ -6248,15 +6353,15 @@
     "reject_range": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Sets the reject range threshold or measurement distance.",
+        "description": "Sets a range, in meters, beyond which new contacts are rejected and existing contacts may be dropped. This is a guard against tracking unbounded distant contacts.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "2000",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:75",
-        "example": "reject_range                 = 10",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "reject_range = 2000",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:75, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:472"
       }
     ],
     "report_deltas": [
@@ -6521,37 +6626,41 @@
     "start_engaged": [
       {
         "owner": "pHelmIvP",
-        "description": "Starts pHelmIvP in the engaged state.",
+        "description": "Starts pHelmIvP with helm control already engaged instead of waiting for an engagement command. This is equivalent to setting the helm's initial control state true.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:75",
-        "example": "start_engaged                = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "start_engaged = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:110, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1293"
       }
     ],
     "start_in_drive": [
       {
         "owner": "pHelmIvP",
-        "description": "Starts pHelmIvP in drive rather than park.",
+        "description": "Starts pHelmIvP in DRIVE/control mode rather than PARK/standby. The parser also accepts the legacy spelling start_indrive.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "start_in_drive               = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "false",
+        "defaultSource": "manual review",
+        "example": "start_in_drive = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1295"
       }
     ],
     "strict_ignore": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Excludes contacts matching the configured strict ignore.",
+        "description": "Controls how strictly group/type ignore filters treat contacts that omit those fields. When true, missing group or type information can cause a contact to be rejected by an ignore filter.",
         "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "strict_ignore                = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "strict_ignore = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp"
       }
     ],
     "synclog": [
@@ -6568,26 +6677,27 @@
     "term_report_interval": [
       {
         "owner": "pHelmIvP",
-        "description": "Sets how often pHelmIvP writes terminal status reports.",
+        "description": "Sets the interval between terminal status reports from pHelmIvP. Use this to reduce or increase how often helm status is printed to the terminal.",
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "term_report_interval         = 5",
-        "exampleSource": "generated coverage fixture"
+        "example": "term_report_interval = 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pHelmIvP"
       }
     ],
     "trim_tolerance": [
       {
         "owner": "uSimMarineV22",
-        "description": "Sets the tolerance for accepting a simulator trim request as achieved.",
+        "description": "Sets the tolerance used when deciding whether a trim request has reached its target. This is part of the buoyancy/trim control handshake.",
         "source": "../moos-ivp/ivp/src/uSimMarineV22",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "5",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:50",
-        "example": "trim_tolerance               = 10",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "trim_tolerance = 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:51, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:384"
       }
     ],
     "truncated_output": [
@@ -6604,57 +6714,57 @@
     "turn_spd_map_full_rate": [
       {
         "owner": "uSimMarineV22",
-        "description": "Sets the turn-rate scale used at the full-speed point in the simulator turn-speed map.",
+        "description": "Sets the turn-rate percentage used at the full-speed point in the turn-speed map. This shapes how available turning authority changes with simulated speed.",
         "source": "../moos-ivp/ivp/src/uSimMarineV22",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "100)",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Info.cpp",
-        "example": "turn_spd_map_full_rate       = 1.2",
-        "exampleSource": "generated coverage fixture"
+        "default": "100",
+        "defaultSource": "manual review",
+        "example": "turn_spd_map_full_rate = 100",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:344"
       }
     ],
     "turn_spd_map_full_speed": [
       {
         "owner": "uSimMarineV22",
-        "description": "Sets the speed corresponding to full turn-rate authority in the simulator turn-speed map.",
+        "description": "Sets the speed associated with the full-speed point in the turn-speed map. This pairs with turn_spd_map_full_rate to define speed-dependent turn authority.",
         "source": "../moos-ivp/ivp/src/uSimMarineV22",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "1)",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Info.cpp",
-        "example": "turn_spd_map_full_speed      = 1.2",
-        "exampleSource": "generated coverage fixture"
+        "default": "1",
+        "defaultSource": "manual review",
+        "example": "turn_spd_map_full_speed = 1",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:340"
       }
     ],
     "turn_spd_map_null_rate": [
       {
         "owner": "uSimMarineV22",
-        "description": "Sets the turn-rate scale used at the null-speed point in the simulator turn-speed map.",
+        "description": "Sets the turn-rate percentage used at the null-speed point in the turn-speed map. This shapes how much turning authority exists near zero speed.",
         "source": "../moos-ivp/ivp/src/uSimMarineV22",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0)",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Info.cpp",
-        "example": "turn_spd_map_null_rate       = 1.2",
-        "exampleSource": "generated coverage fixture"
+        "default": "0",
+        "defaultSource": "manual review",
+        "example": "turn_spd_map_null_rate = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:346"
       }
     ],
     "turn_spd_map_null_speed": [
       {
         "owner": "uSimMarineV22",
-        "description": "Sets the speed corresponding to no turn-rate authority in the simulator turn-speed map.",
+        "description": "Sets the speed associated with the null-speed point in the turn-speed map. This pairs with turn_spd_map_null_rate to define speed-dependent turn authority.",
         "source": "../moos-ivp/ivp/src/uSimMarineV22",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0)",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uSimMarineV22/USM_Info.cpp",
-        "example": "turn_spd_map_null_speed      = 1.2",
-        "exampleSource": "generated coverage fixture"
+        "default": "0",
+        "defaultSource": "manual review",
+        "example": "turn_spd_map_null_speed = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:342"
       }
     ],
     "utclogdirectories": [
@@ -6707,15 +6817,15 @@
     "volume": [
       {
         "owner": "iSay",
-        "description": "Sets the default playback volume for iSay.",
+        "description": "Sets the default playback volume for iSay utterances and audio files. Named values include mute, vsoft, soft, normal, loud, and vloud; numeric values are clipped to the supported volume range.",
         "source": "../moos-ivp/ivp/src/iSay",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "1.0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/iSay/Sayer.cpp:43",
-        "example": "volume                       = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "normal",
+        "defaultSource": "manual review",
+        "example": "volume = normal",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/iSay/Sayer.cpp:46, moos-ivp/ivp/src/iSay/Sayer.cpp:265"
       }
     ],
     "watch_cluster": [
@@ -6780,23 +6890,25 @@
     "wind_conditions": [
       {
         "owner": "uSimMarineV22",
-        "description": "Defines the wind speed and direction used by the uSimMarineV22 wind model.",
+        "description": "Defines wind speed and direction for the simulator wind model. This is used with sailing/polar-plot simulation support.",
         "source": "../moos-ivp/ivp/src/uSimMarineV22",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "wind_conditions              = DEPLOY = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "wind_conditions = speed=5, direction=270",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:336"
       }
     ],
     "wormhole": [
       {
         "owner": "uSimMarineV22",
-        "description": "Defines a simulator wormhole region and its destination behavior.",
+        "description": "Defines one wormhole configuration component, such as the entry polygon, exit polygon, connection direction, id-change behavior, or delay. Multiple wormhole lines with the same tag combine into one wormhole definition.",
         "source": "../moos-ivp/ivp/src/uSimMarineV22",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "wormhole                     = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "wormhole = tag=one, connection=from_madrid",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: Section 9.2, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:388"
       }
     ]
   }

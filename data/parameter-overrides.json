@@ -1,0 +1,1079 @@
+{
+  "moos": {
+    "pHelmIvP": {
+      "reviewStatus": "manual-review-in-progress",
+      "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp and HelmIvP.cpp",
+      "parameters": {
+        "allow_park": {
+          "description": "Allows pHelmIvP to enter PARK mode when override/all-stop handling requests it. If false, the helm may stay in DRIVE even when a parking-style override is active.",
+          "default": "true",
+          "example": "allow_park = true",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:84, moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:111"
+        },
+        "app_logging": {
+          "description": "Enables AppCastingMOOSApp logging for pHelmIvP. The value may be true or a logging target/file depending on the appcasting logging support.",
+          "default": "disabled",
+          "example": "app_logging = true",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:132"
+        },
+        "bhv_dir_not_found_ok": {
+          "description": "Allows startup to continue when an ivp_behavior_dir entry cannot be found. This is useful when mission files are shared across machines where optional behavior-library paths may not exist.",
+          "default": null,
+          "example": "bhv_dir_not_found_ok = true",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1240, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1316"
+        },
+        "contact_max_age": {
+          "description": "Sets how long contact information remains usable before pHelmIvP treats the contact as stale and removes related contact behavior state. Values are accepted in the range 10 to 1800 seconds.",
+          "default": "45",
+          "example": "contact_max_age = 45",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1268, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1312"
+        },
+        "goals_mandatory": {
+          "description": "Requires at least one non-constraint active goal behavior before the helm will produce normal decisions. When true, pHelmIvP warns or withholds action if only constraints are active.",
+          "default": "false",
+          "example": "goals_mandatory = true",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:67, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:507"
+        },
+        "helm_prefix": {
+          "description": "Sets a prefix added to selected helm status or decision variables posted by pHelmIvP. Use this when a mission needs helm output variables to be namespaced.",
+          "default": null,
+          "example": "helm_prefix = NAV",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1306, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:546"
+        },
+        "hold_on_app": {
+          "description": "Names one MOOS app that must appear in DB_CLIENTS before pHelmIvP considers its startup hold satisfied. This delays helm-start messages until required support apps are connected.",
+          "default": null,
+          "example": "hold_on_app = pBasicContactMgr",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1308, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1522"
+        },
+        "hold_on_apps": {
+          "description": "Names a comma-separated list of MOOS apps that must appear in DB_CLIENTS before pHelmIvP releases its startup hold. Each app name must be non-empty, unique, and contain no whitespace.",
+          "default": null,
+          "example": "hold_on_apps = pBasicContactMgr, pTaskManager",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:130, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1522"
+        },
+        "ivp_behavior_dir": {
+          "description": "Adds a directory searched for IvP behavior libraries referenced by the helm behavior file. Multiple ivp_behavior_dir lines may be used to add multiple search paths.",
+          "default": null,
+          "example": "ivp_behavior_dir = /Users/bob/moos-ivp-bob/lib/",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:103, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1318"
+        },
+        "kcache": {
+          "description": "Controls behavior-set caching in pHelmIvP. This is an advanced/debug setting for how the helm caches behavior-related information rather than an ordinary mission tuning knob.",
+          "default": null,
+          "example": "kcache = true",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP"
+        },
+        "max_appcast_events": {
+          "description": "Limits how many appcast events pHelmIvP retains for reporting. This affects diagnostic history in appcast output, not helm decision logic.",
+          "default": null,
+          "example": "max_appcast_events = 8",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        },
+        "nav_grace": {
+          "description": "Sets how many seconds old ownship navigation data may be before pHelmIvP treats it as stale. If NAV_* data exceeds this age, the helm can warn or withhold decisions that require current navigation.",
+          "default": "5",
+          "example": "nav_grace = 5",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:101, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1310"
+        },
+        "node_skew": {
+          "description": "Declares the expected clock skew for a named external vehicle or node, using the form vehicle_name,seconds. pHelmIvP uses this when checking timestamps from external communities.",
+          "default": null,
+          "example": "node_skew = charlie,45",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:118, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1413"
+        },
+        "ok_skew": {
+          "description": "Sets the maximum acceptable timestamp skew, in seconds, before pHelmIvP treats external node timing as a problem. The special value any disables skew enforcement.",
+          "default": "60",
+          "example": "ok_skew = 60",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:65, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1433"
+        },
+        "other_override_var": {
+          "description": "Names an additional MOOS variable that pHelmIvP treats as a manual/autonomy override input. This provides an alternative to the standard MOOS_MANUAL_OVERRIDE directive.",
+          "default": null,
+          "example": "other_override_var = AUTONOMY_OVERRIDE",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:114, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1324"
+        },
+        "park_on_allstop": {
+          "description": "Requests that pHelmIvP enter PARK when an all-stop condition is active. This only has practical effect when parking/override handling is allowed.",
+          "default": "false",
+          "example": "park_on_allstop = false",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:85, moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:112"
+        },
+        "pmgen": {
+          "description": "Configures the platform-model generator used by pHelmIvP for platform-aware helm calculations. The value is passed directly to the platform model generator, so it should be a generator parameter string rather than a free-form label.",
+          "default": null,
+          "example": "pmgen = turn_rate=45",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1322, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1546"
+        },
+        "start_engaged": {
+          "description": "Starts pHelmIvP with helm control already engaged instead of waiting for an engagement command. This is equivalent to setting the helm's initial control state true.",
+          "default": "false",
+          "example": "start_engaged = false",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:110, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1293"
+        },
+        "start_in_drive": {
+          "description": "Starts pHelmIvP in DRIVE/control mode rather than PARK/standby. The parser also accepts the legacy spelling start_indrive.",
+          "default": "false",
+          "example": "start_in_drive = false",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1295"
+        },
+        "term_report_interval": {
+          "description": "Sets the interval between terminal status reports from pHelmIvP. Use this to reduce or increase how often helm status is printed to the terminal.",
+          "default": null,
+          "example": "term_report_interval = 5",
+          "reviewSource": "moos-ivp/ivp/src/pHelmIvP"
+        }
+      }
+    },
+    "pBasicContactMgr": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp and MOOS-IvP app_pcmanager.pdf",
+      "parameters": {
+        "alert": {
+          "description": "Defines one contact-alert rule. Alert entries may set the posted flag, alert range, CPA range, display colors, and match/ignore filters; multiple lines with the same alert id combine into one alert definition.",
+          "default": null,
+          "example": "alert = id=say, var=SAY_MOOS, val=\"$(VNAME) sees $([VNAME])\"",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: Section 4.1, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:115"
+        },
+        "alert_range_color": {
+          "description": "Sets the display color for the VIEW_CIRCLE used to render an alert range. This is normally used with display_radii so the configured alert radius is visible in a viewer.",
+          "default": "gray65",
+          "example": "alert_range_color = gray65",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:310, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:104"
+        },
+        "alert_verbose": {
+          "description": "Enables verbose debugging output for contact-alert evaluation. This is useful when tuning alert logic and filters, but it can make the MOOSDB output noisier.",
+          "default": "false",
+          "example": "alert_verbose = false",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:62, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:304"
+        },
+        "app_logging": {
+          "description": "Enables AppCastingMOOSApp logging for pBasicContactMgr. This records app-level diagnostics and is separate from contact alert or range-report postings.",
+          "default": "disabled",
+          "example": "app_logging = true",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        },
+        "contact_local_coords": {
+          "description": "Controls whether local x/y coordinates in incoming node reports are filled from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
+          "default": "verbatim",
+          "example": "contact_local_coords = verbatim",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
+        },
+        "contact_max_age": {
+          "description": "Sets how many seconds may pass without a fresh contact report before the contact is dropped from the active contact list. This bounds stale contact state in the manager.",
+          "default": "600",
+          "example": "contact_max_age = 600",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:57"
+        },
+        "contact_max_age_history": {
+          "description": "Sets how long a retired contact remains in contact-manager memory and retired-contact postings after it leaves the active list. This guards against unbounded retired-contact history.",
+          "default": "60",
+          "example": "contact_max_age_history = 60",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
+        },
+        "contacts_recap_interval": {
+          "description": "Sets the minimum time, in seconds, between CONTACTS_RECAP postings. Increase this or turn recap posting off when recap output is too verbose for logging.",
+          "default": "1",
+          "example": "contacts_recap_interval = 1",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:58, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:277"
+        },
+        "cpa_range_color": {
+          "description": "Sets the display color for the VIEW_CIRCLE used to render a CPA range. This is normally used with display_radii so the configured closest-point-of-approach radius is visible in a viewer.",
+          "default": "gray35",
+          "example": "cpa_range_color = gray35",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:320, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:105"
+        },
+        "decay": {
+          "description": "Controls extrapolation of stale contact reports as start,end seconds. Before the start time the last reported speed/heading are used, between start and end the speed decays toward zero, and 0,0 disables extrapolation.",
+          "default": "15,30",
+          "example": "decay = 15,30",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:63, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:208"
+        },
+        "default_alert_range": {
+          "description": "Sets the default alert range, in meters, used by alert rules that do not specify their own alert_range. Contacts inside this range can trigger the alert posting.",
+          "default": "1000",
+          "example": "default_alert_range = 1000",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
+        },
+        "default_alert_range_color": {
+          "description": "Sets the default display color for alert range circles when an alert rule does not provide its own color. The source example uses gray65.",
+          "default": "gray65",
+          "example": "default_alert_range_color = gray65",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:310, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:104"
+        },
+        "default_cpa_range": {
+          "description": "Sets the default CPA range, in meters, used by alert rules that do not specify their own cpa_range. A contact can trigger when its closest point of approach falls inside this range.",
+          "default": "1000",
+          "example": "default_cpa_range = 1000",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
+        },
+        "default_cpa_range_color": {
+          "description": "Sets the default display color for CPA range circles when an alert rule does not provide its own color. The source example uses gray35.",
+          "default": "gray35",
+          "example": "default_cpa_range_color = gray35",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:320, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:105"
+        },
+        "display_radii": {
+          "description": "Enables posting visual range circles for configured alert and CPA radii. This affects viewer output and does not change alert triggering.",
+          "default": "false",
+          "example": "display_radii = true",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
+        },
+        "display_radii_id": {
+          "description": "Selects which configured alert id should have its alert/CPA radii rendered when display_radii is enabled. This matters when multiple alert definitions are present.",
+          "default": null,
+          "example": "display_radii_id = say",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:319"
+        },
+        "eval_range_far": {
+          "description": "Sets the far threshold used when evaluating the closest approach of contacts. Contacts whose closest range falls inside this threshold are classified as a near encounter in summary metrics.",
+          "default": "20",
+          "example": "eval_range_far = 20",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:66, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:1019"
+        },
+        "eval_range_near": {
+          "description": "Sets the near threshold used when evaluating closest approach of contacts. Contacts whose closest range falls inside this tighter threshold are classified as a very near encounter.",
+          "default": "10",
+          "example": "eval_range_near = 10",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:67, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:1019"
+        },
+        "ignore_group": {
+          "description": "Adds a contact group to the global ignore filter. Contacts in ignored groups are excluded from contact-manager alert/range processing unless another rule overrides the filtering.",
+          "default": null,
+          "example": "ignore_group = alpha",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
+        },
+        "ignore_region": {
+          "description": "Adds a polygon region where contacts are ignored by the global filter. Use this to suppress alerts for contacts inside a known safe or irrelevant operating area.",
+          "default": null,
+          "example": "ignore_region = pts={0,0:50,0:50,50:0,50}",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
+        },
+        "ignore_type": {
+          "description": "Adds a contact type to the global ignore filter. Contacts reporting one of these types are excluded from contact-manager alert/range processing.",
+          "default": null,
+          "example": "ignore_type = kayak",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
+        },
+        "match_group": {
+          "description": "Adds a contact group to the global match filter. When match filters are configured, contacts must match the accepted group criteria to be processed.",
+          "default": null,
+          "example": "match_group = alpha",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
+        },
+        "match_region": {
+          "description": "Adds a polygon region that contacts must match to pass the global filter. Contacts outside the matched region are ignored for contact-manager processing.",
+          "default": null,
+          "example": "match_region = pts={0,0:50,0:50,50:0,50}",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
+        },
+        "match_type": {
+          "description": "Adds a contact type to the global match filter. When configured, only contacts with accepted types pass this part of contact-manager filtering.",
+          "default": null,
+          "example": "match_type = kayak",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
+        },
+        "max_appcast_events": {
+          "description": "Limits how many appcast events pBasicContactMgr retains for diagnostic reporting. This affects appcast history, not contact alert decisions.",
+          "default": null,
+          "example": "max_appcast_events = 8",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        },
+        "max_retired_history": {
+          "description": "Limits how many retired contacts remain in the CONTACTS_RETIRED history. Values are clamped to the supported history range.",
+          "default": "5",
+          "example": "max_retired_history = 5",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:70, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:242"
+        },
+        "post_closest_range": {
+          "description": "Posts the range to the closest current contact, rounded to the nearest meter. This is a reporting option and does not affect alert logic.",
+          "default": "false",
+          "example": "post_closest_range = true",
+          "reviewSource": "MOOS-IvP app_pcmanager.pdf: closest-contact reporting"
+        },
+        "range_report_timeout": {
+          "description": "Sets how long range-report data remains fresh before it is removed from range reports. This prevents stale contact ranges from lingering in posted summaries.",
+          "default": "10",
+          "example": "range_report_timeout = 10",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:73, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:226"
+        },
+        "reject_range": {
+          "description": "Sets a range, in meters, beyond which new contacts are rejected and existing contacts may be dropped. This is a guard against tracking unbounded distant contacts.",
+          "default": "2000",
+          "example": "reject_range = 2000",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:75, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:472"
+        },
+        "strict_ignore": {
+          "description": "Controls how strictly group/type ignore filters treat contacts that omit those fields. When true, missing group or type information can cause a contact to be rejected by an ignore filter.",
+          "default": null,
+          "example": "strict_ignore = true",
+          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp"
+        }
+      }
+    },
+    "pContactMgrV20": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp and MOOS-IvP app_pcmanager_v20.pdf",
+      "parameters": {
+        "able_flag": {
+          "description": "Posts a MOOS variable-value flag whenever a contact is disabled or re-enabled. Use this for mission logic that needs to react to any contact availability transition.",
+          "default": null,
+          "example": "able_flag = CONTACT_ABLE = $(VNAME)",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
+        },
+        "alert": {
+          "description": "Defines one contact-alert rule. Alert entries may set the posted flag, alert range, CPA range, visual display options, early-warning behavior, and match/ignore filters; multiple lines with the same id combine into one alert definition.",
+          "default": null,
+          "example": "alert = id=say, var=SAY_MOOS, val=\"$(VNAME) sees $([VNAME])\"",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact alert configuration, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp:123"
+        },
+        "alert_range_color": {
+          "description": "Sets the default display color for alert range circles. This color is used when an alert rule does not specify its own alert range color.",
+          "default": "gray65",
+          "example": "alert_range_color = gray65",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp:121, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:280"
+        },
+        "alert_verbose": {
+          "description": "Enables verbose debugging output for contact-alert evaluation. This is useful while tuning alert logic, but it can add noisy ALERT_VERBOSE output.",
+          "default": "false",
+          "example": "alert_verbose = false",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:61, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:276"
+        },
+        "app_logging": {
+          "description": "Enables AppCastingMOOSApp logging for pContactMgrV20. This records app-level diagnostics and is separate from contact alert, range, and recap postings.",
+          "default": "false",
+          "example": "app_logging = true",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        },
+        "cease_warning_flag": {
+          "description": "Posts a MOOS variable-value flag when a previously triggered early warning is no longer relevant. This pairs with early_warning_flag for warning lifecycle reporting.",
+          "default": null,
+          "example": "cease_warning_flag = CONTACT_WARNING = false",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
+        },
+        "contact_local_coords": {
+          "description": "Controls whether local x/y coordinates in incoming node reports are filled from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
+          "default": "verbatim",
+          "example": "contact_local_coords = verbatim",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
+        },
+        "contact_max_age": {
+          "description": "Sets how many seconds may pass without a fresh contact report before the contact is retired and dropped from the active contact list. The current pContactMgrV20 source initializes this to 60 seconds.",
+          "default": "60",
+          "example": "contact_max_age = 60",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:57, MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
+        },
+        "cpa_range_color": {
+          "description": "Sets the default display color for CPA range circles. This color is used when an alert rule does not specify its own CPA range color.",
+          "default": "gray30",
+          "example": "cpa_range_color = gray30",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp:122, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:281"
+        },
+        "decay": {
+          "description": "Controls extrapolation of stale contact reports as start,end seconds. Before the start time the last reported speed/heading are used, between start and end the speed decays toward zero, and 0,0 disables extrapolation.",
+          "default": "15,30",
+          "example": "decay = 15,30",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:62, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:611"
+        },
+        "disable_var": {
+          "description": "Names the MOOS variable pContactMgrV20 listens to for contact-disable requests. If it is unset, external disable requests are not accepted.",
+          "default": "null string",
+          "example": "disable_var = CONTACT_DISABLE",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact enable/disable configuration"
+        },
+        "disable_flag": {
+          "description": "Posts a MOOS variable-value flag whenever a contact is disabled. Use this for mission logic or logging that needs to observe disable events.",
+          "default": null,
+          "example": "disable_flag = CONTACT_DISABLED = $(VNAME)",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact enable/disable configuration"
+        },
+        "display_radii": {
+          "description": "Enables posting visual range circles for configured alert and CPA radii. This affects viewer output and does not change alert triggering.",
+          "default": "false",
+          "example": "display_radii = true",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
+        },
+        "display_radii_id": {
+          "description": "Selects which configured alert id should have its alert/CPA radii rendered when display_radii is enabled. This matters when multiple alert definitions are present.",
+          "default": null,
+          "example": "display_radii_id = say",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:259"
+        },
+        "early_warning_flag": {
+          "description": "Posts a MOOS variable-value flag when an early warning is triggered before the full contact alert condition. Use this to react before the alert range or CPA condition is reached.",
+          "default": null,
+          "example": "early_warning_flag = CONTACT_WARNING = true",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
+        },
+        "early_warning_radii": {
+          "description": "Enables posting a visual range circle for the early-warning distance. This is a viewer aid for warning geometry and does not itself trigger alerts.",
+          "default": "false",
+          "example": "early_warning_radii = true",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
+        },
+        "early_warning_time": {
+          "description": "Sets how many seconds before the predicted contact alert an early-warning event should be posted. A negative value leaves early warning timing off.",
+          "default": "-1 (off)",
+          "example": "early_warning_time = 5",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
+        },
+        "enable_var": {
+          "description": "Names the MOOS variable pContactMgrV20 listens to for contact-enable requests. If it is unset, external enable requests are not accepted.",
+          "default": "null string",
+          "example": "enable_var = CONTACT_ENABLE",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact enable/disable configuration"
+        },
+        "enable_flag": {
+          "description": "Posts a MOOS variable-value flag whenever a contact is enabled. Use this for mission logic or logging that needs to observe re-enable events.",
+          "default": null,
+          "example": "enable_flag = CONTACT_ENABLED = $(VNAME)",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: contact enable/disable configuration"
+        },
+        "eval_range_far": {
+          "description": "Sets the far threshold used when evaluating closest approach of contacts. Contacts whose closest range falls inside this threshold are counted as near encounters in summary metrics.",
+          "default": null,
+          "example": "eval_range_far = 20",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp"
+        },
+        "eval_range_near": {
+          "description": "Sets the near threshold used when evaluating closest approach of contacts. Contacts whose closest range falls inside this tighter threshold are counted as very near encounters.",
+          "default": null,
+          "example": "eval_range_near = 10",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp"
+        },
+        "ewarn_radii_color": {
+          "description": "Sets the display color for the early-warning range circle. This affects viewer output when early_warning_radii is enabled.",
+          "default": "yellow",
+          "example": "ewarn_radii_color = yellow",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
+        },
+        "hold_alerts_for_helm": {
+          "description": "Holds or delays contact-alert postings until pHelmIvP is ready to receive them. This prevents contact alerts from being sent before the helm is active.",
+          "default": "false",
+          "example": "hold_alerts_for_helm = false",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:89, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:285"
+        },
+        "ignore_group": {
+          "description": "Adds one or more contact groups to the global ignore filter. Contacts in ignored groups are excluded from contact-manager alert/range processing.",
+          "default": null,
+          "example": "ignore_group = alpha",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
+        },
+        "ignore_name": {
+          "description": "Adds one or more contact names to the global ignore filter. Contacts with ignored names are excluded from contact-manager alert/range processing.",
+          "default": null,
+          "example": "ignore_name = abe",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
+        },
+        "ignore_region": {
+          "description": "Adds a polygon region where contacts are ignored by the global filter. Use this to suppress alerts for contacts inside a known safe or irrelevant operating area.",
+          "default": null,
+          "example": "ignore_region = pts={0,0:50,0:50,50:0,50}",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
+        },
+        "ignore_type": {
+          "description": "Adds one or more contact types to the global ignore filter. Contacts reporting ignored types are excluded from contact-manager alert/range processing.",
+          "default": null,
+          "example": "ignore_type = kayak",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
+        },
+        "match_group": {
+          "description": "Adds one or more contact groups to the global match filter. When match filters are configured, contacts must match the accepted group criteria to be processed.",
+          "default": null,
+          "example": "match_group = alpha",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
+        },
+        "match_name": {
+          "description": "Adds one or more contact names to the global match filter. When configured, only contacts with accepted names pass this part of filtering.",
+          "default": null,
+          "example": "match_name = abe",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
+        },
+        "match_region": {
+          "description": "Adds a polygon region that contacts must match to pass the global filter. Contacts outside the matched region are ignored for contact-manager processing.",
+          "default": null,
+          "example": "match_region = pts={0,0:50,0:50,50:0,50}",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
+        },
+        "match_type": {
+          "description": "Adds one or more contact types to the global match filter. When configured, only contacts with accepted types pass this part of filtering.",
+          "default": null,
+          "example": "match_type = kayak",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: global filtering"
+        },
+        "max_appcast_events": {
+          "description": "Limits how many appcast events pContactMgrV20 retains for diagnostic reporting. This affects appcast history, not contact alert decisions.",
+          "default": null,
+          "example": "max_appcast_events = 8",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        },
+        "max_contacts": {
+          "description": "Sets the maximum number of contacts pContactMgrV20 tracks before removing or retiring contacts to stay within the limit. This is a memory and scalability guard.",
+          "default": "500",
+          "example": "max_contacts = 500",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:52, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:1303"
+        },
+        "max_retired_hist": {
+          "description": "Limits how many retired contacts are listed in CONTACTS_RETIRED history. Legal values are clamped to the supported range, and retired contacts are still reported at least once.",
+          "default": "5",
+          "example": "max_retired_hist = 5",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
+        },
+        "max_retired_history": {
+          "description": "Limits how many retired contacts remain in the CONTACTS_RETIRED history. Values are clamped to the supported history range, and retired contacts are still reported at least once.",
+          "default": "5",
+          "example": "max_retired_history = 5",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:65, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:636"
+        },
+        "ownship_group": {
+          "description": "Sets the group label assigned to ownship for contact-manager filtering and alert context. This lets global match/ignore logic distinguish ownship metadata from contact metadata.",
+          "default": null,
+          "example": "ownship_group = alpha",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:287"
+        },
+        "ownship_type": {
+          "description": "Sets the type label assigned to ownship for contact-manager filtering and alert context. This lets global match/ignore logic distinguish ownship metadata from contact metadata.",
+          "default": null,
+          "example": "ownship_type = kayak",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:289"
+        },
+        "post_all_ranges": {
+          "description": "Posts ordered range reports for all current contacts. This is a reporting option and can increase MOOSDB traffic when many contacts are present.",
+          "default": "false",
+          "example": "post_all_ranges = true",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: range reports"
+        },
+        "post_closest_range": {
+          "description": "Posts the range to the closest current contact, rounded to the nearest meter. This is a reporting option and does not affect alert logic.",
+          "default": "false",
+          "example": "post_closest_range = true",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: closest-contact reporting"
+        },
+        "post_closest_relbng": {
+          "description": "Posts the relative bearing to the closest current contact along with closest-contact reporting. This is a reporting option and does not affect alert logic.",
+          "default": "false",
+          "example": "post_closest_relbng = true",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:55, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:958"
+        },
+        "range_report_maxsize": {
+          "description": "Limits how many contact range reports are retained and posted in range-report summaries. This keeps range-report output bounded when many contacts are present.",
+          "default": "20",
+          "example": "range_report_maxsize = 20",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:68, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:819"
+        },
+        "range_report_timeout": {
+          "description": "Sets how long range-report data remains fresh before it is removed from range reports. This prevents stale contact ranges from lingering in posted summaries.",
+          "default": "10",
+          "example": "range_report_timeout = 10",
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:67, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:791"
+        },
+        "recap_interval": {
+          "description": "Sets the minimum time, in seconds, between CONTACTS_RECAP postings. Use off to suppress recap posting when it is too verbose for logging.",
+          "default": "1",
+          "example": "recap_interval = 1",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: CONTACTS_RECAP, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:997"
+        },
+        "reject_range": {
+          "description": "Sets a range, in meters, beyond which new contacts are ignored and existing contacts may be dropped. This is a guard against tracking unbounded distant contacts.",
+          "default": "2000",
+          "example": "reject_range = 2000",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: reject_range, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:70"
+        },
+        "strict_ignore": {
+          "description": "Controls how strictly group/type ignore filters treat contacts that omit those fields. When true, missing group or type information can cause a contact to be rejected by an ignore filter.",
+          "default": "true",
+          "example": "strict_ignore = true",
+          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:246"
+        }
+      }
+    },
+    "iBlinkStick": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/iBlinkStick/BlinkStick.cpp and BlinkStick_Info.cpp",
+      "parameters": {
+        "qblink": {
+          "description": "Names the MOOS variable iBlinkStick subscribes to for LED blink/color commands. Incoming mail on this variable is translated into qblink.sh commands for the BlinkStick device.",
+          "default": "QBLINK",
+          "example": "qblink = QBLINK",
+          "reviewSource": "moos-ivp/ivp/src/iBlinkStick/BlinkStick.cpp:20, moos-ivp/ivp/src/iBlinkStick/BlinkStick_Info.cpp:84"
+        }
+      }
+    },
+    "iSay": {
+      "reviewStatus": "manual-reviewed-source-only-parameters",
+      "reviewSource": "moos-ivp/ivp/src/iSay/Sayer.cpp and Sayer_Info.cpp",
+      "parameters": {
+        "app_logging": {
+          "description": "Enables AppCastingMOOSApp logging for iSay. This records app-level diagnostics and is separate from the speech/audio output itself.",
+          "default": "disabled",
+          "example": "app_logging = true",
+          "reviewSource": "moos-ivp/ivp/src/iSay/Sayer_Info.cpp:106"
+        },
+        "max_appcast_events": {
+          "description": "Limits how many appcast events iSay retains in its appcast report history. This affects diagnostic reporting, not which utterances are spoken.",
+          "default": null,
+          "example": "max_appcast_events = 8",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        },
+        "volume": {
+          "description": "Sets the default playback volume for iSay utterances and audio files. Named values include mute, vsoft, soft, normal, loud, and vloud; numeric values are clipped to the supported volume range.",
+          "default": "normal",
+          "example": "volume = normal",
+          "reviewSource": "moos-ivp/ivp/src/iSay/Sayer.cpp:46, moos-ivp/ivp/src/iSay/Sayer.cpp:265"
+        }
+      }
+    },
+    "pDeadManPost": {
+      "reviewStatus": "manual-reviewed-source-only-parameters",
+      "reviewSource": "moos-ivp/ivp/src/pDeadManPost/DeadManPost_Info.cpp",
+      "parameters": {
+        "app_logging": {
+          "description": "Enables AppCastingMOOSApp logging for pDeadManPost. This records app-level diagnostics and is separate from the heartbeat/deadflag logic.",
+          "default": "disabled",
+          "example": "app_logging = true",
+          "reviewSource": "moos-ivp/ivp/src/pDeadManPost/DeadManPost_Info.cpp:103"
+        },
+        "max_appcast_events": {
+          "description": "Limits how many appcast events pDeadManPost retains in its report history. This affects diagnostic reporting, not deadflag posting behavior.",
+          "default": null,
+          "example": "max_appcast_events = 8",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        }
+      }
+    },
+    "pEchoVar": {
+      "reviewStatus": "manual-reviewed-source-only-parameters",
+      "reviewSource": "moos-ivp/ivp/src/pEchoVar/EchoVar.cpp",
+      "parameters": {
+        "flip:1": {
+          "description": "Defines one pEchoVar flip rule that extracts or transforms fields from a source MOOS variable and posts the result to a destination variable. Numbered flip blocks group fields such as source_variable, dest_variable, separators, filters, and components.",
+          "default": null,
+          "example": "flip:1 = source_variable = MVIEWER_LCLICK",
+          "reviewSource": "moos-ivp/ivp/src/pEchoVar/EchoVar.cpp:143, moos-ivp/ivp/src/pEchoVar/EchoVar.cpp:300"
+        },
+        "app_logging": {
+          "description": "Enables AppCastingMOOSApp logging for pEchoVar. This records app-level diagnostics and is separate from echo/flip message forwarding.",
+          "default": "disabled",
+          "example": "app_logging = true",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        },
+        "flip:2": {
+          "description": "Defines a second pEchoVar flip rule. Use additional numbered flip entries when multiple independent source-to-destination field transformations are needed.",
+          "default": null,
+          "example": "flip:2 = source_variable = MVIEWER_RCLICK",
+          "reviewSource": "moos-ivp/ivp/src/pEchoVar/EchoVar.cpp:143, moos-ivp/ivp/src/pEchoVar/EchoVar.cpp:300"
+        },
+        "max_appcast_events": {
+          "description": "Limits how many appcast events pEchoVar retains in its report history. This affects diagnostic reporting, not echo or flip forwarding.",
+          "default": null,
+          "example": "max_appcast_events = 8",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        }
+      }
+    },
+    "pHostInfo": {
+      "reviewStatus": "manual-reviewed-source-only-parameters",
+      "reviewSource": "moos-ivp/ivp/src/pHostInfo",
+      "parameters": {
+        "app_logging": {
+          "description": "Enables AppCastingMOOSApp logging for pHostInfo. This records app-level diagnostics and is separate from the host/interface report values.",
+          "default": "disabled",
+          "example": "app_logging = true",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        },
+        "prefer_interface": {
+          "description": "Selects the preferred network interface pHostInfo should use when reporting host address information. Use this when the machine has multiple interfaces and the default selection is not the desired mission network.",
+          "default": null,
+          "example": "prefer_interface = en0",
+          "reviewSource": "moos-ivp/ivp/src/pHostInfo"
+        }
+      }
+    },
+    "pShare": {
+      "reviewStatus": "manual-reviewed-source-only-parameters",
+      "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pShare",
+      "parameters": {
+        "output": {
+          "description": "Defines an outbound pShare route for forwarding MOOS mail to another community or endpoint. The value is a route specification rather than a simple variable name.",
+          "default": null,
+          "example": "output = src_name=NODE_REPORT, dest_name=NODE_REPORT",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pShare"
+        }
+      }
+    },
+    "pXRelay": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/pXRelay",
+      "parameters": {
+        "incoming_var": {
+          "description": "Names the MOOS variable pXRelay listens to as the source side of the relay. Mail on this variable is republished on OUTGOING_VAR.",
+          "default": null,
+          "example": "INCOMING_VAR = RELAY_IN",
+          "reviewSource": "moos-ivp/ivp/src/pXRelay"
+        },
+        "outgoing_var": {
+          "description": "Names the MOOS variable pXRelay posts as the destination side of the relay. This receives the values read from INCOMING_VAR.",
+          "default": null,
+          "example": "OUTGOING_VAR = RELAY_OUT",
+          "reviewSource": "moos-ivp/ivp/src/pXRelay"
+        }
+      }
+    },
+    "uSimMarineV22": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf and moos-ivp/ivp/src/uSimMarineV22",
+      "parameters": {
+        "buoyancy_rate": {
+          "description": "Sets the upward buoyancy-driven depth-change rate, in meters per second, applied when the vehicle has no opposing vertical control. Positive values make the simulated vehicle naturally rise toward the surface.",
+          "default": "0.025",
+          "example": "buoyancy_rate = 0.025",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:45"
+        },
+        "current_field": {
+          "description": "Loads a file describing a spatial current field for the simulator. When active, the current field contributes environmental drift to simulated vehicle motion.",
+          "default": null,
+          "example": "current_field = currents.txt",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: current field configuration"
+        },
+        "current_field_active": {
+          "description": "Enables or disables use of the configured current field. This lets a mission keep the current-field file configured while toggling whether the simulator applies it.",
+          "default": null,
+          "example": "current_field_active = true",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: current field configuration"
+        },
+        "default_water_depth": {
+          "description": "Sets the default local water depth, in meters, used for altitude calculations. A value of zero means no known water depth, so altitude is not reported from depth alone.",
+          "default": "0",
+          "example": "default_water_depth = 0",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:65, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:823"
+        },
+        "drift_vector": {
+          "description": "Sets the environmental drift as heading,magnitude. The simulator converts this vector into x/y drift components and applies it to vehicle motion.",
+          "default": "0,0",
+          "example": "drift_vector = 0,0",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:514"
+        },
+        "drift_x": {
+          "description": "Sets the environmental drift component in the local x direction, in meters per second. This drift is added to simulated vehicle position updates.",
+          "default": "0",
+          "example": "drift_x = 0",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:61"
+        },
+        "drift_y": {
+          "description": "Sets the environmental drift component in the local y direction, in meters per second. This drift is added to simulated vehicle position updates.",
+          "default": "0",
+          "example": "drift_y = 0",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:62"
+        },
+        "dual_state": {
+          "description": "Enables dual-state simulator output mode, causing the simulator to publish both ordinary navigation state and a separate ground-truth state where supported.",
+          "default": "false",
+          "example": "dual_state = false",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:40"
+        },
+        "max_acceleration": {
+          "description": "Limits the simulated acceleration rate in meters per second squared. A zero value disables acceleration limiting.",
+          "default": "0",
+          "example": "max_acceleration = 0",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:43"
+        },
+        "max_appcast_events": {
+          "description": "Limits how many appcast events uSimMarineV22 retains for diagnostic reporting. This affects appcast history, not simulated vehicle motion.",
+          "default": null,
+          "example": "max_appcast_events = 8",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        },
+        "max_deceleration": {
+          "description": "Limits the simulated deceleration rate in meters per second squared. This caps how quickly commanded thrust changes can slow the vehicle.",
+          "default": "0.5",
+          "example": "max_deceleration = 0.5",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:44"
+        },
+        "max_depth_rate": {
+          "description": "Limits how quickly simulated depth can change, in meters per second. This cap applies to the vertical-motion model.",
+          "default": "0.5",
+          "example": "max_depth_rate = 0.5",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:46"
+        },
+        "max_depth_rate_speed": {
+          "description": "Sets the vehicle speed at which the configured maximum depth-change rate is achievable. It shapes how speed affects vertical maneuvering authority.",
+          "default": "2.0",
+          "example": "max_depth_rate_speed = 2.0",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:47"
+        },
+        "max_rudder_degs_per_sec": {
+          "description": "Limits how quickly the simulated rudder command may change, in degrees per second. A zero value leaves rudder changes effectively unconstrained by this limiter.",
+          "default": "0",
+          "example": "max_rudder_degs_per_sec = 0",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:49, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:421"
+        },
+        "max_trim_delay": {
+          "description": "Sets the maximum wait time, in seconds, for a trim request to complete before it is treated as delayed or failed. This is part of the buoyancy/trim handshake logic.",
+          "default": "10",
+          "example": "max_trim_delay = 10",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:45, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:386"
+        },
+        "polar_plot": {
+          "description": "Defines or loads the sailing polar plot used by the wind model. The polar plot maps wind angle/speed context into sailing performance behavior.",
+          "default": null,
+          "example": "polar_plot = file=polar.csv",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:339"
+        },
+        "post_navpos_summary": {
+          "description": "Enables posting a compact navigation-position summary from the simulator. This is additional reporting and does not change the simulated dynamics.",
+          "default": "false",
+          "example": "post_navpos_summary = true",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:56, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:394"
+        },
+        "prefix": {
+          "description": "Sets the prefix used for navigation variables published by the simulator, such as PREFIX_X, PREFIX_Y, PREFIX_HEADING, and PREFIX_SPEED. The default source prefix is USM.",
+          "default": "USM",
+          "example": "prefix = NAV",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:42"
+        },
+        "rotate_speed": {
+          "description": "Applies an external rotational drift rate, in degrees per second, to simulated heading updates. This is added to heading change independently of rudder-induced turning.",
+          "default": "0",
+          "example": "rotate_speed = 0",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:63"
+        },
+        "sim_pause": {
+          "description": "Starts or places the simulator in a paused state. While paused, simulated state advancement is suspended until unpaused.",
+          "default": "false",
+          "example": "sim_pause = false",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:41"
+        },
+        "start_depth": {
+          "description": "Sets the initial simulated vehicle depth in meters. This is part of the starting vehicle state.",
+          "default": "0",
+          "example": "start_depth = 0",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
+        },
+        "start_heading": {
+          "description": "Sets the initial simulated vehicle heading in degrees. This is part of the starting vehicle state.",
+          "default": "0",
+          "example": "start_heading = 0",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
+        },
+        "start_pos": {
+          "description": "Sets the starting vehicle position using a full position specification. This can initialize multiple state fields in one configuration line.",
+          "default": null,
+          "example": "start_pos = x=0,y=0,heading=0,speed=0,depth=0",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:369"
+        },
+        "start_speed": {
+          "description": "Sets the initial simulated vehicle speed in meters per second. This is part of the starting vehicle state.",
+          "default": "0",
+          "example": "start_speed = 0",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
+        },
+        "start_x": {
+          "description": "Sets the initial simulated vehicle x position in local coordinates. This is part of the starting vehicle state.",
+          "default": "0",
+          "example": "start_x = 0",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
+        },
+        "start_y": {
+          "description": "Sets the initial simulated vehicle y position in local coordinates. This is part of the starting vehicle state.",
+          "default": "0",
+          "example": "start_y = 0",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
+        },
+        "thrust_factor": {
+          "description": "Sets the simple linear thrust-to-speed conversion factor used when a thrust map is not active. Speed is calculated from thrust divided by this factor.",
+          "default": "20",
+          "example": "thrust_factor = 20",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/ThrustMap.cpp:110"
+        },
+        "thrust_map": {
+          "description": "Defines a piecewise mapping between thrust commands and simulated speed. When provided, this map replaces the simple thrust_factor relationship.",
+          "default": null,
+          "example": "thrust_map = 0:0,20:1,40:2,60:3,80:5,100:5",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:378"
+        },
+        "thrust_reflect": {
+          "description": "Controls whether negative thrust mirrors positive thrust in the thrust-to-speed mapping. When true, reverse thrust is treated as the opposite of positive thrust.",
+          "default": "false",
+          "example": "thrust_reflect = false",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration"
+        },
+        "trim_tolerance": {
+          "description": "Sets the tolerance used when deciding whether a trim request has reached its target. This is part of the buoyancy/trim control handshake.",
+          "default": "5",
+          "example": "trim_tolerance = 5",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:51, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:384"
+        },
+        "turn_loss": {
+          "description": "Sets the speed-loss factor applied while the simulated vehicle is turning. Values are in the range 0 to 1, where larger values impose more speed loss at high rudder.",
+          "default": "0.85",
+          "example": "turn_loss = 0.85",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/SimEngine.cpp:37"
+        },
+        "turn_rate": {
+          "description": "Sets the nominal vehicle turn-rate authority as a percentage scale from 0 to 100. The simulator clips the value to that range before applying rudder-induced heading changes.",
+          "default": "70",
+          "example": "turn_rate = 70",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: example configuration, moos-ivp/ivp/src/uSimMarineV22/USM_Model.cpp:42"
+        },
+        "turn_spd_map_full_rate": {
+          "description": "Sets the turn-rate percentage used at the full-speed point in the turn-speed map. This shapes how available turning authority changes with simulated speed.",
+          "default": "100",
+          "example": "turn_spd_map_full_rate = 100",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:344"
+        },
+        "turn_spd_map_full_speed": {
+          "description": "Sets the speed associated with the full-speed point in the turn-speed map. This pairs with turn_spd_map_full_rate to define speed-dependent turn authority.",
+          "default": "1",
+          "example": "turn_spd_map_full_speed = 1",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:340"
+        },
+        "turn_spd_map_null_rate": {
+          "description": "Sets the turn-rate percentage used at the null-speed point in the turn-speed map. This shapes how much turning authority exists near zero speed.",
+          "default": "0",
+          "example": "turn_spd_map_null_rate = 0",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:346"
+        },
+        "turn_spd_map_null_speed": {
+          "description": "Sets the speed associated with the null-speed point in the turn-speed map. This pairs with turn_spd_map_null_rate to define speed-dependent turn authority.",
+          "default": "0",
+          "example": "turn_spd_map_null_speed = 0",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:342"
+        },
+        "wind_conditions": {
+          "description": "Defines wind speed and direction for the simulator wind model. This is used with sailing/polar-plot simulation support.",
+          "default": null,
+          "example": "wind_conditions = speed=5, direction=270",
+          "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:336"
+        },
+        "wormhole": {
+          "description": "Defines one wormhole configuration component, such as the entry polygon, exit polygon, connection direction, id-change behavior, or delay. Multiple wormhole lines with the same tag combine into one wormhole definition.",
+          "default": null,
+          "example": "wormhole = tag=one, connection=from_madrid",
+          "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: Section 9.2, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:388"
+        }
+      }
+    },
+    "uCommand": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/uCommand",
+      "parameters": {
+        "cmd": {
+          "description": "Defines a command entry that uCommand can post to the MOOSDB. The value is a configured MOOS variable-value command, not a shell command.",
+          "default": null,
+          "example": "cmd = DEPLOY = true",
+          "reviewSource": "moos-ivp/ivp/src/uCommand"
+        }
+      }
+    },
+    "uPokeDB": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/uPokeDB",
+      "parameters": {
+        "poke": {
+          "description": "Defines a MOOS variable-value post for uPokeDB to send to the MOOSDB. Multiple poke entries may be used when several startup or scripted posts are needed.",
+          "default": null,
+          "example": "poke = DEPLOY = true",
+          "reviewSource": "moos-ivp/ivp/src/uPokeDB"
+        }
+      }
+    },
+    "uQueryDB": {
+      "reviewStatus": "manual-reviewed-source-only-parameters",
+      "reviewSource": "moos-ivp/ivp/src/uQueryDB",
+      "parameters": {
+        "halt_condition": {
+          "description": "Stops uQueryDB when the given MOOS logic condition evaluates true. Use this to make a query session terminate after a mission state or variable condition is reached.",
+          "default": null,
+          "example": "halt_condition = DEPLOY = true",
+          "reviewSource": "moos-ivp/ivp/src/uQueryDB"
+        },
+        "halt_max_time": {
+          "description": "Stops uQueryDB after the configured maximum elapsed time even if the halt condition has not become true. This is a timeout for bounded query sessions.",
+          "default": null,
+          "example": "halt_max_time = 30",
+          "reviewSource": "moos-ivp/ivp/src/uQueryDB"
+        },
+        "max_time": {
+          "description": "Sets the maximum time uQueryDB should run before exiting. This is an alias-style timeout used to keep query runs finite.",
+          "default": null,
+          "example": "max_time = 30",
+          "reviewSource": "moos-ivp/ivp/src/uQueryDB"
+        }
+      }
+    },
+    "uTermCommand": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/uTermCommand",
+      "parameters": {
+        "cmd": {
+          "description": "Defines a terminal-selectable command that posts a MOOS variable-value pair. This is a MOOS command menu entry, not an operating-system shell command.",
+          "default": null,
+          "example": "CMD = DEPLOY = true",
+          "reviewSource": "moos-ivp/ivp/src/uTermCommand"
+        }
+      }
+    },
+    "uTimerScript": {
+      "reviewStatus": "manual-reviewed-source-only-parameters",
+      "reviewSource": "moos-ivp/ivp/src/uTimerScript/TS_Info.cpp and TS_MOOSApp.cpp",
+      "parameters": {
+        "app_logging": {
+          "description": "Enables AppCastingMOOSApp logging for uTimerScript. This records app-level diagnostics and is separate from scripted MOOS posts.",
+          "default": "disabled",
+          "example": "app_logging = true",
+          "reviewSource": "moos-ivp/ivp/src/uTimerScript/TS_Info.cpp:146"
+        },
+        "forward_variable": {
+          "description": "Names the MOOS variable used to request that uTimerScript advance through scripted events. This provides an external control input for script progression.",
+          "default": null,
+          "example": "forward_variable = UTS_FORWARD",
+          "reviewSource": "moos-ivp/ivp/src/uTimerScript"
+        },
+        "max_appcast_events": {
+          "description": "Limits how many appcast events uTimerScript retains in its report history. This affects diagnostics, not the scheduled event list.",
+          "default": null,
+          "example": "max_appcast_events = 8",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        },
+        "pause_variable": {
+          "description": "Names the MOOS variable used to pause or resume uTimerScript execution. This lets another app control whether scheduled posts are currently advancing.",
+          "default": null,
+          "example": "pause_variable = UTS_PAUSE",
+          "reviewSource": "moos-ivp/ivp/src/uTimerScript"
+        },
+        "randvar": {
+          "description": "Defines a random variable generator used by uTimerScript events, including fields such as variable name, minimum, maximum, and key timing. Generated values can then be used in scripted posts.",
+          "default": null,
+          "example": "randvar = varname=ANG, min=0, max=359, key=at_reset",
+          "reviewSource": "moos-ivp/ivp/src/uTimerScript/TS_Info.cpp:122"
+        }
+      }
+    },
+    "uXMS": {
+      "reviewStatus": "manual-reviewed-source-only-parameters",
+      "reviewSource": "moos-ivp/ivp/src/uXMS/XMS.cpp and XMS_Info.cpp",
+      "parameters": {
+        "app_logging": {
+          "description": "Enables AppCastingMOOSApp logging for uXMS. This records app-level diagnostics and is separate from the scoped MOOS mail display.",
+          "default": "disabled",
+          "example": "app_logging = true",
+          "reviewSource": "moos-ivp/ivp/src/uXMS/XMS_Info.cpp:157"
+        },
+        "color_map": {
+          "description": "Associates a variable, source, or community pattern with a display color in uXMS output. Use this to make selected scoped entries visually distinct in the terminal view.",
+          "default": null,
+          "example": "color_map = DEPLOY,green",
+          "reviewSource": "moos-ivp/ivp/src/uXMS/XMS.cpp:754"
+        },
+        "paused": {
+          "description": "Starts or keeps the uXMS display in a paused state when supported by the app's display loop. This affects live display updating, not whether uXMS receives MOOS mail.",
+          "default": null,
+          "example": "paused = false",
+          "reviewSource": "moos-ivp/ivp/src/uXMS"
+        }
+      }
+    }
+  },
+  "ivp-behavior": {}
+}
