@@ -1,0 +1,3543 @@
+{
+  "generatedFrom": {
+    "moosIvP": "/Users/charlesbenjamin/moos-ivp"
+  },
+  "items": {
+    "ANTLER": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "MSBetweenLaunches",
+        "NewConsole",
+        "Run"
+      ],
+      "sources": [
+        "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler",
+        "../moos-ivp/editor-modes/moos-apps.el"
+      ],
+      "sourceKinds": [
+        "local-moos-source"
+      ],
+      "sourceStatus": "local-moos-source"
+    },
+    "iBlinkStick": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "qblink"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/iBlinkStick",
+        "../moos-ivp/ivp/src/iBlinkStick/BlinkStick_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "iSay": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "app_logging",
+        "audio_dir",
+        "default_rate",
+        "default_voice",
+        "interval_policy",
+        "max_appcast_events",
+        "min_utter_interval",
+        "os_mode",
+        "volume"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/iSay",
+        "../moos-ivp/ivp/src/iSay/Sayer_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pAutoPoke": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "flag",
+        "required_nodes"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pAutoPoke",
+        "../moos-ivp/ivp/src/pAutoPoke/AutoPoke_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pBasicContactMgr": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "alert",
+        "alert_range_color",
+        "alert_verbose",
+        "app_logging",
+        "contact_local_coords",
+        "contact_max_age",
+        "contacts_recap_interval",
+        "cpa_range_color",
+        "decay",
+        "default_alert_range",
+        "default_alert_range_color",
+        "default_cpa_range",
+        "default_cpa_range_color",
+        "display_radii",
+        "display_radii_id",
+        "eval_range_far",
+        "eval_range_near",
+        "ignore_group",
+        "ignore_region",
+        "ignore_type",
+        "match_group",
+        "match_region",
+        "match_type",
+        "max_appcast_events",
+        "max_retired_history",
+        "post_closest_range",
+        "range_report_timeout",
+        "reject_range",
+        "strict_ignore"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/dep_pBasicContactMgr",
+        "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pContactMgrV20": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "able_flag",
+        "alert",
+        "alert_range_color",
+        "alert_verbose",
+        "app_logging",
+        "cease_warning_flag",
+        "contact_local_coords",
+        "contact_max_age",
+        "cpa_range_color",
+        "decay",
+        "disable_flag",
+        "disable_var",
+        "display_radii",
+        "display_radii_id",
+        "early_warning_flag",
+        "early_warning_radii",
+        "early_warning_time",
+        "enable_flag",
+        "enable_var",
+        "eval_range_far",
+        "eval_range_near",
+        "ewarn_radii_color",
+        "hold_alerts_for_helm",
+        "ignore_group",
+        "ignore_name",
+        "ignore_region",
+        "ignore_type",
+        "match_group",
+        "match_name",
+        "match_region",
+        "match_type",
+        "max_appcast_events",
+        "max_contacts",
+        "max_retired_history",
+        "ownship_group",
+        "ownship_type",
+        "post_all_ranges",
+        "post_closest_range",
+        "post_closest_relbng",
+        "range_report_maxsize",
+        "range_report_timeout",
+        "recap_interval",
+        "reject_range",
+        "strict_ignore"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pContactMgrV20",
+        "../moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pDeadManPost": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "active_at_start",
+        "app_logging",
+        "deadflag",
+        "heartbeat_var",
+        "max_appcast_events",
+        "max_noheart",
+        "post_policy"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pDeadManPost",
+        "../moos-ivp/ivp/src/pDeadManPost/DeadManPost_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pEchoVar": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "Echo",
+        "FLIP:1",
+        "app_logging",
+        "condition",
+        "flip:2",
+        "hold_messages",
+        "max_appcast_events"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pEchoVar",
+        "../moos-ivp/ivp/src/pEchoVar/EchoVar_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pHelmIvP": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "allow_park",
+        "app_logging",
+        "behaviors",
+        "bhv_dir_not_found_ok",
+        "contact_max_age",
+        "domain",
+        "goals_mandatory",
+        "helm_prefix",
+        "hold_on_app",
+        "hold_on_apps",
+        "ivp_behavior_dir",
+        "kcache",
+        "max_appcast_events",
+        "nav_grace",
+        "node_skew",
+        "ok_skew",
+        "other_override_var",
+        "park_on_allstop",
+        "pmgen",
+        "start_engaged",
+        "start_in_drive",
+        "term_report_interval",
+        "verbose"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pHelmIvP",
+        "../moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pHostInfo": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "app_logging",
+        "default_hostip",
+        "default_hostip_force",
+        "prefer_interface",
+        "temp_file_dir"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pHostInfo",
+        "../moos-ivp/ivp/src/pHostInfo/HostInfo_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pLogger": {
+      "parameters": [
+        "AppTick",
+        "AsyncLog",
+        "CommsTick",
+        "CompressAlogs",
+        "DoublePrecision",
+        "Log",
+        "LogAuxSrc",
+        "LoggingDirectorySummaryFile",
+        "MarkDataType",
+        "MarkExternalCommunityMessages",
+        "UTCLogDirectories",
+        "WildCardExclusionLog",
+        "WildCardLogging",
+        "WildCardOmitPattern",
+        "file",
+        "filetimestamp",
+        "path",
+        "synclog"
+      ],
+      "sources": [
+        "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
+        "../moos-ivp/editor-modes/moos-apps.el"
+      ],
+      "sourceKinds": [
+        "local-moos-source"
+      ],
+      "sourceStatus": "local-moos-source"
+    },
+    "pMapMarkers": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "marker_color",
+        "marker_ecolor",
+        "marker_lcolor",
+        "marker_shape",
+        "marker_size",
+        "opfile",
+        "show_markers",
+        "show_mlabels",
+        "show_mlables"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pMapMarkers",
+        "../moos-ivp/ivp/src/pMapMarkers/MapMarkers_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pMarinePIDV22": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "active_start",
+        "deprecated",
+        "depth_control",
+        "max_appcast_events",
+        "max_sat_dep_debug",
+        "max_sat_hdg_debug",
+        "max_sat_spd_debug",
+        "maxelevator",
+        "maxpitch",
+        "maxrudder",
+        "maxthrust",
+        "output_suffix",
+        "pitch_pid_integral_limit",
+        "pitch_pid_kd",
+        "pitch_pid_ki",
+        "pitch_pid_kp",
+        "sim_instability",
+        "speed_factor",
+        "speed_pid_integral_limit",
+        "speed_pid_kd",
+        "speed_pid_ki",
+        "speed_pid_ki_limit",
+        "speed_pid_kp",
+        "tardy_helm_threshold",
+        "tardy_nav_threshold",
+        "verbose",
+        "yaw_pid_integral_limit",
+        "yaw_pid_kd",
+        "yaw_pid_ki",
+        "yaw_pid_ki_limit",
+        "yaw_pid_kp",
+        "z_to_pitch_pid_integral_limit",
+        "z_to_pitch_pid_kd",
+        "z_to_pitch_pid_ki",
+        "z_to_pitch_pid_kp"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pMarinePIDV22",
+        "../moos-ivp/ivp/src/pMarinePIDV22/MarinePID_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pMarineViewer": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "action",
+        "action+",
+        "app_logging",
+        "appcast_color_scheme",
+        "appcast_font_size",
+        "appcast_height",
+        "appcast_nodes_width",
+        "appcast_viewable",
+        "appcast_width",
+        "bearing_lines",
+        "beat_flag",
+        "button_1",
+        "button_10",
+        "button_11",
+        "button_12",
+        "button_13",
+        "button_14",
+        "button_15",
+        "button_16",
+        "button_17",
+        "button_18",
+        "button_19",
+        "button_2",
+        "button_20",
+        "button_3",
+        "button_4",
+        "button_5",
+        "button_6",
+        "button_7",
+        "button_8",
+        "button_9",
+        "button_eight",
+        "button_eighteen",
+        "button_eleven",
+        "button_fifteen",
+        "button_five",
+        "button_four",
+        "button_fourteen",
+        "button_nine",
+        "button_nineteen",
+        "button_one",
+        "button_seven",
+        "button_seventeen",
+        "button_six",
+        "button_sixteen",
+        "button_ten",
+        "button_thirteen",
+        "button_three",
+        "button_twelve",
+        "button_twenty",
+        "button_two",
+        "center_view",
+        "circle_viewable_all",
+        "circle_viewable_labels",
+        "cmd",
+        "comms_pulse_viewable_all",
+        "content_mode",
+        "datum_viewable_all",
+        "datum_viewable_labels",
+        "drop_point_coords",
+        "drop_point_vertex_size",
+        "drop_point_viewable_all",
+        "extrap_policy",
+        "full_screen",
+        "grid_opaqueness",
+        "grid_viewable_all",
+        "grid_viewable_labels",
+        "hash_delta",
+        "hash_shade",
+        "hash_viewable",
+        "ignore_name",
+        "infocast_font_size",
+        "infocast_height",
+        "infocast_nodes_width",
+        "infocast_viewable",
+        "infocast_width",
+        "label",
+        "log_the_file",
+        "log_the_image",
+        "marker",
+        "marker_scale",
+        "marker_viewable_all",
+        "marker_viewable_labels",
+        "match_name",
+        "max_appcast_events",
+        "mission_hash_display",
+        "mission_hash_var",
+        "node_pulse_viewable_all",
+        "node_report_unc",
+        "nodes_font_size",
+        "op_vertex",
+        "oparea_viewable_all",
+        "oparea_viewable_labels",
+        "point_viewable_all",
+        "point_viewable_labels",
+        "polygon_viewable_all",
+        "polygon_viewable_labels",
+        "procs_font_size",
+        "range_pulse_viewable_all",
+        "realmcast_channel",
+        "realmcast_color_scheme",
+        "realmcast_show_community",
+        "realmcast_show_masked",
+        "realmcast_show_source",
+        "realmcast_show_subscriptions",
+        "realmcast_time_format_utc",
+        "realmcast_trunc_content",
+        "realmcast_wrap_content",
+        "refresh_mode",
+        "rows",
+        "scope",
+        "seglist_viewable_all",
+        "seglist_viewable_labels",
+        "set_pan_x",
+        "set_pan_y",
+        "show_title_ip",
+        "show_title_mhash",
+        "show_title_user",
+        "stale_remove_thresh",
+        "stale_report_thresh",
+        "tiff_file",
+        "tiff_file_b",
+        "trails_color",
+        "trails_point_size",
+        "trails_viewable",
+        "vcolor",
+        "vector_viewable_all",
+        "vector_viewable_labels",
+        "vehicle_shape_scale",
+        "vehicles_active_color",
+        "vehicles_inactive_color",
+        "vehicles_name_mode",
+        "vehicles_shape_scale",
+        "vehicles_viewable",
+        "vname",
+        "watch_cluster",
+        "zoom"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pMarineViewer",
+        "../moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pMissionEval": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "app_logging",
+        "fail_condition",
+        "fail_flag",
+        "lead_condition",
+        "max_appcast_events",
+        "mission_form",
+        "mission_mod",
+        "pass_condition",
+        "pass_flag",
+        "prereport_column",
+        "report_column",
+        "report_file",
+        "report_line_format",
+        "result_flag"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pMissionEval",
+        "../moos-ivp/ivp/src/pMissionEval/MissionEval_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pMissionHash": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "mhash_short_var",
+        "mission_hash_var"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pMissionHash",
+        "../moos-ivp/ivp/src/pMissionHash/MissionHash_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pNodeReporter": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "allow_color_change",
+        "alt_nav_group",
+        "alt_nav_name",
+        "alt_nav_prefix",
+        "app_logging",
+        "blackout_interval",
+        "blackout_variance",
+        "coord_policy_global",
+        "cross_fill_policy",
+        "crossfill_policy",
+        "extrap_enabled",
+        "extrap_hdg_thres",
+        "extrap_hdg_thresh",
+        "extrap_max_gap",
+        "extrap_pos_thresh",
+        "group",
+        "hdg_error",
+        "json_report",
+        "max_appcast_events",
+        "nav_grace_period",
+        "nav_grace_periode",
+        "node_report_output",
+        "nohelm_threshold",
+        "paused",
+        "plat_report_input",
+        "plat_report_output",
+        "platform_aspect",
+        "platform_beam",
+        "platform_color",
+        "platform_group",
+        "platform_length",
+        "platform_type",
+        "platform_vsource",
+        "report_cog",
+        "rider",
+        "terse_reports",
+        "vessel_type"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pNodeReporter",
+        "../moos-ivp/ivp/src/pNodeReporter/NodeReporter_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pObstacleMgr": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "alert_range",
+        "app_logging",
+        "disable_var",
+        "enable_var",
+        "expunge_var",
+        "general_alert",
+        "given_max_duration",
+        "given_obstacle",
+        "ignore_range",
+        "lasso",
+        "lasso_points",
+        "lasso_radius",
+        "max_age_per_point",
+        "max_appcast_events",
+        "max_pts_per_cluster",
+        "new_obs_flag",
+        "obstacles_color",
+        "point_var",
+        "poly_label_thresh",
+        "poly_shade_thresh",
+        "poly_vertex_thresh",
+        "post_dist_to_polys",
+        "post_view_polys"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pObstacleMgr",
+        "../moos-ivp/ivp/src/pObstacleMgr/ObstacleManager_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pRealm": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "app_logging",
+        "hist_var",
+        "max_appcast_events",
+        "msg_max_hist",
+        "msg_max_history",
+        "relcast_interval",
+        "scope_set",
+        "summary_interval",
+        "trunc_length",
+        "wrap_length"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pRealm",
+        "../moos-ivp/ivp/src/pRealm/Realm_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pSearchGrid": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "grid_config",
+        "grid_label",
+        "grid_var_name",
+        "ignore_name",
+        "match_name",
+        "max_appcast_events",
+        "report_deltas"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pSearchGrid",
+        "../moos-ivp/ivp/src/pSearchGrid/SearchGrid_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pShare": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "input",
+        "output"
+      ],
+      "sources": [
+        "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pShare",
+        "../moos-ivp/editor-modes/moos-apps.el"
+      ],
+      "sourceKinds": [
+        "local-moos-source"
+      ],
+      "sourceStatus": "local-moos-source"
+    },
+    "pSpoofNode": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "default_color",
+        "default_duration",
+        "default_group",
+        "default_hdg",
+        "default_length",
+        "default_spd",
+        "default_vsource",
+        "default_vtype",
+        "refresh_interval",
+        "spoof"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/pSpoofNode",
+        "../moos-ivp/ivp/src/pSpoofNode/SpoofNode_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "pXRelay": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "INCOMING_VAR",
+        "OUTGOING_VAR"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/pXRelay",
+        "../moos-ivp/ivp/src/pXRelay/PXR_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uCommand": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "cmd"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uCommand",
+        "../moos-ivp/ivp/src/uCommand/UCMD_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uFldBeaconRangeSensor": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "beacon",
+        "default",
+        "default_beacon_color",
+        "default_beacon_freq",
+        "default_beacon_pull_dist",
+        "default_beacon_push_dist",
+        "default_beacon_report_range",
+        "default_beacon_shape",
+        "default_beacon_width",
+        "ground_truth",
+        "node_pull_dist",
+        "node_push_dist",
+        "ping_payments",
+        "ping_wait",
+        "reach_distance",
+        "report_vars",
+        "rn_algorithm",
+        "verbose"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uFldBeaconRangeSensor"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uFldCollObDetect": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "app_logging",
+        "bin_delta",
+        "bin_min_val",
+        "collision_dist",
+        "collision_flag",
+        "collision_range",
+        "encounter_dist",
+        "encounter_flag",
+        "encounter_range",
+        "ignore_group",
+        "max_appcast_events",
+        "near_miss_dist",
+        "near_miss_flag",
+        "near_miss_range",
+        "reject_group"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uFldCollObDetect",
+        "../moos-ivp/ivp/src/uFldCollObDetect/CollObDetect_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uFldCollisionDetect": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "app_logging",
+        "collision_dist",
+        "collision_flag",
+        "collision_range",
+        "condition",
+        "encounter_dist",
+        "encounter_flag",
+        "encounter_range",
+        "encounter_rings",
+        "ignore_group",
+        "max_appcast_events",
+        "near_miss_flag",
+        "near_miss_range",
+        "post_closest_range",
+        "pulse_duration",
+        "pulse_range",
+        "pulse_render",
+        "reject_group",
+        "report_all_encounters",
+        "verbose"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uFldCollisionDetect",
+        "../moos-ivp/ivp/src/uFldCollisionDetect/CollisionDetector_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uFldContactRangeSensor": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "allow_echo_types",
+        "display_pulses",
+        "echo_color",
+        "ground_truth",
+        "max_appcast_events",
+        "ping_color",
+        "ping_wait",
+        "pull_dist",
+        "pull_distance",
+        "push_dist",
+        "push_distance",
+        "reply_color",
+        "report_vars",
+        "rn_gaussian_sigma",
+        "rn_uniform_pct",
+        "sensor_arc",
+        "verbose"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uFldContactRangeSensor"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uFldDelve": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "rate_frame"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/uFldDelve",
+        "../moos-ivp/ivp/src/uFldDelve/Delver_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uFldGenericSensor": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "color_source_pts",
+        "min_reset_interval",
+        "min_sensor_interval",
+        "scope_transparency",
+        "sensor_config",
+        "show_source_pts",
+        "source_point"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/uFldGenericSensor",
+        "../moos-ivp/ivp/src/uFldGenericSensor/GenericSensor_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uFldMessageHandler": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "app_logging",
+        "appcast_trunc_msg",
+        "aux_info",
+        "bad_msg_flag",
+        "max_appcast_events",
+        "msg_flag",
+        "strict_addressing"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uFldMessageHandler",
+        "../moos-ivp/ivp/src/uFldMessageHandler/MessageHandler_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uFldNodeBroker": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "KEYWORD",
+        "app_logging",
+        "auto_bridge_appcast",
+        "auto_bridge_realmcast",
+        "bridge",
+        "max_appcast_events",
+        "try_shore_host"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uFldNodeBroker",
+        "../moos-ivp/ivp/src/uFldNodeBroker/NodeBroker_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uFldNodeComms": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "app_logging",
+        "comms_range",
+        "critical_range",
+        "drop_percentage",
+        "earange",
+        "groups",
+        "max_appcast_events",
+        "max_msg_length",
+        "min_msg_interval",
+        "min_rpt_interval",
+        "msg_color",
+        "msg_groups",
+        "msg_repeat_color",
+        "pulse_duration",
+        "shared_node_reports",
+        "stale_time",
+        "stealth",
+        "verbose",
+        "view_node_rpt_pulses"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uFldNodeComms",
+        "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uFldObstacleSim": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "app_logging",
+        "draw_region",
+        "max_appcast_events",
+        "max_duration",
+        "min_duration",
+        "obstacle_file",
+        "point_size",
+        "poly_edge_color",
+        "poly_edge_size",
+        "poly_fill_color",
+        "poly_label_color",
+        "poly_transparency",
+        "poly_vert_color",
+        "poly_vert_size",
+        "post_points",
+        "post_visuals",
+        "rate_points",
+        "refresh_interval",
+        "region_edge_color",
+        "region_vert_color",
+        "reset_interval",
+        "reset_range",
+        "reuse_ids",
+        "sensor_range"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uFldObstacleSim",
+        "../moos-ivp/ivp/src/uFldObstacleSim/ObstacleSim_Info.cpp",
+        "../moos-ivp/ivp/src/uFldObstacleSim/attic/ObstacleSim_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uFldPathCheck": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "HISTORY_LENGTH"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uFldPathCheck",
+        "../moos-ivp/ivp/src/uFldPathCheck/PathCheck_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uFldScope": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "LAYOUT",
+        "SCOPE"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/uFldScope",
+        "../moos-ivp/ivp/src/uFldScope/UFS_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uFldShoreBroker": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "app_logging",
+        "auto_bridg_mhash",
+        "auto_bridge_appcast",
+        "auto_bridge_mhash",
+        "auto_bridge_realmcast",
+        "bridge",
+        "max_appcast_events",
+        "qbridge",
+        "try_vnode",
+        "warning_on_stale"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uFldShoreBroker",
+        "../moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uFunctionVis": {
+      "parameters": [
+        "AppTick",
+        "CommsTick"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uFunctionVis",
+        "../moos-ivp/ivp/src/uFunctionVis/FV_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uHelmScope": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "behaviors_concise",
+        "behaviors_consise",
+        "display_bhv_posts",
+        "display_moos_scope",
+        "display_virgins",
+        "paused",
+        "truncated_output",
+        "var"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uHelmScope",
+        "../moos-ivp/ivp/src/uHelmScope/HelmScope_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uLoadWatch": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "app_logging",
+        "breach_trigger",
+        "max_appcast_events",
+        "near_breach_thresh",
+        "thresh"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uLoadWatch",
+        "../moos-ivp/ivp/src/uLoadWatch/LoadWatch_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uMAC": {
+      "parameters": [
+        "AppTick",
+        "CommsTick"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uMAC",
+        "../moos-ivp/ivp/src/uMAC/AppCastMonitor_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uMACView": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "appcast_color_scheme",
+        "appcast_font_size",
+        "appcast_height",
+        "content_mode",
+        "infocast_font_size",
+        "infocast_height",
+        "nodes_font_size",
+        "procs_font_size",
+        "realmcast_channel",
+        "realmcast_color_scheme",
+        "realmcast_show_communinity",
+        "realmcast_show_masked",
+        "realmcast_show_source",
+        "realmcast_show_subscriptions",
+        "realmcast_time_format_utc",
+        "realmcast_trunc_content",
+        "realmcast_wrap_content",
+        "refresh_mode",
+        "watch_cluster"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uMACView",
+        "../moos-ivp/ivp/src/uMACView/UMV_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uMayFinish": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "finish_val",
+        "finish_var",
+        "max_db_uptime"
+      ],
+      "sources": [
+        "../moos-ivp/ivp/src/uMayFinish",
+        "../moos-ivp/ivp/src/uMayFinish/MayFinish_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uMemWatch": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "absolute_time_gap",
+        "app_logging",
+        "ignore",
+        "max_appcast_events",
+        "watch_only"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uMemWatch",
+        "../moos-ivp/ivp/src/uMemWatch/MemWatch_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uPlotViewer": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "plot_var"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uPlotViewer",
+        "../moos-ivp/ivp/src/uPlotViewer/UPV_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uPokeDB": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "poke"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uPokeDB",
+        "../moos-ivp/ivp/src/uPokeDB/PokeDB_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uProcessWatch": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "allow_retractions",
+        "app_logging",
+        "max_appcast_events",
+        "nowatch",
+        "post_mapping",
+        "summary_wait",
+        "watch",
+        "watch_all"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uProcessWatch",
+        "../moos-ivp/ivp/src/uProcessWatch/ProcessWatch_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uQueryDB": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "check_var",
+        "check_var_format",
+        "condition",
+        "fail_condition",
+        "halt_condition",
+        "halt_max_time",
+        "max_time",
+        "pass_condition",
+        "wait"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uQueryDB",
+        "../moos-ivp/ivp/src/uQueryDB/QueryDB_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uSimMarineV22": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "buoyancy_rate",
+        "default_water_depth",
+        "depth_control",
+        "drift_vector",
+        "drift_x",
+        "drift_y",
+        "dual_state",
+        "max_acceleration",
+        "max_appcast_events",
+        "max_deceleration",
+        "max_depth_rate",
+        "max_depth_rate_speed",
+        "max_rudder_degs_per_sec",
+        "max_speed",
+        "max_trim_delay",
+        "maxrudder",
+        "maxthrust",
+        "polar_plot",
+        "post_des_rudder",
+        "post_des_thrust",
+        "post_navpos_summary",
+        "prefix",
+        "rotate_speed",
+        "sim_pause",
+        "speed_factor",
+        "speed_pid_integral_limit",
+        "speed_pid_kd",
+        "speed_pid_ki",
+        "speed_pid_kp",
+        "start_depth",
+        "start_heading",
+        "start_pos",
+        "start_speed",
+        "start_x",
+        "start_y",
+        "thrust_factor",
+        "thrust_map",
+        "thrust_reflect",
+        "trim_tolerance",
+        "turn_rate",
+        "turn_spd_loss",
+        "turn_spd_map_full_rate",
+        "turn_spd_map_full_speed",
+        "turn_spd_map_null_rate",
+        "turn_spd_map_null_speed",
+        "wind_conditions",
+        "wormhole",
+        "yaw_pid_integral_limit",
+        "yaw_pid_kd",
+        "yaw_pid_ki",
+        "yaw_pid_kp"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uSimMarineV22",
+        "../moos-ivp/ivp/src/uSimMarineV22/USM_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uTermCommand": {
+      "parameters": [
+        "AppTick",
+        "CMD",
+        "CommsTick"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uTermCommand",
+        "../moos-ivp/ivp/src/uTermCommand/TermCommand_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uTimerScript": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "app_logging",
+        "block_on",
+        "condition",
+        "delay_reset",
+        "delay_start",
+        "event",
+        "forward_var",
+        "forward_variable",
+        "max_appcast_events",
+        "pause_var",
+        "pause_variable",
+        "paused",
+        "rand_var",
+        "randvar",
+        "reset_max",
+        "reset_time",
+        "reset_var",
+        "script_atomic",
+        "script_name",
+        "shuffle",
+        "status_var",
+        "time_warp",
+        "time_zero",
+        "upon_awake",
+        "verbose"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uTimerScript",
+        "../moos-ivp/ivp/src/uTimerScript/TS_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    },
+    "uXMS": {
+      "parameters": [
+        "AppTick",
+        "CommsTick",
+        "app_logging",
+        "color_map",
+        "colormap",
+        "content_mode",
+        "display_all",
+        "display_aux_source",
+        "display_community",
+        "display_source",
+        "display_time",
+        "display_virgins",
+        "history_var",
+        "paused",
+        "refresh_mode",
+        "source",
+        "term_report_interval",
+        "trunc_data",
+        "var",
+        "wrap_data",
+        "wrap_data_len"
+      ],
+      "sources": [
+        "../moos-ivp/editor-modes/moos-apps.el",
+        "../moos-ivp/ivp/src/uXMS",
+        "../moos-ivp/ivp/src/uXMS/XMS_Info.cpp"
+      ],
+      "sourceKinds": [
+        "local-ivp-source"
+      ],
+      "sourceStatus": "local-ivp-source"
+    }
+  },
+  "parameters": {
+    "able_flag": [
+      "pContactMgrV20"
+    ],
+    "absolute_time_gap": [
+      "uMemWatch"
+    ],
+    "action": [
+      "pMarineViewer"
+    ],
+    "action+": [
+      "pMarineViewer"
+    ],
+    "active_at_start": [
+      "pDeadManPost"
+    ],
+    "active_start": [
+      "pMarinePIDV22"
+    ],
+    "alert": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "alert_range": [
+      "pObstacleMgr"
+    ],
+    "alert_range_color": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "alert_verbose": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "allow_color_change": [
+      "pNodeReporter"
+    ],
+    "allow_echo_types": [
+      "uFldContactRangeSensor"
+    ],
+    "allow_park": [
+      "pHelmIvP"
+    ],
+    "allow_retractions": [
+      "uProcessWatch"
+    ],
+    "alt_nav_group": [
+      "pNodeReporter"
+    ],
+    "alt_nav_name": [
+      "pNodeReporter"
+    ],
+    "alt_nav_prefix": [
+      "pNodeReporter"
+    ],
+    "app_logging": [
+      "iSay",
+      "pBasicContactMgr",
+      "pContactMgrV20",
+      "pDeadManPost",
+      "pEchoVar",
+      "pHelmIvP",
+      "pHostInfo",
+      "pMarineViewer",
+      "pMissionEval",
+      "pNodeReporter",
+      "pObstacleMgr",
+      "pRealm",
+      "uFldCollObDetect",
+      "uFldCollisionDetect",
+      "uFldMessageHandler",
+      "uFldNodeBroker",
+      "uFldNodeComms",
+      "uFldObstacleSim",
+      "uFldShoreBroker",
+      "uLoadWatch",
+      "uMemWatch",
+      "uProcessWatch",
+      "uTimerScript",
+      "uXMS"
+    ],
+    "appcast_color_scheme": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "appcast_font_size": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "appcast_height": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "appcast_nodes_width": [
+      "pMarineViewer"
+    ],
+    "appcast_trunc_msg": [
+      "uFldMessageHandler"
+    ],
+    "appcast_viewable": [
+      "pMarineViewer"
+    ],
+    "appcast_width": [
+      "pMarineViewer"
+    ],
+    "AppTick": [
+      "ANTLER",
+      "iBlinkStick",
+      "iSay",
+      "pAutoPoke",
+      "pBasicContactMgr",
+      "pContactMgrV20",
+      "pDeadManPost",
+      "pEchoVar",
+      "pHelmIvP",
+      "pHostInfo",
+      "pLogger",
+      "pMapMarkers",
+      "pMarinePIDV22",
+      "pMarineViewer",
+      "pMissionEval",
+      "pMissionHash",
+      "pNodeReporter",
+      "pObstacleMgr",
+      "pRealm",
+      "pSearchGrid",
+      "pShare",
+      "pSpoofNode",
+      "pXRelay",
+      "uCommand",
+      "uFldBeaconRangeSensor",
+      "uFldCollObDetect",
+      "uFldCollisionDetect",
+      "uFldContactRangeSensor",
+      "uFldDelve",
+      "uFldGenericSensor",
+      "uFldMessageHandler",
+      "uFldNodeBroker",
+      "uFldNodeComms",
+      "uFldObstacleSim",
+      "uFldPathCheck",
+      "uFldScope",
+      "uFldShoreBroker",
+      "uFunctionVis",
+      "uHelmScope",
+      "uLoadWatch",
+      "uMAC",
+      "uMACView",
+      "uMayFinish",
+      "uMemWatch",
+      "uPlotViewer",
+      "uPokeDB",
+      "uProcessWatch",
+      "uQueryDB",
+      "uSimMarineV22",
+      "uTermCommand",
+      "uTimerScript",
+      "uXMS"
+    ],
+    "AsyncLog": [
+      "pLogger"
+    ],
+    "audio_dir": [
+      "iSay"
+    ],
+    "auto_bridg_mhash": [
+      "uFldShoreBroker"
+    ],
+    "auto_bridge_appcast": [
+      "uFldNodeBroker",
+      "uFldShoreBroker"
+    ],
+    "auto_bridge_mhash": [
+      "uFldShoreBroker"
+    ],
+    "auto_bridge_realmcast": [
+      "uFldNodeBroker",
+      "uFldShoreBroker"
+    ],
+    "aux_info": [
+      "uFldMessageHandler"
+    ],
+    "bad_msg_flag": [
+      "uFldMessageHandler"
+    ],
+    "beacon": [
+      "uFldBeaconRangeSensor"
+    ],
+    "bearing_lines": [
+      "pMarineViewer"
+    ],
+    "beat_flag": [
+      "pMarineViewer"
+    ],
+    "behaviors": [
+      "pHelmIvP"
+    ],
+    "behaviors_concise": [
+      "uHelmScope"
+    ],
+    "behaviors_consise": [
+      "uHelmScope"
+    ],
+    "bhv_dir_not_found_ok": [
+      "pHelmIvP"
+    ],
+    "bin_delta": [
+      "uFldCollObDetect"
+    ],
+    "bin_min_val": [
+      "uFldCollObDetect"
+    ],
+    "blackout_interval": [
+      "pNodeReporter"
+    ],
+    "blackout_variance": [
+      "pNodeReporter"
+    ],
+    "block_on": [
+      "uTimerScript"
+    ],
+    "breach_trigger": [
+      "uLoadWatch"
+    ],
+    "bridge": [
+      "uFldNodeBroker",
+      "uFldShoreBroker"
+    ],
+    "buoyancy_rate": [
+      "uSimMarineV22"
+    ],
+    "button_1": [
+      "pMarineViewer"
+    ],
+    "button_10": [
+      "pMarineViewer"
+    ],
+    "button_11": [
+      "pMarineViewer"
+    ],
+    "button_12": [
+      "pMarineViewer"
+    ],
+    "button_13": [
+      "pMarineViewer"
+    ],
+    "button_14": [
+      "pMarineViewer"
+    ],
+    "button_15": [
+      "pMarineViewer"
+    ],
+    "button_16": [
+      "pMarineViewer"
+    ],
+    "button_17": [
+      "pMarineViewer"
+    ],
+    "button_18": [
+      "pMarineViewer"
+    ],
+    "button_19": [
+      "pMarineViewer"
+    ],
+    "button_2": [
+      "pMarineViewer"
+    ],
+    "button_20": [
+      "pMarineViewer"
+    ],
+    "button_3": [
+      "pMarineViewer"
+    ],
+    "button_4": [
+      "pMarineViewer"
+    ],
+    "button_5": [
+      "pMarineViewer"
+    ],
+    "button_6": [
+      "pMarineViewer"
+    ],
+    "button_7": [
+      "pMarineViewer"
+    ],
+    "button_8": [
+      "pMarineViewer"
+    ],
+    "button_9": [
+      "pMarineViewer"
+    ],
+    "button_eight": [
+      "pMarineViewer"
+    ],
+    "button_eighteen": [
+      "pMarineViewer"
+    ],
+    "button_eleven": [
+      "pMarineViewer"
+    ],
+    "button_fifteen": [
+      "pMarineViewer"
+    ],
+    "button_five": [
+      "pMarineViewer"
+    ],
+    "button_four": [
+      "pMarineViewer"
+    ],
+    "button_fourteen": [
+      "pMarineViewer"
+    ],
+    "button_nine": [
+      "pMarineViewer"
+    ],
+    "button_nineteen": [
+      "pMarineViewer"
+    ],
+    "button_one": [
+      "pMarineViewer"
+    ],
+    "button_seven": [
+      "pMarineViewer"
+    ],
+    "button_seventeen": [
+      "pMarineViewer"
+    ],
+    "button_six": [
+      "pMarineViewer"
+    ],
+    "button_sixteen": [
+      "pMarineViewer"
+    ],
+    "button_ten": [
+      "pMarineViewer"
+    ],
+    "button_thirteen": [
+      "pMarineViewer"
+    ],
+    "button_three": [
+      "pMarineViewer"
+    ],
+    "button_twelve": [
+      "pMarineViewer"
+    ],
+    "button_twenty": [
+      "pMarineViewer"
+    ],
+    "button_two": [
+      "pMarineViewer"
+    ],
+    "cease_warning_flag": [
+      "pContactMgrV20"
+    ],
+    "center_view": [
+      "pMarineViewer"
+    ],
+    "check_var": [
+      "uQueryDB"
+    ],
+    "check_var_format": [
+      "uQueryDB"
+    ],
+    "circle_viewable_all": [
+      "pMarineViewer"
+    ],
+    "circle_viewable_labels": [
+      "pMarineViewer"
+    ],
+    "cmd": [
+      "pMarineViewer",
+      "uCommand"
+    ],
+    "CMD": [
+      "uTermCommand"
+    ],
+    "collision_dist": [
+      "uFldCollObDetect",
+      "uFldCollisionDetect"
+    ],
+    "collision_flag": [
+      "uFldCollObDetect",
+      "uFldCollisionDetect"
+    ],
+    "collision_range": [
+      "uFldCollObDetect",
+      "uFldCollisionDetect"
+    ],
+    "color_map": [
+      "uXMS"
+    ],
+    "color_source_pts": [
+      "uFldGenericSensor"
+    ],
+    "colormap": [
+      "uXMS"
+    ],
+    "comms_pulse_viewable_all": [
+      "pMarineViewer"
+    ],
+    "comms_range": [
+      "uFldNodeComms"
+    ],
+    "CommsTick": [
+      "ANTLER",
+      "iBlinkStick",
+      "iSay",
+      "pAutoPoke",
+      "pBasicContactMgr",
+      "pContactMgrV20",
+      "pDeadManPost",
+      "pEchoVar",
+      "pHelmIvP",
+      "pHostInfo",
+      "pLogger",
+      "pMapMarkers",
+      "pMarinePIDV22",
+      "pMarineViewer",
+      "pMissionEval",
+      "pMissionHash",
+      "pNodeReporter",
+      "pObstacleMgr",
+      "pRealm",
+      "pSearchGrid",
+      "pShare",
+      "pSpoofNode",
+      "pXRelay",
+      "uCommand",
+      "uFldBeaconRangeSensor",
+      "uFldCollObDetect",
+      "uFldCollisionDetect",
+      "uFldContactRangeSensor",
+      "uFldDelve",
+      "uFldGenericSensor",
+      "uFldMessageHandler",
+      "uFldNodeBroker",
+      "uFldNodeComms",
+      "uFldObstacleSim",
+      "uFldPathCheck",
+      "uFldScope",
+      "uFldShoreBroker",
+      "uFunctionVis",
+      "uHelmScope",
+      "uLoadWatch",
+      "uMAC",
+      "uMACView",
+      "uMayFinish",
+      "uMemWatch",
+      "uPlotViewer",
+      "uPokeDB",
+      "uProcessWatch",
+      "uQueryDB",
+      "uSimMarineV22",
+      "uTermCommand",
+      "uTimerScript",
+      "uXMS"
+    ],
+    "CompressAlogs": [
+      "pLogger"
+    ],
+    "condition": [
+      "pEchoVar",
+      "uFldCollisionDetect",
+      "uQueryDB",
+      "uTimerScript"
+    ],
+    "contact_local_coords": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "contact_max_age": [
+      "pBasicContactMgr",
+      "pContactMgrV20",
+      "pHelmIvP"
+    ],
+    "contacts_recap_interval": [
+      "pBasicContactMgr"
+    ],
+    "content_mode": [
+      "pMarineViewer",
+      "uMACView",
+      "uXMS"
+    ],
+    "coord_policy_global": [
+      "pNodeReporter"
+    ],
+    "cpa_range_color": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "critical_range": [
+      "uFldNodeComms"
+    ],
+    "cross_fill_policy": [
+      "pNodeReporter"
+    ],
+    "crossfill_policy": [
+      "pNodeReporter"
+    ],
+    "datum_viewable_all": [
+      "pMarineViewer"
+    ],
+    "datum_viewable_labels": [
+      "pMarineViewer"
+    ],
+    "deadflag": [
+      "pDeadManPost"
+    ],
+    "decay": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "default": [
+      "uFldBeaconRangeSensor"
+    ],
+    "default_alert_range": [
+      "pBasicContactMgr"
+    ],
+    "default_alert_range_color": [
+      "pBasicContactMgr"
+    ],
+    "default_beacon_color": [
+      "uFldBeaconRangeSensor"
+    ],
+    "default_beacon_freq": [
+      "uFldBeaconRangeSensor"
+    ],
+    "default_beacon_pull_dist": [
+      "uFldBeaconRangeSensor"
+    ],
+    "default_beacon_push_dist": [
+      "uFldBeaconRangeSensor"
+    ],
+    "default_beacon_report_range": [
+      "uFldBeaconRangeSensor"
+    ],
+    "default_beacon_shape": [
+      "uFldBeaconRangeSensor"
+    ],
+    "default_beacon_width": [
+      "uFldBeaconRangeSensor"
+    ],
+    "default_color": [
+      "pSpoofNode"
+    ],
+    "default_cpa_range": [
+      "pBasicContactMgr"
+    ],
+    "default_cpa_range_color": [
+      "pBasicContactMgr"
+    ],
+    "default_duration": [
+      "pSpoofNode"
+    ],
+    "default_group": [
+      "pSpoofNode"
+    ],
+    "default_hdg": [
+      "pSpoofNode"
+    ],
+    "default_hostip": [
+      "pHostInfo"
+    ],
+    "default_hostip_force": [
+      "pHostInfo"
+    ],
+    "default_length": [
+      "pSpoofNode"
+    ],
+    "default_rate": [
+      "iSay"
+    ],
+    "default_spd": [
+      "pSpoofNode"
+    ],
+    "default_voice": [
+      "iSay"
+    ],
+    "default_vsource": [
+      "pSpoofNode"
+    ],
+    "default_vtype": [
+      "pSpoofNode"
+    ],
+    "default_water_depth": [
+      "uSimMarineV22"
+    ],
+    "delay_reset": [
+      "uTimerScript"
+    ],
+    "delay_start": [
+      "uTimerScript"
+    ],
+    "deprecated": [
+      "pMarinePIDV22"
+    ],
+    "depth_control": [
+      "pMarinePIDV22",
+      "uSimMarineV22"
+    ],
+    "disable_flag": [
+      "pContactMgrV20"
+    ],
+    "disable_var": [
+      "pContactMgrV20",
+      "pObstacleMgr"
+    ],
+    "display_all": [
+      "uXMS"
+    ],
+    "display_aux_source": [
+      "uXMS"
+    ],
+    "display_bhv_posts": [
+      "uHelmScope"
+    ],
+    "display_community": [
+      "uXMS"
+    ],
+    "display_moos_scope": [
+      "uHelmScope"
+    ],
+    "display_pulses": [
+      "uFldContactRangeSensor"
+    ],
+    "display_radii": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "display_radii_id": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "display_source": [
+      "uXMS"
+    ],
+    "display_time": [
+      "uXMS"
+    ],
+    "display_virgins": [
+      "uHelmScope",
+      "uXMS"
+    ],
+    "domain": [
+      "pHelmIvP"
+    ],
+    "DoublePrecision": [
+      "pLogger"
+    ],
+    "draw_region": [
+      "uFldObstacleSim"
+    ],
+    "drift_vector": [
+      "uSimMarineV22"
+    ],
+    "drift_x": [
+      "uSimMarineV22"
+    ],
+    "drift_y": [
+      "uSimMarineV22"
+    ],
+    "drop_percentage": [
+      "uFldNodeComms"
+    ],
+    "drop_point_coords": [
+      "pMarineViewer"
+    ],
+    "drop_point_vertex_size": [
+      "pMarineViewer"
+    ],
+    "drop_point_viewable_all": [
+      "pMarineViewer"
+    ],
+    "dual_state": [
+      "uSimMarineV22"
+    ],
+    "earange": [
+      "uFldNodeComms"
+    ],
+    "early_warning_flag": [
+      "pContactMgrV20"
+    ],
+    "early_warning_radii": [
+      "pContactMgrV20"
+    ],
+    "early_warning_time": [
+      "pContactMgrV20"
+    ],
+    "Echo": [
+      "pEchoVar"
+    ],
+    "echo_color": [
+      "uFldContactRangeSensor"
+    ],
+    "enable_flag": [
+      "pContactMgrV20"
+    ],
+    "enable_var": [
+      "pContactMgrV20",
+      "pObstacleMgr"
+    ],
+    "encounter_dist": [
+      "uFldCollObDetect",
+      "uFldCollisionDetect"
+    ],
+    "encounter_flag": [
+      "uFldCollObDetect",
+      "uFldCollisionDetect"
+    ],
+    "encounter_range": [
+      "uFldCollObDetect",
+      "uFldCollisionDetect"
+    ],
+    "encounter_rings": [
+      "uFldCollisionDetect"
+    ],
+    "eval_range_far": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "eval_range_near": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "event": [
+      "uTimerScript"
+    ],
+    "ewarn_radii_color": [
+      "pContactMgrV20"
+    ],
+    "expunge_var": [
+      "pObstacleMgr"
+    ],
+    "extrap_enabled": [
+      "pNodeReporter"
+    ],
+    "extrap_hdg_thres": [
+      "pNodeReporter"
+    ],
+    "extrap_hdg_thresh": [
+      "pNodeReporter"
+    ],
+    "extrap_max_gap": [
+      "pNodeReporter"
+    ],
+    "extrap_policy": [
+      "pMarineViewer"
+    ],
+    "extrap_pos_thresh": [
+      "pNodeReporter"
+    ],
+    "fail_condition": [
+      "pMissionEval",
+      "uQueryDB"
+    ],
+    "fail_flag": [
+      "pMissionEval"
+    ],
+    "file": [
+      "pLogger"
+    ],
+    "filetimestamp": [
+      "pLogger"
+    ],
+    "finish_val": [
+      "uMayFinish"
+    ],
+    "finish_var": [
+      "uMayFinish"
+    ],
+    "flag": [
+      "pAutoPoke"
+    ],
+    "FLIP:1": [
+      "pEchoVar"
+    ],
+    "flip:2": [
+      "pEchoVar"
+    ],
+    "forward_var": [
+      "uTimerScript"
+    ],
+    "forward_variable": [
+      "uTimerScript"
+    ],
+    "full_screen": [
+      "pMarineViewer"
+    ],
+    "general_alert": [
+      "pObstacleMgr"
+    ],
+    "given_max_duration": [
+      "pObstacleMgr"
+    ],
+    "given_obstacle": [
+      "pObstacleMgr"
+    ],
+    "goals_mandatory": [
+      "pHelmIvP"
+    ],
+    "grid_config": [
+      "pSearchGrid"
+    ],
+    "grid_label": [
+      "pSearchGrid"
+    ],
+    "grid_opaqueness": [
+      "pMarineViewer"
+    ],
+    "grid_var_name": [
+      "pSearchGrid"
+    ],
+    "grid_viewable_all": [
+      "pMarineViewer"
+    ],
+    "grid_viewable_labels": [
+      "pMarineViewer"
+    ],
+    "ground_truth": [
+      "uFldBeaconRangeSensor",
+      "uFldContactRangeSensor"
+    ],
+    "group": [
+      "pNodeReporter"
+    ],
+    "groups": [
+      "uFldNodeComms"
+    ],
+    "halt_condition": [
+      "uQueryDB"
+    ],
+    "halt_max_time": [
+      "uQueryDB"
+    ],
+    "hash_delta": [
+      "pMarineViewer"
+    ],
+    "hash_shade": [
+      "pMarineViewer"
+    ],
+    "hash_viewable": [
+      "pMarineViewer"
+    ],
+    "hdg_error": [
+      "pNodeReporter"
+    ],
+    "heartbeat_var": [
+      "pDeadManPost"
+    ],
+    "helm_prefix": [
+      "pHelmIvP"
+    ],
+    "hist_var": [
+      "pRealm"
+    ],
+    "HISTORY_LENGTH": [
+      "uFldPathCheck"
+    ],
+    "history_var": [
+      "uXMS"
+    ],
+    "hold_alerts_for_helm": [
+      "pContactMgrV20"
+    ],
+    "hold_messages": [
+      "pEchoVar"
+    ],
+    "hold_on_app": [
+      "pHelmIvP"
+    ],
+    "hold_on_apps": [
+      "pHelmIvP"
+    ],
+    "ignore": [
+      "uMemWatch"
+    ],
+    "ignore_group": [
+      "pBasicContactMgr",
+      "pContactMgrV20",
+      "uFldCollObDetect",
+      "uFldCollisionDetect"
+    ],
+    "ignore_name": [
+      "pContactMgrV20",
+      "pMarineViewer",
+      "pSearchGrid"
+    ],
+    "ignore_range": [
+      "pObstacleMgr"
+    ],
+    "ignore_region": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "ignore_type": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "INCOMING_VAR": [
+      "pXRelay"
+    ],
+    "infocast_font_size": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "infocast_height": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "infocast_nodes_width": [
+      "pMarineViewer"
+    ],
+    "infocast_viewable": [
+      "pMarineViewer"
+    ],
+    "infocast_width": [
+      "pMarineViewer"
+    ],
+    "input": [
+      "pShare"
+    ],
+    "interval_policy": [
+      "iSay"
+    ],
+    "ivp_behavior_dir": [
+      "pHelmIvP"
+    ],
+    "json_report": [
+      "pNodeReporter"
+    ],
+    "kcache": [
+      "pHelmIvP"
+    ],
+    "KEYWORD": [
+      "uFldNodeBroker"
+    ],
+    "label": [
+      "pMarineViewer"
+    ],
+    "lasso": [
+      "pObstacleMgr"
+    ],
+    "lasso_points": [
+      "pObstacleMgr"
+    ],
+    "lasso_radius": [
+      "pObstacleMgr"
+    ],
+    "LAYOUT": [
+      "uFldScope"
+    ],
+    "lead_condition": [
+      "pMissionEval"
+    ],
+    "Log": [
+      "pLogger"
+    ],
+    "log_the_file": [
+      "pMarineViewer"
+    ],
+    "log_the_image": [
+      "pMarineViewer"
+    ],
+    "LogAuxSrc": [
+      "pLogger"
+    ],
+    "LoggingDirectorySummaryFile": [
+      "pLogger"
+    ],
+    "MarkDataType": [
+      "pLogger"
+    ],
+    "marker": [
+      "pMarineViewer"
+    ],
+    "marker_color": [
+      "pMapMarkers"
+    ],
+    "marker_ecolor": [
+      "pMapMarkers"
+    ],
+    "marker_lcolor": [
+      "pMapMarkers"
+    ],
+    "marker_scale": [
+      "pMarineViewer"
+    ],
+    "marker_shape": [
+      "pMapMarkers"
+    ],
+    "marker_size": [
+      "pMapMarkers"
+    ],
+    "marker_viewable_all": [
+      "pMarineViewer"
+    ],
+    "marker_viewable_labels": [
+      "pMarineViewer"
+    ],
+    "MarkExternalCommunityMessages": [
+      "pLogger"
+    ],
+    "match_group": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "match_name": [
+      "pContactMgrV20",
+      "pMarineViewer",
+      "pSearchGrid"
+    ],
+    "match_region": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "match_type": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "max_acceleration": [
+      "uSimMarineV22"
+    ],
+    "max_age_per_point": [
+      "pObstacleMgr"
+    ],
+    "max_appcast_events": [
+      "iSay",
+      "pBasicContactMgr",
+      "pContactMgrV20",
+      "pDeadManPost",
+      "pEchoVar",
+      "pHelmIvP",
+      "pMarinePIDV22",
+      "pMarineViewer",
+      "pMissionEval",
+      "pNodeReporter",
+      "pObstacleMgr",
+      "pRealm",
+      "pSearchGrid",
+      "uFldCollObDetect",
+      "uFldCollisionDetect",
+      "uFldContactRangeSensor",
+      "uFldMessageHandler",
+      "uFldNodeBroker",
+      "uFldNodeComms",
+      "uFldObstacleSim",
+      "uFldShoreBroker",
+      "uLoadWatch",
+      "uMemWatch",
+      "uProcessWatch",
+      "uSimMarineV22",
+      "uTimerScript"
+    ],
+    "max_contacts": [
+      "pContactMgrV20"
+    ],
+    "max_db_uptime": [
+      "uMayFinish"
+    ],
+    "max_deceleration": [
+      "uSimMarineV22"
+    ],
+    "max_depth_rate": [
+      "uSimMarineV22"
+    ],
+    "max_depth_rate_speed": [
+      "uSimMarineV22"
+    ],
+    "max_duration": [
+      "uFldObstacleSim"
+    ],
+    "max_msg_length": [
+      "uFldNodeComms"
+    ],
+    "max_noheart": [
+      "pDeadManPost"
+    ],
+    "max_pts_per_cluster": [
+      "pObstacleMgr"
+    ],
+    "max_retired_history": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "max_rudder_degs_per_sec": [
+      "uSimMarineV22"
+    ],
+    "max_sat_dep_debug": [
+      "pMarinePIDV22"
+    ],
+    "max_sat_hdg_debug": [
+      "pMarinePIDV22"
+    ],
+    "max_sat_spd_debug": [
+      "pMarinePIDV22"
+    ],
+    "max_speed": [
+      "uSimMarineV22"
+    ],
+    "max_time": [
+      "uQueryDB"
+    ],
+    "max_trim_delay": [
+      "uSimMarineV22"
+    ],
+    "maxelevator": [
+      "pMarinePIDV22"
+    ],
+    "maxpitch": [
+      "pMarinePIDV22"
+    ],
+    "maxrudder": [
+      "pMarinePIDV22",
+      "uSimMarineV22"
+    ],
+    "maxthrust": [
+      "pMarinePIDV22",
+      "uSimMarineV22"
+    ],
+    "mhash_short_var": [
+      "pMissionHash"
+    ],
+    "min_duration": [
+      "uFldObstacleSim"
+    ],
+    "min_msg_interval": [
+      "uFldNodeComms"
+    ],
+    "min_reset_interval": [
+      "uFldGenericSensor"
+    ],
+    "min_rpt_interval": [
+      "uFldNodeComms"
+    ],
+    "min_sensor_interval": [
+      "uFldGenericSensor"
+    ],
+    "min_utter_interval": [
+      "iSay"
+    ],
+    "mission_form": [
+      "pMissionEval"
+    ],
+    "mission_hash_display": [
+      "pMarineViewer"
+    ],
+    "mission_hash_var": [
+      "pMarineViewer",
+      "pMissionHash"
+    ],
+    "mission_mod": [
+      "pMissionEval"
+    ],
+    "MSBetweenLaunches": [
+      "ANTLER"
+    ],
+    "msg_color": [
+      "uFldNodeComms"
+    ],
+    "msg_flag": [
+      "uFldMessageHandler"
+    ],
+    "msg_groups": [
+      "uFldNodeComms"
+    ],
+    "msg_max_hist": [
+      "pRealm"
+    ],
+    "msg_max_history": [
+      "pRealm"
+    ],
+    "msg_repeat_color": [
+      "uFldNodeComms"
+    ],
+    "nav_grace": [
+      "pHelmIvP"
+    ],
+    "nav_grace_period": [
+      "pNodeReporter"
+    ],
+    "nav_grace_periode": [
+      "pNodeReporter"
+    ],
+    "near_breach_thresh": [
+      "uLoadWatch"
+    ],
+    "near_miss_dist": [
+      "uFldCollObDetect"
+    ],
+    "near_miss_flag": [
+      "uFldCollObDetect",
+      "uFldCollisionDetect"
+    ],
+    "near_miss_range": [
+      "uFldCollObDetect",
+      "uFldCollisionDetect"
+    ],
+    "new_obs_flag": [
+      "pObstacleMgr"
+    ],
+    "NewConsole": [
+      "ANTLER"
+    ],
+    "node_pull_dist": [
+      "uFldBeaconRangeSensor"
+    ],
+    "node_pulse_viewable_all": [
+      "pMarineViewer"
+    ],
+    "node_push_dist": [
+      "uFldBeaconRangeSensor"
+    ],
+    "node_report_output": [
+      "pNodeReporter"
+    ],
+    "node_report_unc": [
+      "pMarineViewer"
+    ],
+    "node_skew": [
+      "pHelmIvP"
+    ],
+    "nodes_font_size": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "nohelm_threshold": [
+      "pNodeReporter"
+    ],
+    "nowatch": [
+      "uProcessWatch"
+    ],
+    "obstacle_file": [
+      "uFldObstacleSim"
+    ],
+    "obstacles_color": [
+      "pObstacleMgr"
+    ],
+    "ok_skew": [
+      "pHelmIvP"
+    ],
+    "op_vertex": [
+      "pMarineViewer"
+    ],
+    "oparea_viewable_all": [
+      "pMarineViewer"
+    ],
+    "oparea_viewable_labels": [
+      "pMarineViewer"
+    ],
+    "opfile": [
+      "pMapMarkers"
+    ],
+    "os_mode": [
+      "iSay"
+    ],
+    "other_override_var": [
+      "pHelmIvP"
+    ],
+    "OUTGOING_VAR": [
+      "pXRelay"
+    ],
+    "output": [
+      "pShare"
+    ],
+    "output_suffix": [
+      "pMarinePIDV22"
+    ],
+    "ownship_group": [
+      "pContactMgrV20"
+    ],
+    "ownship_type": [
+      "pContactMgrV20"
+    ],
+    "park_on_allstop": [
+      "pHelmIvP"
+    ],
+    "pass_condition": [
+      "pMissionEval",
+      "uQueryDB"
+    ],
+    "pass_flag": [
+      "pMissionEval"
+    ],
+    "path": [
+      "pLogger"
+    ],
+    "pause_var": [
+      "uTimerScript"
+    ],
+    "pause_variable": [
+      "uTimerScript"
+    ],
+    "paused": [
+      "pNodeReporter",
+      "uHelmScope",
+      "uTimerScript",
+      "uXMS"
+    ],
+    "ping_color": [
+      "uFldContactRangeSensor"
+    ],
+    "ping_payments": [
+      "uFldBeaconRangeSensor"
+    ],
+    "ping_wait": [
+      "uFldBeaconRangeSensor",
+      "uFldContactRangeSensor"
+    ],
+    "pitch_pid_integral_limit": [
+      "pMarinePIDV22"
+    ],
+    "pitch_pid_kd": [
+      "pMarinePIDV22"
+    ],
+    "pitch_pid_ki": [
+      "pMarinePIDV22"
+    ],
+    "pitch_pid_kp": [
+      "pMarinePIDV22"
+    ],
+    "plat_report_input": [
+      "pNodeReporter"
+    ],
+    "plat_report_output": [
+      "pNodeReporter"
+    ],
+    "platform_aspect": [
+      "pNodeReporter"
+    ],
+    "platform_beam": [
+      "pNodeReporter"
+    ],
+    "platform_color": [
+      "pNodeReporter"
+    ],
+    "platform_group": [
+      "pNodeReporter"
+    ],
+    "platform_length": [
+      "pNodeReporter"
+    ],
+    "platform_type": [
+      "pNodeReporter"
+    ],
+    "platform_vsource": [
+      "pNodeReporter"
+    ],
+    "plot_var": [
+      "uPlotViewer"
+    ],
+    "pmgen": [
+      "pHelmIvP"
+    ],
+    "point_size": [
+      "uFldObstacleSim"
+    ],
+    "point_var": [
+      "pObstacleMgr"
+    ],
+    "point_viewable_all": [
+      "pMarineViewer"
+    ],
+    "point_viewable_labels": [
+      "pMarineViewer"
+    ],
+    "poke": [
+      "uPokeDB"
+    ],
+    "polar_plot": [
+      "uSimMarineV22"
+    ],
+    "poly_edge_color": [
+      "uFldObstacleSim"
+    ],
+    "poly_edge_size": [
+      "uFldObstacleSim"
+    ],
+    "poly_fill_color": [
+      "uFldObstacleSim"
+    ],
+    "poly_label_color": [
+      "uFldObstacleSim"
+    ],
+    "poly_label_thresh": [
+      "pObstacleMgr"
+    ],
+    "poly_shade_thresh": [
+      "pObstacleMgr"
+    ],
+    "poly_transparency": [
+      "uFldObstacleSim"
+    ],
+    "poly_vert_color": [
+      "uFldObstacleSim"
+    ],
+    "poly_vert_size": [
+      "uFldObstacleSim"
+    ],
+    "poly_vertex_thresh": [
+      "pObstacleMgr"
+    ],
+    "polygon_viewable_all": [
+      "pMarineViewer"
+    ],
+    "polygon_viewable_labels": [
+      "pMarineViewer"
+    ],
+    "post_all_ranges": [
+      "pContactMgrV20"
+    ],
+    "post_closest_range": [
+      "pBasicContactMgr",
+      "pContactMgrV20",
+      "uFldCollisionDetect"
+    ],
+    "post_closest_relbng": [
+      "pContactMgrV20"
+    ],
+    "post_des_rudder": [
+      "uSimMarineV22"
+    ],
+    "post_des_thrust": [
+      "uSimMarineV22"
+    ],
+    "post_dist_to_polys": [
+      "pObstacleMgr"
+    ],
+    "post_mapping": [
+      "uProcessWatch"
+    ],
+    "post_navpos_summary": [
+      "uSimMarineV22"
+    ],
+    "post_points": [
+      "uFldObstacleSim"
+    ],
+    "post_policy": [
+      "pDeadManPost"
+    ],
+    "post_view_polys": [
+      "pObstacleMgr"
+    ],
+    "post_visuals": [
+      "uFldObstacleSim"
+    ],
+    "prefer_interface": [
+      "pHostInfo"
+    ],
+    "prefix": [
+      "uSimMarineV22"
+    ],
+    "prereport_column": [
+      "pMissionEval"
+    ],
+    "procs_font_size": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "pull_dist": [
+      "uFldContactRangeSensor"
+    ],
+    "pull_distance": [
+      "uFldContactRangeSensor"
+    ],
+    "pulse_duration": [
+      "uFldCollisionDetect",
+      "uFldNodeComms"
+    ],
+    "pulse_range": [
+      "uFldCollisionDetect"
+    ],
+    "pulse_render": [
+      "uFldCollisionDetect"
+    ],
+    "push_dist": [
+      "uFldContactRangeSensor"
+    ],
+    "push_distance": [
+      "uFldContactRangeSensor"
+    ],
+    "qblink": [
+      "iBlinkStick"
+    ],
+    "qbridge": [
+      "uFldShoreBroker"
+    ],
+    "rand_var": [
+      "uTimerScript"
+    ],
+    "randvar": [
+      "uTimerScript"
+    ],
+    "range_pulse_viewable_all": [
+      "pMarineViewer"
+    ],
+    "range_report_maxsize": [
+      "pContactMgrV20"
+    ],
+    "range_report_timeout": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "rate_frame": [
+      "uFldDelve"
+    ],
+    "rate_points": [
+      "uFldObstacleSim"
+    ],
+    "reach_distance": [
+      "uFldBeaconRangeSensor"
+    ],
+    "realmcast_channel": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "realmcast_color_scheme": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "realmcast_show_communinity": [
+      "uMACView"
+    ],
+    "realmcast_show_community": [
+      "pMarineViewer"
+    ],
+    "realmcast_show_masked": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "realmcast_show_source": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "realmcast_show_subscriptions": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "realmcast_time_format_utc": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "realmcast_trunc_content": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "realmcast_wrap_content": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "recap_interval": [
+      "pContactMgrV20"
+    ],
+    "refresh_interval": [
+      "pSpoofNode",
+      "uFldObstacleSim"
+    ],
+    "refresh_mode": [
+      "pMarineViewer",
+      "uMACView",
+      "uXMS"
+    ],
+    "region_edge_color": [
+      "uFldObstacleSim"
+    ],
+    "region_vert_color": [
+      "uFldObstacleSim"
+    ],
+    "reject_group": [
+      "uFldCollObDetect",
+      "uFldCollisionDetect"
+    ],
+    "reject_range": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "relcast_interval": [
+      "pRealm"
+    ],
+    "reply_color": [
+      "uFldContactRangeSensor"
+    ],
+    "report_all_encounters": [
+      "uFldCollisionDetect"
+    ],
+    "report_cog": [
+      "pNodeReporter"
+    ],
+    "report_column": [
+      "pMissionEval"
+    ],
+    "report_deltas": [
+      "pSearchGrid"
+    ],
+    "report_file": [
+      "pMissionEval"
+    ],
+    "report_line_format": [
+      "pMissionEval"
+    ],
+    "report_vars": [
+      "uFldBeaconRangeSensor",
+      "uFldContactRangeSensor"
+    ],
+    "required_nodes": [
+      "pAutoPoke"
+    ],
+    "reset_interval": [
+      "uFldObstacleSim"
+    ],
+    "reset_max": [
+      "uTimerScript"
+    ],
+    "reset_range": [
+      "uFldObstacleSim"
+    ],
+    "reset_time": [
+      "uTimerScript"
+    ],
+    "reset_var": [
+      "uTimerScript"
+    ],
+    "result_flag": [
+      "pMissionEval"
+    ],
+    "reuse_ids": [
+      "uFldObstacleSim"
+    ],
+    "rider": [
+      "pNodeReporter"
+    ],
+    "rn_algorithm": [
+      "uFldBeaconRangeSensor"
+    ],
+    "rn_gaussian_sigma": [
+      "uFldContactRangeSensor"
+    ],
+    "rn_uniform_pct": [
+      "uFldContactRangeSensor"
+    ],
+    "rotate_speed": [
+      "uSimMarineV22"
+    ],
+    "rows": [
+      "pMarineViewer"
+    ],
+    "Run": [
+      "ANTLER"
+    ],
+    "scope": [
+      "pMarineViewer"
+    ],
+    "SCOPE": [
+      "uFldScope"
+    ],
+    "scope_set": [
+      "pRealm"
+    ],
+    "scope_transparency": [
+      "uFldGenericSensor"
+    ],
+    "script_atomic": [
+      "uTimerScript"
+    ],
+    "script_name": [
+      "uTimerScript"
+    ],
+    "seglist_viewable_all": [
+      "pMarineViewer"
+    ],
+    "seglist_viewable_labels": [
+      "pMarineViewer"
+    ],
+    "sensor_arc": [
+      "uFldContactRangeSensor"
+    ],
+    "sensor_config": [
+      "uFldGenericSensor"
+    ],
+    "sensor_range": [
+      "uFldObstacleSim"
+    ],
+    "set_pan_x": [
+      "pMarineViewer"
+    ],
+    "set_pan_y": [
+      "pMarineViewer"
+    ],
+    "shared_node_reports": [
+      "uFldNodeComms"
+    ],
+    "show_markers": [
+      "pMapMarkers"
+    ],
+    "show_mlabels": [
+      "pMapMarkers"
+    ],
+    "show_mlables": [
+      "pMapMarkers"
+    ],
+    "show_source_pts": [
+      "uFldGenericSensor"
+    ],
+    "show_title_ip": [
+      "pMarineViewer"
+    ],
+    "show_title_mhash": [
+      "pMarineViewer"
+    ],
+    "show_title_user": [
+      "pMarineViewer"
+    ],
+    "shuffle": [
+      "uTimerScript"
+    ],
+    "sim_instability": [
+      "pMarinePIDV22"
+    ],
+    "sim_pause": [
+      "uSimMarineV22"
+    ],
+    "source": [
+      "uXMS"
+    ],
+    "source_point": [
+      "uFldGenericSensor"
+    ],
+    "speed_factor": [
+      "pMarinePIDV22",
+      "uSimMarineV22"
+    ],
+    "speed_pid_integral_limit": [
+      "pMarinePIDV22",
+      "uSimMarineV22"
+    ],
+    "speed_pid_kd": [
+      "pMarinePIDV22",
+      "uSimMarineV22"
+    ],
+    "speed_pid_ki": [
+      "pMarinePIDV22",
+      "uSimMarineV22"
+    ],
+    "speed_pid_ki_limit": [
+      "pMarinePIDV22"
+    ],
+    "speed_pid_kp": [
+      "pMarinePIDV22",
+      "uSimMarineV22"
+    ],
+    "spoof": [
+      "pSpoofNode"
+    ],
+    "stale_remove_thresh": [
+      "pMarineViewer"
+    ],
+    "stale_report_thresh": [
+      "pMarineViewer"
+    ],
+    "stale_time": [
+      "uFldNodeComms"
+    ],
+    "start_depth": [
+      "uSimMarineV22"
+    ],
+    "start_engaged": [
+      "pHelmIvP"
+    ],
+    "start_heading": [
+      "uSimMarineV22"
+    ],
+    "start_in_drive": [
+      "pHelmIvP"
+    ],
+    "start_pos": [
+      "uSimMarineV22"
+    ],
+    "start_speed": [
+      "uSimMarineV22"
+    ],
+    "start_x": [
+      "uSimMarineV22"
+    ],
+    "start_y": [
+      "uSimMarineV22"
+    ],
+    "status_var": [
+      "uTimerScript"
+    ],
+    "stealth": [
+      "uFldNodeComms"
+    ],
+    "strict_addressing": [
+      "uFldMessageHandler"
+    ],
+    "strict_ignore": [
+      "pBasicContactMgr",
+      "pContactMgrV20"
+    ],
+    "summary_interval": [
+      "pRealm"
+    ],
+    "summary_wait": [
+      "uProcessWatch"
+    ],
+    "synclog": [
+      "pLogger"
+    ],
+    "tardy_helm_threshold": [
+      "pMarinePIDV22"
+    ],
+    "tardy_nav_threshold": [
+      "pMarinePIDV22"
+    ],
+    "temp_file_dir": [
+      "pHostInfo"
+    ],
+    "term_report_interval": [
+      "pHelmIvP",
+      "uXMS"
+    ],
+    "terse_reports": [
+      "pNodeReporter"
+    ],
+    "thresh": [
+      "uLoadWatch"
+    ],
+    "thrust_factor": [
+      "uSimMarineV22"
+    ],
+    "thrust_map": [
+      "uSimMarineV22"
+    ],
+    "thrust_reflect": [
+      "uSimMarineV22"
+    ],
+    "tiff_file": [
+      "pMarineViewer"
+    ],
+    "tiff_file_b": [
+      "pMarineViewer"
+    ],
+    "time_warp": [
+      "uTimerScript"
+    ],
+    "time_zero": [
+      "uTimerScript"
+    ],
+    "trails_color": [
+      "pMarineViewer"
+    ],
+    "trails_point_size": [
+      "pMarineViewer"
+    ],
+    "trails_viewable": [
+      "pMarineViewer"
+    ],
+    "trim_tolerance": [
+      "uSimMarineV22"
+    ],
+    "trunc_data": [
+      "uXMS"
+    ],
+    "trunc_length": [
+      "pRealm"
+    ],
+    "truncated_output": [
+      "uHelmScope"
+    ],
+    "try_shore_host": [
+      "uFldNodeBroker"
+    ],
+    "try_vnode": [
+      "uFldShoreBroker"
+    ],
+    "turn_rate": [
+      "uSimMarineV22"
+    ],
+    "turn_spd_loss": [
+      "uSimMarineV22"
+    ],
+    "turn_spd_map_full_rate": [
+      "uSimMarineV22"
+    ],
+    "turn_spd_map_full_speed": [
+      "uSimMarineV22"
+    ],
+    "turn_spd_map_null_rate": [
+      "uSimMarineV22"
+    ],
+    "turn_spd_map_null_speed": [
+      "uSimMarineV22"
+    ],
+    "upon_awake": [
+      "uTimerScript"
+    ],
+    "UTCLogDirectories": [
+      "pLogger"
+    ],
+    "var": [
+      "uHelmScope",
+      "uXMS"
+    ],
+    "vcolor": [
+      "pMarineViewer"
+    ],
+    "vector_viewable_all": [
+      "pMarineViewer"
+    ],
+    "vector_viewable_labels": [
+      "pMarineViewer"
+    ],
+    "vehicle_shape_scale": [
+      "pMarineViewer"
+    ],
+    "vehicles_active_color": [
+      "pMarineViewer"
+    ],
+    "vehicles_inactive_color": [
+      "pMarineViewer"
+    ],
+    "vehicles_name_mode": [
+      "pMarineViewer"
+    ],
+    "vehicles_shape_scale": [
+      "pMarineViewer"
+    ],
+    "vehicles_viewable": [
+      "pMarineViewer"
+    ],
+    "verbose": [
+      "pHelmIvP",
+      "pMarinePIDV22",
+      "uFldBeaconRangeSensor",
+      "uFldCollisionDetect",
+      "uFldContactRangeSensor",
+      "uFldNodeComms",
+      "uTimerScript"
+    ],
+    "vessel_type": [
+      "pNodeReporter"
+    ],
+    "view_node_rpt_pulses": [
+      "uFldNodeComms"
+    ],
+    "vname": [
+      "pMarineViewer"
+    ],
+    "volume": [
+      "iSay"
+    ],
+    "wait": [
+      "uQueryDB"
+    ],
+    "warning_on_stale": [
+      "uFldShoreBroker"
+    ],
+    "watch": [
+      "uProcessWatch"
+    ],
+    "watch_all": [
+      "uProcessWatch"
+    ],
+    "watch_cluster": [
+      "pMarineViewer",
+      "uMACView"
+    ],
+    "watch_only": [
+      "uMemWatch"
+    ],
+    "WildCardExclusionLog": [
+      "pLogger"
+    ],
+    "WildCardLogging": [
+      "pLogger"
+    ],
+    "WildCardOmitPattern": [
+      "pLogger"
+    ],
+    "wind_conditions": [
+      "uSimMarineV22"
+    ],
+    "wormhole": [
+      "uSimMarineV22"
+    ],
+    "wrap_data": [
+      "uXMS"
+    ],
+    "wrap_data_len": [
+      "uXMS"
+    ],
+    "wrap_length": [
+      "pRealm"
+    ],
+    "yaw_pid_integral_limit": [
+      "pMarinePIDV22",
+      "uSimMarineV22"
+    ],
+    "yaw_pid_kd": [
+      "pMarinePIDV22",
+      "uSimMarineV22"
+    ],
+    "yaw_pid_ki": [
+      "pMarinePIDV22",
+      "uSimMarineV22"
+    ],
+    "yaw_pid_ki_limit": [
+      "pMarinePIDV22"
+    ],
+    "yaw_pid_kp": [
+      "pMarinePIDV22",
+      "uSimMarineV22"
+    ],
+    "z_to_pitch_pid_integral_limit": [
+      "pMarinePIDV22"
+    ],
+    "z_to_pitch_pid_kd": [
+      "pMarinePIDV22"
+    ],
+    "z_to_pitch_pid_ki": [
+      "pMarinePIDV22"
+    ],
+    "z_to_pitch_pid_kp": [
+      "pMarinePIDV22"
+    ],
+    "zoom": [
+      "pMarineViewer"
+    ]
+  }
+}
