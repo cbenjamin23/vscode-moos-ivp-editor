@@ -4590,41 +4590,41 @@
           "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
         },
         "hibernation_radius": {
-          "description": "A radius used for low-power, passive station-keeping.",
+          "description": "Sets the passive station-keeping radius used for low-power hibernation behavior around the station point.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
           "example": "hibernation_radius           = 10",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:123-126,445-451,609-612",
           "default": "disabled",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:78"
         },
         "inner_radius": {
-          "description": "Distance to station-point within which the preferred speed is zero.",
+          "description": "Sets the distance from the station point within which the target speed is zero and the behavior considers ownship close enough to hold station.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
           "example": "inner_radius                 = 10",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58-60,155-159,275-285",
           "default": "4",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:59"
         },
         "outer_radius": {
-          "description": "Distance within which the preferred speed begins to decrease.",
+          "description": "Sets the distance from the station point where the return-to-station speed reaches outer_speed; inside this radius speed ramps down toward zero at inner_radius.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
           "example": "outer_radius                 = 10",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58-60,147-151,275-285",
           "default": "15",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58"
         },
         "outer_speed": {
-          "description": "Preferred speed at outer radius, decreasing toward inner radius.",
+          "description": "Sets the target speed at the outer station-keeping radius. Between inner_radius and outer_radius, target speed ramps from zero up to this value.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
           "example": "outer_speed                  = 1.2",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58-60,163-169,275-285",
           "default": "1.2",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:60"
@@ -4646,11 +4646,11 @@
           "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
         },
         "transit_speed": {
-          "description": "Preferred speed beyond the outer radius.",
+          "description": "Alias for extra_speed; sets the target transit speed used when ownship is beyond the outer station-keeping radius and returning toward the station point.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
-          "example": "transit_speed                = 1.2",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf"
+          "example": "transit_speed = 1.5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:181-185,275-285"
         },
         "visual_hints": {
           "description": "Overrides station-keeping region polygon rendering hints posted for display. Accepted keys include vertex_color, edge_color, label_color, edge_size, and vertex_size.",
@@ -7968,14 +7968,14 @@
     "hibernation_radius": [
       {
         "owner": "BHV_StationKeep",
-        "description": "A radius used for low-power, passive station-keeping.",
+        "description": "Sets the passive station-keeping radius used for low-power hibernation behavior around the station point.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
         "default": "disabled",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:78",
         "example": "hibernation_radius           = 10",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:123-126,445-451,609-612"
       }
     ],
     "ideal_convoy_range": [
@@ -8461,14 +8461,14 @@
     "inner_radius": [
       {
         "owner": "BHV_StationKeep",
-        "description": "Distance to station-point within which the preferred speed is zero.",
+        "description": "Sets the distance from the station point within which the target speed is zero and the behavior considers ownship close enough to hold station.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
         "default": "4",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:59",
         "example": "inner_radius                 = 10",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58-60,155-159,275-285"
       }
     ],
     "inter_mark_range": [
@@ -9554,27 +9554,27 @@
     "outer_radius": [
       {
         "owner": "BHV_StationKeep",
-        "description": "Distance within which the preferred speed begins to decrease.",
+        "description": "Sets the distance from the station point where the return-to-station speed reaches outer_speed; inside this radius speed ramps down toward zero at inner_radius.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
         "default": "15",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58",
         "example": "outer_radius                 = 10",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58-60,147-151,275-285"
       }
     ],
     "outer_speed": [
       {
         "owner": "BHV_StationKeep",
-        "description": "Preferred speed at outer radius, decreasing toward inner radius.",
+        "description": "Sets the target speed at the outer station-keeping radius. Between inner_radius and outer_radius, target speed ramps from zero up to this value.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
         "default": "1.2",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:60",
         "example": "outer_speed                  = 1.2",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58-60,163-169,275-285"
       }
     ],
     "p1": [
@@ -11900,11 +11900,11 @@
     "transit_speed": [
       {
         "owner": "BHV_StationKeep",
-        "description": "Preferred speed beyond the outer radius.",
+        "description": "Alias for extra_speed; sets the target transit speed used when ownship is beyond the outer station-keeping radius and returning toward the station point.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
-        "example": "transit_speed                = 1.2",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf"
+        "example": "transit_speed = 1.5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:181-185,275-285"
       }
     ],
     "trigger_entry_time": [
