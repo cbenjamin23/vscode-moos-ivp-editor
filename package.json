@@ -5,6 +5,11 @@
     "version": "0.0.3",
     "license": "MIT",
     "publisher": "moos-ivp",
+    "main": "./src/extension.js",
+    "activationEvents": [
+        "onLanguage:moos",
+        "onLanguage:ivp-behavior"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/moos-ivp/vscode-moos-ivp-editor.git"
@@ -53,6 +58,90 @@
                 "scopeName": "source.bhv",
                 "path": "./syntaxes/bhv.tmLanguage.json"
             }
-        ]
+        ],
+        "semanticTokenScopes": [
+            {
+                "language": "moos",
+                "scopes": {
+                    "class.moosApp": [
+                        "entity.name.type.moos"
+                    ],
+                    "class.unknown": [
+                        "invalid.illegal.moos"
+                    ],
+                    "keyword.block": [
+                        "keyword.control.moos"
+                    ],
+                    "macro.directive": [
+                        "keyword.preprocessor.moos"
+                    ],
+                    "property.parameter": [
+                        "entity.other.attribute-name.moos"
+                    ]
+                }
+            },
+            {
+                "language": "ivp-behavior",
+                "scopes": {
+                    "class.behavior": [
+                        "entity.name.type.bhv"
+                    ],
+                    "class.unknown": [
+                        "invalid.illegal.bhv"
+                    ],
+                    "keyword.block": [
+                        "keyword.control.bhv"
+                    ],
+                    "macro.directive": [
+                        "keyword.preprocessor.bhv"
+                    ],
+                    "property.parameter": [
+                        "entity.other.attribute-name.bhv"
+                    ]
+                }
+            }
+        ],
+        "semanticTokenModifiers": [
+            {
+                "id": "block",
+                "description": "MOOS-IvP block header token."
+            },
+            {
+                "id": "directive",
+                "description": "MOOS-IvP preprocessor directive token."
+            },
+            {
+                "id": "moosApp",
+                "description": "MOOS app name."
+            },
+            {
+                "id": "behavior",
+                "description": "IvP behavior name."
+            },
+            {
+                "id": "parameter",
+                "description": "MOOS-IvP configuration parameter."
+            },
+            {
+                "id": "documented",
+                "description": "Documented MOOS-IvP item or parameter."
+            },
+            {
+                "id": "sourceBacked",
+                "description": "MOOS-IvP item or parameter found in local source."
+            },
+            {
+                "id": "unknown",
+                "description": "Unrecognized MOOS-IvP item or parameter."
+            }
+        ],
+        "configurationDefaults": {
+            "[moos]": {
+                "editor.semanticHighlighting.enabled": true
+            },
+            "[ivp-behavior]": {
+                "editor.semanticHighlighting.enabled": true
+            }
+        }
     }
 }

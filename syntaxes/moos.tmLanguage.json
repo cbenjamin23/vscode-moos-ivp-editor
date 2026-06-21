@@ -70,6 +70,17 @@
 					]
 				},
 				{
+					"name": "variable.moos",
+					"begin": "\\$\\[",
+					"end": "\\]",
+					"patterns": [
+						{
+							"name": "constant.character.escape.moos",
+							"match": "\\\\."
+						}
+					]
+				},
+				{
 					"name": "support.function.moos",
 					"begin": "\\$\\{",
 					"end": "\\}",
@@ -136,9 +147,6 @@
 							"captures": {
 								"1": {
 									"name": "keyword.control.moos"
-								},
-								"2": {
-									"name": "constant.language.moos"
 								}
 							}
 						},
@@ -259,6 +267,9 @@
 					"match": "^\\s*\\b(AppTick|CommsTick)\\b\\s*"
 				},
 				{
+					"include": "#documented_app_parameters"
+				},
+				{
 					"include": "#single_line_comments"
 				},
 				{
@@ -289,6 +300,14 @@
 							"name": "punctuation.section.block.end.bracket.curly.antler.moos"
 						}
 					}
+				}
+			]
+		},
+		"documented_app_parameters": {
+			"patterns": [
+				{
+					"name": "entity.other.attribute-name.moos",
+					"match": "^\\s*[A-Za-z_][A-Za-z0-9_+:-]*(?:\\[[^\\]]+\\])?\\s*(?==)"
 				}
 			]
 		}

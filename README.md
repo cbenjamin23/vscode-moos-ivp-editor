@@ -2,10 +2,12 @@
 
 [![CI/CD](https://github.com/moos-ivp/vscode-moos-ivp-editor/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/moos-ivp/vscode-moos-ivp-editor/actions/workflows/ci-cd.yml)
 
-The MOOS-IvP Editor extension for Visual Studio Code adds syntax highlighting for MOOS
-mission files, IvP behaviors files, and NSPlug files. Syntax highlighting
-has limited error detection. Semantic highlighting may be added in the 
-future.
+The MOOS-IvP Editor extension for Visual Studio Code adds syntax highlighting
+and hover help for MOOS mission files, IvP behavior files, and MOOS-IvP patch
+files. Syntax highlighting has limited error detection. Semantic highlighting
+adds owner-aware classification for known apps, behaviors, and parameters while
+leaving values and ambiguous bare identifiers to the existing TextMate grammar
+and active VS Code theme.
 
 ## Features
 
@@ -15,6 +17,11 @@ future.
   * Global variables
   * `pAntler` block
   * Generalized application block
+* Semantic classification for known apps and parameters valid in the current
+  `ProcessConfig` block
+* Hover help for known MOOS apps and parameters, preferring MIT doc-backed
+  descriptions and using local source-backed descriptions for undocumented
+  entries
 
 ![MOOS Mission File](https://raw.githubusercontent.com/cgagner/vscode-moos-ivp-editor/main/images/example_mission.png)
 
@@ -24,6 +31,11 @@ future.
   * Initialize statements
   * Set statements
   * Behavior blocks - Highlights inherited options
+* Semantic classification for known behaviors and parameters valid in the
+  current `Behavior` block
+* Hover help for known IvP behaviors and parameters, preferring MIT doc-backed
+  descriptions and using local source-backed descriptions for undocumented
+  entries
 
 ![IvP Behavior File](https://raw.githubusercontent.com/cgagner/vscode-moos-ivp-editor/main/images/example_behavior.png)
 
@@ -44,15 +56,14 @@ or robot.
 ## Extension Settings
 
 This extension currently doesn't have any settings. However, that is expected
-to change in the furture. This section will be updated when settings have been
+to change in the future. This section will be updated when settings have been
 added.
 
 ## Known Issues
 
-* MOOS Syntax:
-  * Need to add the ability to add options specific to individual applications
-* Behavior Syntax:
-  * Need to add the ability to add options specific to individual applications
+* Broad inventory examples are coverage fixtures, not runnable missions.
+* Source-backed hover descriptions are generated from local MOOS-IvP source
+  inventory when MIT docs do not define a parameter directly.
 
 ## Development Examples
 
