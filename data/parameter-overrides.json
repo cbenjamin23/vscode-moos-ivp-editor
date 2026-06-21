@@ -1147,22 +1147,22 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
         },
         "datum_viewable": {
-          "description": "Controls whether the local geodesy datum marker is rendered.",
+          "description": "Controls whether pMarineViewer renders the local geodesy datum marker. This only affects viewer display; the LatOrigin/LongOrigin mission datum remains unchanged.",
           "default": "true",
           "example": "datum_viewable = true",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "datum_color": {
-          "description": "Sets the display color for the local geodesy datum marker.",
+          "description": "Sets the color of the local geodesy datum marker drawn by pMarineViewer. Use any supported MOOS-IvP color name.",
           "default": "red",
           "example": "datum_color = red",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "datum_size": {
-          "description": "Sets the rendered point size for the local geodesy datum marker.",
+          "description": "Sets the rendered point size of the local geodesy datum marker. Larger values make the datum more visible on the viewer background.",
           "default": "2",
           "example": "datum_size = 2",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "marker_edge_width": {
           "description": "Sets the width of the black outer edge drawn around VIEW_MARKER objects.",
@@ -1171,16 +1171,16 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
         },
         "trails_color": {
-          "description": "Sets the color used for rendered vehicle trail points.",
+          "description": "Sets the color used for vehicle trail points behind each rendered vehicle. It affects historical trail rendering, not the live vehicle body color.",
           "default": "white",
           "example": "trails_color = white",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "trails_connect_viewable": {
-          "description": "Controls whether vehicle trail points are connected by line segments.",
+          "description": "Controls whether pMarineViewer connects vehicle trail points with line segments. This can make sparse node-report histories easier to visually follow.",
           "default": "true",
           "example": "trails_connect_viewable = true",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "trails_length": {
           "description": "Sets how many recent position points are retained and rendered for each vehicle trail.",
@@ -1189,10 +1189,10 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
         },
         "trails_viewable": {
-          "description": "Controls whether vehicle trails are rendered.",
+          "description": "Controls whether vehicle trail histories are rendered behind vehicles. Turning this off hides trail points without hiding the vehicles themselves.",
           "default": "true",
           "example": "trails_viewable = true",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "vehicles_active_color": {
           "description": "Sets the color used for the active vehicle whose data is shown in the viewer data fields.",
@@ -1201,10 +1201,10 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
         },
         "vehicles_inactive_color": {
-          "description": "Sets the color used for non-active vehicles.",
+          "description": "Sets the display color used for vehicles that are not the currently selected active vehicle. The active vehicle color is controlled separately by vehicles_active_color.",
           "default": "yellow",
           "example": "vehicles_inactive_color = yellow",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "vehicles_name_mode": {
           "description": "Sets what information appears in vehicle labels, such as only names, names with mode/depth, or no labels.",
@@ -1213,58 +1213,58 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
         },
         "vehicles_name_color": {
-          "description": "Sets the color used for rendered vehicle labels.",
+          "description": "Sets the color used for vehicle name labels. The label content itself is controlled by vehicles_name_mode.",
           "default": "white",
           "example": "vehicles_name_color = white",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "vehicles_viewable": {
-          "description": "Controls whether vehicles are rendered in the viewer.",
+          "description": "Controls whether vehicle icons are rendered from incoming node reports. Turning this off hides vehicles while other geometry such as polygons and points may remain visible.",
           "default": "true",
           "example": "vehicles_viewable = true",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "appcast_color_scheme": {
-          "description": "Sets the color scheme used by appcast panes in the viewer.",
+          "description": "Sets the color scheme used for appcast panes in pMarineViewer, including background and text colors. Supported schemes include default, indigo, beige, and white variants.",
           "default": "indigo",
           "example": "appcast_color_scheme = indigo",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "realmcast_color_scheme": {
-          "description": "Sets the color scheme used by realmcast panes in the viewer.",
+          "description": "Sets the color scheme used for realmcast panes in pMarineViewer. Supported schemes include default, indigo, beige, white, and hillside.",
           "default": "hillside",
           "example": "realmcast_color_scheme = hillside",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "realmcast_show_source": {
-          "description": "Controls whether the Source column is shown in realmcast output.",
+          "description": "Controls whether the Source column is shown in realmcast output. Hiding it can conserve horizontal space in the realmcast pane.",
           "default": "true",
           "example": "realmcast_show_source = true",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "realmcast_show_community": {
-          "description": "Controls whether the Community column is shown in realmcast output.",
+          "description": "Controls whether the Community column is shown in realmcast output. Hiding it can make realmcast rows more compact.",
           "default": "true",
           "example": "realmcast_show_community = true",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "realmcast_show_subscriptions": {
-          "description": "Controls whether the Subscriptions block is shown in realmcast output.",
+          "description": "Controls whether the subscription list is included in realmcast output. Hiding it can reduce clutter when only publications are being inspected.",
           "default": "true",
           "example": "realmcast_show_subscriptions = true",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "realmcast_show_masked": {
-          "description": "Controls whether masked or filtered realmcast variables are shown.",
+          "description": "Controls whether masked or filtered variables are included in realmcast output. This affects display filtering only, not realmcast collection.",
           "default": "true",
           "example": "realmcast_show_masked = true",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "realmcast_wrap_content": {
-          "description": "Controls whether long realmcast value text wraps across multiple lines.",
+          "description": "Controls whether long realmcast value text wraps onto multiple lines. Wrapping improves readability at the cost of vertical space.",
           "default": "false",
           "example": "realmcast_wrap_content = false",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "realmcast_trunc_content": {
           "description": "Controls whether long realmcast value text is truncated in the value column.",
@@ -1279,16 +1279,16 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
         },
         "lclick_ix_start": {
-          "description": "Sets the starting index used by left-click context-menu index macros.",
+          "description": "Sets the starting index value for left-click context-menu macros that expand indexed click actions. This is useful when generating numbered postings from repeated mouse clicks.",
           "default": "0",
           "example": "lclick_ix_start = 0",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "rclick_ix_start": {
-          "description": "Sets the starting index used by right-click context-menu index macros.",
+          "description": "Sets the starting index value for right-click context-menu macros that expand indexed click actions. This lets right-click generated postings use a separate index sequence.",
           "default": "0",
           "example": "rclick_ix_start = 0",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "appcast_nodes_width": {
           "description": "Sets the width allocation for the nodes column in appcast-related panes.",
@@ -1349,6 +1349,113 @@
           "default": null,
           "example": "vname = abe",
           "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        },
+        "circle_viewable_all": {
+          "description": "Controls whether VIEW_CIRCLE objects are rendered in pMarineViewer. Setting this false hides circle geometry without affecting labels for other object classes.",
+          "example": "circle_viewable_all = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "circle_viewable_labels": {
+          "description": "Controls whether labels attached to VIEW_CIRCLE objects are rendered. The circle geometry remains controlled separately by circle_viewable_all.",
+          "example": "circle_viewable_labels = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "comms_pulse_viewable_all": {
+          "description": "Controls whether VIEW_COMMS_PULSE communication pulses are rendered. Setting this false suppresses comms-pulse visuals while leaving the underlying MOOS mail untouched.",
+          "example": "comms_pulse_viewable_all = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "drop_point_viewable_all": {
+          "description": "Controls whether user drop-point markers are rendered in the viewer. This affects the visual display of drop points, not whether drop-point mail can be generated.",
+          "example": "drop_point_viewable_all = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "grid_viewable_all": {
+          "description": "Controls whether VIEW_GRID and VIEW_GRID_DELTA objects are rendered. Setting this false hides grid overlays while preserving other geometry classes.",
+          "example": "grid_viewable_all = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "grid_viewable_labels": {
+          "description": "Controls whether labels on rendered grid objects are shown. Grid geometry visibility remains controlled by grid_viewable_all.",
+          "example": "grid_viewable_labels = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "marker_viewable_all": {
+          "description": "Controls whether VIEW_MARKER objects are rendered. Marker label display is controlled separately by marker_viewable_labels.",
+          "example": "marker_viewable_all = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "marker_viewable_labels": {
+          "description": "Controls whether labels attached to VIEW_MARKER objects are rendered. Marker geometry remains controlled separately by marker_viewable_all.",
+          "example": "marker_viewable_labels = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "oparea_viewable_all": {
+          "description": "Controls whether operating-area polygons are rendered. This is useful for temporarily hiding the op-area overlay without changing mission geometry.",
+          "example": "oparea_viewable_all = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "oparea_viewable_labels": {
+          "description": "Controls whether labels attached to operating-area geometry are rendered. The operating-area geometry remains controlled by oparea_viewable_all.",
+          "example": "oparea_viewable_labels = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "point_viewable_all": {
+          "description": "Controls whether VIEW_POINT objects are rendered. Point labels remain controlled separately by point_viewable_labels.",
+          "example": "point_viewable_all = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "point_viewable_labels": {
+          "description": "Controls whether labels attached to VIEW_POINT objects are rendered. Point geometry remains controlled separately by point_viewable_all.",
+          "example": "point_viewable_labels = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "polygon_viewable_all": {
+          "description": "Controls whether VIEW_POLYGON objects are rendered. Polygon labels remain controlled separately by polygon_viewable_labels.",
+          "example": "polygon_viewable_all = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "polygon_viewable_labels": {
+          "description": "Controls whether labels attached to VIEW_POLYGON objects are rendered. Polygon geometry remains controlled separately by polygon_viewable_all.",
+          "example": "polygon_viewable_labels = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "range_pulse_viewable_all": {
+          "description": "Controls whether VIEW_RANGE_PULSE objects are rendered. Setting this false hides range-pulse effects such as collision or sensor pulses.",
+          "example": "range_pulse_viewable_all = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "seglist_viewable_all": {
+          "description": "Controls whether VIEW_SEGLIST objects are rendered. Segment-list labels remain controlled separately by seglist_viewable_labels.",
+          "example": "seglist_viewable_all = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "seglist_viewable_labels": {
+          "description": "Controls whether labels attached to VIEW_SEGLIST objects are rendered. Segment-list geometry remains controlled separately by seglist_viewable_all.",
+          "example": "seglist_viewable_labels = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "vector_viewable_all": {
+          "description": "Controls whether VIEW_VECTOR objects are rendered. Vector labels remain controlled separately by vector_viewable_labels.",
+          "example": "vector_viewable_all = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "vector_viewable_labels": {
+          "description": "Controls whether labels attached to VIEW_VECTOR objects are rendered. Vector geometry remains controlled separately by vector_viewable_all.",
+          "example": "vector_viewable_labels = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
+        },
+        "datum_viewable_all": {
+          "description": "Controls rendering of datum markers in pMarineViewer. Setting it false hides datum markers without changing whether the viewer receives datum-related MOOS mail.",
+          "default": "true",
+          "example": "datum_viewable_all = true",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:123"
+        },
+        "node_pulse_viewable_all": {
+          "description": "Controls rendering of node-pulse objects in pMarineViewer, used for transient vehicle/node pulse visualizations. Setting it false hides the pulse objects only.",
+          "default": "true",
+          "example": "node_pulse_viewable_all = true",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer display-control source inventory"
         }
       }
     },
@@ -4888,20 +4995,28 @@
           "example": "acquire_distance = 10"
         },
         "edge_color": {
-          "description": "Sets the edge color for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+          "description": "Sets the color of the loiter polygon edges posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679",
+          "default": "white",
+          "example": "edge_color = white"
         },
         "edge_size": {
-          "description": "Sets the edge line width for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+          "description": "Sets the line width of the loiter polygon edges posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679",
+          "default": "1",
+          "example": "edge_size = 1"
         },
         "label_color": {
-          "description": "Sets the label color for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+          "description": "Sets the label color of the loiter polygon posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679",
+          "default": null,
+          "example": "label_color = white"
         },
         "lcolor": {
-          "description": "Sets the label color for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+          "description": "Alias for the loiter polygon label color posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679",
+          "default": null,
+          "example": "lcolor = white"
         },
         "nextpt_color": {
           "description": "Sets the color used to draw the next waypoint point.",
@@ -4920,12 +5035,16 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
         },
         "vertex_color": {
-          "description": "Sets the vertex color for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+          "description": "Sets the color of the loiter polygon vertices posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679",
+          "default": "dodger_blue",
+          "example": "vertex_color = dodger_blue"
         },
         "vertex_size": {
-          "description": "Sets the vertex size for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+          "description": "Sets the size of the loiter polygon vertices posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679",
+          "default": "1",
+          "example": "vertex_size = 1"
         },
         "label": {
           "description": "Sets the label applied to loiter visualization objects so the polygon and related viewer artifacts can be identified.",
@@ -5060,14 +5179,15 @@
           "reviewSource": "MOOS-IvP max speed behavior documentation"
         },
         "summitdelta": {
-          "description": "Sets the summit delta used in the ZAIC-style speed objective function.",
+          "description": "Sets the summit-delta utility drop for the max-speed objective. It controls how sharply utility changes near the maximum permitted speed.",
           "default": null,
           "example": "summitdelta = 25",
-          "reviewSource": "MOOS-IvP max speed behavior documentation"
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
         },
         "basewidth": {
-          "description": "The width of the base, in meters per second, in the produced ZAIC-style IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf"
+          "description": "Sets the speed band, in meters per second, over which utility tapers as ownship approaches the maximum speed constraint. Wider values make the max-speed constraint ramp in more gradually.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "basewidth = 0.5"
         },
         "speed": {
           "description": "The desired speed of the vehicle, in meters per second.",
@@ -5106,40 +5226,48 @@
           "reviewSource": "MOOS-IvP periodic speed behavior documentation"
         },
         "basewidth": {
-          "description": "The width of the ZAIC basewidth, in m/sec, in the IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf"
+          "description": "Sets the base width, in meters per second, for the documented periodic-speed ZAIC objective. It controls how quickly utility falls as speed differs from the desired periodic speed.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "basewidth = 0"
         },
         "peakwidth": {
-          "description": "The width of the ZAIC peakwidth, in m/sec in the IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf"
+          "description": "Sets the peak width, in meters per second, for the documented periodic-speed ZAIC objective. A nonzero peak width gives a band of speeds maximum utility.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "peakwidth = 0"
         },
         "period_speed": {
           "description": "The desired speed, in m/sec, in the IvP function.",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf"
         },
         "summit_delta": {
-          "description": "The extent of the ZAIC summit delta in the IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf"
+          "description": "Sets the summit-delta utility drop in the periodic-speed ZAIC objective. It shapes how strongly the behavior prefers the exact desired speed over nearby speeds.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "summit_delta = 25"
         },
         "period_basewidth": {
-          "description": "Shapes the IvP objective function through period basewidth.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp"
+          "description": "Sets the base width, in speed units, for the periodic-speed objective during the active speed pulse. It controls how far from the desired period speed utility tapers.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "period_basewidth = 0"
         },
         "period_peakwidth": {
-          "description": "Shapes the IvP objective function through period peakwidth.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp"
+          "description": "Sets the peak width, in speed units, for the periodic-speed objective during the active speed pulse. A nonzero value creates a flat high-utility band around the desired speed.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "period_peakwidth = 0"
         },
         "zaic_basewidth": {
-          "description": "Shapes the IvP objective function through ZAIC basewidth.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp"
+          "description": "Sets the base width, in speed units, for the underlying speed ZAIC used by BHV_PeriodicSpeed. It controls the broadness of acceptable speeds around the desired speed.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "zaic_basewidth = 0"
         },
         "zaic_peakwidth": {
-          "description": "Shapes the IvP objective function through ZAIC peakwidth.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp"
+          "description": "Sets the peak width, in speed units, for the underlying speed ZAIC used by BHV_PeriodicSpeed. A nonzero value creates a plateau of equally preferred speeds.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "zaic_peakwidth = 0"
         },
         "zaic_summit_delta": {
-          "description": "Shapes the IvP objective function through ZAIC summit delta.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp"
+          "description": "Sets the summit-delta utility drop for the speed ZAIC used by BHV_PeriodicSpeed. Larger values sharpen preference for the exact desired speed.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "zaic_summit_delta = 25"
         }
       }
     },
@@ -7070,16 +7198,19 @@
       "reviewSource": "MOOS-IvP behavior docs/source audit",
       "parameters": {
         "basewidth": {
-          "description": "The width of the base, in meters, in the produced ZAIC-style IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf"
+          "description": "Sets the depth-error span, in meters, over which the depth ZAIC objective tapers away from the desired depth. Wider values make nearby depths more acceptable.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "basewidth = 100"
         },
         "peakwidth": {
-          "description": "The width of the peak, in meters, in the produced ZAIC-style IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf"
+          "description": "Sets the depth-error span, in meters, around the desired depth that receives peak utility. A nonzero peak width creates a flat preferred depth band.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "peakwidth = 3"
         },
         "summitdelta": {
-          "description": "The height of the summit delta parameter in the produced ZAIC-style IvP function. See Figure ??.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf"
+          "description": "Sets the summit-delta utility drop for the depth ZAIC objective. Larger values sharpen preference for the exact desired depth.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "summitdelta = 50"
         },
         "depth_mismatch_var": {
           "description": "Name of the MOOS variable indicating the present delta between the desired depth and the current depth.",
@@ -7092,16 +7223,19 @@
       "reviewSource": "MOOS-IvP behavior docs/source audit",
       "parameters": {
         "basewidth": {
-          "description": "The width of the base, in degrees, in the produced ZAIC-style IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf"
+          "description": "Sets the heading-error span, in degrees, over which the heading ZAIC objective tapers away from the requested heading. Wider values make a broader range of headings acceptable.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "basewidth = 170"
         },
         "peakwidth": {
-          "description": "The width of the peak, in degrees, in the produced ZAIC-style IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf"
+          "description": "Sets the heading-error span, in degrees, around the requested heading that receives peak utility. A nonzero peak width creates a flat preferred heading band.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "peakwidth = 10"
         },
         "summitdelta": {
-          "description": "The height of the summit delta parameter in the produced ZAIC-style IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf"
+          "description": "Sets the summit-delta utility drop for the heading ZAIC objective. Larger values sharpen preference for the exact requested heading.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "summitdelta = 25"
         },
         "heading_mismatch_var": {
           "description": "Name of the MOOS variable indicating the present delta between the desired heading and the current heading.",
@@ -7114,20 +7248,23 @@
       "reviewSource": "MOOS-IvP behavior docs/source audit",
       "parameters": {
         "basewidth": {
-          "description": "The width of the base, in meters per second, in the produced ZAIC-style IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf"
+          "description": "Sets the speed-error span, in meters per second, over which the speed ZAIC objective tapers away from the desired speed. Wider values make nearby speeds more acceptable.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "basewidth = 0.2"
         },
         "peakwidth": {
-          "description": "The width of the peak, in meters per second, in the produced ZAIC-style IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf"
+          "description": "Sets the speed-error span, in meters per second, around the desired speed that receives peak utility. A nonzero peak width creates a flat preferred speed band.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "peakwidth = 0"
         },
         "speed": {
           "description": "The desired speed of the vehicle, in meters per second.",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf"
         },
         "summitdelta": {
-          "description": "The height of the summit delta parameter in the produced ZAIC-style IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf"
+          "description": "Sets the summit-delta utility drop for the speed ZAIC objective. Larger values sharpen preference for the exact desired speed.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "summitdelta = 0"
         },
         "speed_mismatch_var": {
           "description": "Name of the MOOS variable indicating the present delta between the desired speed and the current speed. If left unspecified, no posting is made.",
@@ -7230,12 +7367,18 @@
       "reviewSource": "MOOS-IvP behavior docs/source audit",
       "parameters": {
         "basewidth": {
-          "description": "The width of the base, in meters, in the produced ZAIC-style IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_max_depth.pdf"
+          "description": "Sets the depth band, in meters, over which utility tapers as ownship approaches the maximum depth constraint. Wider values make the max-depth constraint ramp in more gradually.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "basewidth = 100"
         },
         "depth_slack_var": {
           "description": "Name of the MOOS variable indicating the present delta between the maximum depth and the current depth.",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_max_depth.pdf"
+        },
+        "tolerance": {
+          "description": "Alternative way to set the max-depth basewidth tolerance. It controls how close to the maximum depth ownship may get before utility strongly penalizes deeper commands.",
+          "example": "tolerance = 100",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
         }
       }
     },
@@ -7304,16 +7447,22 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
         },
         "edge_color": {
-          "description": "Sets the edge color for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
+          "description": "Sets the color of the recovery-region polygon edges posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695",
+          "default": "aqua",
+          "example": "edge_color = aqua"
         },
         "edge_size": {
-          "description": "Sets the edge line width for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
+          "description": "Sets the line width of the recovery-region polygon edges posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695",
+          "default": "1",
+          "example": "edge_size = 1"
         },
         "label_color": {
-          "description": "Sets the label color for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
+          "description": "Sets the label color of the recovery-region polygon posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695",
+          "default": null,
+          "example": "label_color = aqua"
         },
         "opregion_poly_var": {
           "description": "Names the MOOS variable used to publish the operating-region polygon.",
@@ -7324,12 +7473,16 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
         },
         "vertex_color": {
-          "description": "Sets the vertex color for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
+          "description": "Sets the color of the recovery-region polygon vertices posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695",
+          "default": "brown",
+          "example": "vertex_color = brown"
         },
         "vertex_size": {
-          "description": "Sets the vertex size for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
+          "description": "Sets the size of the recovery-region polygon vertices posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695",
+          "default": "1",
+          "example": "vertex_size = 1"
         }
       }
     },
@@ -7338,40 +7491,48 @@
       "reviewSource": "MOOS-IvP behavior docs/source audit",
       "parameters": {
         "heading_peakwidth": {
-          "description": "Width of the peak, in degrees, in the produced ZAIC-style IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf"
+          "description": "Sets the peak width, in degrees, of the heading objective used while shadowing the contact. A wider peak makes nearby headings equally preferred.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "heading_peakwidth = 20"
         },
         "heading_basewidth": {
-          "description": "Width of the base, in degrees, in the produced ZAIC-style IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf"
+          "description": "Sets the base width, in degrees, of the heading objective used while shadowing the contact. Wider values allow a broader range of headings to retain utility.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "heading_basewidth = 160"
         },
         "speed_peakwidth": {
-          "description": "Width of the peak, in m/sec, in the produced ZAIC-style function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf"
+          "description": "Sets the peak width, in meters per second, of the speed objective used while shadowing the contact. A nonzero peak allows a range of speeds to share maximum utility.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "speed_peakwidth = 0.1"
         },
         "speed_basewidth": {
-          "description": "Width of the base, in m/sec, in the produced ZAIC-style IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf"
+          "description": "Sets the base width, in meters per second, of the speed objective used while shadowing the contact. It controls how quickly utility falls away from the desired speed.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "speed_basewidth = 2.0"
         },
         "hdg_basewidth": {
-          "description": "Sets the heading objective-function base width.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp"
+          "description": "Source spelling for heading_basewidth. It sets the base width, in degrees, of the shadowing heading objective.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "hdg_basewidth = 160"
         },
         "hdg_peakwidth": {
-          "description": "Sets the heading objective-function peak width.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp"
+          "description": "Source spelling for heading_peakwidth. It sets the peak width, in degrees, of the shadowing heading objective.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "hdg_peakwidth = 20"
         },
         "pwt_outer_dist": {
           "description": "Sets the priority weight outer dist threshold or distance.",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp"
         },
         "spd_basewidth": {
-          "description": "Sets the speed objective-function base width.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp"
+          "description": "Source spelling for speed_basewidth. It sets the base width, in meters per second, of the shadowing speed objective.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "spd_basewidth = 2.0"
         },
         "spd_peakwidth": {
-          "description": "Sets the speed objective-function peak width.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp"
+          "description": "Source spelling for speed_peakwidth. It sets the peak width, in meters per second, of the shadowing speed objective.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "spd_peakwidth = 0.1"
         }
       }
     },
@@ -7404,28 +7565,38 @@
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf"
         },
         "edge_color": {
-          "description": "Sets the edge color for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp"
+          "description": "Sets the color of the station-keeping region polygon edges posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587",
+          "default": "light_blue",
+          "example": "edge_color = light_blue"
         },
         "edge_size": {
-          "description": "Sets the edge line width for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp"
+          "description": "Sets the line width of the station-keeping region polygon edges posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587",
+          "default": "1",
+          "example": "edge_size = 1"
         },
         "extra_speed": {
           "description": "Sets the extra speed used when returning to a station or contact-relative position.",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp"
         },
         "label_color": {
-          "description": "Sets the label color for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp"
+          "description": "Sets the label color of the station-keeping region polygon posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587",
+          "default": "white",
+          "example": "label_color = white"
         },
         "vertex_color": {
-          "description": "Sets the vertex color for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp"
+          "description": "Sets the color of the station-keeping region polygon vertices posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587",
+          "default": "red",
+          "example": "vertex_color = red"
         },
         "vertex_size": {
-          "description": "Sets the vertex size for the behavior's visualization.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp"
+          "description": "Sets the size of the station-keeping region polygon vertices posted for viewer display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587",
+          "default": "1",
+          "example": "vertex_size = 1"
         }
       }
     },
@@ -7508,16 +7679,19 @@
       "reviewSource": "MOOS-IvP behavior docs/source audit",
       "parameters": {
         "basewidth": {
-          "description": "Shapes the IvP objective function through basewidth.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp"
+          "description": "Sets the heading-error span, in degrees, over which the ZAIC objective tapers from its preferred heading toward low utility. Wider base widths make the behavior tolerate a broader range of headings.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "basewidth = 150"
         },
         "peakwidth": {
-          "description": "Shapes the IvP objective function through peakwidth.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp"
+          "description": "Sets the heading-error span, in degrees, around the target heading that receives peak utility. A wider peak creates a flatter preferred heading region.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "peakwidth = 30"
         },
         "summitdelta": {
-          "description": "Shapes the IvP objective function through summitdelta.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp"
+          "description": "Sets the utility drop across the ZAIC summit for the heading objective. Larger values make the peak less flat and strengthen preference for the exact target heading.",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "example": "summitdelta = 80"
         }
       }
     },

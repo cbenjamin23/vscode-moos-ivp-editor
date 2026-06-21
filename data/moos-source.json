@@ -1502,7 +1502,7 @@
         },
         "datum_viewable_all": {
           "name": "datum_viewable_all",
-          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+          "description": "Controls rendering of datum markers in pMarineViewer. Setting it false hides datum markers without changing whether the viewer receives datum-related MOOS mail.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
@@ -1510,7 +1510,7 @@
           "exampleSource": "manual review",
           "default": "true",
           "defaultSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:123"
         },
         "datum_viewable_labels": {
           "name": "datum_viewable_labels",
@@ -1632,7 +1632,7 @@
         },
         "node_pulse_viewable_all": {
           "name": "node_pulse_viewable_all",
-          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+          "description": "Controls rendering of node-pulse objects in pMarineViewer, used for transient vehicle/node pulse visualizations. Setting it false hides the pulse objects only.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
@@ -1640,7 +1640,7 @@
           "exampleSource": "manual review",
           "default": "true",
           "defaultSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer display-control source inventory"
         },
         "node_report_unc": {
           "name": "node_report_unc",
@@ -4532,7 +4532,7 @@
     "datum_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+        "description": "Controls rendering of datum markers in pMarineViewer. Setting it false hides datum markers without changing whether the viewer receives datum-related MOOS mail.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -4540,7 +4540,7 @@
         "defaultSource": "manual review",
         "example": "datum_viewable_all = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:123"
       }
     ],
     "datum_viewable_labels": [
@@ -5942,7 +5942,7 @@
     "node_pulse_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+        "description": "Controls rendering of node-pulse objects in pMarineViewer, used for transient vehicle/node pulse visualizations. Setting it false hides the pulse objects only.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -5950,7 +5950,7 @@
         "defaultSource": "manual review",
         "example": "node_pulse_viewable_all = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer display-control source inventory"
       }
     ],
     "node_report_unc": [

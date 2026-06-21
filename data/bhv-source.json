@@ -2763,29 +2763,27 @@
         },
         "edge_color": {
           "name": "edge_color",
-          "description": "Sets the edge color for the behavior's visualization.",
+          "description": "Sets the color of the loiter polygon edges posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "edge_color                   = yellow",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
+          "example": "edge_color = white",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679",
           "default": "white",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:80"
+          "defaultSource": "manual review"
         },
         "edge_size": {
           "name": "edge_size",
-          "description": "Sets the edge line width for the behavior's visualization.",
+          "description": "Sets the line width of the loiter polygon edges posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "edge_size                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
+          "example": "edge_size = 1",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679",
           "default": "1",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:78"
+          "defaultSource": "manual review"
         },
         "ipf_type": {
           "name": "ipf_type",
@@ -2811,23 +2809,23 @@
         },
         "label_color": {
           "name": "label_color",
-          "description": "Sets the label color for the behavior's visualization.",
+          "description": "Sets the label color of the loiter polygon posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "label_color                  = yellow",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+          "example": "label_color = white",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679"
         },
         "lcolor": {
           "name": "lcolor",
-          "description": "Sets the label color for the behavior's visualization.",
+          "description": "Alias for the loiter polygon label color posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "lcolor                       = yellow",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+          "example": "lcolor = white",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679"
         },
         "mod_poly_rad": {
           "name": "mod_poly_rad",
@@ -2924,29 +2922,27 @@
         },
         "vertex_color": {
           "name": "vertex_color",
-          "description": "Sets the vertex color for the behavior's visualization.",
+          "description": "Sets the color of the loiter polygon vertices posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "vertex_color                 = yellow",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
+          "example": "vertex_color = dodger_blue",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679",
           "default": "dodger_blue",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:79"
+          "defaultSource": "manual review"
         },
         "vertex_size": {
           "name": "vertex_size",
-          "description": "Sets the vertex size for the behavior's visualization.",
+          "description": "Sets the size of the loiter polygon vertices posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "vertex_size                  = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
+          "example": "vertex_size = 1",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679",
           "default": "1",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77"
+          "defaultSource": "manual review"
         }
       }
     },
@@ -2957,13 +2953,13 @@
       "parameters": {
         "basewidth": {
           "name": "basewidth",
-          "description": "Shapes the IvP objective function through basewidth.",
+          "description": "Sets the heading-error span, in degrees, over which the ZAIC objective tapers from its preferred heading toward low utility. Wider base widths make the behavior tolerate a broader range of headings.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "basewidth                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp",
+          "example": "basewidth = 150",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "150",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp:53"
@@ -2990,13 +2986,13 @@
         },
         "peakwidth": {
           "name": "peakwidth",
-          "description": "Shapes the IvP objective function through peakwidth.",
+          "description": "Sets the heading-error span, in degrees, around the target heading that receives peak utility. A wider peak creates a flatter preferred heading region.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "peakwidth                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp",
+          "example": "peakwidth = 30",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "30",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp:52"
@@ -3013,13 +3009,13 @@
         },
         "summitdelta": {
           "name": "summitdelta",
-          "description": "Shapes the IvP objective function through summitdelta.",
+          "description": "Sets the utility drop across the ZAIC summit for the heading objective. Larger values make the peak less flat and strengthen preference for the exact target heading.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "summitdelta                  = 1",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp",
+          "example": "summitdelta = 80",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "80",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp:54"
@@ -3236,29 +3232,27 @@
         },
         "edge_color": {
           "name": "edge_color",
-          "description": "Sets the edge color for the behavior's visualization.",
+          "description": "Sets the color of the recovery-region polygon edges posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "edge_color                   = yellow",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
+          "example": "edge_color = aqua",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695",
           "default": "aqua",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:49"
+          "defaultSource": "manual review"
         },
         "edge_size": {
           "name": "edge_size",
-          "description": "Sets the edge line width for the behavior's visualization.",
+          "description": "Sets the line width of the recovery-region polygon edges posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "edge_size                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
+          "example": "edge_size = 1",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695",
           "default": "1",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:48"
+          "defaultSource": "manual review"
         },
         "inactiveflag": {
           "name": "inactiveflag",
@@ -3272,13 +3266,13 @@
         },
         "label_color": {
           "name": "label_color",
-          "description": "Sets the label color for the behavior's visualization.",
+          "description": "Sets the label color of the recovery-region polygon posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "label_color                  = yellow",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
+          "example": "label_color = aqua",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695"
         },
         "opregion_poly_var": {
           "name": "opregion_poly_var",
@@ -3334,29 +3328,27 @@
         },
         "vertex_color": {
           "name": "vertex_color",
-          "description": "Sets the vertex color for the behavior's visualization.",
+          "description": "Sets the color of the recovery-region polygon vertices posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "vertex_color                 = yellow",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
+          "example": "vertex_color = brown",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695",
           "default": "brown",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:47"
+          "defaultSource": "manual review"
         },
         "vertex_size": {
           "name": "vertex_size",
-          "description": "Sets the vertex size for the behavior's visualization.",
+          "description": "Sets the size of the recovery-region polygon vertices posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "vertex_size                  = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
+          "example": "vertex_size = 1",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695",
           "default": "1",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46"
+          "defaultSource": "manual review"
         }
       }
     },
@@ -3482,26 +3474,26 @@
       "parameters": {
         "period_basewidth": {
           "name": "period_basewidth",
-          "description": "Shapes the IvP objective function through period basewidth.",
+          "description": "Sets the base width, in speed units, for the periodic-speed objective during the active speed pulse. It controls how far from the desired period speed utility tapers.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "period_basewidth             = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
+          "example": "period_basewidth = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:55"
         },
         "period_peakwidth": {
           "name": "period_peakwidth",
-          "description": "Shapes the IvP objective function through period peakwidth.",
+          "description": "Sets the peak width, in speed units, for the periodic-speed objective during the active speed pulse. A nonzero value creates a flat high-utility band around the desired speed.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "period_peakwidth             = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
+          "example": "period_peakwidth = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:56"
@@ -3518,39 +3510,39 @@
         },
         "zaic_basewidth": {
           "name": "zaic_basewidth",
-          "description": "Shapes the IvP objective function through ZAIC basewidth.",
+          "description": "Sets the base width, in speed units, for the underlying speed ZAIC used by BHV_PeriodicSpeed. It controls the broadness of acceptable speeds around the desired speed.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "zaic_basewidth               = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
+          "example": "zaic_basewidth = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:55"
         },
         "zaic_peakwidth": {
           "name": "zaic_peakwidth",
-          "description": "Shapes the IvP objective function through ZAIC peakwidth.",
+          "description": "Sets the peak width, in speed units, for the underlying speed ZAIC used by BHV_PeriodicSpeed. A nonzero value creates a plateau of equally preferred speeds.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "zaic_peakwidth               = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
+          "example": "zaic_peakwidth = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:56"
         },
         "zaic_summit_delta": {
           "name": "zaic_summit_delta",
-          "description": "Shapes the IvP objective function through ZAIC summit delta.",
+          "description": "Sets the summit-delta utility drop for the speed ZAIC used by BHV_PeriodicSpeed. Larger values sharpen preference for the exact desired speed.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "zaic_summit_delta            = 1",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
+          "example": "zaic_summit_delta = 25",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "25",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:57"
@@ -3897,26 +3889,26 @@
         },
         "hdg_basewidth": {
           "name": "hdg_basewidth",
-          "description": "Sets the heading objective-function base width.",
+          "description": "Source spelling for heading_basewidth. It sets the base width, in degrees, of the shadowing heading objective.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "hdg_basewidth                = 90",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
+          "example": "hdg_basewidth = 160",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "160",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:51"
         },
         "hdg_peakwidth": {
           "name": "hdg_peakwidth",
-          "description": "Sets the heading objective-function peak width.",
+          "description": "Source spelling for heading_peakwidth. It sets the peak width, in degrees, of the shadowing heading objective.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "hdg_peakwidth                = 90",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
+          "example": "hdg_peakwidth = 20",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "20",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:50"
@@ -3956,26 +3948,26 @@
         },
         "spd_basewidth": {
           "name": "spd_basewidth",
-          "description": "Sets the speed objective-function base width.",
+          "description": "Source spelling for speed_basewidth. It sets the base width, in meters per second, of the shadowing speed objective.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "spd_basewidth                = 1.2",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
+          "example": "spd_basewidth = 2.0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "2.0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:53"
         },
         "spd_peakwidth": {
           "name": "spd_peakwidth",
-          "description": "Sets the speed objective-function peak width.",
+          "description": "Source spelling for speed_peakwidth. It sets the peak width, in meters per second, of the shadowing speed objective.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "spd_peakwidth                = 1.2",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
+          "example": "spd_peakwidth = 0.1",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "0.1",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:52"
@@ -3999,29 +3991,27 @@
       "parameters": {
         "edge_color": {
           "name": "edge_color",
-          "description": "Sets the edge color for the behavior's visualization.",
+          "description": "Sets the color of the station-keeping region polygon edges posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "edge_color                   = yellow",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
+          "example": "edge_color = light_blue",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587",
           "default": "light_blue",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:70"
+          "defaultSource": "manual review"
         },
         "edge_size": {
           "name": "edge_size",
-          "description": "Sets the edge line width for the behavior's visualization.",
+          "description": "Sets the line width of the station-keeping region polygon edges posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "edge_size                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
+          "example": "edge_size = 1",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587",
           "default": "1",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:73"
+          "defaultSource": "manual review"
         },
         "extra_speed": {
           "name": "extra_speed",
@@ -4038,16 +4028,15 @@
         },
         "label_color": {
           "name": "label_color",
-          "description": "Sets the label color for the behavior's visualization.",
+          "description": "Sets the label color of the station-keeping region polygon posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "label_color                  = yellow",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
+          "example": "label_color = white",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587",
           "default": "white",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:71"
+          "defaultSource": "manual review"
         },
         "spawnx_flag": {
           "name": "spawnx_flag",
@@ -4061,29 +4050,27 @@
         },
         "vertex_color": {
           "name": "vertex_color",
-          "description": "Sets the vertex color for the behavior's visualization.",
+          "description": "Sets the color of the station-keeping region polygon vertices posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "vertex_color                 = yellow",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
+          "example": "vertex_color = red",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587",
           "default": "red",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69"
+          "defaultSource": "manual review"
         },
         "vertex_size": {
           "name": "vertex_size",
-          "description": "Sets the vertex size for the behavior's visualization.",
+          "description": "Sets the size of the station-keeping region polygon vertices posted for viewer display.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "vertex_size                  = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
+          "example": "vertex_size = 1",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587",
           "default": "1",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:72"
+          "defaultSource": "manual review"
         }
       }
     },
@@ -5066,16 +5053,16 @@
     "basewidth": [
       {
         "owner": "BHV_MaintainHeading",
-        "description": "Shapes the IvP objective function through basewidth.",
+        "description": "Sets the heading-error span, in degrees, over which the ZAIC objective tapers from its preferred heading toward low utility. Wider base widths make the behavior tolerate a broader range of headings.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "150",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp:53",
-        "example": "basewidth                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp"
+        "example": "basewidth = 150",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "basin_region": [
@@ -6100,29 +6087,27 @@
     "edge_color": [
       {
         "owner": "BHV_Loiter",
-        "description": "Sets the edge color for the behavior's visualization.",
+        "description": "Sets the color of the loiter polygon edges posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "white",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:80",
-        "example": "edge_color                   = yellow",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+        "defaultSource": "manual review",
+        "example": "edge_color = white",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679"
       },
       {
         "owner": "BHV_OpRegionRecover",
-        "description": "Sets the edge color for the behavior's visualization.",
+        "description": "Sets the color of the recovery-region polygon edges posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "aqua",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:49",
-        "example": "edge_color                   = yellow",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
+        "defaultSource": "manual review",
+        "example": "edge_color = aqua",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695"
       },
       {
         "owner": "BHV_PModelView",
@@ -6138,57 +6123,53 @@
       },
       {
         "owner": "BHV_StationKeep",
-        "description": "Sets the edge color for the behavior's visualization.",
+        "description": "Sets the color of the station-keeping region polygon edges posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "light_blue",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:70",
-        "example": "edge_color                   = yellow",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp"
+        "defaultSource": "manual review",
+        "example": "edge_color = light_blue",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587"
       }
     ],
     "edge_size": [
       {
         "owner": "BHV_Loiter",
-        "description": "Sets the edge line width for the behavior's visualization.",
+        "description": "Sets the line width of the loiter polygon edges posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "1",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:78",
-        "example": "edge_size                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+        "defaultSource": "manual review",
+        "example": "edge_size = 1",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679"
       },
       {
         "owner": "BHV_OpRegionRecover",
-        "description": "Sets the edge line width for the behavior's visualization.",
+        "description": "Sets the line width of the recovery-region polygon edges posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "1",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:48",
-        "example": "edge_size                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
+        "defaultSource": "manual review",
+        "example": "edge_size = 1",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695"
       },
       {
         "owner": "BHV_StationKeep",
-        "description": "Sets the edge line width for the behavior's visualization.",
+        "description": "Sets the line width of the station-keeping region polygon edges posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "1",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:73",
-        "example": "edge_size                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp"
+        "defaultSource": "manual review",
+        "example": "edge_size = 1",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587"
       }
     ],
     "end_spd": [
@@ -6448,31 +6429,31 @@
     "hdg_basewidth": [
       {
         "owner": "BHV_Shadow",
-        "description": "Sets the heading objective-function base width.",
+        "description": "Source spelling for heading_basewidth. It sets the base width, in degrees, of the shadowing heading objective.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "160",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:51",
-        "example": "hdg_basewidth                = 90",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp"
+        "example": "hdg_basewidth = 160",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "hdg_peakwidth": [
       {
         "owner": "BHV_Shadow",
-        "description": "Sets the heading objective-function peak width.",
+        "description": "Source spelling for heading_peakwidth. It sets the peak width, in degrees, of the shadowing heading objective.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "20",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:50",
-        "example": "hdg_peakwidth                = 90",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp"
+        "example": "hdg_peakwidth = 20",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "heading": [
@@ -6886,48 +6867,47 @@
     "label_color": [
       {
         "owner": "BHV_Loiter",
-        "description": "Sets the label color for the behavior's visualization.",
+        "description": "Sets the label color of the loiter polygon posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "label_color                  = yellow",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+        "example": "label_color = white",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679"
       },
       {
         "owner": "BHV_OpRegionRecover",
-        "description": "Sets the label color for the behavior's visualization.",
+        "description": "Sets the label color of the recovery-region polygon posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "label_color                  = yellow",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
+        "example": "label_color = aqua",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695"
       },
       {
         "owner": "BHV_StationKeep",
-        "description": "Sets the label color for the behavior's visualization.",
+        "description": "Sets the label color of the station-keeping region polygon posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "white",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:71",
-        "example": "label_color                  = yellow",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp"
+        "defaultSource": "manual review",
+        "example": "label_color = white",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587"
       }
     ],
     "lcolor": [
       {
         "owner": "BHV_Loiter",
-        "description": "Sets the label color for the behavior's visualization.",
+        "description": "Alias for the loiter polygon label color posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "lcolor                       = yellow",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+        "example": "lcolor = white",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679"
       }
     ],
     "lead_condition": [
@@ -7776,16 +7756,16 @@
     "peakwidth": [
       {
         "owner": "BHV_MaintainHeading",
-        "description": "Shapes the IvP objective function through peakwidth.",
+        "description": "Sets the heading-error span, in degrees, around the target heading that receives peak utility. A wider peak creates a flatter preferred heading region.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "30",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp:52",
-        "example": "peakwidth                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp"
+        "example": "peakwidth = 30",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "pending_status_variable": [
@@ -7806,31 +7786,31 @@
     "period_basewidth": [
       {
         "owner": "BHV_PeriodicSpeed",
-        "description": "Shapes the IvP objective function through period basewidth.",
+        "description": "Sets the base width, in speed units, for the periodic-speed objective during the active speed pulse. It controls how far from the desired period speed utility tapers.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:55",
-        "example": "period_basewidth             = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp"
+        "example": "period_basewidth = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "period_peakwidth": [
       {
         "owner": "BHV_PeriodicSpeed",
-        "description": "Shapes the IvP objective function through period peakwidth.",
+        "description": "Sets the peak width, in speed units, for the periodic-speed objective during the active speed pulse. A nonzero value creates a flat high-utility band around the desired speed.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:56",
-        "example": "period_peakwidth             = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp"
+        "example": "period_peakwidth = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "plateau_region": [
@@ -8870,16 +8850,16 @@
     "spd_basewidth": [
       {
         "owner": "BHV_Shadow",
-        "description": "Sets the speed objective-function base width.",
+        "description": "Source spelling for speed_basewidth. It sets the base width, in meters per second, of the shadowing speed objective.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "2.0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:53",
-        "example": "spd_basewidth                = 1.2",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp"
+        "example": "spd_basewidth = 2.0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "spd_faster": [
@@ -8928,16 +8908,16 @@
     "spd_peakwidth": [
       {
         "owner": "BHV_Shadow",
-        "description": "Sets the speed objective-function peak width.",
+        "description": "Source spelling for speed_peakwidth. It sets the peak width, in meters per second, of the shadowing speed objective.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "0.1",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:52",
-        "example": "spd_peakwidth                = 1.2",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp"
+        "example": "spd_peakwidth = 0.1",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "spd_slower": [
@@ -9055,16 +9035,16 @@
     "summitdelta": [
       {
         "owner": "BHV_MaintainHeading",
-        "description": "Shapes the IvP objective function through summitdelta.",
+        "description": "Sets the utility drop across the ZAIC summit for the heading objective. Larger values make the peak less flat and strengthen preference for the exact target heading.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "80",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp:54",
-        "example": "summitdelta                  = 1",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaintainHeading.cpp"
+        "example": "summitdelta = 80",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "templating": [
@@ -9722,29 +9702,27 @@
     "vertex_color": [
       {
         "owner": "BHV_Loiter",
-        "description": "Sets the vertex color for the behavior's visualization.",
+        "description": "Sets the color of the loiter polygon vertices posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "dodger_blue",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:79",
-        "example": "vertex_color                 = yellow",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+        "defaultSource": "manual review",
+        "example": "vertex_color = dodger_blue",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679"
       },
       {
         "owner": "BHV_OpRegionRecover",
-        "description": "Sets the vertex color for the behavior's visualization.",
+        "description": "Sets the color of the recovery-region polygon vertices posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "brown",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:47",
-        "example": "vertex_color                 = yellow",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
+        "defaultSource": "manual review",
+        "example": "vertex_color = brown",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695"
       },
       {
         "owner": "BHV_PModelView",
@@ -9760,44 +9738,41 @@
       },
       {
         "owner": "BHV_StationKeep",
-        "description": "Sets the vertex color for the behavior's visualization.",
+        "description": "Sets the color of the station-keeping region polygon vertices posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "red",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69",
-        "example": "vertex_color                 = yellow",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp"
+        "defaultSource": "manual review",
+        "example": "vertex_color = red",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587"
       }
     ],
     "vertex_size": [
       {
         "owner": "BHV_Loiter",
-        "description": "Sets the vertex size for the behavior's visualization.",
+        "description": "Sets the size of the loiter polygon vertices posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "1",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77",
-        "example": "vertex_size                  = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+        "defaultSource": "manual review",
+        "example": "vertex_size = 1",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:77-80,583-586,662-679"
       },
       {
         "owner": "BHV_OpRegionRecover",
-        "description": "Sets the vertex size for the behavior's visualization.",
+        "description": "Sets the size of the recovery-region polygon vertices posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "1",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46",
-        "example": "vertex_size                  = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
+        "defaultSource": "manual review",
+        "example": "vertex_size = 1",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:46-49,480-489,686-695"
       },
       {
         "owner": "BHV_PModelView",
@@ -9813,16 +9788,15 @@
       },
       {
         "owner": "BHV_StationKeep",
-        "description": "Sets the vertex size for the behavior's visualization.",
+        "description": "Sets the size of the station-keeping region polygon vertices posted for viewer display.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "1",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:72",
-        "example": "vertex_size                  = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp"
+        "defaultSource": "manual review",
+        "example": "vertex_size = 1",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:69-73,413-422,578-587"
       }
     ],
     "vsource": [
@@ -9978,46 +9952,46 @@
     "zaic_basewidth": [
       {
         "owner": "BHV_PeriodicSpeed",
-        "description": "Shapes the IvP objective function through ZAIC basewidth.",
+        "description": "Sets the base width, in speed units, for the underlying speed ZAIC used by BHV_PeriodicSpeed. It controls the broadness of acceptable speeds around the desired speed.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:55",
-        "example": "zaic_basewidth               = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp"
+        "example": "zaic_basewidth = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "zaic_peakwidth": [
       {
         "owner": "BHV_PeriodicSpeed",
-        "description": "Shapes the IvP objective function through ZAIC peakwidth.",
+        "description": "Sets the peak width, in speed units, for the underlying speed ZAIC used by BHV_PeriodicSpeed. A nonzero value creates a plateau of equally preferred speeds.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:56",
-        "example": "zaic_peakwidth               = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp"
+        "example": "zaic_peakwidth = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "zaic_summit_delta": [
       {
         "owner": "BHV_PeriodicSpeed",
-        "description": "Shapes the IvP objective function through ZAIC summit delta.",
+        "description": "Sets the summit-delta utility drop for the speed ZAIC used by BHV_PeriodicSpeed. Larger values sharpen preference for the exact desired speed.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "25",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:57",
-        "example": "zaic_summit_delta            = 1",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp"
+        "example": "zaic_summit_delta = 25",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "zigflag": [

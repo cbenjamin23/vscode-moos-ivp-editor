@@ -864,11 +864,11 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:178-323"
         },
         "basewidth": {
-          "description": "The width of the base, in meters, in the produced ZAIC-style IvP function.",
+          "description": "Sets the depth-error span, in meters, over which the depth ZAIC objective tapers away from the desired depth. Wider values make nearby depths more acceptable.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf",
-          "example": "basewidth                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf",
+          "example": "basewidth = 100",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "100",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantDepth.cpp:52"
@@ -881,21 +881,21 @@
           "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
         },
         "peakwidth": {
-          "description": "The width of the peak, in meters, in the produced ZAIC-style IvP function.",
+          "description": "Sets the depth-error span, in meters, around the desired depth that receives peak utility. A nonzero peak width creates a flat preferred depth band.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf",
-          "example": "peakwidth                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf",
+          "example": "peakwidth = 3",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "3",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantDepth.cpp:51"
         },
         "summitdelta": {
-          "description": "The height of the summit delta parameter in the produced ZAIC-style IvP function. See Figure ??.",
+          "description": "Sets the summit-delta utility drop for the depth ZAIC objective. Larger values sharpen preference for the exact desired depth.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf",
-          "example": "summitdelta                  = 1",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf",
+          "example": "summitdelta = 50",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "50",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantDepth.cpp:53"
@@ -1062,11 +1062,11 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:178-323"
         },
         "basewidth": {
-          "description": "The width of the base, in degrees, in the produced ZAIC-style IvP function.",
+          "description": "Sets the heading-error span, in degrees, over which the heading ZAIC objective tapers away from the requested heading. Wider values make a broader range of headings acceptable.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf",
-          "example": "basewidth                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf",
+          "example": "basewidth = 170",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "170",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantHeading.cpp:51"
@@ -1088,21 +1088,21 @@
           "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
         },
         "peakwidth": {
-          "description": "The width of the peak, in degrees, in the produced ZAIC-style IvP function.",
+          "description": "Sets the heading-error span, in degrees, around the requested heading that receives peak utility. A nonzero peak width creates a flat preferred heading band.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf",
-          "example": "peakwidth                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf",
+          "example": "peakwidth = 10",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "10",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantHeading.cpp:50"
         },
         "summitdelta": {
-          "description": "The height of the summit delta parameter in the produced ZAIC-style IvP function.",
+          "description": "Sets the summit-delta utility drop for the heading ZAIC objective. Larger values sharpen preference for the exact requested heading.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf",
-          "example": "summitdelta                  = 1",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf",
+          "example": "summitdelta = 25",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "25",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantHeading.cpp:52"
@@ -1269,21 +1269,21 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:178-323"
         },
         "basewidth": {
-          "description": "The width of the base, in meters per second, in the produced ZAIC-style IvP function.",
+          "description": "Sets the speed-error span, in meters per second, over which the speed ZAIC objective tapers away from the desired speed. Wider values make nearby speeds more acceptable.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
-          "example": "basewidth                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
+          "example": "basewidth = 0.2",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "0.2",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantSpeed.cpp:50"
         },
         "peakwidth": {
-          "description": "The width of the peak, in meters per second, in the produced ZAIC-style IvP function.",
+          "description": "Sets the speed-error span, in meters per second, around the desired speed that receives peak utility. A nonzero peak width creates a flat preferred speed band.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
-          "example": "peakwidth                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
+          "example": "peakwidth = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantSpeed.cpp:49"
@@ -1299,11 +1299,11 @@
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantSpeed.cpp:48"
         },
         "summitdelta": {
-          "description": "The height of the summit delta parameter in the produced ZAIC-style IvP function.",
+          "description": "Sets the summit-delta utility drop for the speed ZAIC objective. Larger values sharpen preference for the exact desired speed.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
-          "example": "summitdelta                  = 1",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
+          "example": "summitdelta = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantSpeed.cpp:51"
@@ -2968,11 +2968,11 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:178-323"
         },
         "basewidth": {
-          "description": "The width of the base, in meters, in the produced ZAIC-style IvP function.",
+          "description": "Sets the depth band, in meters, over which utility tapers as ownship approaches the maximum depth constraint. Wider values make the max-depth constraint ramp in more gradually.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_max_depth.pdf",
-          "example": "basewidth                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_max_depth.pdf",
+          "example": "basewidth = 100",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "100",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxDepth.cpp:45"
@@ -2987,13 +2987,14 @@
           "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3, moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:137"
         },
         "tolerance": {
-          "description": "Sets the tolerance band or alias value used by the behavior; for BHV_MaxDepth it aliases the basewidth tolerance around the maximum depth.",
+          "description": "Alternative way to set the max-depth basewidth tolerance. It controls how close to the maximum depth ownship may get before utility strongly penalizes deeper commands.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_max_depth.pdf",
           "default": "100",
-          "defaultSource": "manual review",
-          "example": "tolerance = 10",
+          "defaultSource": "source initializer for parsed parameter",
+          "example": "tolerance = 100",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
+          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxDepth.cpp:45"
         },
         "depth_slack_var": {
           "description": "Name of the MOOS variable indicating the present delta between the maximum depth and the current depth.",
@@ -3157,11 +3158,11 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:178-323"
         },
         "basewidth": {
-          "description": "The width of the base, in meters per second, in the produced ZAIC-style IvP function.",
+          "description": "Sets the speed band, in meters per second, over which utility tapers as ownship approaches the maximum speed constraint. Wider values make the max-speed constraint ramp in more gradually.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
-          "example": "basewidth                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
+          "example": "basewidth = 0.5",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "0.5",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxSpeed.cpp:45"
@@ -3181,11 +3182,11 @@
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf"
         },
         "summitdelta": {
-          "description": "Sets the summit delta used in the ZAIC-style speed objective function.",
+          "description": "Sets the summit-delta utility drop for the max-speed objective. It controls how sharply utility changes near the maximum permitted speed.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
           "example": "summitdelta = 25",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP max speed behavior documentation"
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
         },
         "speed_mismatch_var": {
           "description": "Name of the MOOS variable indicating the present delta between the desired speed and the current speed. If left unspecified, no posting is made.",
@@ -3829,11 +3830,11 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:178-323"
         },
         "basewidth": {
-          "description": "The width of the ZAIC basewidth, in m/sec, in the IvP function.",
+          "description": "Sets the base width, in meters per second, for the documented periodic-speed ZAIC objective. It controls how quickly utility falls as speed differs from the desired periodic speed.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
-          "example": "basewidth                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
+          "example": "basewidth = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:55"
@@ -3848,11 +3849,11 @@
           "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
         },
         "peakwidth": {
-          "description": "The width of the ZAIC peakwidth, in m/sec in the IvP function.",
+          "description": "Sets the peak width, in meters per second, for the documented periodic-speed ZAIC objective. A nonzero peak width gives a band of speeds maximum utility.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
-          "example": "peakwidth                    = 4",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
+          "example": "peakwidth = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:56"
@@ -3895,11 +3896,11 @@
           "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
         },
         "summit_delta": {
-          "description": "The extent of the ZAIC summit delta in the IvP function.",
+          "description": "Sets the summit-delta utility drop in the periodic-speed ZAIC objective. It shapes how strongly the behavior prefers the exact desired speed over nearby speeds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
-          "example": "summit_delta                 = 1",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
+          "example": "summit_delta = 25",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "25",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:57"
@@ -4427,41 +4428,41 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:120-191"
         },
         "heading_peakwidth": {
-          "description": "Width of the peak, in degrees, in the produced ZAIC-style IvP function.",
+          "description": "Sets the peak width, in degrees, of the heading objective used while shadowing the contact. A wider peak makes nearby headings equally preferred.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-          "example": "heading_peakwidth            = 90",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
+          "example": "heading_peakwidth = 20",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "20",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:50"
         },
         "heading_basewidth": {
-          "description": "Width of the base, in degrees, in the produced ZAIC-style IvP function.",
+          "description": "Sets the base width, in degrees, of the heading objective used while shadowing the contact. Wider values allow a broader range of headings to retain utility.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-          "example": "heading_basewidth            = 90",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
+          "example": "heading_basewidth = 160",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "160",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:51"
         },
         "speed_peakwidth": {
-          "description": "Width of the peak, in m/sec, in the produced ZAIC-style function.",
+          "description": "Sets the peak width, in meters per second, of the speed objective used while shadowing the contact. A nonzero peak allows a range of speeds to share maximum utility.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-          "example": "speed_peakwidth              = 1.2",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
+          "example": "speed_peakwidth = 0.1",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "0.1",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:52"
         },
         "speed_basewidth": {
-          "description": "Width of the base, in m/sec, in the produced ZAIC-style IvP function.",
+          "description": "Sets the base width, in meters per second, of the speed objective used while shadowing the contact. It controls how quickly utility falls away from the desired speed.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-          "example": "speed_basewidth              = 1.2",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
+          "example": "speed_basewidth = 2.0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "default": "2.0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:53"
@@ -6074,70 +6075,70 @@
     "basewidth": [
       {
         "owner": "BHV_ConstantDepth",
-        "description": "The width of the base, in meters, in the produced ZAIC-style IvP function.",
+        "description": "Sets the depth-error span, in meters, over which the depth ZAIC objective tapers away from the desired depth. Wider values make nearby depths more acceptable.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf",
         "default": "100",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantDepth.cpp:52",
-        "example": "basewidth                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf"
+        "example": "basewidth = 100",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       },
       {
         "owner": "BHV_ConstantHeading",
-        "description": "The width of the base, in degrees, in the produced ZAIC-style IvP function.",
+        "description": "Sets the heading-error span, in degrees, over which the heading ZAIC objective tapers away from the requested heading. Wider values make a broader range of headings acceptable.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf",
         "default": "170",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantHeading.cpp:51",
-        "example": "basewidth                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf"
+        "example": "basewidth = 170",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       },
       {
         "owner": "BHV_ConstantSpeed",
-        "description": "The width of the base, in meters per second, in the produced ZAIC-style IvP function.",
+        "description": "Sets the speed-error span, in meters per second, over which the speed ZAIC objective tapers away from the desired speed. Wider values make nearby speeds more acceptable.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
         "default": "0.2",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantSpeed.cpp:50",
-        "example": "basewidth                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf"
+        "example": "basewidth = 0.2",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       },
       {
         "owner": "BHV_MaxDepth",
-        "description": "The width of the base, in meters, in the produced ZAIC-style IvP function.",
+        "description": "Sets the depth band, in meters, over which utility tapers as ownship approaches the maximum depth constraint. Wider values make the max-depth constraint ramp in more gradually.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_max_depth.pdf",
         "default": "100",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxDepth.cpp:45",
-        "example": "basewidth                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_max_depth.pdf"
+        "example": "basewidth = 100",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       },
       {
         "owner": "BHV_MaxSpeed",
-        "description": "The width of the base, in meters per second, in the produced ZAIC-style IvP function.",
+        "description": "Sets the speed band, in meters per second, over which utility tapers as ownship approaches the maximum speed constraint. Wider values make the max-speed constraint ramp in more gradually.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
         "default": "0.5",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxSpeed.cpp:45",
-        "example": "basewidth                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
+        "example": "basewidth = 0.5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
         "aliasOf": "BHV_ConstantSpeed"
       },
       {
         "owner": "BHV_PeriodicSpeed",
-        "description": "The width of the ZAIC basewidth, in m/sec, in the IvP function.",
+        "description": "Sets the base width, in meters per second, for the documented periodic-speed ZAIC objective. It controls how quickly utility falls as speed differs from the desired periodic speed.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:55",
-        "example": "basewidth                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf"
+        "example": "basewidth = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "bearing_lines": [
@@ -7968,14 +7969,14 @@
     "heading_basewidth": [
       {
         "owner": "BHV_Shadow",
-        "description": "Width of the base, in degrees, in the produced ZAIC-style IvP function.",
+        "description": "Sets the base width, in degrees, of the heading objective used while shadowing the contact. Wider values allow a broader range of headings to retain utility.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
         "default": "160",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:51",
-        "example": "heading_basewidth            = 90",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf"
+        "example": "heading_basewidth = 160",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "heading_mismatch_var": [
@@ -7991,14 +7992,14 @@
     "heading_peakwidth": [
       {
         "owner": "BHV_Shadow",
-        "description": "Width of the peak, in degrees, in the produced ZAIC-style IvP function.",
+        "description": "Sets the peak width, in degrees, of the heading objective used while shadowing the contact. A wider peak makes nearby headings equally preferred.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
         "default": "20",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:50",
-        "example": "heading_peakwidth            = 90",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf"
+        "example": "heading_peakwidth = 20",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "hibernation_radius": [
@@ -9675,36 +9676,36 @@
     "peakwidth": [
       {
         "owner": "BHV_ConstantDepth",
-        "description": "The width of the peak, in meters, in the produced ZAIC-style IvP function.",
+        "description": "Sets the depth-error span, in meters, around the desired depth that receives peak utility. A nonzero peak width creates a flat preferred depth band.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf",
         "default": "3",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantDepth.cpp:51",
-        "example": "peakwidth                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf"
+        "example": "peakwidth = 3",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       },
       {
         "owner": "BHV_ConstantHeading",
-        "description": "The width of the peak, in degrees, in the produced ZAIC-style IvP function.",
+        "description": "Sets the heading-error span, in degrees, around the requested heading that receives peak utility. A nonzero peak width creates a flat preferred heading band.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf",
         "default": "10",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantHeading.cpp:50",
-        "example": "peakwidth                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf"
+        "example": "peakwidth = 10",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       },
       {
         "owner": "BHV_ConstantSpeed",
-        "description": "The width of the peak, in meters per second, in the produced ZAIC-style IvP function.",
+        "description": "Sets the speed-error span, in meters per second, around the desired speed that receives peak utility. A nonzero peak width creates a flat preferred speed band.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantSpeed.cpp:49",
-        "example": "peakwidth                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf"
+        "example": "peakwidth = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       },
       {
         "owner": "BHV_MaxSpeed",
@@ -9717,14 +9718,14 @@
       },
       {
         "owner": "BHV_PeriodicSpeed",
-        "description": "The width of the ZAIC peakwidth, in m/sec in the IvP function.",
+        "description": "Sets the peak width, in meters per second, for the documented periodic-speed ZAIC objective. A nonzero peak width gives a band of speeds maximum utility.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:56",
-        "example": "peakwidth                    = 4",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf"
+        "example": "peakwidth = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "pending_status_var": [
@@ -11475,14 +11476,14 @@
     "speed_basewidth": [
       {
         "owner": "BHV_Shadow",
-        "description": "Width of the base, in m/sec, in the produced ZAIC-style IvP function.",
+        "description": "Sets the base width, in meters per second, of the speed objective used while shadowing the contact. It controls how quickly utility falls away from the desired speed.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
         "default": "2.0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:53",
-        "example": "speed_basewidth              = 1.2",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf"
+        "example": "speed_basewidth = 2.0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "speed_mismatch_var": [
@@ -11519,14 +11520,14 @@
     "speed_peakwidth": [
       {
         "owner": "BHV_Shadow",
-        "description": "Width of the peak, in m/sec, in the produced ZAIC-style function.",
+        "description": "Sets the peak width, in meters per second, of the speed objective used while shadowing the contact. A nonzero peak allows a range of speeds to share maximum utility.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
         "default": "0.1",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:52",
-        "example": "speed_peakwidth              = 1.2",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf"
+        "example": "speed_peakwidth = 0.1",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "spiral_factor": [
@@ -11623,57 +11624,57 @@
     "summit_delta": [
       {
         "owner": "BHV_PeriodicSpeed",
-        "description": "The extent of the ZAIC summit delta in the IvP function.",
+        "description": "Sets the summit-delta utility drop in the periodic-speed ZAIC objective. It shapes how strongly the behavior prefers the exact desired speed over nearby speeds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
         "default": "25",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:57",
-        "example": "summit_delta                 = 1",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf"
+        "example": "summit_delta = 25",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "summitdelta": [
       {
         "owner": "BHV_ConstantDepth",
-        "description": "The height of the summit delta parameter in the produced ZAIC-style IvP function. See Figure ??.",
+        "description": "Sets the summit-delta utility drop for the depth ZAIC objective. Larger values sharpen preference for the exact desired depth.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf",
         "default": "50",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantDepth.cpp:53",
-        "example": "summitdelta                  = 1",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf"
+        "example": "summitdelta = 50",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       },
       {
         "owner": "BHV_ConstantHeading",
-        "description": "The height of the summit delta parameter in the produced ZAIC-style IvP function.",
+        "description": "Sets the summit-delta utility drop for the heading ZAIC objective. Larger values sharpen preference for the exact requested heading.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf",
         "default": "25",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantHeading.cpp:52",
-        "example": "summitdelta                  = 1",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf"
+        "example": "summitdelta = 25",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       },
       {
         "owner": "BHV_ConstantSpeed",
-        "description": "The height of the summit delta parameter in the produced ZAIC-style IvP function.",
+        "description": "Sets the summit-delta utility drop for the speed ZAIC objective. Larger values sharpen preference for the exact desired speed.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantSpeed.cpp:51",
-        "example": "summitdelta                  = 1",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf"
+        "example": "summitdelta = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       },
       {
         "owner": "BHV_MaxSpeed",
-        "description": "Sets the summit delta used in the ZAIC-style speed objective function.",
+        "description": "Sets the summit-delta utility drop for the max-speed objective. It controls how sharply utility changes near the maximum permitted speed.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
         "example": "summitdelta = 25",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP max speed behavior documentation",
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
         "aliasOf": "BHV_ConstantSpeed"
       }
     ],
@@ -11942,13 +11943,14 @@
     "tolerance": [
       {
         "owner": "BHV_MaxDepth",
-        "description": "Sets the tolerance band or alias value used by the behavior; for BHV_MaxDepth it aliases the basewidth tolerance around the maximum depth.",
+        "description": "Alternative way to set the max-depth basewidth tolerance. It controls how close to the maximum depth ownship may get before utility strongly penalizes deeper commands.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_max_depth.pdf",
         "default": "100",
-        "defaultSource": "manual review",
-        "example": "tolerance = 10",
+        "defaultSource": "source initializer for parsed parameter",
+        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxDepth.cpp:45",
+        "example": "tolerance = 100",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
+        "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters"
       }
     ],
     "trail_angle": [

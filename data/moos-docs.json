@@ -669,67 +669,67 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
         },
         "circle_viewable_all": {
-          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+          "description": "Controls whether VIEW_CIRCLE objects are rendered in pMarineViewer. Setting this false hides circle geometry without affecting labels for other object classes.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "circle_viewable_all = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "circle_viewable_labels": {
-          "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+          "description": "Controls whether labels attached to VIEW_CIRCLE objects are rendered. The circle geometry remains controlled separately by circle_viewable_all.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "circle_viewable_labels = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "comms_pulse_viewable_all": {
-          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+          "description": "Controls whether VIEW_COMMS_PULSE communication pulses are rendered. Setting this false suppresses comms-pulse visuals while leaving the underlying MOOS mail untouched.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "comms_pulse_viewable_all = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "datum_viewable": {
-          "description": "Controls whether the local geodesy datum marker is rendered.",
+          "description": "Controls whether pMarineViewer renders the local geodesy datum marker. This only affects viewer display; the LatOrigin/LongOrigin mission datum remains unchanged.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "datum_viewable = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "datum_color": {
-          "description": "Sets the display color for the local geodesy datum marker.",
+          "description": "Sets the color of the local geodesy datum marker drawn by pMarineViewer. Use any supported MOOS-IvP color name.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "red",
           "defaultSource": "manual review",
           "example": "datum_color = red",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "datum_size": {
-          "description": "Sets the rendered point size for the local geodesy datum marker.",
+          "description": "Sets the rendered point size of the local geodesy datum marker. Larger values make the datum more visible on the viewer background.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "2",
           "defaultSource": "manual review",
           "example": "datum_size = 2",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "drop_point_viewable_all": {
-          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+          "description": "Controls whether user drop-point markers are rendered in the viewer. This affects the visual display of drop points, not whether drop-point mail can be generated.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "drop_point_viewable_all = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "drop_point_coords": {
           "description": "Controls how drop-point labels show coordinates. Supported values include as-dropped, lat-lon, and local-grid.",
@@ -750,22 +750,22 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
         },
         "grid_viewable_all": {
-          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+          "description": "Controls whether VIEW_GRID and VIEW_GRID_DELTA objects are rendered. Setting this false hides grid overlays while preserving other geometry classes.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "grid_viewable_all = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "grid_viewable_labels": {
-          "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+          "description": "Controls whether labels on rendered grid objects are shown. Grid geometry visibility remains controlled by grid_viewable_all.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "grid_viewable_labels = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "grid_viewable_opaqueness": {
           "description": "Sets the opacity of rendered grid objects. Values range from 0 for transparent to 1 for fully opaque.",
@@ -793,13 +793,13 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 5.2"
         },
         "marker_viewable_all": {
-          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+          "description": "Controls whether VIEW_MARKER objects are rendered. Marker label display is controlled separately by marker_viewable_labels.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "marker_viewable_all = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "marker_edge_width": {
           "description": "Sets the width of the black outer edge drawn around VIEW_MARKER objects.",
@@ -811,112 +811,112 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
         },
         "marker_viewable_labels": {
-          "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+          "description": "Controls whether labels attached to VIEW_MARKER objects are rendered. Marker geometry remains controlled separately by marker_viewable_all.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "marker_viewable_labels = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "oparea_viewable_all": {
-          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+          "description": "Controls whether operating-area polygons are rendered. This is useful for temporarily hiding the op-area overlay without changing mission geometry.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "oparea_viewable_all = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "oparea_viewable_labels": {
-          "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+          "description": "Controls whether labels attached to operating-area geometry are rendered. The operating-area geometry remains controlled by oparea_viewable_all.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "oparea_viewable_labels = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "point_viewable_all": {
-          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+          "description": "Controls whether VIEW_POINT objects are rendered. Point labels remain controlled separately by point_viewable_labels.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "point_viewable_all = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "point_viewable_labels": {
-          "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+          "description": "Controls whether labels attached to VIEW_POINT objects are rendered. Point geometry remains controlled separately by point_viewable_all.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "point_viewable_labels = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "polygon_viewable_all": {
-          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+          "description": "Controls whether VIEW_POLYGON objects are rendered. Polygon labels remain controlled separately by polygon_viewable_labels.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "polygon_viewable_all = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "polygon_viewable_labels": {
-          "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+          "description": "Controls whether labels attached to VIEW_POLYGON objects are rendered. Polygon geometry remains controlled separately by polygon_viewable_all.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "polygon_viewable_labels = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "range_pulse_viewable_all": {
-          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+          "description": "Controls whether VIEW_RANGE_PULSE objects are rendered. Setting this false hides range-pulse effects such as collision or sensor pulses.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "range_pulse_viewable_all = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "seglist_viewable_all": {
-          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+          "description": "Controls whether VIEW_SEGLIST objects are rendered. Segment-list labels remain controlled separately by seglist_viewable_labels.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "seglist_viewable_all = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "seglist_viewable_labels": {
-          "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+          "description": "Controls whether labels attached to VIEW_SEGLIST objects are rendered. Segment-list geometry remains controlled separately by seglist_viewable_all.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "seglist_viewable_labels = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "vector_viewable_all": {
-          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+          "description": "Controls whether VIEW_VECTOR objects are rendered. Vector labels remain controlled separately by vector_viewable_labels.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "vector_viewable_all = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "vector_viewable_labels": {
-          "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+          "description": "Controls whether labels attached to VIEW_VECTOR objects are rendered. Vector geometry remains controlled separately by vector_viewable_all.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "vector_viewable_labels = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "bearing_lines_viewable": {
           "description": "Toggles rendering of bearing-line visual artifacts. Setting it false suppresses bearing lines while leaving other viewer objects unaffected.",
@@ -955,22 +955,22 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 6.6"
         },
         "trails_color": {
-          "description": "Sets the color used for rendered vehicle trail points.",
+          "description": "Sets the color used for vehicle trail points behind each rendered vehicle. It affects historical trail rendering, not the live vehicle body color.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "white",
           "defaultSource": "manual review",
           "example": "trails_color = white",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "trails_connect_viewable": {
-          "description": "Controls whether vehicle trail points are connected by line segments.",
+          "description": "Controls whether pMarineViewer connects vehicle trail points with line segments. This can make sparse node-report histories easier to visually follow.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "trails_connect_viewable = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "trails_length": {
           "description": "Sets how many recent position points are retained and rendered for each vehicle trail.",
@@ -991,13 +991,13 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf: vehicle trail configuration"
         },
         "trails_viewable": {
-          "description": "Controls whether vehicle trails are rendered.",
+          "description": "Controls whether vehicle trail histories are rendered behind vehicles. Turning this off hides trail points without hiding the vehicles themselves.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "trails_viewable = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "vehicles_active_color": {
           "description": "Sets the color used for the active vehicle whose data is shown in the viewer data fields.",
@@ -1009,13 +1009,13 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
         },
         "vehicles_inactive_color": {
-          "description": "Sets the color used for non-active vehicles.",
+          "description": "Sets the display color used for vehicles that are not the currently selected active vehicle. The active vehicle color is controlled separately by vehicles_active_color.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "yellow",
           "defaultSource": "manual review",
           "example": "vehicles_inactive_color = yellow",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "vehicles_shape_scale": {
           "description": "Applies a scale factor to rendered vehicle shapes. This changes visual vehicle size without changing reported vehicle state.",
@@ -1036,31 +1036,31 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
         },
         "vehicles_name_color": {
-          "description": "Sets the color used for rendered vehicle labels.",
+          "description": "Sets the color used for vehicle name labels. The label content itself is controlled by vehicles_name_mode.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "white",
           "defaultSource": "manual review",
           "example": "vehicles_name_color = white",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "vehicles_viewable": {
-          "description": "Controls whether vehicles are rendered in the viewer.",
+          "description": "Controls whether vehicle icons are rendered from incoming node reports. Turning this off hides vehicles while other geometry such as polygons and points may remain visible.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "vehicles_viewable = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "appcast_color_scheme": {
-          "description": "Sets the color scheme used by appcast panes in the viewer.",
+          "description": "Sets the color scheme used for appcast panes in pMarineViewer, including background and text colors. Supported schemes include default, indigo, beige, and white variants.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "indigo",
           "defaultSource": "manual review",
           "example": "appcast_color_scheme = indigo",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "content_mode": {
           "description": "Selects the startup content shown in the infocast panes. Supported modes include appcast and realmcast.",
@@ -1120,58 +1120,58 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf: InfoCast font configuration"
         },
         "realmcast_color_scheme": {
-          "description": "Sets the color scheme used by realmcast panes in the viewer.",
+          "description": "Sets the color scheme used for realmcast panes in pMarineViewer. Supported schemes include default, indigo, beige, white, and hillside.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "hillside",
           "defaultSource": "manual review",
           "example": "realmcast_color_scheme = hillside",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "realmcast_show_source": {
-          "description": "Controls whether the Source column is shown in realmcast output.",
+          "description": "Controls whether the Source column is shown in realmcast output. Hiding it can conserve horizontal space in the realmcast pane.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "realmcast_show_source = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "realmcast_show_community": {
-          "description": "Controls whether the Community column is shown in realmcast output.",
+          "description": "Controls whether the Community column is shown in realmcast output. Hiding it can make realmcast rows more compact.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "realmcast_show_community = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "realmcast_show_subscriptions": {
-          "description": "Controls whether the Subscriptions block is shown in realmcast output.",
+          "description": "Controls whether the subscription list is included in realmcast output. Hiding it can reduce clutter when only publications are being inspected.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "realmcast_show_subscriptions = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "realmcast_show_masked": {
-          "description": "Controls whether masked or filtered realmcast variables are shown.",
+          "description": "Controls whether masked or filtered variables are included in realmcast output. This affects display filtering only, not realmcast collection.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "realmcast_show_masked = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "realmcast_wrap_content": {
-          "description": "Controls whether long realmcast value text wraps across multiple lines.",
+          "description": "Controls whether long realmcast value text wraps onto multiple lines. Wrapping improves readability at the cost of vertical space.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "false",
           "defaultSource": "manual review",
           "example": "realmcast_wrap_content = false",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "realmcast_trunc_content": {
           "description": "Controls whether long realmcast value text is truncated in the value column.",
@@ -1271,22 +1271,22 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 10, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:919"
         },
         "lclick_ix_start": {
-          "description": "Sets the starting index used by left-click context-menu index macros.",
+          "description": "Sets the starting index value for left-click context-menu macros that expand indexed click actions. This is useful when generating numbered postings from repeated mouse clicks.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "0",
           "defaultSource": "manual review",
           "example": "lclick_ix_start = 0",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         },
         "rclick_ix_start": {
-          "description": "Sets the starting index used by right-click context-menu index macros.",
+          "description": "Sets the starting index value for right-click context-menu macros that expand indexed click actions. This lets right-click generated postings use a separate index sequence.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
           "default": "0",
           "defaultSource": "manual review",
           "example": "rclick_ix_start = 0",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
         }
       },
       "description": "The pMarineViewer application is a MOOS application written with FLTK and OpenGL for rendering vehicles and associated information and history during operation or simulation.  A screen shot of a simple one-vehicle mission is shown below in Figure 1."
@@ -4049,13 +4049,13 @@
     "appcast_color_scheme": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets the color scheme used by appcast panes in the viewer.",
+        "description": "Sets the color scheme used for appcast panes in pMarineViewer, including background and text colors. Supported schemes include default, indigo, beige, and white variants.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "indigo",
         "defaultSource": "manual review",
         "example": "appcast_color_scheme = indigo",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       },
       {
         "owner": "uMACView",
@@ -4375,25 +4375,25 @@
     "circle_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+        "description": "Controls whether VIEW_CIRCLE objects are rendered in pMarineViewer. Setting this false hides circle geometry without affecting labels for other object classes.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "circle_viewable_all = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "circle_viewable_labels": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+        "description": "Controls whether labels attached to VIEW_CIRCLE objects are rendered. The circle geometry remains controlled separately by circle_viewable_all.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "circle_viewable_labels = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "collision_dist": [
@@ -4461,13 +4461,13 @@
     "comms_pulse_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+        "description": "Controls whether VIEW_COMMS_PULSE communication pulses are rendered. Setting this false suppresses comms-pulse visuals while leaving the underlying MOOS mail untouched.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "comms_pulse_viewable_all = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "comms_range": [
@@ -4675,37 +4675,37 @@
     "datum_color": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets the display color for the local geodesy datum marker.",
+        "description": "Sets the color of the local geodesy datum marker drawn by pMarineViewer. Use any supported MOOS-IvP color name.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "red",
         "defaultSource": "manual review",
         "example": "datum_color = red",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "datum_size": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets the rendered point size for the local geodesy datum marker.",
+        "description": "Sets the rendered point size of the local geodesy datum marker. Larger values make the datum more visible on the viewer background.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "2",
         "defaultSource": "manual review",
         "example": "datum_size = 2",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "datum_viewable": [
       {
         "owner": "pMarineViewer",
-        "description": "Controls whether the local geodesy datum marker is rendered.",
+        "description": "Controls whether pMarineViewer renders the local geodesy datum marker. This only affects viewer display; the LatOrigin/LongOrigin mission datum remains unchanged.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "datum_viewable = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "deadflag": [
@@ -5285,13 +5285,13 @@
     "drop_point_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+        "description": "Controls whether user drop-point markers are rendered in the viewer. This affects the visual display of drop points, not whether drop-point mail can be generated.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "drop_point_viewable_all = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "earange": [
@@ -5627,25 +5627,25 @@
     "grid_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+        "description": "Controls whether VIEW_GRID and VIEW_GRID_DELTA objects are rendered. Setting this false hides grid overlays while preserving other geometry classes.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "grid_viewable_all = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "grid_viewable_labels": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+        "description": "Controls whether labels on rendered grid objects are shown. Grid geometry visibility remains controlled by grid_viewable_all.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "grid_viewable_labels = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "grid_viewable_opaqueness": [
@@ -6011,13 +6011,13 @@
     "lclick_ix_start": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets the starting index used by left-click context-menu index macros.",
+        "description": "Sets the starting index value for left-click context-menu macros that expand indexed click actions. This is useful when generating numbered postings from repeated mouse clicks.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "0",
         "defaultSource": "manual review",
         "example": "lclick_ix_start = 0",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "lead_condition": [
@@ -6099,25 +6099,25 @@
     "marker_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+        "description": "Controls whether VIEW_MARKER objects are rendered. Marker label display is controlled separately by marker_viewable_labels.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "marker_viewable_all = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "marker_viewable_labels": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+        "description": "Controls whether labels attached to VIEW_MARKER objects are rendered. Marker geometry remains controlled separately by marker_viewable_all.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "marker_viewable_labels = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "match_group": [
@@ -6615,25 +6615,25 @@
     "oparea_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+        "description": "Controls whether operating-area polygons are rendered. This is useful for temporarily hiding the op-area overlay without changing mission geometry.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "oparea_viewable_all = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "oparea_viewable_labels": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+        "description": "Controls whether labels attached to operating-area geometry are rendered. The operating-area geometry remains controlled by oparea_viewable_all.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "oparea_viewable_labels = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "os_mode": [
@@ -6871,25 +6871,25 @@
     "point_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+        "description": "Controls whether VIEW_POINT objects are rendered. Point labels remain controlled separately by point_viewable_labels.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "point_viewable_all = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "point_viewable_labels": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+        "description": "Controls whether labels attached to VIEW_POINT objects are rendered. Point geometry remains controlled separately by point_viewable_all.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "point_viewable_labels = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "poly_duration": [
@@ -7027,25 +7027,25 @@
     "polygon_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+        "description": "Controls whether VIEW_POLYGON objects are rendered. Polygon labels remain controlled separately by polygon_viewable_labels.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "polygon_viewable_all = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "polygon_viewable_labels": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+        "description": "Controls whether labels attached to VIEW_POLYGON objects are rendered. Polygon geometry remains controlled separately by polygon_viewable_all.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "polygon_viewable_labels = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "post_all_ranges": [
@@ -7309,13 +7309,13 @@
     "range_pulse_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+        "description": "Controls whether VIEW_RANGE_PULSE objects are rendered. Setting this false hides range-pulse effects such as collision or sensor pulses.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "range_pulse_viewable_all = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "rate_points": [
@@ -7333,13 +7333,13 @@
     "rclick_ix_start": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets the starting index used by right-click context-menu index macros.",
+        "description": "Sets the starting index value for right-click context-menu macros that expand indexed click actions. This lets right-click generated postings use a separate index sequence.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "0",
         "defaultSource": "manual review",
         "example": "rclick_ix_start = 0",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "reach_distance": [
@@ -7357,13 +7357,13 @@
     "realmcast_color_scheme": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets the color scheme used by realmcast panes in the viewer.",
+        "description": "Sets the color scheme used for realmcast panes in pMarineViewer. Supported schemes include default, indigo, beige, white, and hillside.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "hillside",
         "defaultSource": "manual review",
         "example": "realmcast_color_scheme = hillside",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       },
       {
         "owner": "uMACView",
@@ -7379,13 +7379,13 @@
     "realmcast_show_community": [
       {
         "owner": "pMarineViewer",
-        "description": "Controls whether the Community column is shown in realmcast output.",
+        "description": "Controls whether the Community column is shown in realmcast output. Hiding it can make realmcast rows more compact.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "realmcast_show_community = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       },
       {
         "owner": "uMACView",
@@ -7401,13 +7401,13 @@
     "realmcast_show_masked": [
       {
         "owner": "pMarineViewer",
-        "description": "Controls whether masked or filtered realmcast variables are shown.",
+        "description": "Controls whether masked or filtered variables are included in realmcast output. This affects display filtering only, not realmcast collection.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "realmcast_show_masked = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       },
       {
         "owner": "uMACView",
@@ -7423,13 +7423,13 @@
     "realmcast_show_source": [
       {
         "owner": "pMarineViewer",
-        "description": "Controls whether the Source column is shown in realmcast output.",
+        "description": "Controls whether the Source column is shown in realmcast output. Hiding it can conserve horizontal space in the realmcast pane.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "realmcast_show_source = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       },
       {
         "owner": "uMACView",
@@ -7445,13 +7445,13 @@
     "realmcast_show_subscriptions": [
       {
         "owner": "pMarineViewer",
-        "description": "Controls whether the Subscriptions block is shown in realmcast output.",
+        "description": "Controls whether the subscription list is included in realmcast output. Hiding it can reduce clutter when only publications are being inspected.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "realmcast_show_subscriptions = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       },
       {
         "owner": "uMACView",
@@ -7511,13 +7511,13 @@
     "realmcast_wrap_content": [
       {
         "owner": "pMarineViewer",
-        "description": "Controls whether long realmcast value text wraps across multiple lines.",
+        "description": "Controls whether long realmcast value text wraps onto multiple lines. Wrapping improves readability at the cost of vertical space.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "false",
         "defaultSource": "manual review",
         "example": "realmcast_wrap_content = false",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       },
       {
         "owner": "uMACView",
@@ -7927,25 +7927,25 @@
     "seglist_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+        "description": "Controls whether VIEW_SEGLIST objects are rendered. Segment-list labels remain controlled separately by seglist_viewable_labels.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "seglist_viewable_all = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "seglist_viewable_labels": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+        "description": "Controls whether labels attached to VIEW_SEGLIST objects are rendered. Segment-list geometry remains controlled separately by seglist_viewable_all.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "seglist_viewable_labels = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "sensor_arcs": [
@@ -8355,25 +8355,25 @@
     "trails_color": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets the color used for rendered vehicle trail points.",
+        "description": "Sets the color used for vehicle trail points behind each rendered vehicle. It affects historical trail rendering, not the live vehicle body color.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "white",
         "defaultSource": "manual review",
         "example": "trails_color = white",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "trails_connect_viewable": [
       {
         "owner": "pMarineViewer",
-        "description": "Controls whether vehicle trail points are connected by line segments.",
+        "description": "Controls whether pMarineViewer connects vehicle trail points with line segments. This can make sparse node-report histories easier to visually follow.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "trails_connect_viewable = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "trails_length": [
@@ -8403,13 +8403,13 @@
     "trails_viewable": [
       {
         "owner": "pMarineViewer",
-        "description": "Controls whether vehicle trails are rendered.",
+        "description": "Controls whether vehicle trail histories are rendered behind vehicles. Turning this off hides trail points without hiding the vehicles themselves.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "trails_viewable = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "trunc_data": [
@@ -8545,25 +8545,25 @@
     "vector_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+        "description": "Controls whether VIEW_VECTOR objects are rendered. Vector labels remain controlled separately by vector_viewable_labels.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "vector_viewable_all = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "vector_viewable_labels": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+        "description": "Controls whether labels attached to VIEW_VECTOR objects are rendered. Vector geometry remains controlled separately by vector_viewable_all.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "vector_viewable_labels = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "vehicles_active_color": [
@@ -8581,25 +8581,25 @@
     "vehicles_inactive_color": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets the color used for non-active vehicles.",
+        "description": "Sets the display color used for vehicles that are not the currently selected active vehicle. The active vehicle color is controlled separately by vehicles_active_color.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "yellow",
         "defaultSource": "manual review",
         "example": "vehicles_inactive_color = yellow",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "vehicles_name_color": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets the color used for rendered vehicle labels.",
+        "description": "Sets the color used for vehicle name labels. The label content itself is controlled by vehicles_name_mode.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "white",
         "defaultSource": "manual review",
         "example": "vehicles_name_color = white",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "vehicles_name_mode": [
@@ -8629,13 +8629,13 @@
     "vehicles_viewable": [
       {
         "owner": "pMarineViewer",
-        "description": "Controls whether vehicles are rendered in the viewer.",
+        "description": "Controls whether vehicle icons are rendered from incoming node reports. Turning this off hides vehicles while other geometry such as polygons and points may remain visible.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmviewer.pdf",
         "default": "true",
         "defaultSource": "manual review",
         "example": "vehicles_viewable = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp display-control review"
       }
     ],
     "verbose": [
