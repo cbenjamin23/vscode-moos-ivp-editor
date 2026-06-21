@@ -1951,7 +1951,7 @@
         },
         "general_alert": {
           "name": "general_alert",
-          "description": "Defines the default alert request posted by pObstacleMgr when obstacle conditions require a general alert.",
+          "description": "Configures the default alert request that pObstacleMgr posts when obstacle conditions require a general obstacle alert.",
           "source": "../moos-ivp/ivp/src/pObstacleMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
@@ -4904,7 +4904,7 @@
     "general_alert": [
       {
         "owner": "pObstacleMgr",
-        "description": "Defines the default alert request posted by pObstacleMgr when obstacle conditions require a general alert.",
+        "description": "Configures the default alert request that pObstacleMgr posts when obstacle conditions require a general obstacle alert.",
         "source": "../moos-ivp/ivp/src/pObstacleMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",

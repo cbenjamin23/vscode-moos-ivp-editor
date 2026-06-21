@@ -1846,7 +1846,7 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_psearchgrid.pdf",
       "parameters": {
         "grid_config": {
-          "description": "Defines the search grid geometry and labeling used by pSearchGrid.",
+          "description": "Supplies the search-grid geometry, cell layout, label, and initial values used by pSearchGrid when it creates the grid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_psearchgrid.pdf",
           "example": "grid_config = label=alpha,pts={0,0:100,0:100,100:0,100}",
           "exampleSource": "manual review",
@@ -2767,7 +2767,7 @@
           "reviewSource": "MOOS-IvP app_ufld_obsim.pdf and moos-ivp/ivp/src/uFldObstacleSim"
         },
         "region": {
-          "description": "Defines the convex polygon region within which random or regenerated obstacles are placed.",
+          "description": "Supplies the convex operating polygon within which uFldObstacleSim places random or regenerated obstacles.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_voronoi.pdf",
           "example": "region = pts={0,0:100,0:100,100:0,100}",
           "exampleSource": "manual review",
@@ -3581,7 +3581,7 @@
           "reviewSource": "MOOS-IvP app_utscript.pdf and moos-ivp/ivp/src/uTimerScript"
         },
         "values": {
-          "description": "Defines the possible values for an enumerated random variable used by timer-script event macros.",
+          "description": "Lists the possible values for an enumerated random-variable macro used when expanding timer-script event values.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_utscript.pdf",
           "example": "values = red:green:blue",
           "exampleSource": "manual review",
@@ -5617,7 +5617,7 @@
     "grid_config": [
       {
         "owner": "pSearchGrid",
-        "description": "Defines the search grid geometry and labeling used by pSearchGrid.",
+        "description": "Supplies the search-grid geometry, cell layout, label, and initial values used by pSearchGrid when it creates the grid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_psearchgrid.pdf",
         "example": "grid_config = label=alpha,pts={0,0:100,0:100,100:0,100}",
         "exampleSource": "manual review",
@@ -7599,7 +7599,7 @@
     "region": [
       {
         "owner": "uFldObstacleSim",
-        "description": "Defines the convex polygon region within which random or regenerated obstacles are placed.",
+        "description": "Supplies the convex operating polygon within which uFldObstacleSim places random or regenerated obstacles.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_voronoi.pdf",
         "example": "region = pts={0,0:100,0:100,100:0,100}",
         "exampleSource": "manual review",
@@ -8517,7 +8517,7 @@
     "values": [
       {
         "owner": "uTimerScript",
-        "description": "Defines the possible values for an enumerated random variable used by timer-script event macros.",
+        "description": "Lists the possible values for an enumerated random-variable macro used when expanding timer-script event values.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_utscript.pdf",
         "example": "values = red:green:blue",
         "exampleSource": "manual review",
