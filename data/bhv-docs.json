@@ -153,10 +153,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -213,10 +214,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "bearing_lines": {
-          "description": "If true, a visual artifict will be produced for rendering the bearing line between ownship and the contact when the behavior is running. Not all behaviors implement this feature.",
+          "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. When valid thresholds are provided, bearing-line drawing is enabled.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "bearing_lines                = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "bearing_lines = white:0, green:0.65, yellow:0.8, red:1.0",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
         },
         "contact": {
           "description": "Name or unique identifier of a contact to be avoided.",
@@ -261,52 +263,60 @@
           "exampleSource": "generated coverage fixture"
         },
         "ignore_group": {
-          "description": "If specified, the contact group may not match the given ignore group. If multiple ignore groups are specified, the contact group must be different than all ignore groups.8.1.",
+          "description": "Excludes contacts in the configured group before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "ignore_group                 = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_name": {
-          "description": "If specified, the contact name may not match the given ignore name. If multiple ignore names are specified, the contact name must be different than all ignore names.8.1.",
+          "description": "Excludes contacts with the configured name before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "ignore_name                  = example_name",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_name = abe",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_region": {
-          "description": "If specified, the contact group may be in the given ignore region. If multiple ignore regions are specified, the contact position must be external to all ignore regions.8.1.",
+          "description": "Excludes contacts inside the configured convex region before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "ignore_region                = op_region",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_region = pts={0,0:100,0:100,100:0,100}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_type": {
-          "description": "If specified, the contact type may not match the given ignore type. If multiple ignore types are specified, the contact type must be different than all ignore types.8.1.",
+          "description": "Excludes contacts with the configured type before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "ignore_type                  = kayak",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_group": {
-          "description": "If specified, the contact group must match the given match group. If multiple match groups are specified, the contact group must match at least one match group.8.1.",
+          "description": "Requires the contact group to match the configured group before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "match_group                  = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_name": {
-          "description": "If specified, the contact name must match the given match name. If multiple match names are specified, the contact name must match at least one.8.1.",
+          "description": "Requires the contact name to match the configured name before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "match_name                   = example_name",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_name = abe",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_region": {
-          "description": "If specified, the contact must reside in the given convex region. If multiple match regions are specified, the contact position must be in at least one match region. The multiple regions essentially can together support a non-convex regions.8.1.",
+          "description": "Requires the contact to be inside the configured convex region before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "match_region                 = op_region",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_region = pts={0,0:100,0:100,100:0,100}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_type": {
-          "description": "If specified, the contact type must match the given match type. If multiple match types are specified, the contact type must match at least one match type.8.1.",
+          "description": "Requires the contact type to match the configured type before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "match_type                   = kayak",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "on_no_contact_ok": {
           "description": "If false, a helm error is posted if no contact information exists. Applicable in the more rare case that a contact behavior is statically configured for a named contact. The default is true.",
@@ -469,10 +479,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -683,10 +694,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -851,10 +863,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -1025,10 +1038,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -1139,10 +1153,11 @@
           "exampleSource": "generated from parameter name"
         },
         "compression": {
-          "description": "The degree to which the ideal convoy range and the entire speed policy is compressed to achieve closer convoy ranges. This parameter ranges between [0, 0.9].",
+          "description": "Compresses the ideal convoy range and speed policy so the follower can close distance more aggressively.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_convoy.pdf",
-          "example": "compression = example",
-          "exampleSource": "generated from parameter name"
+          "example": "compression = 0.5",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP convoy behavior documentation"
         },
         "faster_convoy_range": {
           "description": "The convoy range above which the behavior will produce preferred speeds that are faster than the lead vehicle speed.",
@@ -1205,10 +1220,11 @@
           "exampleSource": "generated from parameter name"
         },
         "tail_length_max": {
-          "description": "The maximum marker tail length, beyond which the behavior will drop the oldest marker.",
+          "description": "Sets the maximum marker tail length retained for convoy visualization before older tail markers are dropped.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_convoy.pdf",
-          "example": "tail_length_max = example",
-          "exampleSource": "generated from parameter name"
+          "example": "tail_length_max = 20",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP convoy behavior documentation"
         },
         "visual_hints": {
           "description": "One or more hints governing the preferred size and color of markers.",
@@ -1283,10 +1299,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -1343,10 +1360,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "bearing_lines": {
-          "description": "If true, a visual artifict will be produced for rendering the bearing line between ownship and the contact when the behavior is running. Not all behaviors implement this feature.",
+          "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. When valid thresholds are provided, bearing-line drawing is enabled.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-          "example": "bearing_lines = example",
-          "exampleSource": "generated from parameter name"
+          "example": "bearing_lines = white:0, green:0.65, yellow:0.8, red:1.0",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
         },
         "contact": {
           "description": "Name or unique identifier of a contact to be avoided.",
@@ -1391,52 +1409,60 @@
           "exampleSource": "generated coverage fixture"
         },
         "ignore_group": {
-          "description": "If specified, the contact group may not match the given ignore group. If multiple ignore groups are specified, the contact group must be different than all ignore groups.8.1.",
+          "description": "Excludes contacts in the configured group before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-          "example": "ignore_group                 = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_name": {
-          "description": "If specified, the contact name may not match the given ignore name. If multiple ignore names are specified, the contact name must be different than all ignore names.8.1.",
+          "description": "Excludes contacts with the configured name before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-          "example": "ignore_name                  = example_name",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_name = abe",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_region": {
-          "description": "If specified, the contact group may be in the given ignore region. If multiple ignore regions are specified, the contact position must be external to all ignore regions.8.1.",
+          "description": "Excludes contacts inside the configured convex region before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-          "example": "ignore_region                = op_region",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_region = pts={0,0:100,0:100,100:0,100}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_type": {
-          "description": "If specified, the contact type may not match the given ignore type. If multiple ignore types are specified, the contact type must be different than all ignore types.8.1.",
+          "description": "Excludes contacts with the configured type before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-          "example": "ignore_type                  = kayak",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_group": {
-          "description": "If specified, the contact group must match the given match group. If multiple match groups are specified, the contact group must match at least one match group.8.1.",
+          "description": "Requires the contact group to match the configured group before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-          "example": "match_group                  = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_name": {
-          "description": "If specified, the contact name must match the given match name. If multiple match names are specified, the contact name must match at least one.8.1.",
+          "description": "Requires the contact name to match the configured name before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-          "example": "match_name                   = example_name",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_name = abe",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_region": {
-          "description": "If specified, the contact must reside in the given convex region. If multiple match regions are specified, the contact position must be in at least one match region. The multiple regions essentially can together support a non-convex regions.8.1.",
+          "description": "Requires the contact to be inside the configured convex region before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-          "example": "match_region                 = op_region",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_region = pts={0,0:100,0:100,100:0,100}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_type": {
-          "description": "If specified, the contact type must match the given match type. If multiple match types are specified, the contact type must match at least one match type.8.1.",
+          "description": "Requires the contact type to match the configured type before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-          "example": "match_type                   = kayak",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "on_no_contact_ok": {
           "description": "If false, a helm error is posted if no contact information exists. Applicable in the more rare case that a contact behavior is statically configured for a named contact. The default is true.",
@@ -1664,10 +1690,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_goto_depth.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -1763,58 +1790,69 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
       "parameters": {
         "p1": {
-          "description": "The location of one end of the primary leg.",
+          "description": "Sets one endpoint of the primary leg-run track line in local x,y coordinates.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-          "example": "p1 = example",
-          "exampleSource": "generated from parameter name"
+          "example": "p1 = 70,-35",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: example configuration"
         },
         "p2": {
-          "description": "The location of the other end of the primary leg.",
+          "description": "Sets the other endpoint of the primary leg-run track line in local x,y coordinates.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-          "example": "p2 = example",
-          "exampleSource": "generated from parameter name"
+          "example": "p2 = -35,-85",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: example configuration"
         },
         "leg": {
-          "description": "A specification of the leg given by the leg center point, the angle and the length (rather than the two end points explicitly with the p1 and p2 parameters.",
+          "description": "Defines the primary leg-run track line by center point, angle, and length rather than by explicit p1 and p2 endpoints.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-          "example": "leg                          = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "leg = x=0,y=0,ang=90,len=100",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
         },
         "leg_len": {
-          "description": "The length of the primary legrun track line may be dynamically set to the given value. The center and orientation of the legrun track will be retained, but new locations for the two vertices will be calculated.",
+          "description": "Sets a new length for the primary leg-run track while preserving its center and angle. The behavior recalculates both endpoints from the new length.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-          "example": "leg_len = example",
-          "exampleSource": "generated from parameter name"
+          "example": "leg_len = 100",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
         },
         "leg_len_mod": {
-          "description": "The length of the primary legrun track line may be dynamically modified by the given value. The center and orientation of the legrun track will be retained, but new locations for the two vertices will be calculated. The new length of the leg cannot be lower than the value set by leg length min.",
+          "description": "Adds a runtime adjustment to the current primary-leg length while preserving the leg center and angle. The resulting length is bounded by leg_len_min.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-          "example": "leg_len_mod = example",
-          "exampleSource": "generated from parameter name"
+          "example": "leg_len_mod = 20",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
         },
         "leg_len_min": {
-          "description": "A minimum leg length is enforced when dynamically adjusting the leg length with the leg length mod parameter. This min length is 50 meters. This can be changed with this parameter, but cannot be set lower than 5 meters.",
+          "description": "Sets the minimum allowed leg length when leg length is modified dynamically. The behavior enforces a lower safety bound on this value.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-          "example": "leg_len_min = example",
-          "exampleSource": "generated from parameter name"
+          "example": "leg_len_min = 50",
+          "exampleSource": "manual review",
+          "default": "50",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
         },
         "leg_ang": {
-          "description": "The angle of the primary legrun track line may be dynamically set to the given value. The center and length of the legrun track line will be retained, but new locations for the two vertices will be calculated.",
+          "description": "Sets a new angle for the primary leg-run track while preserving its center and length.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-          "example": "leg_ang = example",
-          "exampleSource": "generated from parameter name"
+          "example": "leg_ang = 90",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
         },
         "leg_ang_mod": {
-          "description": "The angle of the primary legrun track line may be dynamically modified by the given value. The center and length of the legrun track line will be retained, but new locations for the two vertices will be calculated.",
+          "description": "Adds a runtime adjustment to the current primary-leg angle while preserving the leg center and length.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-          "example": "leg_ang_mod = example",
-          "exampleSource": "generated from parameter name"
+          "example": "leg_ang_mod = 15",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
         },
         "shift_pt": {
-          "description": "A location in the x-y plane. If provided, it will override the p1 and p2 parameters and move the primary leg to be centered at the shift pt, keeping the original primary leg length and angle.",
+          "description": "Moves the primary leg so its center is at the given x,y point while preserving the original leg length and angle.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-          "example": "shift_pt                     = 0,0",
-          "exampleSource": "generated coverage fixture"
+          "example": "shift_pt = 0,0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
         },
         "turn_bias": {
           "description": "The bias value, [−100, 100], may be adjusted with this parameter affecting the turn shape at both vertices. A value of −100 will result in a Williamson turn with its longest end aligned with the legrun track line (recommended). The default value is 0.",
@@ -2003,10 +2041,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "init_leg_mode": {
-          "description": "tbd.",
+          "description": "Selects the initial leg/turn mode used when the behavior starts. Use this when startup should force a particular first leg direction or mode.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-          "example": "init_leg_mode                = normal",
-          "exampleSource": "generated coverage fixture"
+          "example": "init_leg_mode = normal",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp:468"
         },
         "lead": {
           "description": "For trackline following during the legrun phase of this behavior, this parameter affects the severity of adjustment back to the trackline when there is a trackline error. The default value is 0, meaning no trackline error adjustment will be made.",
@@ -2173,22 +2212,25 @@
           "exampleSource": "generated coverage fixture"
         },
         "variable": {
-          "description": "Description",
+          "description": "Runtime coordination field used by BHV_LegRun status reporting. It is not a primary user-facing mission tuning parameter.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-          "example": "variable = example",
-          "exampleSource": "generated from parameter name"
+          "example": "variable = LR_MODE_REPORT",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: generated parameter table"
         },
         "lr_mode": {
-          "description": "The current mode, leg1, leg2,, turn1, turn2.",
+          "description": "Runtime status value indicating the current leg-run phase, such as leg1, leg2, turn1, or turn2. This is normally reported by the behavior, not configured by users.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-          "example": "lr_mode = example",
-          "exampleSource": "generated from parameter name"
+          "example": "lr_mode = leg1",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
         },
         "lr_mode_report": {
-          "description": "The current mode, vehicle name, and timestamp, to be sent to other vehicles for coordination.",
+          "description": "Runtime coordination report containing the current leg-run mode, vehicle name, and timestamp for multi-vehicle coordination.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-          "example": "lr_mode_report = example",
-          "exampleSource": "generated from parameter name"
+          "example": "lr_mode_report = name=abe,mode=leg1,time=123.4",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
         },
         "lr_tcoord_spd": {
           "description": "The speed currently the target speed for the behavior based on its relative position to other vehicles. Only relevant when turn coordination is enabled between multiple vehicles.",
@@ -2203,10 +2245,11 @@
           "exampleSource": "generated from parameter name"
         },
         "lr_os_degs": {
-          "description": "The position of ownship, in degrees, on the reference circle used when multi-vehicle coordinatio is enabled.",
+          "description": "Runtime coordination value giving ownship position in degrees on the reference circle used by multi-vehicle leg-run coordination.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-          "example": "lr_os_degs = example",
-          "exampleSource": "generated from parameter name"
+          "example": "lr_os_degs = 90",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
         }
       },
       "description": "The LegRun behavior enables a vehicle to repeatedly traverse back and forth over a legrun trackline prescribed by two vertices.  After reaching the end of the trackline, the vehicle switches into a Williamson turn mode to ensure the vehicle aligns with the trackline when starting in the other direction."
@@ -2275,10 +2318,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -2359,13 +2403,13 @@
           "exampleSource": "generated coverage fixture"
         },
         "center_assign": {
-          "description": "An x,y pair, in meters, indicating a (new) center of the loiter polygon.",
+          "description": "Moves the loiter polygon center to the given x,y point during configuration or updates.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
           "default": "present_position",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:263",
-          "example": "center_assign                = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "center_assign = 0,0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_loiter.pdf"
         },
         "clockwise": {
           "description": "If true, loitering is done clockwise (the default setting).",
@@ -2383,13 +2427,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "post_suffix": {
-          "description": "A string to add as a suffix to variables posted by this behaviors.",
+          "description": "Adds a suffix to MOOS variables posted by this loiter behavior so multiple loiter instances can be distinguished.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
-          "default": "_\" + toupper(value)",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:208",
-          "example": "post_suffix                  = 1",
-          "exampleSource": "generated coverage fixture"
+          "example": "post_suffix = ALPHA",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_loiter.pdf"
         },
         "radius": {
           "description": "An alias for capture radius.",
@@ -2440,22 +2482,22 @@
           "exampleSource": "generated coverage fixture"
         },
         "xcenter_assign": {
-          "description": "A x-value, in meters, indicating a (new) x-position of the loiter polygon.",
+          "description": "Moves only the x-coordinate of the loiter polygon center, preserving the current y-coordinate.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
           "default": "present_position",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:263",
-          "example": "xcenter_assign               = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "xcenter_assign = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_loiter.pdf"
         },
         "ycenter_assign": {
-          "description": "A y-value, in meters, indicating a (new) y-position of the loiter polygon.",
+          "description": "Moves only the y-coordinate of the loiter polygon center, preserving the current x-coordinate.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
           "default": "present_position",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:263",
-          "example": "ycenter_assign               = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "ycenter_assign = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_loiter.pdf"
         }
       },
       "description": "A behavior for transiting to and repeatedly traversing a set of waypoints forming a convex polygon.  A similar effect can be achieved with the Waypoint behavior but this behavior assumes a set of waypoints forming a convex polygon to exploit certain useful algorithms discussed below."
@@ -2524,10 +2566,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_max_depth.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -2593,13 +2636,13 @@
           "exampleSource": "generated coverage fixture"
         },
         "max_depth": {
-          "description": "The maximum allowable depth of the vehicle, in meters.",
+          "description": "Sets the maximum allowable ownship depth in meters. A non-positive value leaves the depth limit disabled.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_max_depth.pdf",
           "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxDepth.cpp:44",
-          "example": "max_depth                    = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "max_depth = 20",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3, moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:137"
         },
         "tolerance": {
           "description": "Another way (alias) of setting the basewidth parameter",
@@ -2683,10 +2726,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -2752,10 +2796,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "peakwidth": {
-          "description": "The width of the peak, in meters per second, in the produced ZAIC-style IvP function.",
+          "description": "Sets the width, in meters per second, of the peak region in the speed utility function.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
-          "example": "peakwidth = example",
-          "exampleSource": "generated from parameter name"
+          "example": "peakwidth = 0.5",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP max speed behavior documentation"
         },
         "speed": {
           "description": "The desired speed of the vehicle, in meters per second.",
@@ -2764,10 +2809,11 @@
           "exampleSource": "generated from parameter name"
         },
         "summitdelta": {
-          "description": "The height of the summit delta parameter in the produced ZAIC-style IvP function.",
+          "description": "Sets the summit delta used in the ZAIC-style speed objective function.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
-          "example": "summitdelta = example",
-          "exampleSource": "generated from parameter name"
+          "example": "summitdelta = 25",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP max speed behavior documentation"
         },
         "speed_mismatch_var": {
           "description": "Name of the MOOS variable indicating the present delta between the desired speed and the current speed. If left unspecified, no posting is made.",
@@ -2843,10 +2889,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_mem_turnlimit.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -2927,10 +2974,11 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
       "parameters": {
         "parameter": {
-          "description": "Description",
+          "description": "Documentation table placeholder, not an ordinary behavior configuration parameter. Prefer the specific OpRegion parameters such as core_poly, save_poly, halt_poly, max_depth, min_altitude, and reset.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-          "example": "parameter = example",
-          "exampleSource": "generated from parameter name"
+          "example": "parameter = value",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP generated behavior documentation"
         },
         "breached_altitude_flag": {
           "description": "A MOOS variable-value pair to be posted when or if the vehicle breaches the altitude limit set by this behavior.",
@@ -2957,10 +3005,11 @@
           "exampleSource": "generated from parameter name"
         },
         "core_poly": {
-          "description": "The nominal operation area, a convex polygon.",
+          "description": "Defines the nominal operating area as a convex polygon. OpRegion behaviors use this as the primary region for containment and for deriving save/halt regions when distance offsets are configured.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-          "example": "core_poly = example",
-          "exampleSource": "generated from parameter name"
+          "example": "core_poly = pts={-80,-50:-30,-175:150,-100:95,25}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1"
         },
         "draw_halt_status": {
           "description": "If true, a small (by default red) polygon is drawn around the vehicle when or if it exits the halt polygon, following the vehicle until it returns to the within the halt polygon. The default is true.",
@@ -2979,10 +3028,11 @@
           "exampleSource": "generated from parameter name"
         },
         "halt_poly": {
-          "description": "A convex polygon area, outside of which the behavior will generation an all-stop indicator to the helm.",
+          "description": "Defines the hard containment polygon. When the vehicle exits this polygon, the behavior signals a halt/all-stop style polygon breach.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-          "example": "halt_poly = example",
-          "exampleSource": "generated from parameter name"
+          "example": "halt_poly = pts={-79.4,-54.3:51.8,19:99.4,-58:-31.8,-131.3}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1"
         },
         "max_time": {
           "description": "The max allowable time in seconds.",
@@ -2991,28 +3041,36 @@
           "exampleSource": "generated from parameter name"
         },
         "max_depth": {
-          "description": "The max allowable depth in meters.",
+          "description": "Sets the maximum allowable ownship depth in meters. A non-positive value leaves the depth limit disabled.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-          "example": "max_depth = example",
-          "exampleSource": "generated from parameter name"
+          "example": "max_depth = 20",
+          "exampleSource": "manual review",
+          "default": "0",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3, moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:137"
         },
         "min_altitude": {
-          "description": "The min allowable altitude in meters.",
+          "description": "Sets the minimum allowable ownship altitude above the bottom in meters. A non-positive value leaves the altitude limit disabled.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-          "example": "min_altitude = example",
-          "exampleSource": "generated from parameter name"
+          "example": "min_altitude = 5",
+          "exampleSource": "manual review",
+          "default": "0",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3"
         },
         "save_poly": {
-          "description": "A convex polygon area, outside of which the behavior will generation an IvP function to return within the polygon.",
+          "description": "Defines the soft recovery polygon. When the vehicle exits this polygon, the behavior may produce an IvP function to guide it back inside before a harder halt breach occurs.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-          "example": "save_poly = example",
-          "exampleSource": "generated from parameter name"
+          "example": "save_poly = pts={-74.9,-52.1:54,14.5:94.9,-60.1:-34,-126.8}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1"
         },
         "reset": {
-          "description": "If set to true, and the behavior is currently in a mode where one of the operating envelopes (time, depth, altitude or position) has been breached, the behavior will be reset to original launch state.",
+          "description": "Resets a previously breached OpRegion condition back to its launch-like monitoring state. This is most useful when sent through the behavior updates variable during a mission.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-          "example": "reset = example",
-          "exampleSource": "generated from parameter name"
+          "example": "reset = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.4"
         },
         "recover_spd": {
           "description": "The preferred speed for the vehicle when it is out of the save polygon, attempting to maneuver back in. The speed should be high enough to enable a turn, but likely slower than normal in case an exit is inevitable for other reasons. The default value is 0.8 meters per second.",
@@ -3062,10 +3120,11 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
       "parameters": {
         "parameter": {
-          "description": "Description",
+          "description": "Documentation table placeholder, not an ordinary behavior configuration parameter. Prefer the specific OpRegion parameters such as core_poly, save_poly, halt_poly, max_depth, min_altitude, and reset.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-          "example": "parameter = example",
-          "exampleSource": "generated from parameter name"
+          "example": "parameter = value",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP generated behavior documentation"
         },
         "breached_altitude_flag": {
           "description": "A MOOS variable-value pair to be posted when or if the vehicle breaches the altitude limit set by this behavior.",
@@ -3092,10 +3151,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "core_poly": {
-          "description": "The nominal operation area, a convex polygon.",
+          "description": "Defines the nominal operating area as a convex polygon. OpRegion behaviors use this as the primary region for containment and for deriving save/halt regions when distance offsets are configured.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-          "example": "core_poly                    = 0,0 : 50,0 : 50,-50 : 0,-50",
-          "exampleSource": "generated coverage fixture"
+          "example": "core_poly = pts={-80,-50:-30,-175:150,-100:95,25}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1"
         },
         "draw_halt_status": {
           "description": "If true, a small (by default red) polygon is drawn around the vehicle when or if it exits the halt polygon, following the vehicle until it returns to the within the halt polygon. The default is true.",
@@ -3116,10 +3176,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "halt_poly": {
-          "description": "A convex polygon area, outside of which the behavior will generation an all-stop indicator to the helm.",
+          "description": "Defines the hard containment polygon. When the vehicle exits this polygon, the behavior signals a halt/all-stop style polygon breach.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-          "example": "halt_poly                    = 0,0 : 50,0 : 50,-50 : 0,-50",
-          "exampleSource": "generated coverage fixture"
+          "example": "halt_poly = pts={-79.4,-54.3:51.8,19:99.4,-58:-31.8,-131.3}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1"
         },
         "max_time": {
           "description": "The max allowable time in seconds.",
@@ -3131,37 +3192,36 @@
           "exampleSource": "generated coverage fixture"
         },
         "max_depth": {
-          "description": "The max allowable depth in meters.",
+          "description": "Sets the maximum allowable ownship depth in meters. A non-positive value leaves the depth limit disabled.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
           "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:53",
-          "example": "max_depth                    = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "max_depth = 20",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3, moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:137"
         },
         "min_altitude": {
-          "description": "The min allowable altitude in meters.",
+          "description": "Sets the minimum allowable ownship altitude above the bottom in meters. A non-positive value leaves the altitude limit disabled.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
           "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:54",
-          "example": "min_altitude                 = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "min_altitude = 5",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3"
         },
         "save_poly": {
-          "description": "A convex polygon area, outside of which the behavior will generation an IvP function to return within the polygon.",
+          "description": "Defines the soft recovery polygon. When the vehicle exits this polygon, the behavior may produce an IvP function to guide it back inside before a harder halt breach occurs.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-          "example": "save_poly                    = 0,0 : 50,0 : 50,-50 : 0,-50",
-          "exampleSource": "generated coverage fixture"
+          "example": "save_poly = pts={-74.9,-52.1:54,14.5:94.9,-60.1:-34,-126.8}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1"
         },
         "reset": {
-          "description": "If set to true, and the behavior is currently in a mode where one of the operating envelopes (time, depth, altitude or position) has been breached, the behavior will be reset to original launch state.",
+          "description": "Resets a previously breached OpRegion condition back to its launch-like monitoring state. This is most useful when sent through the behavior updates variable during a mission.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-          "default": "true",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:75",
-          "example": "reset                        = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "reset = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.4"
         },
         "recover_spd": {
           "description": "The preferred speed for the vehicle when it is out of the save polygon, attempting to maneuver back in. The speed should be high enough to enable a turn, but likely slower than normal in case an exit is inevitable for other reasons. The default value is 0.8 meters per second.",
@@ -3272,10 +3332,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -3359,22 +3420,22 @@
           "exampleSource": "generated coverage fixture"
         },
         "period_busy": {
-          "description": "The duration of the busy period, in seconds.",
+          "description": "Sets the duration, in seconds, of the busy/high-speed portion of the periodic speed cycle.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
           "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:52",
-          "example": "period_busy                  = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "period_busy = 60",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP periodic speed behavior documentation"
         },
         "period_lazy": {
-          "description": "The duration of the lazy period, in seconds.",
+          "description": "Sets the duration, in seconds, of the lazy/low-speed portion of the periodic speed cycle.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
           "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:53",
-          "example": "period_lazy                  = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "period_lazy = 120",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP periodic speed behavior documentation"
         },
         "period_speed": {
           "description": "The desired speed, in m/sec, in the IvP function.",
@@ -3470,10 +3531,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -3536,13 +3598,13 @@
           "exampleSource": "generated coverage fixture"
         },
         "ascent_grade": {
-          "description": "Manner in which desired speed approaches zero on the approach to the surface. The default is linear.",
+          "description": "Controls how desired speed is reduced during ascent toward the surface. The default linear grade approaches zero speed steadily.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf",
           "default": "linear",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:58",
-          "example": "ascent_grade                 = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "ascent_grade = linear",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_periodic_surface.pdf"
         },
         "ascent_speed": {
           "description": "Desired speed of the vehicle during the ascent mode.",
@@ -3587,13 +3649,13 @@
           "exampleSource": "generated coverage fixture"
         },
         "period": {
-          "description": "Duration of the WAITING mode.",
+          "description": "Sets the duration, in seconds, of the waiting interval before the behavior next requests surfacing.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf",
           "default": "300",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:50",
-          "example": "period                       = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "period = 300",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_periodic_surface.pdf"
         },
         "zero_speed_depth": {
           "description": "The depth, in meters, at which the desired speed becomes zero on ascent.",
@@ -3671,10 +3733,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -3731,10 +3794,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "bearing_lines": {
-          "description": "If true, a visual artifict will be produced for rendering the bearing line between ownship and the contact when the behavior is running. Not all behaviors implement this feature.",
+          "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. When valid thresholds are provided, bearing-line drawing is enabled.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-          "example": "bearing_lines = example",
-          "exampleSource": "generated from parameter name"
+          "example": "bearing_lines = white:0, green:0.65, yellow:0.8, red:1.0",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
         },
         "contact": {
           "description": "Name or unique identifier of a contact to be avoided.",
@@ -3779,52 +3843,60 @@
           "exampleSource": "generated coverage fixture"
         },
         "ignore_group": {
-          "description": "If specified, the contact group may not match the given ignore group. If multiple ignore groups are specified, the contact group must be different than all ignore groups.8.1.",
+          "description": "Excludes contacts in the configured group before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-          "example": "ignore_group                 = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_name": {
-          "description": "If specified, the contact name may not match the given ignore name. If multiple ignore names are specified, the contact name must be different than all ignore names.8.1.",
+          "description": "Excludes contacts with the configured name before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-          "example": "ignore_name                  = example_name",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_name = abe",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_region": {
-          "description": "If specified, the contact group may be in the given ignore region. If multiple ignore regions are specified, the contact position must be external to all ignore regions.8.1.",
+          "description": "Excludes contacts inside the configured convex region before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-          "example": "ignore_region                = op_region",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_region = pts={0,0:100,0:100,100:0,100}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_type": {
-          "description": "If specified, the contact type may not match the given ignore type. If multiple ignore types are specified, the contact type must be different than all ignore types.8.1.",
+          "description": "Excludes contacts with the configured type before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-          "example": "ignore_type                  = kayak",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_group": {
-          "description": "If specified, the contact group must match the given match group. If multiple match groups are specified, the contact group must match at least one match group.8.1.",
+          "description": "Requires the contact group to match the configured group before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-          "example": "match_group                  = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_name": {
-          "description": "If specified, the contact name must match the given match name. If multiple match names are specified, the contact name must match at least one.8.1.",
+          "description": "Requires the contact name to match the configured name before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-          "example": "match_name                   = example_name",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_name = abe",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_region": {
-          "description": "If specified, the contact must reside in the given convex region. If multiple match regions are specified, the contact position must be in at least one match region. The multiple regions essentially can together support a non-convex regions.8.1.",
+          "description": "Requires the contact to be inside the configured convex region before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-          "example": "match_region                 = op_region",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_region = pts={0,0:100,0:100,100:0,100}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_type": {
-          "description": "If specified, the contact type must match the given match type. If multiple match types are specified, the contact type must match at least one match type.8.1.",
+          "description": "Requires the contact type to match the configured type before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-          "example": "match_type                   = kayak",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "on_no_contact_ok": {
           "description": "If false, a helm error is posted if no contact information exists. Applicable in the more rare case that a contact behavior is statically configured for a named contact. The default is true.",
@@ -3951,10 +4023,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -4152,10 +4225,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_testfail.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -4287,10 +4361,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_timer.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -4413,10 +4488,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -4473,10 +4549,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "bearing_lines": {
-          "description": "If true, a visual artifict will be produced for rendering the bearing line between ownship and the contact when the behavior is running. Not all behaviors implement this feature.",
+          "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. When valid thresholds are provided, bearing-line drawing is enabled.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-          "example": "bearing_lines = example",
-          "exampleSource": "generated from parameter name"
+          "example": "bearing_lines = white:0, green:0.65, yellow:0.8, red:1.0",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
         },
         "contact": {
           "description": "Name or unique identifier of a contact to be avoided.",
@@ -4521,52 +4598,60 @@
           "exampleSource": "generated coverage fixture"
         },
         "ignore_group": {
-          "description": "If specified, the contact group may not match the given ignore group. If multiple ignore groups are specified, the contact group must be different than all ignore groups.8.1.",
+          "description": "Excludes contacts in the configured group before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-          "example": "ignore_group = example",
-          "exampleSource": "generated from parameter name"
+          "example": "ignore_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_name": {
-          "description": "If specified, the contact name may not match the given ignore name. If multiple ignore names are specified, the contact name must be different than all ignore names.8.1.",
+          "description": "Excludes contacts with the configured name before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-          "example": "ignore_name = example",
-          "exampleSource": "generated from parameter name"
+          "example": "ignore_name = abe",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_region": {
-          "description": "If specified, the contact group may be in the given ignore region. If multiple ignore regions are specified, the contact position must be external to all ignore regions.8.1.",
+          "description": "Excludes contacts inside the configured convex region before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-          "example": "ignore_region = example",
-          "exampleSource": "generated from parameter name"
+          "example": "ignore_region = pts={0,0:100,0:100,100:0,100}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_type": {
-          "description": "If specified, the contact type may not match the given ignore type. If multiple ignore types are specified, the contact type must be different than all ignore types.8.1.",
+          "description": "Excludes contacts with the configured type before the behavior treats them as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-          "example": "ignore_type = example",
-          "exampleSource": "generated from parameter name"
+          "example": "ignore_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_group": {
-          "description": "If specified, the contact group must match the given match group. If multiple match groups are specified, the contact group must match at least one match group.8.1.",
+          "description": "Requires the contact group to match the configured group before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-          "example": "match_group = example",
-          "exampleSource": "generated from parameter name"
+          "example": "match_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_name": {
-          "description": "If specified, the contact name must match the given match name. If multiple match names are specified, the contact name must match at least one.8.1.",
+          "description": "Requires the contact name to match the configured name before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-          "example": "match_name = example",
-          "exampleSource": "generated from parameter name"
+          "example": "match_name = abe",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_region": {
-          "description": "If specified, the contact must reside in the given convex region. If multiple match regions are specified, the contact position must be in at least one match region. The multiple regions essentially can together support a non-convex regions.8.1.",
+          "description": "Requires the contact to be inside the configured convex region before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-          "example": "match_region = example",
-          "exampleSource": "generated from parameter name"
+          "example": "match_region = pts={0,0:100,0:100,100:0,100}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_type": {
-          "description": "If specified, the contact type must match the given match type. If multiple match types are specified, the contact type must match at least one match type.8.1.",
+          "description": "Requires the contact type to match the configured type before the behavior treats the contact as valid.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-          "example": "match_type = example",
-          "exampleSource": "generated from parameter name"
+          "example": "match_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "on_no_contact_ok": {
           "description": "If false, a helm error is posted if no contact information exists. Applicable in the more rare case that a contact behavior is statically configured for a named contact. The default is true.",
@@ -4636,13 +4721,13 @@
           "exampleSource": "generated coverage fixture"
         },
         "trail_angle": {
-          "description": "Relative angle to the contact to set the trail-point. The default is 180.",
+          "description": "Sets the relative angle behind or around the contact used to place the trail point.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
           "default": "180",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Trail.cpp:49",
-          "example": "trail_angle                  = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "trail_angle = 180",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_trail.pdf"
         },
         "trail_angle_type": {
           "description": "Either ”relative” or ”absolute” bearing/angle to the contact. The default is relative.",
@@ -4729,10 +4814,11 @@
           "exampleSource": "generated coverage fixture"
         },
         "nostarve": {
-          "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
-          "example": "nostarve = example",
-          "exampleSource": "generated from parameter name"
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
         },
         "perpetual": {
           "description": "If true allows the behavior to to run even after it has completed.",
@@ -4820,13 +4906,13 @@
           "exampleSource": "generated coverage fixture"
         },
         "efficiency_measure": {
-          "description": "Determines if leg by leg efficiency is to be measured and/or reported. The default is \"off\".",
+          "description": "Enables or disables leg-by-leg waypoint efficiency measurement and reporting.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
           "default": "off",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:65",
-          "example": "efficiency_measure           = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "efficiency_measure = off",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_waypoint.pdf"
         },
         "lead": {
           "description": "If this parameter is set, track-line following between waypoints is enabled.",
@@ -4856,10 +4942,13 @@
           "exampleSource": "generated coverage fixture"
         },
         "order": {
-          "description": "The order in which waypoints are traversed - \"normal\", \"reverse\", and with 14.3 or later, \"toggle\".",
+          "description": "Sets the order in which waypoints are traversed. Supported values include normal, reverse, and toggle.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
-          "example": "order                        = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "order = normal",
+          "exampleSource": "manual review",
+          "default": "normal",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_waypoint.pdf: Section 1.4"
         },
         "points": {
           "description": "A colon separated list of x,y pairs given as points in 2D space, in meters.",
@@ -4970,13 +5059,13 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
       "parameters": {
         "fierce_zigging": {
-          "description": "Effect zig maneuver by requesting constant delta relative heading.",
+          "description": "Requests the zig leg with a direct relative-heading command rather than the gentler default zig behavior.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:82",
-          "example": "fierce_zigging               = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "fierce_zigging = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
         },
         "hdg_thresh": {
           "description": "Angle difference to target zig heading for zig leg completion.",
@@ -4997,22 +5086,22 @@
           "exampleSource": "generated coverage fixture"
         },
         "max_zig_legs": {
-          "description": "Number of zig legs required for behavior completion.",
+          "description": "Sets how many zig legs must be completed before the behavior can complete.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
           "default": "2",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:87",
-          "example": "max_zig_legs                 = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "max_zig_legs = 2",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
         },
         "max_stem_odo": {
-          "description": "Max distance parallel to the stem line, beyond which results in behavior completion, equivalent to reaching max zig legs.",
+          "description": "Sets the maximum distance traveled along the stem line before the behavior completes. A negative value disables this completion criterion.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
           "default": "-1",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:88",
-          "example": "max_stem_odo                 = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "max_stem_odo = -1",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
         },
         "speed": {
           "description": "Speed in m/s to maintain during zig zag maneuvers. Default value is zero (must be set).",
@@ -5056,28 +5145,27 @@
           "exampleSource": "generated coverage fixture"
         },
         "zig_angle": {
-          "description": "Target relative angle required for zig leg completion.",
+          "description": "Sets the relative angle used for the ordinary zig leg.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
-          "default": "2",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:87",
-          "example": "zig_angle                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "zig_angle = 30",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
         },
         "zig_angle_fierce": {
-          "description": "Relative heading requested to effect a zig leg.",
+          "description": "Sets the relative heading request used when fierce_zigging is enabled.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
-          "example": "zig_angle_fierce             = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "zig_angle_fierce = 60",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
         },
         "zig_first": {
-          "description": "Which side for initial zig first. Default is port. Other option is star.",
+          "description": "Selects which side is used for the first zig. Supported values include port and starboard/star.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
-          "default": "2",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:87",
-          "example": "zig_first                    = example",
-          "exampleSource": "generated coverage fixture"
+          "default": "port",
+          "defaultSource": "manual review",
+          "example": "zig_first = port",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
         }
       },
       "description": "The ZigZag behavior allows a vehicle to excute a series of port-starboard turns, creating a zigzag pattern.  The behavior is primarily motivated by supporting surface vehicle shake-out tests, but may be used in any mission where this pattern is desired."
@@ -5255,13 +5343,13 @@
     "ascent_grade": [
       {
         "owner": "BHV_PeriodicSurface",
-        "description": "Manner in which desired speed approaches zero on the approach to the surface. The default is linear.",
+        "description": "Controls how desired speed is reduced during ascent toward the surface. The default linear grade approaches zero speed steadily.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf",
         "default": "linear",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:58",
-        "example": "ascent_grade                 = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "ascent_grade = linear",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_periodic_surface.pdf"
       }
     ],
     "ascent_speed": [
@@ -5351,31 +5439,35 @@
     "bearing_lines": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "If true, a visual artifict will be produced for rendering the bearing line between ownship and the contact when the behavior is running. Not all behaviors implement this feature.",
+        "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. When valid thresholds are provided, bearing-line drawing is enabled.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-        "example": "bearing_lines                = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "bearing_lines = white:0, green:0.65, yellow:0.8, red:1.0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
       },
       {
         "owner": "BHV_CutRange",
-        "description": "If true, a visual artifict will be produced for rendering the bearing line between ownship and the contact when the behavior is running. Not all behaviors implement this feature.",
+        "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. When valid thresholds are provided, bearing-line drawing is enabled.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-        "example": "bearing_lines = example",
-        "exampleSource": "generated from parameter name"
+        "example": "bearing_lines = white:0, green:0.65, yellow:0.8, red:1.0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
       },
       {
         "owner": "BHV_Shadow",
-        "description": "If true, a visual artifict will be produced for rendering the bearing line between ownship and the contact when the behavior is running. Not all behaviors implement this feature.",
+        "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. When valid thresholds are provided, bearing-line drawing is enabled.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-        "example": "bearing_lines = example",
-        "exampleSource": "generated from parameter name"
+        "example": "bearing_lines = white:0, green:0.65, yellow:0.8, red:1.0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
       },
       {
         "owner": "BHV_Trail",
-        "description": "If true, a visual artifict will be produced for rendering the bearing line between ownship and the contact when the behavior is running. Not all behaviors implement this feature.",
+        "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. When valid thresholds are provided, bearing-line drawing is enabled.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-        "example": "bearing_lines = example",
-        "exampleSource": "generated from parameter name"
+        "example": "bearing_lines = white:0, green:0.65, yellow:0.8, red:1.0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
       }
     ],
     "breached_altitude_flag": [
@@ -5549,13 +5641,13 @@
     "center_assign": [
       {
         "owner": "BHV_Loiter",
-        "description": "An x,y pair, in meters, indicating a (new) center of the loiter polygon.",
+        "description": "Moves the loiter polygon center to the given x,y point during configuration or updates.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
         "default": "present_position",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:263",
-        "example": "center_assign                = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "center_assign = 0,0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_loiter.pdf"
       }
     ],
     "clockwise": [
@@ -5617,10 +5709,11 @@
     "compression": [
       {
         "owner": "BHV_Convoy",
-        "description": "The degree to which the ideal convoy range and the entire speed policy is compressed to achieve closer convoy ranges. This parameter ranges between [0, 0.9].",
+        "description": "Compresses the ideal convoy range and speed policy so the follower can close distance more aggressively.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_convoy.pdf",
-        "example": "compression = example",
-        "exampleSource": "generated from parameter name"
+        "example": "compression = 0.5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP convoy behavior documentation"
       }
     ],
     "condition": [
@@ -5793,18 +5886,20 @@
     "core_poly": [
       {
         "owner": "BHV_OpRegionRecover",
-        "description": "The nominal operation area, a convex polygon.",
+        "description": "Defines the nominal operating area as a convex polygon. OpRegion behaviors use this as the primary region for containment and for deriving save/halt regions when distance offsets are configured.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-        "example": "core_poly = example",
-        "exampleSource": "generated from parameter name",
+        "example": "core_poly = pts={-80,-50:-30,-175:150,-100:95,25}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1",
         "aliasOf": "BHV_OpRegionV24"
       },
       {
         "owner": "BHV_OpRegionV24",
-        "description": "The nominal operation area, a convex polygon.",
+        "description": "Defines the nominal operating area as a convex polygon. OpRegion behaviors use this as the primary region for containment and for deriving save/halt regions when distance offsets are configured.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-        "example": "core_poly                    = 0,0 : 50,0 : 50,-50 : 0,-50",
-        "exampleSource": "generated coverage fixture"
+        "example": "core_poly = pts={-80,-50:-30,-175:150,-100:95,25}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1"
       }
     ],
     "cpa_flag": [
@@ -6500,13 +6595,13 @@
     "efficiency_measure": [
       {
         "owner": "BHV_Waypoint",
-        "description": "Determines if leg by leg efficiency is to be measured and/or reported. The default is \"off\".",
+        "description": "Enables or disables leg-by-leg waypoint efficiency measurement and reporting.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
         "default": "off",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:65",
-        "example": "efficiency_measure           = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "efficiency_measure = off",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_waypoint.pdf"
       }
     ],
     "endflag": [
@@ -6814,13 +6909,13 @@
     "fierce_zigging": [
       {
         "owner": "BHV_ZigZag",
-        "description": "Effect zig maneuver by requesting constant delta relative heading.",
+        "description": "Requests the zig leg with a direct relative-heading command rather than the gentler default zig behavior.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:82",
-        "example": "fierce_zigging               = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "fierce_zigging = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
       }
     ],
     "fix_turn": [
@@ -6889,18 +6984,20 @@
     "halt_poly": [
       {
         "owner": "BHV_OpRegionRecover",
-        "description": "A convex polygon area, outside of which the behavior will generation an all-stop indicator to the helm.",
+        "description": "Defines the hard containment polygon. When the vehicle exits this polygon, the behavior signals a halt/all-stop style polygon breach.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-        "example": "halt_poly = example",
-        "exampleSource": "generated from parameter name",
+        "example": "halt_poly = pts={-79.4,-54.3:51.8,19:99.4,-58:-31.8,-131.3}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1",
         "aliasOf": "BHV_OpRegionV24"
       },
       {
         "owner": "BHV_OpRegionV24",
-        "description": "A convex polygon area, outside of which the behavior will generation an all-stop indicator to the helm.",
+        "description": "Defines the hard containment polygon. When the vehicle exits this polygon, the behavior signals a halt/all-stop style polygon breach.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-        "example": "halt_poly                    = 0,0 : 50,0 : 50,-50 : 0,-50",
-        "exampleSource": "generated coverage fixture"
+        "example": "halt_poly = pts={-79.4,-54.3:51.8,19:99.4,-58:-31.8,-131.3}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1"
       }
     ],
     "hdg_thresh": [
@@ -7118,121 +7215,137 @@
     "ignore_group": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "If specified, the contact group may not match the given ignore group. If multiple ignore groups are specified, the contact group must be different than all ignore groups.8.1.",
+        "description": "Excludes contacts in the configured group before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-        "example": "ignore_group                 = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_CutRange",
-        "description": "If specified, the contact group may not match the given ignore group. If multiple ignore groups are specified, the contact group must be different than all ignore groups.8.1.",
+        "description": "Excludes contacts in the configured group before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-        "example": "ignore_group                 = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Shadow",
-        "description": "If specified, the contact group may not match the given ignore group. If multiple ignore groups are specified, the contact group must be different than all ignore groups.8.1.",
+        "description": "Excludes contacts in the configured group before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-        "example": "ignore_group                 = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Trail",
-        "description": "If specified, the contact group may not match the given ignore group. If multiple ignore groups are specified, the contact group must be different than all ignore groups.8.1.",
+        "description": "Excludes contacts in the configured group before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-        "example": "ignore_group = example",
-        "exampleSource": "generated from parameter name"
+        "example": "ignore_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "ignore_name": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "If specified, the contact name may not match the given ignore name. If multiple ignore names are specified, the contact name must be different than all ignore names.8.1.",
+        "description": "Excludes contacts with the configured name before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-        "example": "ignore_name                  = example_name",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_name = abe",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_CutRange",
-        "description": "If specified, the contact name may not match the given ignore name. If multiple ignore names are specified, the contact name must be different than all ignore names.8.1.",
+        "description": "Excludes contacts with the configured name before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-        "example": "ignore_name                  = example_name",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_name = abe",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Shadow",
-        "description": "If specified, the contact name may not match the given ignore name. If multiple ignore names are specified, the contact name must be different than all ignore names.8.1.",
+        "description": "Excludes contacts with the configured name before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-        "example": "ignore_name                  = example_name",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_name = abe",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Trail",
-        "description": "If specified, the contact name may not match the given ignore name. If multiple ignore names are specified, the contact name must be different than all ignore names.8.1.",
+        "description": "Excludes contacts with the configured name before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-        "example": "ignore_name = example",
-        "exampleSource": "generated from parameter name"
+        "example": "ignore_name = abe",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "ignore_region": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "If specified, the contact group may be in the given ignore region. If multiple ignore regions are specified, the contact position must be external to all ignore regions.8.1.",
+        "description": "Excludes contacts inside the configured convex region before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-        "example": "ignore_region                = op_region",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_region = pts={0,0:100,0:100,100:0,100}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_CutRange",
-        "description": "If specified, the contact group may be in the given ignore region. If multiple ignore regions are specified, the contact position must be external to all ignore regions.8.1.",
+        "description": "Excludes contacts inside the configured convex region before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-        "example": "ignore_region                = op_region",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_region = pts={0,0:100,0:100,100:0,100}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Shadow",
-        "description": "If specified, the contact group may be in the given ignore region. If multiple ignore regions are specified, the contact position must be external to all ignore regions.8.1.",
+        "description": "Excludes contacts inside the configured convex region before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-        "example": "ignore_region                = op_region",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_region = pts={0,0:100,0:100,100:0,100}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Trail",
-        "description": "If specified, the contact group may be in the given ignore region. If multiple ignore regions are specified, the contact position must be external to all ignore regions.8.1.",
+        "description": "Excludes contacts inside the configured convex region before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-        "example": "ignore_region = example",
-        "exampleSource": "generated from parameter name"
+        "example": "ignore_region = pts={0,0:100,0:100,100:0,100}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "ignore_type": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "If specified, the contact type may not match the given ignore type. If multiple ignore types are specified, the contact type must be different than all ignore types.8.1.",
+        "description": "Excludes contacts with the configured type before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-        "example": "ignore_type                  = kayak",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_CutRange",
-        "description": "If specified, the contact type may not match the given ignore type. If multiple ignore types are specified, the contact type must be different than all ignore types.8.1.",
+        "description": "Excludes contacts with the configured type before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-        "example": "ignore_type                  = kayak",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Shadow",
-        "description": "If specified, the contact type may not match the given ignore type. If multiple ignore types are specified, the contact type must be different than all ignore types.8.1.",
+        "description": "Excludes contacts with the configured type before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-        "example": "ignore_type                  = kayak",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Trail",
-        "description": "If specified, the contact type may not match the given ignore type. If multiple ignore types are specified, the contact type must be different than all ignore types.8.1.",
+        "description": "Excludes contacts with the configured type before the behavior treats them as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-        "example": "ignore_type = example",
-        "exampleSource": "generated from parameter name"
+        "example": "ignore_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "inactiveflag": [
@@ -7375,10 +7488,11 @@
     "init_leg_mode": [
       {
         "owner": "BHV_LegRun",
-        "description": "tbd.",
+        "description": "Selects the initial leg/turn mode used when the behavior starts. Use this when startup should force a particular first leg direction or mode.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-        "example": "init_leg_mode                = normal",
-        "exampleSource": "generated coverage fixture"
+        "example": "init_leg_mode = normal",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp:468"
       }
     ],
     "initially_busy": [
@@ -7485,28 +7599,31 @@
     "leg": [
       {
         "owner": "BHV_LegRun",
-        "description": "A specification of the leg given by the leg center point, the angle and the length (rather than the two end points explicitly with the p1 and p2 parameters.",
+        "description": "Defines the primary leg-run track line by center point, angle, and length rather than by explicit p1 and p2 endpoints.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-        "example": "leg                          = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "leg = x=0,y=0,ang=90,len=100",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
       }
     ],
     "leg_ang": [
       {
         "owner": "BHV_LegRun",
-        "description": "The angle of the primary legrun track line may be dynamically set to the given value. The center and length of the legrun track line will be retained, but new locations for the two vertices will be calculated.",
+        "description": "Sets a new angle for the primary leg-run track while preserving its center and length.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-        "example": "leg_ang = example",
-        "exampleSource": "generated from parameter name"
+        "example": "leg_ang = 90",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
       }
     ],
     "leg_ang_mod": [
       {
         "owner": "BHV_LegRun",
-        "description": "The angle of the primary legrun track line may be dynamically modified by the given value. The center and length of the legrun track line will be retained, but new locations for the two vertices will be calculated.",
+        "description": "Adds a runtime adjustment to the current primary-leg angle while preserving the leg center and length.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-        "example": "leg_ang_mod = example",
-        "exampleSource": "generated from parameter name"
+        "example": "leg_ang_mod = 15",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
       }
     ],
     "leg_endflag": [
@@ -7530,28 +7647,33 @@
     "leg_len": [
       {
         "owner": "BHV_LegRun",
-        "description": "The length of the primary legrun track line may be dynamically set to the given value. The center and orientation of the legrun track will be retained, but new locations for the two vertices will be calculated.",
+        "description": "Sets a new length for the primary leg-run track while preserving its center and angle. The behavior recalculates both endpoints from the new length.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-        "example": "leg_len = example",
-        "exampleSource": "generated from parameter name"
+        "example": "leg_len = 100",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
       }
     ],
     "leg_len_min": [
       {
         "owner": "BHV_LegRun",
-        "description": "A minimum leg length is enforced when dynamically adjusting the leg length with the leg length mod parameter. This min length is 50 meters. This can be changed with this parameter, but cannot be set lower than 5 meters.",
+        "description": "Sets the minimum allowed leg length when leg length is modified dynamically. The behavior enforces a lower safety bound on this value.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-        "example": "leg_len_min = example",
-        "exampleSource": "generated from parameter name"
+        "default": "50",
+        "defaultSource": "manual review",
+        "example": "leg_len_min = 50",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
       }
     ],
     "leg_len_mod": [
       {
         "owner": "BHV_LegRun",
-        "description": "The length of the primary legrun track line may be dynamically modified by the given value. The center and orientation of the legrun track will be retained, but new locations for the two vertices will be calculated. The new length of the leg cannot be lower than the value set by leg length min.",
+        "description": "Adds a runtime adjustment to the current primary-leg length while preserving the leg center and angle. The resulting length is bounded by leg_len_min.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-        "example": "leg_len_mod = example",
-        "exampleSource": "generated from parameter name"
+        "example": "leg_len_mod = 20",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
       }
     ],
     "leg_spds": [
@@ -7611,19 +7733,21 @@
     "lr_mode": [
       {
         "owner": "BHV_LegRun",
-        "description": "The current mode, leg1, leg2,, turn1, turn2.",
+        "description": "Runtime status value indicating the current leg-run phase, such as leg1, leg2, turn1, or turn2. This is normally reported by the behavior, not configured by users.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-        "example": "lr_mode = example",
-        "exampleSource": "generated from parameter name"
+        "example": "lr_mode = leg1",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
       }
     ],
     "lr_mode_report": [
       {
         "owner": "BHV_LegRun",
-        "description": "The current mode, vehicle name, and timestamp, to be sent to other vehicles for coordination.",
+        "description": "Runtime coordination report containing the current leg-run mode, vehicle name, and timestamp for multi-vehicle coordination.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-        "example": "lr_mode_report = example",
-        "exampleSource": "generated from parameter name"
+        "example": "lr_mode_report = name=abe,mode=leg1,time=123.4",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
       }
     ],
     "lr_now_spd": [
@@ -7638,10 +7762,11 @@
     "lr_os_degs": [
       {
         "owner": "BHV_LegRun",
-        "description": "The position of ownship, in degrees, on the reference circle used when multi-vehicle coordinatio is enabled.",
+        "description": "Runtime coordination value giving ownship position in degrees on the reference circle used by multi-vehicle leg-run coordination.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-        "example": "lr_os_degs = example",
-        "exampleSource": "generated from parameter name"
+        "example": "lr_os_degs = 90",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
       }
     ],
     "lr_tcoord_spd": [
@@ -7668,163 +7793,182 @@
     "match_group": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "If specified, the contact group must match the given match group. If multiple match groups are specified, the contact group must match at least one match group.8.1.",
+        "description": "Requires the contact group to match the configured group before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-        "example": "match_group                  = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_CutRange",
-        "description": "If specified, the contact group must match the given match group. If multiple match groups are specified, the contact group must match at least one match group.8.1.",
+        "description": "Requires the contact group to match the configured group before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-        "example": "match_group                  = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Shadow",
-        "description": "If specified, the contact group must match the given match group. If multiple match groups are specified, the contact group must match at least one match group.8.1.",
+        "description": "Requires the contact group to match the configured group before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-        "example": "match_group                  = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Trail",
-        "description": "If specified, the contact group must match the given match group. If multiple match groups are specified, the contact group must match at least one match group.8.1.",
+        "description": "Requires the contact group to match the configured group before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-        "example": "match_group = example",
-        "exampleSource": "generated from parameter name"
+        "example": "match_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "match_name": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "If specified, the contact name must match the given match name. If multiple match names are specified, the contact name must match at least one.8.1.",
+        "description": "Requires the contact name to match the configured name before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-        "example": "match_name                   = example_name",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_name = abe",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_CutRange",
-        "description": "If specified, the contact name must match the given match name. If multiple match names are specified, the contact name must match at least one.8.1.",
+        "description": "Requires the contact name to match the configured name before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-        "example": "match_name                   = example_name",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_name = abe",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Shadow",
-        "description": "If specified, the contact name must match the given match name. If multiple match names are specified, the contact name must match at least one.8.1.",
+        "description": "Requires the contact name to match the configured name before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-        "example": "match_name                   = example_name",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_name = abe",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Trail",
-        "description": "If specified, the contact name must match the given match name. If multiple match names are specified, the contact name must match at least one.8.1.",
+        "description": "Requires the contact name to match the configured name before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-        "example": "match_name = example",
-        "exampleSource": "generated from parameter name"
+        "example": "match_name = abe",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "match_region": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "If specified, the contact must reside in the given convex region. If multiple match regions are specified, the contact position must be in at least one match region. The multiple regions essentially can together support a non-convex regions.8.1.",
+        "description": "Requires the contact to be inside the configured convex region before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-        "example": "match_region                 = op_region",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_region = pts={0,0:100,0:100,100:0,100}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_CutRange",
-        "description": "If specified, the contact must reside in the given convex region. If multiple match regions are specified, the contact position must be in at least one match region. The multiple regions essentially can together support a non-convex regions.8.1.",
+        "description": "Requires the contact to be inside the configured convex region before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-        "example": "match_region                 = op_region",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_region = pts={0,0:100,0:100,100:0,100}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Shadow",
-        "description": "If specified, the contact must reside in the given convex region. If multiple match regions are specified, the contact position must be in at least one match region. The multiple regions essentially can together support a non-convex regions.8.1.",
+        "description": "Requires the contact to be inside the configured convex region before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-        "example": "match_region                 = op_region",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_region = pts={0,0:100,0:100,100:0,100}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Trail",
-        "description": "If specified, the contact must reside in the given convex region. If multiple match regions are specified, the contact position must be in at least one match region. The multiple regions essentially can together support a non-convex regions.8.1.",
+        "description": "Requires the contact to be inside the configured convex region before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-        "example": "match_region = example",
-        "exampleSource": "generated from parameter name"
+        "example": "match_region = pts={0,0:100,0:100,100:0,100}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "match_type": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "If specified, the contact type must match the given match type. If multiple match types are specified, the contact type must match at least one match type.8.1.",
+        "description": "Requires the contact type to match the configured type before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-        "example": "match_type                   = kayak",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_CutRange",
-        "description": "If specified, the contact type must match the given match type. If multiple match types are specified, the contact type must match at least one match type.8.1.",
+        "description": "Requires the contact type to match the configured type before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-        "example": "match_type                   = kayak",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Shadow",
-        "description": "If specified, the contact type must match the given match type. If multiple match types are specified, the contact type must match at least one match type.8.1.",
+        "description": "Requires the contact type to match the configured type before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-        "example": "match_type                   = kayak",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       },
       {
         "owner": "BHV_Trail",
-        "description": "If specified, the contact type must match the given match type. If multiple match types are specified, the contact type must match at least one match type.8.1.",
+        "description": "Requires the contact type to match the configured type before the behavior treats the contact as valid.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-        "example": "match_type = example",
-        "exampleSource": "generated from parameter name"
+        "example": "match_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "max_depth": [
       {
         "owner": "BHV_MaxDepth",
-        "description": "The maximum allowable depth of the vehicle, in meters.",
+        "description": "Sets the maximum allowable ownship depth in meters. A non-positive value leaves the depth limit disabled.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_max_depth.pdf",
         "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxDepth.cpp:44",
-        "example": "max_depth                    = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "max_depth = 20",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3, moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:137"
       },
       {
         "owner": "BHV_OpRegionRecover",
-        "description": "The max allowable depth in meters.",
+        "description": "Sets the maximum allowable ownship depth in meters. A non-positive value leaves the depth limit disabled.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-        "example": "max_depth = example",
-        "exampleSource": "generated from parameter name",
+        "default": "0",
+        "defaultSource": "manual review",
+        "example": "max_depth = 20",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3, moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:137",
         "aliasOf": "BHV_OpRegionV24"
       },
       {
         "owner": "BHV_OpRegionV24",
-        "description": "The max allowable depth in meters.",
+        "description": "Sets the maximum allowable ownship depth in meters. A non-positive value leaves the depth limit disabled.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
         "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:53",
-        "example": "max_depth                    = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "max_depth = 20",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3, moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:137"
       }
     ],
     "max_stem_odo": [
       {
         "owner": "BHV_ZigZag",
-        "description": "Max distance parallel to the stem line, beyond which results in behavior completion, equivalent to reaching max zig legs.",
+        "description": "Sets the maximum distance traveled along the stem line before the behavior completes. A negative value disables this completion criterion.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
         "default": "-1",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:88",
-        "example": "max_stem_odo                 = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "max_stem_odo = -1",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
       }
     ],
     "max_time": [
@@ -7894,13 +8038,13 @@
     "max_zig_legs": [
       {
         "owner": "BHV_ZigZag",
-        "description": "Number of zig legs required for behavior completion.",
+        "description": "Sets how many zig legs must be completed before the behavior can complete.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
         "default": "2",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:87",
-        "example": "max_zig_legs                 = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "max_zig_legs = 2",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
       }
     ],
     "memory_time": [
@@ -7960,21 +8104,24 @@
     "min_altitude": [
       {
         "owner": "BHV_OpRegionRecover",
-        "description": "The min allowable altitude in meters.",
+        "description": "Sets the minimum allowable ownship altitude above the bottom in meters. A non-positive value leaves the altitude limit disabled.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-        "example": "min_altitude = example",
-        "exampleSource": "generated from parameter name",
+        "default": "0",
+        "defaultSource": "manual review",
+        "example": "min_altitude = 5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3",
         "aliasOf": "BHV_OpRegionV24"
       },
       {
         "owner": "BHV_OpRegionV24",
-        "description": "The min allowable altitude in meters.",
+        "description": "Sets the minimum allowable ownship altitude above the bottom in meters. A non-positive value leaves the altitude limit disabled.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
         "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:54",
-        "example": "min_altitude                 = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "min_altitude = 5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3"
       }
     ],
     "min_util_cpa_dist": [
@@ -8217,138 +8364,157 @@
     "nostarve": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_AvoidObstacleV24",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name",
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261",
         "aliasOf": "BHV_AvoidObstacle"
       },
       {
         "owner": "BHV_ConstantDepth",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_ConstantHeading",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_ConstantSpeed",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_CutRange",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_GoToDepth",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_goto_depth.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_Loiter",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_MaxDepth",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_max_depth.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_MaxSpeed",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name",
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261",
         "aliasOf": "BHV_ConstantSpeed"
       },
       {
         "owner": "BHV_MemoryTurnLimit",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_mem_turnlimit.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_PeriodicSpeed",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_PeriodicSurface",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_Shadow",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_shadow.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_StationKeep",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_TestFailure",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_testfail.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_Timer",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_timer.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_Trail",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       },
       {
         "owner": "BHV_Waypoint",
-        "description": "Allows a behavior to assert a maximum staleness for a MOOS variable.",
+        "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
-        "example": "nostarve = example",
-        "exampleSource": "generated from parameter name"
+        "example": "nostarve = NAV_X, NAV_Y, 5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
       }
     ],
     "on_no_contact_ok": [
@@ -8392,10 +8558,13 @@
     "order": [
       {
         "owner": "BHV_Waypoint",
-        "description": "The order in which waypoints are traversed - \"normal\", \"reverse\", and with 14.3 or later, \"toggle\".",
+        "description": "Sets the order in which waypoints are traversed. Supported values include normal, reverse, and toggle.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
-        "example": "order                        = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "normal",
+        "defaultSource": "manual review",
+        "example": "order = normal",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_waypoint.pdf: Section 1.4"
       }
     ],
     "outer_radius": [
@@ -8425,36 +8594,40 @@
     "p1": [
       {
         "owner": "BHV_LegRun",
-        "description": "The location of one end of the primary leg.",
+        "description": "Sets one endpoint of the primary leg-run track line in local x,y coordinates.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-        "example": "p1 = example",
-        "exampleSource": "generated from parameter name"
+        "example": "p1 = 70,-35",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_legrun.pdf: example configuration"
       }
     ],
     "p2": [
       {
         "owner": "BHV_LegRun",
-        "description": "The location of the other end of the primary leg.",
+        "description": "Sets the other endpoint of the primary leg-run track line in local x,y coordinates.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-        "example": "p2 = example",
-        "exampleSource": "generated from parameter name"
+        "example": "p2 = -35,-85",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_legrun.pdf: example configuration"
       }
     ],
     "parameter": [
       {
         "owner": "BHV_OpRegionRecover",
-        "description": "Description",
+        "description": "Documentation table placeholder, not an ordinary behavior configuration parameter. Prefer the specific OpRegion parameters such as core_poly, save_poly, halt_poly, max_depth, min_altitude, and reset.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-        "example": "parameter = example",
-        "exampleSource": "generated from parameter name",
+        "example": "parameter = value",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP generated behavior documentation",
         "aliasOf": "BHV_OpRegionV24"
       },
       {
         "owner": "BHV_OpRegionV24",
-        "description": "Description",
+        "description": "Documentation table placeholder, not an ordinary behavior configuration parameter. Prefer the specific OpRegion parameters such as core_poly, save_poly, halt_poly, max_depth, min_altitude, and reset.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-        "example": "parameter = example",
-        "exampleSource": "generated from parameter name"
+        "example": "parameter = value",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP generated behavior documentation"
       }
     ],
     "patience": [
@@ -8512,10 +8685,11 @@
       },
       {
         "owner": "BHV_MaxSpeed",
-        "description": "The width of the peak, in meters per second, in the produced ZAIC-style IvP function.",
+        "description": "Sets the width, in meters per second, of the peak region in the speed utility function.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
-        "example": "peakwidth = example",
-        "exampleSource": "generated from parameter name",
+        "example": "peakwidth = 0.5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP max speed behavior documentation",
         "aliasOf": "BHV_ConstantSpeed"
       },
       {
@@ -8544,37 +8718,37 @@
     "period": [
       {
         "owner": "BHV_PeriodicSurface",
-        "description": "Duration of the WAITING mode.",
+        "description": "Sets the duration, in seconds, of the waiting interval before the behavior next requests surfacing.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf",
         "default": "300",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:50",
-        "example": "period                       = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "period = 300",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_periodic_surface.pdf"
       }
     ],
     "period_busy": [
       {
         "owner": "BHV_PeriodicSpeed",
-        "description": "The duration of the busy period, in seconds.",
+        "description": "Sets the duration, in seconds, of the busy/high-speed portion of the periodic speed cycle.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
         "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:52",
-        "example": "period_busy                  = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "period_busy = 60",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP periodic speed behavior documentation"
       }
     ],
     "period_lazy": [
       {
         "owner": "BHV_PeriodicSpeed",
-        "description": "The duration of the lazy period, in seconds.",
+        "description": "Sets the duration, in seconds, of the lazy/low-speed portion of the periodic speed cycle.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
         "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:53",
-        "example": "period_lazy                  = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "period_lazy = 120",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP periodic speed behavior documentation"
       }
     ],
     "period_speed": [
@@ -8924,13 +9098,11 @@
     "post_suffix": [
       {
         "owner": "BHV_Loiter",
-        "description": "A string to add as a suffix to variables posted by this behaviors.",
+        "description": "Adds a suffix to MOOS variables posted by this loiter behavior so multiple loiter instances can be distinguished.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
-        "default": "_\" + toupper(value)",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:208",
-        "example": "post_suffix                  = 1",
-        "exampleSource": "generated coverage fixture"
+        "example": "post_suffix = ALPHA",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_loiter.pdf"
       },
       {
         "owner": "BHV_Waypoint",
@@ -9453,21 +9625,20 @@
     "reset": [
       {
         "owner": "BHV_OpRegionRecover",
-        "description": "If set to true, and the behavior is currently in a mode where one of the operating envelopes (time, depth, altitude or position) has been breached, the behavior will be reset to original launch state.",
+        "description": "Resets a previously breached OpRegion condition back to its launch-like monitoring state. This is most useful when sent through the behavior updates variable during a mission.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-        "example": "reset = example",
-        "exampleSource": "generated from parameter name",
+        "example": "reset = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.4",
         "aliasOf": "BHV_OpRegionV24"
       },
       {
         "owner": "BHV_OpRegionV24",
-        "description": "If set to true, and the behavior is currently in a mode where one of the operating envelopes (time, depth, altitude or position) has been breached, the behavior will be reset to original launch state.",
+        "description": "Resets a previously breached OpRegion condition back to its launch-like monitoring state. This is most useful when sent through the behavior updates variable during a mission.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-        "default": "true",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:75",
-        "example": "reset                        = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "reset = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.4"
       }
     ],
     "reset_upon_running": [
@@ -9632,18 +9803,20 @@
     "save_poly": [
       {
         "owner": "BHV_OpRegionRecover",
-        "description": "A convex polygon area, outside of which the behavior will generation an IvP function to return within the polygon.",
+        "description": "Defines the soft recovery polygon. When the vehicle exits this polygon, the behavior may produce an IvP function to guide it back inside before a harder halt breach occurs.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-        "example": "save_poly = example",
-        "exampleSource": "generated from parameter name",
+        "example": "save_poly = pts={-74.9,-52.1:54,14.5:94.9,-60.1:-34,-126.8}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1",
         "aliasOf": "BHV_OpRegionV24"
       },
       {
         "owner": "BHV_OpRegionV24",
-        "description": "A convex polygon area, outside of which the behavior will generation an IvP function to return within the polygon.",
+        "description": "Defines the soft recovery polygon. When the vehicle exits this polygon, the behavior may produce an IvP function to guide it back inside before a harder halt breach occurs.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-        "example": "save_poly                    = 0,0 : 50,0 : 50,-50 : 0,-50",
-        "exampleSource": "generated coverage fixture"
+        "example": "save_poly = pts={-74.9,-52.1:54,14.5:94.9,-60.1:-34,-126.8}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1"
       }
     ],
     "schedule_repeat": [
@@ -9660,10 +9833,11 @@
     "shift_pt": [
       {
         "owner": "BHV_LegRun",
-        "description": "A location in the x-y plane. If provided, it will override the p1 and p2 parameters and move the primary leg to be centered at the shift pt, keeping the original primary leg length and angle.",
+        "description": "Moves the primary leg so its center is at the given x,y point while preserving the original leg length and angle.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-        "example": "shift_pt                     = 0,0",
-        "exampleSource": "generated coverage fixture"
+        "example": "shift_pt = 0,0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
       }
     ],
     "slip_radius": [
@@ -10264,10 +10438,11 @@
       },
       {
         "owner": "BHV_MaxSpeed",
-        "description": "The height of the summit delta parameter in the produced ZAIC-style IvP function.",
+        "description": "Sets the summit delta used in the ZAIC-style speed objective function.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
-        "example": "summitdelta = example",
-        "exampleSource": "generated from parameter name",
+        "example": "summitdelta = 25",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP max speed behavior documentation",
         "aliasOf": "BHV_ConstantSpeed"
       }
     ],
@@ -10286,10 +10461,11 @@
     "tail_length_max": [
       {
         "owner": "BHV_Convoy",
-        "description": "The maximum marker tail length, beyond which the behavior will drop the oldest marker.",
+        "description": "Sets the maximum marker tail length retained for convoy visualization before older tail markers are dropped.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_convoy.pdf",
-        "example": "tail_length_max = example",
-        "exampleSource": "generated from parameter name"
+        "example": "tail_length_max = 20",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP convoy behavior documentation"
       }
     ],
     "templating": [
@@ -10486,13 +10662,13 @@
     "trail_angle": [
       {
         "owner": "BHV_Trail",
-        "description": "Relative angle to the contact to set the trail-point. The default is 180.",
+        "description": "Sets the relative angle behind or around the contact used to place the trail point.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
         "default": "180",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Trail.cpp:49",
-        "example": "trail_angle                  = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "trail_angle = 180",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_trail.pdf"
       }
     ],
     "trail_angle_type": [
@@ -11090,10 +11266,11 @@
     "variable": [
       {
         "owner": "BHV_LegRun",
-        "description": "Description",
+        "description": "Runtime coordination field used by BHV_LegRun status reporting. It is not a primary user-facing mission tuning parameter.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
-        "example": "variable = example",
-        "exampleSource": "generated from parameter name"
+        "example": "variable = LR_MODE_REPORT",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_legrun.pdf: generated parameter table"
       }
     ],
     "visual_hints": [
@@ -11209,25 +11386,25 @@
     "xcenter_assign": [
       {
         "owner": "BHV_Loiter",
-        "description": "A x-value, in meters, indicating a (new) x-position of the loiter polygon.",
+        "description": "Moves only the x-coordinate of the loiter polygon center, preserving the current y-coordinate.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
         "default": "present_position",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:263",
-        "example": "xcenter_assign               = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "xcenter_assign = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_loiter.pdf"
       }
     ],
     "ycenter_assign": [
       {
         "owner": "BHV_Loiter",
-        "description": "A y-value, in meters, indicating a (new) y-position of the loiter polygon.",
+        "description": "Moves only the y-coordinate of the loiter polygon center, preserving the current x-coordinate.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
         "default": "present_position",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:263",
-        "example": "ycenter_assign               = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "ycenter_assign = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_loiter.pdf"
       }
     ],
     "zero_speed_depth": [
@@ -11245,34 +11422,33 @@
     "zig_angle": [
       {
         "owner": "BHV_ZigZag",
-        "description": "Target relative angle required for zig leg completion.",
+        "description": "Sets the relative angle used for the ordinary zig leg.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
-        "default": "2",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:87",
-        "example": "zig_angle                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "zig_angle = 30",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
       }
     ],
     "zig_angle_fierce": [
       {
         "owner": "BHV_ZigZag",
-        "description": "Relative heading requested to effect a zig leg.",
+        "description": "Sets the relative heading request used when fierce_zigging is enabled.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
-        "example": "zig_angle_fierce             = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "zig_angle_fierce = 60",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
       }
     ],
     "zig_first": [
       {
         "owner": "BHV_ZigZag",
-        "description": "Which side for initial zig first. Default is port. Other option is star.",
+        "description": "Selects which side is used for the first zig. Supported values include port and starboard/star.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
-        "default": "2",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:87",
-        "example": "zig_first                    = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "port",
+        "defaultSource": "manual review",
+        "example": "zig_first = port",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
       }
     ]
   }

@@ -159,30 +159,35 @@
         },
         "bearing_line_config": {
           "name": "bearing_line_config",
-          "description": "Configures the bearing-line visualization published for the contact relationship.",
+          "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. This is the source-level spelling accepted by IvP contact behaviors.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "bearing_line_config          = label=example",
-          "exampleSource": "generated coverage fixture"
+          "example": "bearing_line_config = info=range, white:0, yellow:50, red:100",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
         },
         "bearing_line_label_show": {
           "name": "bearing_line_label_show",
-          "description": "Controls whether bearing-line labels are shown in contact visualizations.",
+          "description": "Controls whether labels are shown on contact bearing-line visualizations.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "bearing_line_label_show      = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "bearing_line_label_show = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:160"
         },
         "bearing_line_show": {
           "name": "bearing_line_show",
-          "description": "Toggles drawing or display of bearing line show.",
+          "description": "Turns contact bearing-line drawing on or off when the behavior supports bearing-line visualization.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "bearing_line_show            = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "bearing_line_show = true",
+          "exampleSource": "manual review",
+          "default": "false",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:163"
         },
         "build_info": {
           "name": "build_info",
@@ -278,10 +283,10 @@
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "120",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:90",
-          "example": "eval_tol                     = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "eval_tol = 120",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
         },
         "exit_on_filter_group": {
           "name": "exit_on_filter_group",
@@ -354,39 +359,43 @@
         },
         "ignore_group": {
           "name": "ignore_group",
-          "description": "Ignores contacts matching the configured group.",
+          "description": "Excludes contacts in the configured group before the behavior treats them as valid.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "ignore_group                 = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_name": {
           "name": "ignore_name",
-          "description": "Ignores contacts matching the configured name.",
+          "description": "Excludes contacts with the configured name before the behavior treats them as valid.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "ignore_name                  = example_name",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_name = abe",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_region": {
           "name": "ignore_region",
-          "description": "Ignores contacts matching the configured region.",
+          "description": "Excludes contacts inside the configured convex region before the behavior treats them as valid.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "ignore_region                = op_region",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_region = pts={0,0:100,0:100,100:0,100}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "ignore_type": {
           "name": "ignore_type",
-          "description": "Ignores contacts matching the configured type.",
+          "description": "Excludes contacts with the configured type before the behavior treats them as valid.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "ignore_type                  = kayak",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "inactiveflag": {
           "name": "inactiveflag",
@@ -399,39 +408,43 @@
         },
         "match_group": {
           "name": "match_group",
-          "description": "Accepts only contacts matching the configured group.",
+          "description": "Requires the contact group to match the configured group before the behavior treats the contact as valid.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "match_group                  = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_name": {
           "name": "match_name",
-          "description": "Accepts only contacts matching the configured name.",
+          "description": "Requires the contact name to match the configured name before the behavior treats the contact as valid.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "match_name                   = example_name",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_name = abe",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_region": {
           "name": "match_region",
-          "description": "Accepts only contacts matching the configured region.",
+          "description": "Requires the contact to be inside the configured convex region before the behavior treats the contact as valid.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "match_region                 = op_region",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_region = pts={0,0:100,0:100,100:0,100}",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_type": {
           "name": "match_type",
-          "description": "Accepts only contacts matching the configured type.",
+          "description": "Requires the contact type to match the configured type before the behavior treats the contact as valid.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "match_type                   = kayak",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_type = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "on_no_contact_ok": {
           "name": "on_no_contact_ok",
@@ -462,12 +475,13 @@
         },
         "passing_side": {
           "name": "passing_side",
-          "description": "Selects the side on which a COLREGS passing maneuver is evaluated.",
+          "description": "Selects which side the COLREGS passing maneuver is evaluated or preferred on.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "passing_side                 = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "passing_side = starboard",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
         },
         "pcheck_thresh": {
           "name": "pcheck_thresh",
@@ -510,15 +524,15 @@
         },
         "post_status_info_on_idle": {
           "name": "post_status_info_on_idle",
-          "description": "Keeps posting status information even while the behavior is idle.",
+          "description": "Keeps posting COLREGS status information even while the behavior is idle.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:95",
-          "example": "post_status_info_on_idle     = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "post_status_info_on_idle = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
         },
         "pts_port_turns_ok": {
           "name": "pts_port_turns_ok",
@@ -585,12 +599,13 @@
         },
         "velocity_filter": {
           "name": "velocity_filter",
-          "description": "Applies the configured contact or region filter for velocity filter.",
+          "description": "Applies a velocity-based contact filter before evaluating COLREGS maneuvers.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "velocity_filter              = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "velocity_filter = min_speed=0.2",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
         },
         "verbose": {
           "name": "verbose",
@@ -622,21 +637,23 @@
         },
         "bearing_line_config": {
           "name": "bearing_line_config",
-          "description": "Configures the bearing-line visualization published for the contact relationship.",
+          "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. This is the source-level spelling accepted by IvP contact behaviors.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "bearing_line_config          = label=example",
-          "exampleSource": "generated coverage fixture"
+          "example": "bearing_line_config = info=range, white:0, yellow:50, red:100",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
         },
         "bearing_line_label_show": {
           "name": "bearing_line_label_show",
-          "description": "Controls whether bearing-line labels are shown in contact visualizations.",
+          "description": "Controls whether labels are shown on contact bearing-line visualizations.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "bearing_line_label_show      = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "bearing_line_label_show = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:160"
         },
         "build_info": {
           "name": "build_info",
@@ -682,21 +699,23 @@
         },
         "cnh": {
           "name": "cnh",
-          "description": "Sets the contact heading supplied to contact-geometry calculations.",
+          "description": "Sets the contact heading used by the avoidance geometry calculations.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "cnh                          = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "cnh = 90",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
         },
         "cnv": {
           "name": "cnv",
-          "description": "Sets the contact speed supplied to contact-geometry calculations.",
+          "description": "Sets the contact speed used by the avoidance geometry calculations.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "cnv                          = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "cnv = 1.2",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
         },
         "cnx": {
           "name": "cnx",
@@ -772,21 +791,23 @@
         },
         "ignore_contact_group": {
           "name": "ignore_contact_group",
-          "description": "Configures the contact target for BHV_AvoidCollision.",
+          "description": "Adds a contact filter that excludes contacts matching the named field before the behavior treats them as valid contacts.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "ignore_contact_group         = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "ignore_contact_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "match_contact_group": {
           "name": "match_contact_group",
-          "description": "Configures the contact target for BHV_AvoidCollision.",
+          "description": "Adds a contact filter that requires the contact to match the named field before the behavior treats it as a valid contact.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "match_contact_group          = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "match_contact_group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
         },
         "osh": {
           "name": "osh",
@@ -856,12 +877,13 @@
         },
         "refine_piece": {
           "name": "refine_piece",
-          "description": "Enables objective-function piece refinement.",
+          "description": "Enables objective-function piece refinement for the collision-avoidance utility surface.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "refine_piece                 = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "refine_piece = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
         },
         "refine_region": {
           "name": "refine_region",
@@ -874,27 +896,27 @@
         },
         "roc_max_dampen": {
           "name": "roc_max_dampen",
-          "description": "Limits how much rate-of-closure can dampen avoidance utility.",
+          "description": "Limits how much rate-of-closure can dampen collision-avoidance utility.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "-2.0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp:64",
-          "example": "roc_max_dampen               = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "roc_max_dampen = -2.0",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
         },
         "roc_max_heighten": {
           "name": "roc_max_heighten",
-          "description": "Limits how much rate-of-closure can heighten avoidance utility.",
+          "description": "Limits how much rate-of-closure can heighten collision-avoidance utility.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "2.0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp:65",
-          "example": "roc_max_heighten             = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "roc_max_heighten = 2.0",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
         },
         "spawnx_flag": {
           "name": "spawnx_flag",
@@ -953,12 +975,13 @@
       "parameters": {
         "action": {
           "name": "action",
-          "description": "Selects the requested obstacle action, such as enabling or disabling a matching obstacle.",
+          "description": "Selects the requested obstacle action, such as enabling, disabling, or otherwise changing a matching obstacle.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "action                       = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "action = disable",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp"
         },
         "allstop_on_breach": {
           "name": "allstop_on_breach",
@@ -1055,12 +1078,13 @@
         },
         "obid": {
           "name": "obid",
-          "description": "Matches an obstacle by obstacle id.",
+          "description": "Matches an obstacle by obstacle id for the requested obstacle action.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "obid                         = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "obid = obstacle_1",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp"
         },
         "obstacle_id": {
           "name": "obstacle_id",
@@ -1073,12 +1097,13 @@
         },
         "obstacle_key": {
           "name": "obstacle_key",
-          "description": "Matches an obstacle by obstacle key.",
+          "description": "Matches an obstacle by obstacle key for the requested obstacle action.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "obstacle_key                 = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "obstacle_key = obstacle_1",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp"
         },
         "plateau_region": {
           "name": "plateau_region",
@@ -1154,12 +1179,13 @@
         },
         "vsource": {
           "name": "vsource",
-          "description": "Matches an obstacle by visualization/source identifier.",
+          "description": "Matches an obstacle by visualization/source identifier for the requested obstacle action.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "vsource                      = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "vsource = pObstacleMgr",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp"
         }
       }
     },
@@ -1429,27 +1455,27 @@
         },
         "rng_estop": {
           "name": "rng_estop",
-          "description": "Sets the convoy emergency-stop range.",
+          "description": "Sets the convoy emergency-stop range. When the follower is too close, the behavior can drive toward stopping.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "15",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:71",
-          "example": "rng_estop                    = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "rng_estop = 15",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
         },
         "rng_lagging": {
           "name": "rng_lagging",
-          "description": "Sets the convoy lagging range.",
+          "description": "Sets the convoy range beyond which the follower is considered lagging behind the contact.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "70",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:73",
-          "example": "rng_lagging                  = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "rng_lagging = 70",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
         },
         "rng_safety": {
           "name": "rng_safety",
@@ -1465,15 +1491,15 @@
         },
         "rng_tgating": {
           "name": "rng_tgating",
-          "description": "Sets the convoy tailgating range.",
+          "description": "Sets the convoy tailgating range where the follower is considered too close but not necessarily in emergency stop.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "30",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:72",
-          "example": "rng_tgating                  = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "rng_tgating = 30",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
         },
         "spawnx_flag": {
           "name": "spawnx_flag",
@@ -1538,12 +1564,13 @@
       "parameters": {
         "bearing_line_config": {
           "name": "bearing_line_config",
-          "description": "Configures the bearing-line visualization published for the contact relationship.",
+          "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. This is the source-level spelling accepted by IvP contact behaviors.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_CutRange.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "bearing_line_config          = label=example",
-          "exampleSource": "generated coverage fixture"
+          "example": "bearing_line_config = info=range, white:0, yellow:50, red:100",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
         },
         "build_info": {
           "name": "build_info",
@@ -2249,10 +2276,10 @@
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "90.0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp:57",
-          "example": "max_window_utility           = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "max_window_utility = 90.0",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp"
         },
         "memory_time": {
           "name": "memory_time",
@@ -2314,12 +2341,13 @@
         },
         "full_leg": {
           "name": "full_leg",
-          "description": "Requires the vehicle to complete the full configured leg before transitioning.",
+          "description": "Requires the vehicle to complete the full configured leg before transitioning into turn behavior.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "full_leg                     = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "full_leg = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
         },
         "inactiveflag": {
           "name": "inactiveflag",
@@ -2359,21 +2387,23 @@
         },
         "leg_length": {
           "name": "leg_length",
-          "description": "Sets the length of the leg-run track.",
+          "description": "Source-level spelling for setting the length of the primary leg-run track while preserving its center and angle.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "leg_length                   = 4",
-          "exampleSource": "generated coverage fixture"
+          "example": "leg_length = 100",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
         },
         "leg_length_mod": {
           "name": "leg_length_mod",
-          "description": "Applies a runtime adjustment to the leg-run track length.",
+          "description": "Source-level spelling for adding a runtime adjustment to the current primary-leg length.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "leg_length_mod               = 4",
-          "exampleSource": "generated coverage fixture"
+          "example": "leg_length_mod = 20",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
         },
         "midflag": {
           "name": "midflag",
@@ -2422,12 +2452,13 @@
         },
         "shift_point": {
           "name": "shift_point",
-          "description": "Shifts the configured leg-run points by an x/y offset.",
+          "description": "Source-level spelling for shifting the primary leg so its center is at the given x,y point while preserving length and angle.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "shift_point                  = 0,0",
-          "exampleSource": "generated coverage fixture"
+          "example": "shift_point = 0,0",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
         },
         "spawnx_flag": {
           "name": "spawnx_flag",
@@ -2485,21 +2516,23 @@
         },
         "vx1": {
           "name": "vx1",
-          "description": "Sets the x-coordinate of the first leg-run vertex.",
+          "description": "Source-level coordinate for the x value of the first leg-run vertex.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "vx1                          = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "vx1 = 70",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
         },
         "vx2": {
           "name": "vx2",
-          "description": "Sets the x-coordinate of the second leg-run vertex.",
+          "description": "Source-level coordinate for the x value of the second leg-run vertex.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "vx2                          = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "vx2 = -35",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
         },
         "warn_overshoot": {
           "name": "warn_overshoot",
@@ -2666,15 +2699,15 @@
         },
         "slingshot": {
           "name": "slingshot",
-          "description": "Enables loiter slingshot handling when approaching the polygon.",
+          "description": "Enables loiter slingshot handling when approaching the polygon. A negative value leaves this handling disabled.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "-1",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:74",
-          "example": "slingshot                    = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "slingshot = -1",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
         },
         "spawnx_flag": {
           "name": "spawnx_flag",
@@ -2908,15 +2941,15 @@
         },
         "min_altitude": {
           "name": "min_altitude",
-          "description": "Sets the minimum allowed altitude above bottom.",
+          "description": "Sets the minimum allowable ownship altitude above the bottom in meters. A non-positive value leaves the altitude limit disabled.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MinAltitudeX.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MinAltitudeX.cpp:43",
-          "example": "min_altitude                 = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "min_altitude = 5",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3"
         },
         "missing_altitude_critical": {
           "name": "missing_altitude_critical",
@@ -3096,12 +3129,13 @@
       "parameters": {
         "draw_save_statue": {
           "name": "draw_save_statue",
-          "description": "Toggles drawing of the OpRegionV24 save-status visualization.",
+          "description": "Source-discovered misspelling of draw_save_status. It controls whether the save-status polygon visualization is drawn while the behavior is recovering toward the save polygon.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "draw_save_statue             = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "draw_save_statue = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp"
         },
         "dynamic_region_var": {
           "name": "dynamic_region_var",
@@ -3540,12 +3574,13 @@
       "parameters": {
         "bearing_line_config": {
           "name": "bearing_line_config",
-          "description": "Configures the bearing-line visualization published for the contact relationship.",
+          "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. This is the source-level spelling accepted by IvP contact behaviors.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "bearing_line_config          = label=example",
-          "exampleSource": "generated coverage fixture"
+          "example": "bearing_line_config = info=range, white:0, yellow:50, red:100",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
         },
         "decay_end": {
           "name": "decay_end",
@@ -3887,12 +3922,13 @@
       "parameters": {
         "bearing_line_config": {
           "name": "bearing_line_config",
-          "description": "Configures the bearing-line visualization published for the contact relationship.",
+          "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. This is the source-level spelling accepted by IvP contact behaviors.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Trail.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "bearing_line_config          = label=example",
-          "exampleSource": "generated coverage fixture"
+          "example": "bearing_line_config = info=range, white:0, yellow:50, red:100",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
         },
         "build_info": {
           "name": "build_info",
@@ -3992,12 +4028,13 @@
         },
         "n_alert_request": {
           "name": "n_alert_request",
-          "description": "Suppresses automatic contact-manager alert requests.",
+          "description": "Suppresses or controls the automatic contact-manager alert request normally used by contact behaviors.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Trail.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "n_alert_request              = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "n_alert_request = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Trail.cpp"
         },
         "oslat": {
           "name": "oslat",
@@ -4125,15 +4162,15 @@
         },
         "greedy_tour": {
           "name": "greedy_tour",
-          "description": "Allows waypoint ordering to be greedily optimized.",
+          "description": "Allows waypoint ordering to be optimized greedily before traversal.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:118",
-          "example": "greedy_tour                  = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "greedy_tour = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
         },
         "ipf_type": {
           "name": "ipf_type",
@@ -4229,19 +4266,20 @@
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:105",
-          "example": "reset_on_idle                = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "reset_on_idle = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
         },
         "shortest_tour": {
           "name": "shortest_tour",
-          "description": "Requests shortest-tour ordering of waypoint points.",
+          "description": "Requests shortest-tour ordering of the waypoint set before traversal.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "shortest_tour                = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "shortest_tour = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
         },
         "slow_dist": {
           "name": "slow_dist",
@@ -4411,12 +4449,13 @@
         },
         "max_zig_zags": {
           "name": "max_zig_zags",
-          "description": "Shapes the max zig zags maneuver.",
+          "description": "Sets the maximum number of complete zig-zag cycles before the behavior can complete.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_zig_zags                 = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_zig_zags = 3",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp"
         },
         "portflag": {
           "name": "portflag",
@@ -4544,12 +4583,13 @@
     "action": [
       {
         "owner": "BHV_AvoidObstacleV24",
-        "description": "Selects the requested obstacle action, such as enabling or disabling a matching obstacle.",
+        "description": "Selects the requested obstacle action, such as enabling, disabling, or otherwise changing a matching obstacle.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "action                       = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "action = disable",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp"
       }
     ],
     "all_clear_distance": [
@@ -4684,79 +4724,89 @@
     "bearing_line_config": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Configures the bearing-line visualization published for the contact relationship.",
+        "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. This is the source-level spelling accepted by IvP contact behaviors.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "bearing_line_config          = label=example",
-        "exampleSource": "generated coverage fixture"
+        "example": "bearing_line_config = info=range, white:0, yellow:50, red:100",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
       },
       {
         "owner": "BHV_AvoidCollision",
-        "description": "Configures the bearing-line visualization published for the contact relationship.",
+        "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. This is the source-level spelling accepted by IvP contact behaviors.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "bearing_line_config          = label=example",
-        "exampleSource": "generated coverage fixture"
+        "example": "bearing_line_config = info=range, white:0, yellow:50, red:100",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
       },
       {
         "owner": "BHV_CutRange",
-        "description": "Configures the bearing-line visualization published for the contact relationship.",
+        "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. This is the source-level spelling accepted by IvP contact behaviors.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_CutRange.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "bearing_line_config          = label=example",
-        "exampleSource": "generated coverage fixture"
+        "example": "bearing_line_config = info=range, white:0, yellow:50, red:100",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
       },
       {
         "owner": "BHV_Shadow",
-        "description": "Configures the bearing-line visualization published for the contact relationship.",
+        "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. This is the source-level spelling accepted by IvP contact behaviors.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "bearing_line_config          = label=example",
-        "exampleSource": "generated coverage fixture"
+        "example": "bearing_line_config = info=range, white:0, yellow:50, red:100",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
       },
       {
         "owner": "BHV_Trail",
-        "description": "Configures the bearing-line visualization published for the contact relationship.",
+        "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. This is the source-level spelling accepted by IvP contact behaviors.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Trail.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "bearing_line_config          = label=example",
-        "exampleSource": "generated coverage fixture"
+        "example": "bearing_line_config = info=range, white:0, yellow:50, red:100",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
       }
     ],
     "bearing_line_label_show": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Controls whether bearing-line labels are shown in contact visualizations.",
+        "description": "Controls whether labels are shown on contact bearing-line visualizations.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "bearing_line_label_show      = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "bearing_line_label_show = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:160"
       },
       {
         "owner": "BHV_AvoidCollision",
-        "description": "Controls whether bearing-line labels are shown in contact visualizations.",
+        "description": "Controls whether labels are shown on contact bearing-line visualizations.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "bearing_line_label_show      = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "bearing_line_label_show = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:160"
       }
     ],
     "bearing_line_show": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Toggles drawing or display of bearing line show.",
+        "description": "Turns contact bearing-line drawing on or off when the behavior supports bearing-line visualization.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "bearing_line_show            = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "false",
+        "defaultSource": "manual review",
+        "example": "bearing_line_show = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:163"
       }
     ],
     "bearing_point": [
@@ -4940,12 +4990,13 @@
     "cnh": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "Sets the contact heading supplied to contact-geometry calculations.",
+        "description": "Sets the contact heading used by the avoidance geometry calculations.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "cnh                          = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "cnh = 90",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
       }
     ],
     "cnlat": [
@@ -5011,12 +5062,13 @@
     "cnv": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "Sets the contact speed supplied to contact-geometry calculations.",
+        "description": "Sets the contact speed used by the avoidance geometry calculations.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "cnv                          = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "cnv = 1.2",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
       }
     ],
     "cnx": [
@@ -5560,12 +5612,13 @@
     "draw_save_statue": [
       {
         "owner": "BHV_OpRegionV24",
-        "description": "Toggles drawing of the OpRegionV24 save-status visualization.",
+        "description": "Source-discovered misspelling of draw_save_status. It controls whether the save-status polygon visualization is drawn while the behavior is recovering toward the save polygon.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "draw_save_statue             = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "draw_save_statue = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp"
       }
     ],
     "draw_set_hdg": [
@@ -5723,10 +5776,10 @@
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "120",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:90",
-        "example": "eval_tol                     = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "eval_tol = 120",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
       }
     ],
     "exit_on_filter_group": [
@@ -5877,12 +5930,13 @@
     "full_leg": [
       {
         "owner": "BHV_LegRun",
-        "description": "Requires the vehicle to complete the full configured leg before transitioning.",
+        "description": "Requires the vehicle to complete the full configured leg before transitioning into turn behavior.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "full_leg                     = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "full_leg = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
       }
     ],
     "giveup_range": [
@@ -5899,15 +5953,15 @@
     "greedy_tour": [
       {
         "owner": "BHV_Waypoint",
-        "description": "Allows waypoint ordering to be greedily optimized.",
+        "description": "Allows waypoint ordering to be optimized greedily before traversal.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:118",
-        "example": "greedy_tour                  = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "greedy_tour = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
       }
     ],
     "halt_dist": [
@@ -6022,56 +6076,61 @@
     "ignore_contact_group": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "Configures the contact target for BHV_AvoidCollision.",
+        "description": "Adds a contact filter that excludes contacts matching the named field before the behavior treats them as valid contacts.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "ignore_contact_group         = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_contact_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "ignore_group": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Ignores contacts matching the configured group.",
+        "description": "Excludes contacts in the configured group before the behavior treats them as valid.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "ignore_group                 = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "ignore_name": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Ignores contacts matching the configured name.",
+        "description": "Excludes contacts with the configured name before the behavior treats them as valid.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "ignore_name                  = example_name",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_name = abe",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "ignore_region": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Ignores contacts matching the configured region.",
+        "description": "Excludes contacts inside the configured convex region before the behavior treats them as valid.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "ignore_region                = op_region",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_region = pts={0,0:100,0:100,100:0,100}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "ignore_type": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Ignores contacts matching the configured type.",
+        "description": "Excludes contacts with the configured type before the behavior treats them as valid.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "ignore_type                  = kayak",
-        "exampleSource": "generated coverage fixture"
+        "example": "ignore_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "inactiveflag": [
@@ -6400,23 +6459,25 @@
     "leg_length": [
       {
         "owner": "BHV_LegRun",
-        "description": "Sets the length of the leg-run track.",
+        "description": "Source-level spelling for setting the length of the primary leg-run track while preserving its center and angle.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "leg_length                   = 4",
-        "exampleSource": "generated coverage fixture"
+        "example": "leg_length = 100",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
       }
     ],
     "leg_length_mod": [
       {
         "owner": "BHV_LegRun",
-        "description": "Applies a runtime adjustment to the leg-run track length.",
+        "description": "Source-level spelling for adding a runtime adjustment to the current primary-leg length.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "leg_length_mod               = 4",
-        "exampleSource": "generated coverage fixture"
+        "example": "leg_length_mod = 20",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
       }
     ],
     "leg1_end_flag": [
@@ -6483,56 +6544,61 @@
     "match_contact_group": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "Configures the contact target for BHV_AvoidCollision.",
+        "description": "Adds a contact filter that requires the contact to match the named field before the behavior treats it as a valid contact.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "match_contact_group          = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_contact_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "match_group": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Accepts only contacts matching the configured group.",
+        "description": "Requires the contact group to match the configured group before the behavior treats the contact as valid.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "match_group                  = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "match_name": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Accepts only contacts matching the configured name.",
+        "description": "Requires the contact name to match the configured name before the behavior treats the contact as valid.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "match_name                   = example_name",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_name = abe",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "match_region": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Accepts only contacts matching the configured region.",
+        "description": "Requires the contact to be inside the configured convex region before the behavior treats the contact as valid.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "match_region                 = op_region",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_region = pts={0,0:100,0:100,100:0,100}",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "match_type": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Accepts only contacts matching the configured type.",
+        "description": "Requires the contact type to match the configured type before the behavior treats the contact as valid.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "match_type                   = kayak",
-        "exampleSource": "generated coverage fixture"
+        "example": "match_type = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP contact behavior filtering documentation"
       }
     ],
     "max_heading_window": [
@@ -6624,21 +6690,22 @@
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "90.0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp:57",
-        "example": "max_window_utility           = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "max_window_utility = 90.0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp"
       }
     ],
     "max_zig_zags": [
       {
         "owner": "BHV_ZigZag",
-        "description": "Shapes the max zig zags maneuver.",
+        "description": "Sets the maximum number of complete zig-zag cycles before the behavior can complete.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_zig_zags                 = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_zig_zags = 3",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp"
       }
     ],
     "memory_time": [
@@ -6714,15 +6781,15 @@
     "min_altitude": [
       {
         "owner": "BHV_MinAltitudeX",
-        "description": "Sets the minimum allowed altitude above bottom.",
+        "description": "Sets the minimum allowable ownship altitude above the bottom in meters. A non-positive value leaves the altitude limit disabled.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MinAltitudeX.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MinAltitudeX.cpp:43",
-        "example": "min_altitude                 = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "min_altitude = 5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3"
       }
     ],
     "min_heading_window": [
@@ -6795,12 +6862,13 @@
     "n_alert_request": [
       {
         "owner": "BHV_Trail",
-        "description": "Suppresses automatic contact-manager alert requests.",
+        "description": "Suppresses or controls the automatic contact-manager alert request normally used by contact behaviors.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Trail.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "n_alert_request              = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "n_alert_request = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Trail.cpp"
       }
     ],
     "newpt": [
@@ -6914,12 +6982,13 @@
     "obid": [
       {
         "owner": "BHV_AvoidObstacleV24",
-        "description": "Matches an obstacle by obstacle id.",
+        "description": "Matches an obstacle by obstacle id for the requested obstacle action.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "obid                         = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "obid = obstacle_1",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp"
       }
     ],
     "obstacle_id": [
@@ -6936,12 +7005,13 @@
     "obstacle_key": [
       {
         "owner": "BHV_AvoidObstacleV24",
-        "description": "Matches an obstacle by obstacle key.",
+        "description": "Matches an obstacle by obstacle key for the requested obstacle action.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "obstacle_key                 = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "obstacle_key = obstacle_1",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp"
       }
     ],
     "on_no_contact_ok": [
@@ -7107,12 +7177,13 @@
     "passing_side": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Selects the side on which a COLREGS passing maneuver is evaluated.",
+        "description": "Selects which side the COLREGS passing maneuver is evaluated or preferred on.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "passing_side                 = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "passing_side = starboard",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
       }
     ],
     "patience": [
@@ -7371,15 +7442,15 @@
     "post_status_info_on_idle": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Keeps posting status information even while the behavior is idle.",
+        "description": "Keeps posting COLREGS status information even while the behavior is idle.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:95",
-        "example": "post_status_info_on_idle     = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "post_status_info_on_idle = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
       }
     ],
     "pts_port_turns_ok": [
@@ -7540,12 +7611,13 @@
     "refine_piece": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "Enables objective-function piece refinement.",
+        "description": "Enables objective-function piece refinement for the collision-avoidance utility surface.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "refine_piece                 = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "refine_piece = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
       }
     ],
     "refine_region": [
@@ -7581,10 +7653,10 @@
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:105",
-        "example": "reset_on_idle                = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "reset_on_idle = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
       }
     ],
     "reset_var": [
@@ -7601,29 +7673,29 @@
     "rng_estop": [
       {
         "owner": "BHV_Convoy",
-        "description": "Sets the convoy emergency-stop range.",
+        "description": "Sets the convoy emergency-stop range. When the follower is too close, the behavior can drive toward stopping.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "15",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:71",
-        "example": "rng_estop                    = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "rng_estop = 15",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
       }
     ],
     "rng_lagging": [
       {
         "owner": "BHV_Convoy",
-        "description": "Sets the convoy lagging range.",
+        "description": "Sets the convoy range beyond which the follower is considered lagging behind the contact.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "70",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:73",
-        "example": "rng_lagging                  = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "rng_lagging = 70",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
       }
     ],
     "rng_safety": [
@@ -7643,43 +7715,43 @@
     "rng_tgating": [
       {
         "owner": "BHV_Convoy",
-        "description": "Sets the convoy tailgating range.",
+        "description": "Sets the convoy tailgating range where the follower is considered too close but not necessarily in emergency stop.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "30",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:72",
-        "example": "rng_tgating                  = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "rng_tgating = 30",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
       }
     ],
     "roc_max_dampen": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "Limits how much rate-of-closure can dampen avoidance utility.",
+        "description": "Limits how much rate-of-closure can dampen collision-avoidance utility.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "-2.0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp:64",
-        "example": "roc_max_dampen               = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "roc_max_dampen = -2.0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
       }
     ],
     "roc_max_heighten": [
       {
         "owner": "BHV_AvoidCollision",
-        "description": "Limits how much rate-of-closure can heighten avoidance utility.",
+        "description": "Limits how much rate-of-closure can heighten collision-avoidance utility.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "2.0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp:65",
-        "example": "roc_max_heighten             = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "roc_max_heighten = 2.0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
       }
     ],
     "rstation_position": [
@@ -7749,23 +7821,25 @@
     "shift_point": [
       {
         "owner": "BHV_LegRun",
-        "description": "Shifts the configured leg-run points by an x/y offset.",
+        "description": "Source-level spelling for shifting the primary leg so its center is at the given x,y point while preserving length and angle.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "shift_point                  = 0,0",
-        "exampleSource": "generated coverage fixture"
+        "example": "shift_point = 0,0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
       }
     ],
     "shortest_tour": [
       {
         "owner": "BHV_Waypoint",
-        "description": "Requests shortest-tour ordering of waypoint points.",
+        "description": "Requests shortest-tour ordering of the waypoint set before traversal.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "shortest_tour                = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "shortest_tour = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
       }
     ],
     "show_pt": [
@@ -7785,15 +7859,15 @@
     "slingshot": [
       {
         "owner": "BHV_Loiter",
-        "description": "Enables loiter slingshot handling when approaching the polygon.",
+        "description": "Enables loiter slingshot handling when approaching the polygon. A negative value leaves this handling disabled.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "-1",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:74",
-        "example": "slingshot                    = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "slingshot = -1",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
       }
     ],
     "slow_dist": [
@@ -8902,12 +8976,13 @@
     "velocity_filter": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Applies the configured contact or region filter for velocity filter.",
+        "description": "Applies a velocity-based contact filter before evaluating COLREGS maneuvers.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "velocity_filter              = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "velocity_filter = min_speed=0.2",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
       }
     ],
     "verbose": [
@@ -9039,34 +9114,37 @@
     "vsource": [
       {
         "owner": "BHV_AvoidObstacleV24",
-        "description": "Matches an obstacle by visualization/source identifier.",
+        "description": "Matches an obstacle by visualization/source identifier for the requested obstacle action.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "vsource                      = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "vsource = pObstacleMgr",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp"
       }
     ],
     "vx1": [
       {
         "owner": "BHV_LegRun",
-        "description": "Sets the x-coordinate of the first leg-run vertex.",
+        "description": "Source-level coordinate for the x value of the first leg-run vertex.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "vx1                          = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "vx1 = 70",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
       }
     ],
     "vx2": [
       {
         "owner": "BHV_LegRun",
-        "description": "Sets the x-coordinate of the second leg-run vertex.",
+        "description": "Source-level coordinate for the x value of the second leg-run vertex.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "vx2                          = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "vx2 = -35",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
       }
     ],
     "warn_overshoot": [

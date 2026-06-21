@@ -773,45 +773,49 @@
       "parameters": {
         "compressalogs": {
           "name": "CompressAlogs",
-          "description": "Compresses generated alog files after logging.",
+          "description": "Compresses generated alog files after logging completes when compression support is available.",
           "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
           "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
           "sourceStatus": "local-moos-source",
           "default": "false",
-          "defaultSource": "source initializer before GetConfigurationParam",
-          "defaultReference": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:309",
-          "example": "CompressAlogs                = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "CompressAlogs = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:309"
         },
         "doubleprecision": {
           "name": "DoublePrecision",
-          "description": "Sets the number of digits written for double-valued alog entries.",
+          "description": "Sets how many digits pLogger writes for double-valued entries in alog output.",
           "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
           "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
           "sourceStatus": "local-moos-source",
-          "example": "DoublePrecision              = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "DoublePrecision = 6",
+          "exampleSource": "manual review",
+          "default": "6",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:270"
         },
         "log": {
           "name": "Log",
-          "description": "Adds a MOOS variable to pLogger's synchronous log list.",
+          "description": "Adds a MOOS variable to pLogger synchronous logging output.",
           "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
           "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
           "sourceStatus": "local-moos-source",
-          "example": "Log                          = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "Log = NAV_X",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp"
         },
         "logauxsrc": {
           "name": "LogAuxSrc",
-          "description": "Includes MOOS auxiliary source information in pLogger async log entries.",
+          "description": "Includes MOOS auxiliary source information in asynchronous log entries when available.",
           "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
           "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
           "sourceStatus": "local-moos-source",
           "default": "false",
-          "defaultSource": "source initializer before GetConfigurationParam",
-          "defaultReference": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:119",
-          "example": "LogAuxSrc                    = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "LogAuxSrc = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:119,273"
         },
         "loggingdirectorysummaryfile": {
           "name": "LoggingDirectorySummaryFile",
@@ -856,28 +860,32 @@
           "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
           "sourceStatus": "local-moos-source",
           "default": "false",
-          "defaultSource": "source initializer before GetConfigurationParam",
-          "defaultReference": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:116",
-          "example": "UTCLogDirectories            = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "UTCLogDirectories = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:116,264"
         },
         "wildcardexclusionlog": {
           "name": "WildCardExclusionLog",
-          "description": "Logs wildcard-excluded variables separately.",
+          "description": "Writes wildcard-rejected variables to a separate exclusion log instead of silently omitting them.",
           "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
           "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
           "sourceStatus": "local-moos-source",
-          "example": "WildCardExclusionLog         = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "WildCardExclusionLog = false",
+          "exampleSource": "manual review",
+          "default": "false",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:258"
         },
         "wildcardomitpattern": {
           "name": "WildCardOmitPattern",
-          "description": "Adds a wildcard pattern for variables that pLogger should omit.",
+          "description": "Adds a wildcard pattern for MOOS variables that pLogger should omit from wildcard logging.",
           "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
           "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
           "sourceStatus": "local-moos-source",
-          "example": "WildCardOmitPattern          = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "WildCardOmitPattern = DB_*",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:424"
         },
         "file": {
           "name": "file",
@@ -917,12 +925,15 @@
         },
         "synclog": {
           "name": "synclog",
-          "description": "Controls synchronous logging in pLogger.",
+          "description": "Controls synchronous logging. The value may include a boolean enable flag and an optional period.",
           "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
           "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
           "sourceStatus": "local-moos-source",
-          "example": "synclog                      = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "SyncLog = true @ 1.0",
+          "exampleSource": "manual review",
+          "default": "false",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:227-245"
         }
       }
     },
@@ -969,15 +980,15 @@
         },
         "marker_shape": {
           "name": "marker_shape",
-          "description": "Sets the rendered shape for marker.",
+          "description": "Sets the shape used when rendering map markers.",
           "source": "../moos-ivp/ivp/src/pMapMarkers",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "3",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:23",
-          "example": "marker_shape                 = example",
-          "exampleSource": "generated coverage fixture"
+          "default": "circle",
+          "defaultSource": "manual review",
+          "example": "marker_shape = triangle",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:27,133"
         },
         "marker_size": {
           "name": "marker_size",
@@ -1002,36 +1013,37 @@
         },
         "show_markers": {
           "name": "show_markers",
-          "description": "Toggles display of markers.",
+          "description": "Controls whether map markers themselves are rendered.",
           "source": "../moos-ivp/ivp/src/pMapMarkers",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:24",
-          "example": "show_markers                 = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "show_markers = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:24,120"
         },
         "show_mlabels": {
           "name": "show_mlabels",
-          "description": "Toggles display of mlabels.",
+          "description": "Controls whether map-marker labels are rendered.",
           "source": "../moos-ivp/ivp/src/pMapMarkers",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "true",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:25",
-          "example": "show_mlabels                 = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "show_mlabels = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:25,122"
         },
         "show_mlables": {
           "name": "show_mlables",
-          "description": "Toggles display of mlables.",
+          "description": "Misspelled source-discovered alias for show_mlabels. Prefer show_mlabels in new mission files.",
           "source": "../moos-ivp/ivp/src/pMapMarkers",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "show_mlables                 = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "show_mlables = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMapMarkers"
         }
       }
     },
@@ -1058,15 +1070,13 @@
       "parameters": {
         "action+": {
           "name": "action+",
-          "description": "Adds an additional Action-menu MOOS post available from pMarineViewer.",
+          "description": "Adds an Action-menu command like action, while also requesting a visual separator before following menu items. Use it to group related operator commands.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "action+                      = DEPLOY=true",
-          "exampleSource": "generated coverage fixture"
+          "example": "action+ = menu_key=deploy # MOOS_MANUAL_OVERRIDE=false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 11, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:860"
         },
         "app_logging": {
           "name": "app_logging",
@@ -1082,27 +1092,25 @@
         },
         "appcast_font_size": {
           "name": "appcast_font_size",
-          "description": "Sets the font size for the appcast pane.",
+          "description": "Sets the font size for the named pMarineViewer pane. Supported values are xsmall, small, medium, large, and xlarge.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "appcast_font_size            = 4",
-          "exampleSource": "generated coverage fixture"
+          "example": "appcast_font_size = medium",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: InfoCast font configuration"
         },
         "appcast_height": {
           "name": "appcast_height",
-          "description": "Sets the display height for appcast.",
+          "description": "Legacy spelling for infocast_height. It sets the relative height of the lower appcast/realmcast pane in the pMarineViewer infocast area.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "appcast_height               = example",
-          "exampleSource": "generated coverage fixture"
+          "default": "75",
+          "defaultSource": "manual review",
+          "example": "appcast_height = 75",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:792, MOOS-IvP app_pmviewer.pdf: Section 7.2"
         },
         "appcast_nodes_width": {
           "name": "appcast_nodes_width",
@@ -1118,24 +1126,27 @@
         },
         "appcast_width": {
           "name": "appcast_width",
-          "description": "Sets the display width for appcast.",
+          "description": "Legacy spelling for infocast_width. It sets the width of the appcast/realmcast pane area as a percentage of the pMarineViewer window width.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "appcast_width                = 4",
-          "exampleSource": "generated coverage fixture"
+          "default": "30",
+          "defaultSource": "manual review",
+          "example": "appcast_width = 30",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 7.2"
         },
         "bearing_lines": {
           "name": "bearing_lines",
-          "description": "Enables display of bearing-line visualization messages.",
+          "description": "Controls whether bearing-line visualization messages are rendered. This is a display setting for viewer artifacts, not contact or navigation logic.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "bearing_lines                = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "bearing_lines = true",
+          "exampleSource": "manual review",
+          "default": "true",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:146"
         },
         "beat_flag": {
           "name": "beat_flag",
@@ -1148,399 +1159,389 @@
         },
         "button_10": {
           "name": "button_10",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_10                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_10 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_11": {
           "name": "button_11",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_11                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_11 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_12": {
           "name": "button_12",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_12                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_12 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_13": {
           "name": "button_13",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_13                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_13 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_14": {
           "name": "button_14",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_14                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_14 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_15": {
           "name": "button_15",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_15                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_15 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_16": {
           "name": "button_16",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_16                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_16 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_17": {
           "name": "button_17",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_17                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_17 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_18": {
           "name": "button_18",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_18                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_18 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_19": {
           "name": "button_19",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_19                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_19 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_20": {
           "name": "button_20",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_20                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_20 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_4": {
           "name": "button_4",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_4                     = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_4 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_5": {
           "name": "button_5",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_5                     = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_5 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_6": {
           "name": "button_6",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_6                     = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_6 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_7": {
           "name": "button_7",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_7                     = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_7 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_8": {
           "name": "button_8",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_8                     = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_8 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_9": {
           "name": "button_9",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "button_9                     = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_9 = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_eight": {
           "name": "button_eight",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_eight                 = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_eight = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_eighteen": {
           "name": "button_eighteen",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_eighteen              = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_eighteen = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_eleven": {
           "name": "button_eleven",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_eleven                = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_eleven = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_fifteen": {
           "name": "button_fifteen",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_fifteen               = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_fifteen = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_five": {
           "name": "button_five",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_five                  = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_five = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_fourteen": {
           "name": "button_fourteen",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_fourteen              = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_fourteen = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_nine": {
           "name": "button_nine",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_nine                  = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_nine = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_nineteen": {
           "name": "button_nineteen",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_nineteen              = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_nineteen = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_seven": {
           "name": "button_seven",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_seven                 = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_seven = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_seventeen": {
           "name": "button_seventeen",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_seventeen             = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_seventeen = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_six": {
           "name": "button_six",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_six                   = 1",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_six = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_sixteen": {
           "name": "button_sixteen",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_sixteen               = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_sixteen = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_ten": {
           "name": "button_ten",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_ten                   = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_ten = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_thirteen": {
           "name": "button_thirteen",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_thirteen              = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_thirteen = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_twelve": {
           "name": "button_twelve",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_twelve                = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_twelve = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "button_twenty": {
           "name": "button_twenty",
-          "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "button_twenty                = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "button_twenty = DEPLOY # DEPLOY=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
         },
         "cmd": {
           "name": "cmd",
-          "description": "Defines a command or MOOS post handled by pMarineViewer.",
+          "description": "Defines one command-button post for pMarineViewer command GUI support, with fields such as label, target variable, and string or numeric value.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "cmd                          = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "cmd = label=loiter, var=LOITER, sval=true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:1167"
         },
         "datum_viewable_all": {
           "name": "datum_viewable_all",
-          "description": "Toggles rendering of all datum objects.",
+          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "datum_viewable_all           = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "datum_viewable_all = true",
+          "exampleSource": "manual review",
+          "default": "true",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
         },
         "datum_viewable_labels": {
           "name": "datum_viewable_labels",
-          "description": "Toggles rendering of labels for datum labels objects.",
+          "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "datum_viewable_labels        = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "datum_viewable_labels = true",
+          "exampleSource": "manual review",
+          "default": "true",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
         },
         "extrap_policy": {
           "name": "extrap_policy",
-          "description": "Chooses how pMarineViewer extrapolates stale node reports for display.",
+          "description": "Chooses how pMarineViewer extrapolates stale node reports for display. This affects visual display of vehicle positions when reports are delayed.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "extrap_policy                = normal",
-          "exampleSource": "generated coverage fixture"
+          "example": "extrap_policy = normal",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
         },
         "grid_opaqueness": {
           "name": "grid_opaqueness",
-          "description": "Sets rendered grid opacity.",
+          "description": "Sets the opacity of rendered grid objects. Values range from 0 for transparent to 1 for fully opaque.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "grid_opaqueness              = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "grid_opaqueness = 0.3",
+          "exampleSource": "manual review",
+          "default": "0.3",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
         },
         "ignore_name": {
           "name": "ignore_name",
@@ -1574,12 +1575,13 @@
         },
         "log_the_file": {
           "name": "log_the_file",
-          "description": "Names the file or directory for log the file.",
+          "description": "Requests that pLogger copy a configured file into the mission log set. This is used to preserve viewer-related files alongside mission logs.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "log_the_file                 = results.txt",
-          "exampleSource": "generated coverage fixture"
+          "example": "log_the_file = mission.info",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
         },
         "match_name": {
           "name": "match_name",
@@ -1601,72 +1603,79 @@
         },
         "mission_hash_display": {
           "name": "mission_hash_display",
-          "description": "Controls whether the mission hash is shown in pMarineViewer.",
+          "description": "Controls whether mission-hash information is displayed in pMarineViewer. Use this with mission_hash_var when mission hashes are part of the operator display.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "mission_hash_display         = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "mission_hash_display = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
         },
         "mission_hash_var": {
           "name": "mission_hash_var",
-          "description": "Names the MOOS variable containing the mission hash to display.",
+          "description": "Names the MOOS variable containing the mission hash to display in pMarineViewer.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "MISSION_HASH",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:73",
-          "example": "mission_hash_var             = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "mission_hash_var = MISSION_HASH",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
         },
         "node_pulse_viewable_all": {
           "name": "node_pulse_viewable_all",
-          "description": "Toggles rendering of all node pulse objects.",
+          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "node_pulse_viewable_all      = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "node_pulse_viewable_all = true",
+          "exampleSource": "manual review",
+          "default": "true",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
         },
         "node_report_unc": {
           "name": "node_report_unc",
-          "description": "Configures the uncertainty rendering or interpretation for node reports.",
+          "description": "Enables handling and rendering of NODE_REPORT_UNC uncertainty reports in addition to ordinary node reports.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "node_report_unc              = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "node_report_unc = true",
+          "exampleSource": "manual review",
+          "default": "false",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:203"
         },
         "op_vertex": {
           "name": "op_vertex",
-          "description": "Adds a vertex to the viewer operation-area polygon.",
+          "description": "Adds one vertex to the operation-area polygon rendered by pMarineViewer. Use repeated op_vertex lines to build the displayed operation-area boundary.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "op_vertex                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "op_vertex = 0,0",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
         },
         "realmcast_channel": {
           "name": "realmcast_channel",
-          "description": "Selects the realmcast channel displayed by the viewer.",
+          "description": "Selects the realmcast channel or cluster shown in the pMarineViewer realmcast pane. This controls displayed realmcast content, not publication by pRealm itself.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:60",
-          "example": "realmcast_channel            = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "realmcast_channel = mission_top",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: realmcast/watch cluster display"
         },
         "rows": {
           "name": "rows",
-          "description": "Sets the number of rows in the rendered grid or display table.",
+          "description": "Configures the background grid row orientation and spacing used by pMarineViewer.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "rows                         = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "rows = north-south, degs=80",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:175"
         },
         "set_pan_x": {
           "name": "set_pan_x",
@@ -1688,39 +1697,39 @@
         },
         "show_title_ip": {
           "name": "show_title_ip",
-          "description": "Toggles the ip field in the viewer title bar.",
+          "description": "Controls whether the viewer title bar includes IP address information.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "show_title_ip                = example",
-          "exampleSource": "generated coverage fixture"
+          "default": "true",
+          "defaultSource": "manual review",
+          "example": "show_title_ip = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_GUI.cpp:50, PMV_Info.cpp:215"
         },
         "show_title_mhash": {
           "name": "show_title_mhash",
-          "description": "Toggles the mhash field in the viewer title bar.",
+          "description": "Controls whether the viewer title bar includes the mission hash.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "show_title_mhash             = example",
-          "exampleSource": "generated coverage fixture"
+          "default": "true",
+          "defaultSource": "manual review",
+          "example": "show_title_mhash = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_GUI.cpp:52, PMV_Info.cpp:217"
         },
         "show_title_user": {
           "name": "show_title_user",
-          "description": "Toggles the user field in the viewer title bar.",
+          "description": "Controls whether the viewer title bar includes the user name.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "show_title_user              = example",
-          "exampleSource": "generated coverage fixture"
+          "default": "true",
+          "defaultSource": "manual review",
+          "example": "show_title_user = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_GUI.cpp:51, PMV_Info.cpp:216"
         },
         "vcolor": {
           "name": "vcolor",
@@ -1733,12 +1742,13 @@
         },
         "vehicle_shape_scale": {
           "name": "vehicle_shape_scale",
-          "description": "Sets the rendered shape for vehicle  scale.",
+          "description": "Scales the rendered vehicle shape size in the pMarineViewer display.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "vehicle_shape_scale          = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "vehicle_shape_scale = 1.35",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:101"
         },
         "vname": {
           "name": "vname",
@@ -1751,15 +1761,13 @@
         },
         "watch_cluster": {
           "name": "watch_cluster",
-          "description": "Selects the appcast/realmcast cluster watched by the viewer.",
+          "description": "Defines a realmcast watch cluster so selected variables can be monitored across vehicles in a table. The value names the cluster and its scoped variables.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-          "example": "watch_cluster                = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "watch_cluster = key=mission_top, vars=DEPLOY,RETURN",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 7.7"
         }
       }
     },
@@ -1798,72 +1806,81 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for pNodeReporter.",
+          "description": "Enables AppCastingMOOSApp logging for pNodeReporter. This records app-level diagnostics and is separate from NODE_REPORT_LOCAL or PLATFORM_REPORT_LOCAL output.",
           "source": "../moos-ivp/ivp/src/pNodeReporter",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pNodeReporter/NodeReporter_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "cross_fill_policy": {
           "name": "cross_fill_policy",
-          "description": "Controls whether pNodeReporter fills missing local or geodetic contact coordinates from the other coordinate form.",
+          "description": "Controls how pNodeReporter fills missing local x/y coordinates from lat/lon or missing lat/lon coordinates from local x/y. Supported policies include literal, fill-empty, use-latest, and global.",
           "source": "../moos-ivp/ivp/src/pNodeReporter",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "NAV_GT",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:75",
-          "example": "cross_fill_policy            = normal",
-          "exampleSource": "generated coverage fixture"
+          "default": "literal",
+          "defaultSource": "manual review",
+          "example": "cross_fill_policy = literal",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 2.6, moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:532"
         },
         "extrap_hdg_thres": {
           "name": "extrap_hdg_thres",
-          "description": "Sets the heading-change threshold used when extrapolating node reports.",
+          "description": "Legacy or misspelled spelling of extrap_hdg_thresh. It sets the heading-change threshold, in degrees, that forces a new node report when extrapolated reporting is enabled.",
           "source": "../moos-ivp/ivp/src/pNodeReporter",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "extrap_hdg_thres             = 90",
-          "exampleSource": "generated coverage fixture"
+          "example": "extrap_hdg_thres = 1",
+          "exampleSource": "manual review",
+          "default": "1",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pNodeReporter"
         },
         "group": {
           "name": "group",
-          "description": "Sets the contact or object group.",
+          "description": "Sets the group label included in generated node reports. This is a source-level alias for platform_group.",
           "source": "../moos-ivp/ivp/src/pNodeReporter",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "group                        = alpha",
-          "exampleSource": "generated coverage fixture"
+          "example": "group = alpha",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pNodeReporter"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in pNodeReporter reports.",
+          "description": "Limits how many appcast events pNodeReporter retains for diagnostic reporting. This does not affect NODE_REPORT or PLATFORM_REPORT content.",
           "source": "../moos-ivp/ivp/src/pNodeReporter",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "nav_grace_periode": {
           "name": "nav_grace_periode",
-          "description": "Sets the grace period for accepting stale navigation data.",
+          "description": "Misspelled source-discovered spelling of nav_grace_period. It sets the startup grace period before missing navigation inputs trigger warnings.",
           "source": "../moos-ivp/ivp/src/pNodeReporter",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "nav_grace_periode            = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "nav_grace_periode = 60",
+          "exampleSource": "manual review",
+          "default": "60",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pNodeReporter"
         },
         "platform_vsource": {
           "name": "platform_vsource",
-          "description": "Sets the platform vsource coordinate.",
+          "description": "Sets the reported vehicle source field included in node reports. This is useful when node reports are derived from a particular sensor or tracking source.",
           "source": "../moos-ivp/ivp/src/pNodeReporter",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "platform_vsource             = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "platform_vsource = AIS",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:464"
         }
       }
     },
@@ -1922,14 +1939,15 @@
         },
         "general_alert": {
           "name": "general_alert",
-          "description": "Defines the default obstacle-manager alert request.",
+          "description": "Defines the default alert request posted by pObstacleMgr when obstacle conditions require a general alert.",
           "source": "../moos-ivp/ivp/src/pObstacleMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "obstacle-manager",
-          "defaultSource": "documentation text",
-          "example": "general_alert                = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "general_alert = obstacle-manager",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pObstacleMgr"
         },
         "given_max_duration": {
           "name": "given_max_duration",
@@ -1945,12 +1963,13 @@
         },
         "given_obstacle": {
           "name": "given_obstacle",
-          "description": "Accepts or configures an obstacle polygon supplied to pObstacleMgr.",
+          "description": "Supplies an obstacle polygon directly to pObstacleMgr, using the same polygon specification style used in GIVEN_OBSTACLE mail.",
           "source": "../moos-ivp/ivp/src/pObstacleMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "given_obstacle               = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "given_obstacle = pts={0,0:20,0:20,20:0,20}",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pObstacleMgr"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
@@ -2018,12 +2037,13 @@
         },
         "scope_set": {
           "name": "scope_set",
-          "description": "Defines the pRealm scope set to display or report.",
+          "description": "Defines a named set of MOOS variables or realmcast fields to include in pRealm reporting.",
           "source": "../moos-ivp/ivp/src/pRealm",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "scope_set                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "scope_set = DEPLOY,RETURN,NAV_X,NAV_Y",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/pRealm"
         }
       }
     },
@@ -2184,23 +2204,23 @@
       "parameters": {
         "beacon": {
           "name": "beacon",
-          "description": "Defines one beacon and its simulated range-report behavior.",
+          "description": "Defines one simulated beacon location and properties for vehicle-to-beacon range reports.",
           "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "beacon                       = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "beacon = x=50,y=25,label=beacon_one",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
         },
         "default": {
           "name": "default",
-          "description": "Sets the default configuration applied by uFldBeaconRangeSensor when a more specific setting is absent.",
+          "description": "Sets a default beacon property applied when an individual beacon does not provide that property.",
           "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "configuration",
-          "defaultSource": "documentation text",
-          "example": "default                      = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "default = beacon_shape = circle",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldBeaconRangeSensor"
         },
         "default_beacon_report_range": {
           "name": "default_beacon_report_range",
@@ -2215,12 +2235,13 @@
         },
         "ping_wait": {
           "name": "ping_wait",
-          "description": "Sets the minimum wait time between beacon range pings.",
+          "description": "Sets the mandatory number of seconds between successive vehicle pings to the beacon range sensor.",
           "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "ping_wait                    = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "ping_wait = 30",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
         },
         "reach_distance": {
           "name": "reach_distance",
@@ -2245,15 +2266,15 @@
         },
         "rn_algorithm": {
           "name": "rn_algorithm",
-          "description": "Selects the random-noise algorithm applied to simulated sensor measurements.",
+          "description": "Selects the random-noise algorithm applied to simulated beacon range measurements.",
           "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:57",
-          "example": "rn_algorithm                 = example",
-          "exampleSource": "generated coverage fixture"
+          "default": "none",
+          "defaultSource": "manual review",
+          "example": "rn_algorithm = none",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
         }
       }
     },
@@ -2358,15 +2379,15 @@
         },
         "bin_min_val": {
           "name": "bin_min_val",
-          "description": "Sets the minimum value included in collision/obstacle detection histogram bins.",
+          "description": "Sets the minimum value included in collision/obstacle detection histogram bins. A negative value disables the lower cutoff.",
           "source": "../moos-ivp/ivp/src/uFldCollObDetect",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "-1",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldCollObDetect/CollObDetect.cpp:48",
-          "example": "bin_min_val                  = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "bin_min_val = 0",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldCollObDetect"
         },
         "ignore_group": {
           "name": "ignore_group",
@@ -2404,15 +2425,15 @@
       "parameters": {
         "display_pulses": {
           "name": "display_pulses",
-          "description": "Toggles range-sensor pulse visualization.",
+          "description": "Controls whether simulated contact-range pings are rendered as visual pulse messages.",
           "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "true",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:60",
-          "example": "display_pulses               = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "display_pulses = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
         },
         "echo_color": {
           "name": "echo_color",
@@ -2428,15 +2449,15 @@
         },
         "ground_truth": {
           "name": "ground_truth",
-          "description": "Selects the MOOS variable used as ground-truth contact state for range-sensor simulation.",
+          "description": "When true, publishes ground-truth range reports alongside noisy simulated range reports for diagnostics.",
           "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "true",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:48",
-          "example": "ground_truth                 = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "ground_truth = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
@@ -2449,51 +2470,55 @@
         },
         "pull_dist": {
           "name": "pull_dist",
-          "description": "Sets the pull dist threshold or measurement distance.",
+          "description": "Sets a contact-specific pull distance used by the range sensor when evaluating whether a contact can be sensed or reported.",
           "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "pull_dist                    = 10",
-          "exampleSource": "generated coverage fixture"
+          "example": "pull_dist = abe:75",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
         },
         "pull_distance": {
           "name": "pull_distance",
-          "description": "Sets the pull distance threshold or measurement distance.",
+          "description": "Sets a contact-specific pull distance used by the range sensor when evaluating whether a contact can be sensed or reported.",
           "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "pull_distance                = 10",
-          "exampleSource": "generated coverage fixture"
+          "example": "pull_distance = abe:75",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
         },
         "push_dist": {
           "name": "push_dist",
-          "description": "Sets the push dist threshold or measurement distance.",
+          "description": "Sets a contact-specific push distance used by the range sensor when evaluating whether a contact can be sensed or reported.",
           "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "push_dist                    = 10",
-          "exampleSource": "generated coverage fixture"
+          "example": "push_dist = abe:125",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
         },
         "push_distance": {
           "name": "push_distance",
-          "description": "Sets the push distance threshold or measurement distance.",
+          "description": "Sets a contact-specific push distance used by the range sensor when evaluating whether a contact can be sensed or reported.",
           "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "push_distance                = 10",
-          "exampleSource": "generated coverage fixture"
+          "example": "push_distance = abe:125",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
         },
         "rn_gaussian_sigma": {
           "name": "rn_gaussian_sigma",
-          "description": "Sets the sigma value for Gaussian simulated range noise.",
+          "description": "Sets the sigma value used when Gaussian random noise is applied to simulated range measurements.",
           "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:57",
-          "example": "rn_gaussian_sigma            = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "rn_gaussian_sigma = 2",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
         },
         "rn_uniform_pct": {
           "name": "rn_uniform_pct",
@@ -2509,12 +2534,15 @@
         },
         "sensor_arc": {
           "name": "sensor_arc",
-          "description": "Sets the angular field of view for simulated range sensing.",
+          "description": "Sets the angular field of view, relative to vehicle heading, in which the range sensor can detect contacts.",
           "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "sensor_arc                   = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "sensor_arc = -45:45",
+          "exampleSource": "manual review",
+          "default": "360",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
         }
       }
     },
@@ -2592,15 +2620,13 @@
         },
         "sensor_config": {
           "name": "sensor_config",
-          "description": "Defines one generic simulated sensor and its report behavior.",
+          "description": "Defines one simulated generic sensor, including its label and reporting behavior.",
           "source": "../moos-ivp/ivp/src/uFldGenericSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0.25",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldGenericSensor/GenericSensor_MOOSApp.cpp:56",
-          "example": "sensor_config                = label=example",
-          "exampleSource": "generated coverage fixture"
+          "example": "sensor_config = label=temp_sensor, var=SENSOR_TEMP",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldGenericSensor"
         },
         "show_source_pts": {
           "name": "show_source_pts",
@@ -2660,12 +2686,13 @@
       "parameters": {
         "keyword": {
           "name": "KEYWORD",
-          "description": "Defines a keyword substitution used in brokered node communications.",
+          "description": "Defines a keyword value included in brokered node communications when keyword matching is required by the shore broker.",
           "source": "../moos-ivp/ivp/src/uFldNodeBroker",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "KEYWORD                      = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "keyword = alpha_key",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldNodeBroker"
         },
         "app_logging": {
           "name": "app_logging",
@@ -2832,12 +2859,13 @@
         },
         "auto_bridg_mhash": {
           "name": "auto_bridg_mhash",
-          "description": "Automatically bridges mission-hash traffic through the shore broker.",
+          "description": "Legacy misspelled source-discovered alias for automatic MISSION_HASH bridging. Prefer auto_bridge_mhash when possible.",
           "source": "../moos-ivp/ivp/src/uFldShoreBroker",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "auto_bridg_mhash             = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "auto_bridg_mhash = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldShoreBroker"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
@@ -2857,21 +2885,25 @@
       "parameters": {
         "behaviors_consise": {
           "name": "behaviors_consise",
-          "description": "Uses the compact behavior-summary display in uHelmScope output.",
+          "description": "Legacy misspelled alias for behaviors_concise. Controls whether idle and completed behaviors are reported compactly.",
           "source": "../moos-ivp/ivp/src/uHelmScope",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "behaviors_consise            = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "behaviors_consise = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uHelmScope"
         },
         "truncated_output": {
           "name": "truncated_output",
-          "description": "Truncates uHelmScope output to fit compact terminal displays.",
+          "description": "Truncates the MOOS-scope or behavior-scope sections of uHelmScope output to fit compact terminal displays.",
           "source": "../moos-ivp/ivp/src/uHelmScope",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "truncated_output             = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "truncated_output = false",
+          "exampleSource": "manual review",
+          "default": "false",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uhelmscope.pdf: Listing 7.4"
         }
       }
     },
@@ -2919,45 +2951,45 @@
         },
         "appcast_height": {
           "name": "appcast_height",
-          "description": "Sets the display height for appcast.",
+          "description": "Sets the height of the appcast display pane in uMACView.",
           "source": "../moos-ivp/ivp/src/uMACView",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "appcast_height               = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "appcast_height = 70",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_appcasting_umactools.pdf: Listing 2.1"
         },
         "realmcast_channel": {
           "name": "realmcast_channel",
-          "description": "Selects the realmcast channel displayed by the viewer.",
+          "description": "Selects which realmcast channel uMACView displays on startup.",
           "source": "../moos-ivp/ivp/src/uMACView",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "realmcast_channel            = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "realmcast_channel = shoreside",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uMACView"
         },
         "realmcast_show_communinity": {
           "name": "realmcast_show_communinity",
-          "description": "Controls whether the realmcast community column is shown.",
+          "description": "Legacy misspelled alias for realmcast_show_community. Controls whether the Community column is shown in realmcast output.",
           "source": "../moos-ivp/ivp/src/uMACView",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "true",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uMACView/UMV_Info.cpp",
-          "example": "realmcast_show_communinity   = example",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "realmcast_show_communinity = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uMACView"
         },
         "watch_cluster": {
           "name": "watch_cluster",
-          "description": "Selects the appcast/realmcast cluster watched by the viewer.",
+          "description": "Selects the initial appcast or realmcast cluster watched by uMACView.",
           "source": "../moos-ivp/ivp/src/uMACView",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uMACView/UMV_MOOSApp.cpp:36",
-          "example": "watch_cluster                = example",
-          "exampleSource": "generated coverage fixture"
+          "example": "watch_cluster = shoreside",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uMACView"
         }
       }
     },
@@ -3279,13 +3311,13 @@
       "parameters": {
         "cmd": {
           "name": "CMD",
-          "description": "Defines a terminal-selectable command that posts a MOOS variable-value pair. This is a MOOS command menu entry, not an operating-system shell command.",
+          "description": "Defines a terminal-selectable cue that posts one MOOS variable-value pair, using the form cue --> variable --> value.",
           "source": "../moos-ivp/ivp/src/uTermCommand",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "CMD = DEPLOY = true",
+          "example": "cmd = deploy_true --> DEPLOY --> true",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uTermCommand"
+          "reviewSource": "MOOS-IvP app_utermcommand.pdf: Listing 2.1"
         }
       }
     },
@@ -3406,15 +3438,13 @@
     "action+": [
       {
         "owner": "pMarineViewer",
-        "description": "Adds an additional Action-menu MOOS post available from pMarineViewer.",
+        "description": "Adds an Action-menu command like action, while also requesting a visual separator before following menu items. Use it to group related operator commands.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "action+                      = DEPLOY=true",
-        "exampleSource": "generated coverage fixture"
+        "example": "action+ = menu_key=deploy # MOOS_MANUAL_OVERRIDE=false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 11, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:860"
       }
     ],
     "alert_range_color": [
@@ -3570,15 +3600,15 @@
       },
       {
         "owner": "pNodeReporter",
-        "description": "Enables app-level logging for pNodeReporter.",
+        "description": "Enables AppCastingMOOSApp logging for pNodeReporter. This records app-level diagnostics and is separate from NODE_REPORT_LOCAL or PLATFORM_REPORT_LOCAL output.",
         "source": "../moos-ivp/ivp/src/pNodeReporter",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pNodeReporter/NodeReporter_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       },
       {
         "owner": "pObstacleMgr",
@@ -3752,15 +3782,13 @@
     "appcast_font_size": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets the font size for the appcast pane.",
+        "description": "Sets the font size for the named pMarineViewer pane. Supported values are xsmall, small, medium, large, and xlarge.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "appcast_font_size            = 4",
-        "exampleSource": "generated coverage fixture"
+        "example": "appcast_font_size = medium",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: InfoCast font configuration"
       },
       {
         "owner": "uMACView",
@@ -3775,24 +3803,25 @@
     "appcast_height": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets the display height for appcast.",
+        "description": "Legacy spelling for infocast_height. It sets the relative height of the lower appcast/realmcast pane in the pMarineViewer infocast area.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "appcast_height               = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "75",
+        "defaultSource": "manual review",
+        "example": "appcast_height = 75",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:792, MOOS-IvP app_pmviewer.pdf: Section 7.2"
       },
       {
         "owner": "uMACView",
-        "description": "Sets the display height for appcast.",
+        "description": "Sets the height of the appcast display pane in uMACView.",
         "source": "../moos-ivp/ivp/src/uMACView",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "appcast_height               = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "appcast_height = 70",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_appcasting_umactools.pdf: Listing 2.1"
       }
     ],
     "appcast_nodes_width": [
@@ -3812,48 +3841,53 @@
     "appcast_width": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets the display width for appcast.",
+        "description": "Legacy spelling for infocast_width. It sets the width of the appcast/realmcast pane area as a percentage of the pMarineViewer window width.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "appcast_width                = 4",
-        "exampleSource": "generated coverage fixture"
+        "default": "30",
+        "defaultSource": "manual review",
+        "example": "appcast_width = 30",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 7.2"
       }
     ],
     "auto_bridg_mhash": [
       {
         "owner": "uFldShoreBroker",
-        "description": "Automatically bridges mission-hash traffic through the shore broker.",
+        "description": "Legacy misspelled source-discovered alias for automatic MISSION_HASH bridging. Prefer auto_bridge_mhash when possible.",
         "source": "../moos-ivp/ivp/src/uFldShoreBroker",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "auto_bridg_mhash             = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "auto_bridg_mhash = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldShoreBroker"
       }
     ],
     "beacon": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Defines one beacon and its simulated range-report behavior.",
+        "description": "Defines one simulated beacon location and properties for vehicle-to-beacon range reports.",
         "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "beacon                       = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "beacon = x=50,y=25,label=beacon_one",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
       }
     ],
     "bearing_lines": [
       {
         "owner": "pMarineViewer",
-        "description": "Enables display of bearing-line visualization messages.",
+        "description": "Controls whether bearing-line visualization messages are rendered. This is a display setting for viewer artifacts, not contact or navigation logic.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "bearing_lines                = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "true",
+        "defaultSource": "manual review",
+        "example": "bearing_lines = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:146"
       }
     ],
     "beat_flag": [
@@ -3870,12 +3904,13 @@
     "behaviors_consise": [
       {
         "owner": "uHelmScope",
-        "description": "Uses the compact behavior-summary display in uHelmScope output.",
+        "description": "Legacy misspelled alias for behaviors_concise. Controls whether idle and completed behaviors are reported compactly.",
         "source": "../moos-ivp/ivp/src/uHelmScope",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "behaviors_consise            = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "behaviors_consise = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uHelmScope"
       }
     ],
     "bhv_dir_not_found_ok": [
@@ -3907,440 +3942,423 @@
     "bin_min_val": [
       {
         "owner": "uFldCollObDetect",
-        "description": "Sets the minimum value included in collision/obstacle detection histogram bins.",
+        "description": "Sets the minimum value included in collision/obstacle detection histogram bins. A negative value disables the lower cutoff.",
         "source": "../moos-ivp/ivp/src/uFldCollObDetect",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "-1",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldCollObDetect/CollObDetect.cpp:48",
-        "example": "bin_min_val                  = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "bin_min_val = 0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldCollObDetect"
       }
     ],
     "button_10": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_10                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_10 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_11": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_11                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_11 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_12": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_12                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_12 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_13": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_13                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_13 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_14": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_14                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_14 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_15": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_15                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_15 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_16": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_16                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_16 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_17": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_17                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_17 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_18": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_18                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_18 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_19": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_19                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_19 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_20": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_20                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_20 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_4": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_4                     = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_4 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_5": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_5                     = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_5 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_6": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_6                     = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_6 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_7": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_7                     = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_7 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_8": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_8                     = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_8 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_9": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "button_9                     = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_9 = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_eight": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_eight                 = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_eight = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_eighteen": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_eighteen              = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_eighteen = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_eleven": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_eleven                = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_eleven = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_fifteen": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_fifteen               = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_fifteen = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_five": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_five                  = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_five = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_fourteen": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_fourteen              = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_fourteen = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_nine": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_nine                  = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_nine = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_nineteen": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_nineteen              = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_nineteen = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_seven": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_seven                 = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_seven = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_seventeen": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_seventeen             = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_seventeen = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_six": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_six                   = 1",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_six = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_sixteen": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_sixteen               = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_sixteen = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_ten": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_ten                   = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_ten = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_thirteen": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_thirteen              = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_thirteen = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_twelve": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_twelve                = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_twelve = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "button_twenty": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a pMarineViewer command button and the MOOS post it triggers.",
+        "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "button_twenty                = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "button_twenty = DEPLOY # DEPLOY=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
       }
     ],
     "cmd": [
       {
         "owner": "pMarineViewer",
-        "description": "Defines a command or MOOS post handled by pMarineViewer.",
+        "description": "Defines one command-button post for pMarineViewer command GUI support, with fields such as label, target variable, and string or numeric value.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "cmd                          = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "cmd = label=loiter, var=LOITER, sval=true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:1167"
       },
       {
         "owner": "uCommand",
@@ -4354,13 +4372,13 @@
       },
       {
         "owner": "uTermCommand",
-        "description": "Defines a terminal-selectable command that posts a MOOS variable-value pair. This is a MOOS command menu entry, not an operating-system shell command.",
+        "description": "Defines a terminal-selectable cue that posts one MOOS variable-value pair, using the form cue --> variable --> value.",
         "source": "../moos-ivp/ivp/src/uTermCommand",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "CMD = DEPLOY = true",
+        "example": "cmd = deploy_true --> DEPLOY --> true",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uTermCommand"
+        "reviewSource": "MOOS-IvP app_utermcommand.pdf: Listing 2.1"
       }
     ],
     "collision_dist": [
@@ -4403,15 +4421,15 @@
     "compressalogs": [
       {
         "owner": "pLogger",
-        "description": "Compresses generated alog files after logging.",
+        "description": "Compresses generated alog files after logging completes when compression support is available.",
         "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
         "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
         "sourceStatus": "local-moos-source",
         "default": "false",
-        "defaultSource": "source initializer before GetConfigurationParam",
-        "defaultReference": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:309",
-        "example": "CompressAlogs                = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "CompressAlogs = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:309"
       }
     ],
     "contact_max_age": [
@@ -4459,37 +4477,43 @@
     "cross_fill_policy": [
       {
         "owner": "pNodeReporter",
-        "description": "Controls whether pNodeReporter fills missing local or geodetic contact coordinates from the other coordinate form.",
+        "description": "Controls how pNodeReporter fills missing local x/y coordinates from lat/lon or missing lat/lon coordinates from local x/y. Supported policies include literal, fill-empty, use-latest, and global.",
         "source": "../moos-ivp/ivp/src/pNodeReporter",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "NAV_GT",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:75",
-        "example": "cross_fill_policy            = normal",
-        "exampleSource": "generated coverage fixture"
+        "default": "literal",
+        "defaultSource": "manual review",
+        "example": "cross_fill_policy = literal",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 2.6, moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:532"
       }
     ],
     "datum_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all datum objects.",
+        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "datum_viewable_all           = true",
-        "exampleSource": "generated coverage fixture"
+        "default": "true",
+        "defaultSource": "manual review",
+        "example": "datum_viewable_all = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
       }
     ],
     "datum_viewable_labels": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of labels for datum labels objects.",
+        "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "datum_viewable_labels        = true",
-        "exampleSource": "generated coverage fixture"
+        "default": "true",
+        "defaultSource": "manual review",
+        "example": "datum_viewable_labels = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
       }
     ],
     "decay": [
@@ -4509,14 +4533,13 @@
     "default": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Sets the default configuration applied by uFldBeaconRangeSensor when a more specific setting is absent.",
+        "description": "Sets a default beacon property applied when an individual beacon does not provide that property.",
         "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "configuration",
-        "defaultSource": "documentation text",
-        "example": "default                      = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "default = beacon_shape = circle",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldBeaconRangeSensor"
       }
     ],
     "default_beacon_report_range": [
@@ -4563,15 +4586,15 @@
     "display_pulses": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Toggles range-sensor pulse visualization.",
+        "description": "Controls whether simulated contact-range pings are rendered as visual pulse messages.",
         "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "true",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:60",
-        "example": "display_pulses               = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "display_pulses = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
       }
     ],
     "display_radii_id": [
@@ -4589,12 +4612,15 @@
     "doubleprecision": [
       {
         "owner": "pLogger",
-        "description": "Sets the number of digits written for double-valued alog entries.",
+        "description": "Sets how many digits pLogger writes for double-valued entries in alog output.",
         "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
         "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
         "sourceStatus": "local-moos-source",
-        "example": "DoublePrecision              = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "6",
+        "defaultSource": "manual review",
+        "example": "DoublePrecision = 6",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:270"
       }
     ],
     "drop_percentage": [
@@ -4743,26 +4769,27 @@
     "extrap_hdg_thres": [
       {
         "owner": "pNodeReporter",
-        "description": "Sets the heading-change threshold used when extrapolating node reports.",
+        "description": "Legacy or misspelled spelling of extrap_hdg_thresh. It sets the heading-change threshold, in degrees, that forces a new node report when extrapolated reporting is enabled.",
         "source": "../moos-ivp/ivp/src/pNodeReporter",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "extrap_hdg_thres             = 90",
-        "exampleSource": "generated coverage fixture"
+        "default": "1",
+        "defaultSource": "manual review",
+        "example": "extrap_hdg_thres = 1",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pNodeReporter"
       }
     ],
     "extrap_policy": [
       {
         "owner": "pMarineViewer",
-        "description": "Chooses how pMarineViewer extrapolates stale node reports for display.",
+        "description": "Chooses how pMarineViewer extrapolates stale node reports for display. This affects visual display of vehicle positions when reports are delayed.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "extrap_policy                = normal",
-        "exampleSource": "generated coverage fixture"
+        "example": "extrap_policy = normal",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
       }
     ],
     "file": [
@@ -4832,14 +4859,15 @@
     "general_alert": [
       {
         "owner": "pObstacleMgr",
-        "description": "Defines the default obstacle-manager alert request.",
+        "description": "Defines the default alert request posted by pObstacleMgr when obstacle conditions require a general alert.",
         "source": "../moos-ivp/ivp/src/pObstacleMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "obstacle-manager",
-        "defaultSource": "documentation text",
-        "example": "general_alert                = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "general_alert = obstacle-manager",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pObstacleMgr"
       }
     ],
     "given_max_duration": [
@@ -4859,12 +4887,13 @@
     "given_obstacle": [
       {
         "owner": "pObstacleMgr",
-        "description": "Accepts or configures an obstacle polygon supplied to pObstacleMgr.",
+        "description": "Supplies an obstacle polygon directly to pObstacleMgr, using the same polygon specification style used in GIVEN_OBSTACLE mail.",
         "source": "../moos-ivp/ivp/src/pObstacleMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "given_obstacle               = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "given_obstacle = pts={0,0:20,0:20,20:0,20}",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pObstacleMgr"
       }
     ],
     "goals_mandatory": [
@@ -4898,12 +4927,15 @@
     "grid_opaqueness": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets rendered grid opacity.",
+        "description": "Sets the opacity of rendered grid objects. Values range from 0 for transparent to 1 for fully opaque.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "grid_opaqueness              = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "0.3",
+        "defaultSource": "manual review",
+        "example": "grid_opaqueness = 0.3",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
       }
     ],
     "grid_var_name": [
@@ -4923,26 +4955,27 @@
     "ground_truth": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Selects the MOOS variable used as ground-truth contact state for range-sensor simulation.",
+        "description": "When true, publishes ground-truth range reports alongside noisy simulated range reports for diagnostics.",
         "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "true",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:48",
-        "example": "ground_truth                 = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "ground_truth = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
       }
     ],
     "group": [
       {
         "owner": "pNodeReporter",
-        "description": "Sets the contact or object group.",
+        "description": "Sets the group label included in generated node reports. This is a source-level alias for platform_group.",
         "source": "../moos-ivp/ivp/src/pNodeReporter",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "group                        = alpha",
-        "exampleSource": "generated coverage fixture"
+        "example": "group = alpha",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pNodeReporter"
       }
     ],
     "halt_condition": [
@@ -5173,12 +5206,13 @@
     "keyword": [
       {
         "owner": "uFldNodeBroker",
-        "description": "Defines a keyword substitution used in brokered node communications.",
+        "description": "Defines a keyword value included in brokered node communications when keyword matching is required by the shore broker.",
         "source": "../moos-ivp/ivp/src/uFldNodeBroker",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "KEYWORD                      = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "keyword = alpha_key",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldNodeBroker"
       }
     ],
     "label": [
@@ -5195,37 +5229,39 @@
     "log": [
       {
         "owner": "pLogger",
-        "description": "Adds a MOOS variable to pLogger's synchronous log list.",
+        "description": "Adds a MOOS variable to pLogger synchronous logging output.",
         "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
         "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
         "sourceStatus": "local-moos-source",
-        "example": "Log                          = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "Log = NAV_X",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp"
       }
     ],
     "log_the_file": [
       {
         "owner": "pMarineViewer",
-        "description": "Names the file or directory for log the file.",
+        "description": "Requests that pLogger copy a configured file into the mission log set. This is used to preserve viewer-related files alongside mission logs.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "log_the_file                 = results.txt",
-        "exampleSource": "generated coverage fixture"
+        "example": "log_the_file = mission.info",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
       }
     ],
     "logauxsrc": [
       {
         "owner": "pLogger",
-        "description": "Includes MOOS auxiliary source information in pLogger async log entries.",
+        "description": "Includes MOOS auxiliary source information in asynchronous log entries when available.",
         "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
         "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
         "sourceStatus": "local-moos-source",
         "default": "false",
-        "defaultSource": "source initializer before GetConfigurationParam",
-        "defaultReference": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:119",
-        "example": "LogAuxSrc                    = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "LogAuxSrc = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:119,273"
       }
     ],
     "loggingdirectorysummaryfile": [
@@ -5301,15 +5337,15 @@
     "marker_shape": [
       {
         "owner": "pMapMarkers",
-        "description": "Sets the rendered shape for marker.",
+        "description": "Sets the shape used when rendering map markers.",
         "source": "../moos-ivp/ivp/src/pMapMarkers",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "3",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:23",
-        "example": "marker_shape                 = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "circle",
+        "defaultSource": "manual review",
+        "example": "marker_shape = triangle",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:27,133"
       }
     ],
     "marker_size": [
@@ -5486,12 +5522,13 @@
       },
       {
         "owner": "pNodeReporter",
-        "description": "Limits how many appcast events are retained in pNodeReporter reports.",
+        "description": "Limits how many appcast events pNodeReporter retains for diagnostic reporting. This does not affect NODE_REPORT or PLATFORM_REPORT content.",
         "source": "../moos-ivp/ivp/src/pNodeReporter",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       },
       {
         "owner": "pObstacleMgr",
@@ -5765,26 +5802,27 @@
     "mission_hash_display": [
       {
         "owner": "pMarineViewer",
-        "description": "Controls whether the mission hash is shown in pMarineViewer.",
+        "description": "Controls whether mission-hash information is displayed in pMarineViewer. Use this with mission_hash_var when mission hashes are part of the operator display.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "mission_hash_display         = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "mission_hash_display = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
       }
     ],
     "mission_hash_var": [
       {
         "owner": "pMarineViewer",
-        "description": "Names the MOOS variable containing the mission hash to display.",
+        "description": "Names the MOOS variable containing the mission hash to display in pMarineViewer.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "MISSION_HASH",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:73",
-        "example": "mission_hash_var             = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "mission_hash_var = MISSION_HASH",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
       }
     ],
     "msg_max_history": [
@@ -5815,12 +5853,15 @@
     "nav_grace_periode": [
       {
         "owner": "pNodeReporter",
-        "description": "Sets the grace period for accepting stale navigation data.",
+        "description": "Misspelled source-discovered spelling of nav_grace_period. It sets the startup grace period before missing navigation inputs trigger warnings.",
         "source": "../moos-ivp/ivp/src/pNodeReporter",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "nav_grace_periode            = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "60",
+        "defaultSource": "manual review",
+        "example": "nav_grace_periode = 60",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pNodeReporter"
       }
     ],
     "new_obs_flag": [
@@ -5837,23 +5878,29 @@
     "node_pulse_viewable_all": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles rendering of all node pulse objects.",
+        "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "node_pulse_viewable_all      = true",
-        "exampleSource": "generated coverage fixture"
+        "default": "true",
+        "defaultSource": "manual review",
+        "example": "node_pulse_viewable_all = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
       }
     ],
     "node_report_unc": [
       {
         "owner": "pMarineViewer",
-        "description": "Configures the uncertainty rendering or interpretation for node reports.",
+        "description": "Enables handling and rendering of NODE_REPORT_UNC uncertainty reports in addition to ordinary node reports.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "node_report_unc              = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "false",
+        "defaultSource": "manual review",
+        "example": "node_report_unc = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:203"
       }
     ],
     "node_skew": [
@@ -5885,12 +5932,13 @@
     "op_vertex": [
       {
         "owner": "pMarineViewer",
-        "description": "Adds a vertex to the viewer operation-area polygon.",
+        "description": "Adds one vertex to the operation-area polygon rendered by pMarineViewer. Use repeated op_vertex lines to build the displayed operation-area boundary.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "op_vertex                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "op_vertex = 0,0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
       }
     ],
     "opfile": [
@@ -6019,23 +6067,25 @@
     "ping_wait": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Sets the minimum wait time between beacon range pings.",
+        "description": "Sets the mandatory number of seconds between successive vehicle pings to the beacon range sensor.",
         "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "ping_wait                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "ping_wait = 30",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
       }
     ],
     "platform_vsource": [
       {
         "owner": "pNodeReporter",
-        "description": "Sets the platform vsource coordinate.",
+        "description": "Sets the reported vehicle source field included in node reports. This is useful when node reports are derived from a particular sensor or tracking source.",
         "source": "../moos-ivp/ivp/src/pNodeReporter",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "platform_vsource             = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "platform_vsource = AIS",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:464"
       }
     ],
     "plot_var": [
@@ -6156,45 +6206,49 @@
     "pull_dist": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Sets the pull dist threshold or measurement distance.",
+        "description": "Sets a contact-specific pull distance used by the range sensor when evaluating whether a contact can be sensed or reported.",
         "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "pull_dist                    = 10",
-        "exampleSource": "generated coverage fixture"
+        "example": "pull_dist = abe:75",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
       }
     ],
     "pull_distance": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Sets the pull distance threshold or measurement distance.",
+        "description": "Sets a contact-specific pull distance used by the range sensor when evaluating whether a contact can be sensed or reported.",
         "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "pull_distance                = 10",
-        "exampleSource": "generated coverage fixture"
+        "example": "pull_distance = abe:75",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
       }
     ],
     "push_dist": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Sets the push dist threshold or measurement distance.",
+        "description": "Sets a contact-specific push distance used by the range sensor when evaluating whether a contact can be sensed or reported.",
         "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "push_dist                    = 10",
-        "exampleSource": "generated coverage fixture"
+        "example": "push_dist = abe:125",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
       }
     ],
     "push_distance": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Sets the push distance threshold or measurement distance.",
+        "description": "Sets a contact-specific push distance used by the range sensor when evaluating whether a contact can be sensed or reported.",
         "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "push_distance                = 10",
-        "exampleSource": "generated coverage fixture"
+        "example": "push_distance = abe:125",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
       }
     ],
     "qblink": [
@@ -6291,38 +6345,37 @@
     "realmcast_channel": [
       {
         "owner": "pMarineViewer",
-        "description": "Selects the realmcast channel displayed by the viewer.",
+        "description": "Selects the realmcast channel or cluster shown in the pMarineViewer realmcast pane. This controls displayed realmcast content, not publication by pRealm itself.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:60",
-        "example": "realmcast_channel            = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "realmcast_channel = mission_top",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: realmcast/watch cluster display"
       },
       {
         "owner": "uMACView",
-        "description": "Selects the realmcast channel displayed by the viewer.",
+        "description": "Selects which realmcast channel uMACView displays on startup.",
         "source": "../moos-ivp/ivp/src/uMACView",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "realmcast_channel            = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "realmcast_channel = shoreside",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uMACView"
       }
     ],
     "realmcast_show_communinity": [
       {
         "owner": "uMACView",
-        "description": "Controls whether the realmcast community column is shown.",
+        "description": "Legacy misspelled alias for realmcast_show_community. Controls whether the Community column is shown in realmcast output.",
         "source": "../moos-ivp/ivp/src/uMACView",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "true",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uMACView/UMV_Info.cpp",
-        "example": "realmcast_show_communinity   = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "realmcast_show_communinity = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uMACView"
       }
     ],
     "region_vert_color": [
@@ -6395,29 +6448,29 @@
     "rn_algorithm": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Selects the random-noise algorithm applied to simulated sensor measurements.",
+        "description": "Selects the random-noise algorithm applied to simulated beacon range measurements.",
         "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:57",
-        "example": "rn_algorithm                 = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "none",
+        "defaultSource": "manual review",
+        "example": "rn_algorithm = none",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
       }
     ],
     "rn_gaussian_sigma": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Sets the sigma value for Gaussian simulated range noise.",
+        "description": "Sets the sigma value used when Gaussian random noise is applied to simulated range measurements.",
         "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:57",
-        "example": "rn_gaussian_sigma            = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "rn_gaussian_sigma = 2",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
       }
     ],
     "rn_uniform_pct": [
@@ -6437,23 +6490,25 @@
     "rows": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets the number of rows in the rendered grid or display table.",
+        "description": "Configures the background grid row orientation and spacing used by pMarineViewer.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "rows                         = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "rows = north-south, degs=80",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:175"
       }
     ],
     "scope_set": [
       {
         "owner": "pRealm",
-        "description": "Defines the pRealm scope set to display or report.",
+        "description": "Defines a named set of MOOS variables or realmcast fields to include in pRealm reporting.",
         "source": "../moos-ivp/ivp/src/pRealm",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "scope_set                    = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "scope_set = DEPLOY,RETURN,NAV_X,NAV_Y",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pRealm"
       }
     ],
     "scope_transparency": [
@@ -6473,26 +6528,27 @@
     "sensor_arc": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Sets the angular field of view for simulated range sensing.",
+        "description": "Sets the angular field of view, relative to vehicle heading, in which the range sensor can detect contacts.",
         "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "sensor_arc                   = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "360",
+        "defaultSource": "manual review",
+        "example": "sensor_arc = -45:45",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
       }
     ],
     "sensor_config": [
       {
         "owner": "uFldGenericSensor",
-        "description": "Defines one generic simulated sensor and its report behavior.",
+        "description": "Defines one simulated generic sensor, including its label and reporting behavior.",
         "source": "../moos-ivp/ivp/src/uFldGenericSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0.25",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldGenericSensor/GenericSensor_MOOSApp.cpp:56",
-        "example": "sensor_config                = label=example",
-        "exampleSource": "generated coverage fixture"
+        "example": "sensor_config = label=temp_sensor, var=SENSOR_TEMP",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldGenericSensor"
       }
     ],
     "set_pan_x": [
@@ -6520,40 +6576,41 @@
     "show_markers": [
       {
         "owner": "pMapMarkers",
-        "description": "Toggles display of markers.",
+        "description": "Controls whether map markers themselves are rendered.",
         "source": "../moos-ivp/ivp/src/pMapMarkers",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:24",
-        "example": "show_markers                 = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "show_markers = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:24,120"
       }
     ],
     "show_mlabels": [
       {
         "owner": "pMapMarkers",
-        "description": "Toggles display of mlabels.",
+        "description": "Controls whether map-marker labels are rendered.",
         "source": "../moos-ivp/ivp/src/pMapMarkers",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "true",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:25",
-        "example": "show_mlabels                 = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "show_mlabels = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:25,122"
       }
     ],
     "show_mlables": [
       {
         "owner": "pMapMarkers",
-        "description": "Toggles display of mlables.",
+        "description": "Misspelled source-discovered alias for show_mlabels. Prefer show_mlabels in new mission files.",
         "source": "../moos-ivp/ivp/src/pMapMarkers",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "show_mlables                 = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "show_mlables = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMapMarkers"
       }
     ],
     "show_source_pts": [
@@ -6573,43 +6630,43 @@
     "show_title_ip": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles the ip field in the viewer title bar.",
+        "description": "Controls whether the viewer title bar includes IP address information.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "show_title_ip                = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "true",
+        "defaultSource": "manual review",
+        "example": "show_title_ip = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_GUI.cpp:50, PMV_Info.cpp:215"
       }
     ],
     "show_title_mhash": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles the mhash field in the viewer title bar.",
+        "description": "Controls whether the viewer title bar includes the mission hash.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "show_title_mhash             = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "true",
+        "defaultSource": "manual review",
+        "example": "show_title_mhash = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_GUI.cpp:52, PMV_Info.cpp:217"
       }
     ],
     "show_title_user": [
       {
         "owner": "pMarineViewer",
-        "description": "Toggles the user field in the viewer title bar.",
+        "description": "Controls whether the viewer title bar includes the user name.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "show_title_user              = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "true",
+        "defaultSource": "manual review",
+        "example": "show_title_user = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_GUI.cpp:51, PMV_Info.cpp:216"
       }
     ],
     "source_point": [
@@ -6666,12 +6723,15 @@
     "synclog": [
       {
         "owner": "pLogger",
-        "description": "Controls synchronous logging in pLogger.",
+        "description": "Controls synchronous logging. The value may include a boolean enable flag and an optional period.",
         "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
         "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
         "sourceStatus": "local-moos-source",
-        "example": "synclog                      = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "false",
+        "defaultSource": "manual review",
+        "example": "SyncLog = true @ 1.0",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:227-245"
       }
     ],
     "term_report_interval": [
@@ -6703,12 +6763,15 @@
     "truncated_output": [
       {
         "owner": "uHelmScope",
-        "description": "Truncates uHelmScope output to fit compact terminal displays.",
+        "description": "Truncates the MOOS-scope or behavior-scope sections of uHelmScope output to fit compact terminal displays.",
         "source": "../moos-ivp/ivp/src/uHelmScope",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "truncated_output             = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "false",
+        "defaultSource": "manual review",
+        "example": "truncated_output = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uhelmscope.pdf: Listing 7.4"
       }
     ],
     "turn_spd_map_full_rate": [
@@ -6775,10 +6838,10 @@
         "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
         "sourceStatus": "local-moos-source",
         "default": "false",
-        "defaultSource": "source initializer before GetConfigurationParam",
-        "defaultReference": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:116",
-        "example": "UTCLogDirectories            = example",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "UTCLogDirectories = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:116,264"
       }
     ],
     "vcolor": [
@@ -6795,12 +6858,13 @@
     "vehicle_shape_scale": [
       {
         "owner": "pMarineViewer",
-        "description": "Sets the rendered shape for vehicle  scale.",
+        "description": "Scales the rendered vehicle shape size in the pMarineViewer display.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "vehicle_shape_scale          = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "vehicle_shape_scale = 1.35",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:101"
       }
     ],
     "vname": [
@@ -6831,27 +6895,23 @@
     "watch_cluster": [
       {
         "owner": "pMarineViewer",
-        "description": "Selects the appcast/realmcast cluster watched by the viewer.",
+        "description": "Defines a realmcast watch cluster so selected variables can be monitored across vehicles in a table. The value names the cluster and its scoped variables.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:43",
-        "example": "watch_cluster                = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "watch_cluster = key=mission_top, vars=DEPLOY,RETURN",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 7.7"
       },
       {
         "owner": "uMACView",
-        "description": "Selects the appcast/realmcast cluster watched by the viewer.",
+        "description": "Selects the initial appcast or realmcast cluster watched by uMACView.",
         "source": "../moos-ivp/ivp/src/uMACView",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uMACView/UMV_MOOSApp.cpp:36",
-        "example": "watch_cluster                = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "watch_cluster = shoreside",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uMACView"
       }
     ],
     "watch_only": [
@@ -6868,23 +6928,27 @@
     "wildcardexclusionlog": [
       {
         "owner": "pLogger",
-        "description": "Logs wildcard-excluded variables separately.",
+        "description": "Writes wildcard-rejected variables to a separate exclusion log instead of silently omitting them.",
         "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
         "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
         "sourceStatus": "local-moos-source",
-        "example": "WildCardExclusionLog         = example",
-        "exampleSource": "generated coverage fixture"
+        "default": "false",
+        "defaultSource": "manual review",
+        "example": "WildCardExclusionLog = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:258"
       }
     ],
     "wildcardomitpattern": [
       {
         "owner": "pLogger",
-        "description": "Adds a wildcard pattern for variables that pLogger should omit.",
+        "description": "Adds a wildcard pattern for MOOS variables that pLogger should omit from wildcard logging.",
         "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
         "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
         "sourceStatus": "local-moos-source",
-        "example": "WildCardOmitPattern          = example",
-        "exampleSource": "generated coverage fixture"
+        "example": "WildCardOmitPattern = DB_*",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:424"
       }
     ],
     "wind_conditions": [

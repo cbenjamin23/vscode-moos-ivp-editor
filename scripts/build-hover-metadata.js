@@ -252,12 +252,16 @@ function synthesizeExample(param, defaultValue) {
   return `${param} = example`;
 }
 
-function applyManualOverride(entry, override) {
+function applyManualOverride(entry, override, paramName) {
   if (!override) return;
 
   if (override.description) entry.description = override.description;
   if (override.example) {
     entry.example = override.example;
+    entry.exampleSource = "manual review";
+  }
+  if (override.exampleTemplate) {
+    entry.example = override.exampleTemplate.replace(/\{param\}/g, paramName);
     entry.exampleSource = "manual review";
   }
   if (Object.prototype.hasOwnProperty.call(override, "default")) {
@@ -275,10 +279,26 @@ function applyManualOverride(entry, override) {
   if (override.reviewNote) entry.reviewNote = override.reviewNote;
 }
 
+function globMatches(pattern, value) {
+  const normalizedPattern = normalizeName(pattern);
+  const escaped = normalizedPattern.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*");
+  return new RegExp(`^${escaped}$`).test(value);
+}
+
 function manualOverrideFor(overrides, kind, owner, paramName) {
-  const item = overrides?.[kind]?.[owner];
-  if (!item) return undefined;
-  return item.parameters?.[normalizeName(paramName)];
+  const normalizedParam = normalizeName(paramName);
+
+  for (const item of [overrides?.[kind]?.[owner], overrides?.[kind]?.["*"]]) {
+    if (!item) continue;
+    const direct = item.parameters?.[normalizedParam];
+    if (direct) return direct;
+
+    for (const [pattern, override] of Object.entries(item.patterns || {})) {
+      if (globMatches(pattern, normalizedParam)) return override;
+    }
+  }
+
+  return undefined;
 }
 
 function applyMetadata(data, examples, sourceDefaults, overrides, kind) {
@@ -288,6 +308,15 @@ function applyMetadata(data, examples, sourceDefaults, overrides, kind) {
   let examplesApplied = 0;
 
   for (const [owner, item] of Object.entries(data.items || {})) {
+    const ownerOverrides = overrides?.[kind]?.[owner];
+    const excluded = new Set((ownerOverrides?.excludedParameters || []).map(normalizeName));
+    for (const key of Object.keys(item.parameters || {})) {
+      const paramName = item.parameters[key].name || key;
+      if (excluded.has(normalizeName(paramName))) {
+        delete item.parameters[key];
+      }
+    }
+
     for (const [key, entry] of Object.entries(item.parameters || {})) {
       const paramName = entry.name || key;
       const lookupKey = `${owner}:${normalizeName(paramName)}`;
@@ -307,7 +336,7 @@ function applyMetadata(data, examples, sourceDefaults, overrides, kind) {
 
       entry.example = examples.get(lookupKey) || synthesizeExample(paramName, defaultValue);
       entry.exampleSource = examples.has(lookupKey) ? "generated coverage fixture" : "generated from parameter name";
-      applyManualOverride(entry, manualOverrideFor(overrides, kind, owner, paramName));
+      applyManualOverride(entry, manualOverrideFor(overrides, kind, owner, paramName), paramName);
       examplesApplied++;
       entries++;
     }

@@ -314,7 +314,7 @@
     },
     "pContactMgrV20": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp and MOOS-IvP app_pcmanager_v20.pdf",
+      "reviewSource": "MOOS-IvP app_pcmanager.pdf and moos-ivp/ivp/src/pContactMgrV20",
       "parameters": {
         "able_flag": {
           "description": "Posts a MOOS variable-value flag whenever a contact is disabled or re-enabled. Use this for mission logic that needs to react to any contact availability transition.",
@@ -413,10 +413,10 @@
           "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
         },
         "early_warning_time": {
-          "description": "Sets how many seconds before the predicted contact alert an early-warning event should be posted. A negative value leaves early warning timing off.",
-          "default": "-1 (off)",
+          "description": "Sets how many seconds before the predicted contact alert an early-warning event should be posted. A negative value leaves early warnings disabled.",
+          "default": "-1",
           "example": "early_warning_time = 5",
-          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20 and MOOS-IvP app_pcmanager.pdf"
         },
         "enable_var": {
           "description": "Names the MOOS variable pContactMgrV20 listens to for contact-enable requests. If it is unset, external enable requests are not accepted.",
@@ -625,8 +625,8 @@
       }
     },
     "pDeadManPost": {
-      "reviewStatus": "manual-reviewed-source-only-parameters",
-      "reviewSource": "moos-ivp/ivp/src/pDeadManPost/DeadManPost_Info.cpp",
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_pdeadmanpost.pdf and moos-ivp/ivp/src/pDeadManPost",
       "parameters": {
         "app_logging": {
           "description": "Enables AppCastingMOOSApp logging for pDeadManPost. This records app-level diagnostics and is separate from the heartbeat/deadflag logic.",
@@ -639,12 +639,42 @@
           "default": null,
           "example": "max_appcast_events = 8",
           "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        },
+        "heartbeat_var": {
+          "description": "Names the MOOS variable treated as the heartbeat. Each received posting resets the missing-heartbeat timer.",
+          "default": null,
+          "example": "heartbeat_var = CONTINUE",
+          "reviewSource": "MOOS-IvP app_pdeadmanpost.pdf: Listing 2.1"
+        },
+        "active_at_start": {
+          "description": "Starts the heartbeat timer immediately when pDeadManPost launches. If false, the timer does not become active until the first heartbeat is received.",
+          "default": "true",
+          "example": "active_at_start = false",
+          "reviewSource": "MOOS-IvP app_pdeadmanpost.pdf: Listing 2.1"
+        },
+        "deadflag": {
+          "description": "Defines one MOOS variable-value pair posted when the heartbeat has been missing longer than max_noheart.",
+          "default": null,
+          "example": "deadflag = RETURN = true",
+          "reviewSource": "MOOS-IvP app_pdeadmanpost.pdf: Listing 2.1"
+        },
+        "max_noheart": {
+          "description": "Sets how many seconds a heartbeat may be absent before pDeadManPost posts the deadflags.",
+          "default": "10",
+          "example": "max_noheart = 60",
+          "reviewSource": "MOOS-IvP app_pdeadmanpost.pdf: Listing 2.1"
+        },
+        "post_policy": {
+          "description": "Controls how deadflags are posted after the heartbeat fails. Supported policies are once, repeat, and reset.",
+          "default": null,
+          "example": "post_policy = repeat",
+          "reviewSource": "MOOS-IvP app_pdeadmanpost.pdf: Listing 2.1"
         }
       }
     },
     "pEchoVar": {
-      "reviewStatus": "manual-reviewed-source-only-parameters",
-      "reviewSource": "moos-ivp/ivp/src/pEchoVar/EchoVar.cpp",
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_pechovar.pdf and moos-ivp/ivp/src/pEchoVar",
       "parameters": {
         "flip:1": {
           "description": "Defines one pEchoVar flip rule that extracts or transforms fields from a source MOOS variable and posts the result to a destination variable. Numbered flip blocks group fields such as source_variable, dest_variable, separators, filters, and components.",
@@ -669,11 +699,41 @@
           "default": null,
           "example": "max_appcast_events = 8",
           "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        },
+        "echo": {
+          "description": "Maps one source MOOS variable to another destination variable so incoming mail on the source is re-posted under the destination name.",
+          "default": null,
+          "example": "echo = NAV_SPEED -> NAV_SPEED_ALT",
+          "reviewSource": "MOOS-IvP app_pechovar.pdf: Section 2.1 and Listing 4.4"
+        },
+        "echo_latest_only": {
+          "description": "When true, pEchoVar posts only the most recent received value for an echoed variable on each iteration instead of replaying every queued message.",
+          "default": "false",
+          "example": "echo_latest_only = false",
+          "reviewSource": "MOOS-IvP app_pechovar.pdf: Listing 4.4"
+        },
+        "condition": {
+          "description": "Adds a logic condition that must be true before echo and flip publications are made. When false, messages may be held depending on hold_messages.",
+          "default": null,
+          "example": "condition = DEPLOY = true",
+          "reviewSource": "MOOS-IvP app_pechovar.pdf: Listing 4.4"
+        },
+        "flip": {
+          "description": "Defines a pEchoVar flip rule that extracts or transforms components from a source variable and posts the result to a destination variable.",
+          "default": null,
+          "example": "flip = source_variable = NODE_REPORT_LOCAL",
+          "reviewSource": "MOOS-IvP app_pechovar.pdf: Section 2.2 and Listing 4.4"
+        },
+        "hold_messages": {
+          "description": "When true, pEchoVar retains incoming messages received while conditions are false and processes them once conditions become true.",
+          "default": "true",
+          "example": "hold_messages = true",
+          "reviewSource": "MOOS-IvP app_pechovar.pdf: Section 2.3 and Listing 4.4"
         }
       }
     },
     "pHostInfo": {
-      "reviewStatus": "manual-reviewed-source-only-parameters",
+      "reviewStatus": "manual-reviewed",
       "reviewSource": "moos-ivp/ivp/src/pHostInfo",
       "parameters": {
         "app_logging": {
@@ -687,6 +747,566 @@
           "default": null,
           "example": "prefer_interface = en0",
           "reviewSource": "moos-ivp/ivp/src/pHostInfo"
+        },
+        "prefer_inerface": {
+          "description": "Legacy misspelled alias accepted by the pHostInfo documentation/source for selecting the preferred network interface. Prefer prefer_interface when possible.",
+          "default": null,
+          "example": "prefer_inerface = en0",
+          "reviewSource": "moos-ivp/ivp/src/pHostInfo and generated docs inventory"
+        }
+      }
+    },
+    "pMarineViewer": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer",
+      "patterns": {
+        "button_*": {
+          "description": "Defines one on-screen command button and the MOOS variable-value posts triggered when it is clicked. The value begins with the button label, followed by one or more # separated MOOS posts.",
+          "default": null,
+          "exampleTemplate": "{param} = DEPLOY # DEPLOY=true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 2.3, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:809"
+        },
+        "*_viewable_all": {
+          "description": "Toggles rendering of all visual objects in this display category. Setting it false suppresses the objects themselves without changing whether the underlying MOOS mail is received.",
+          "default": "true",
+          "exampleTemplate": "{param} = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        },
+        "*_viewable_labels": {
+          "description": "Toggles rendering of labels for visual objects in this display category. Setting it false hides labels while leaving the objects themselves controlled by the corresponding viewable setting.",
+          "default": "true",
+          "exampleTemplate": "{param} = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        },
+        "*_font_size": {
+          "description": "Sets the font size for the named pMarineViewer pane. Supported values are xsmall, small, medium, large, and xlarge.",
+          "default": null,
+          "exampleTemplate": "{param} = medium",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: InfoCast font configuration"
+        }
+      },
+      "parameters": {
+        "action": {
+          "description": "Adds a variable-value command to the Action pull-down menu. The value may include a menu key and multiple # separated MOOS posts.",
+          "default": null,
+          "example": "action = menu_key=deploy # DEPLOY=true # RETURN=false",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 11, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:858"
+        },
+        "action+": {
+          "description": "Adds an Action-menu command like action, while also requesting a visual separator before following menu items. Use it to group related operator commands.",
+          "default": null,
+          "example": "action+ = menu_key=deploy # MOOS_MANUAL_OVERRIDE=false",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 11, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:860"
+        },
+        "appcast_height": {
+          "description": "Legacy spelling for infocast_height. It sets the relative height of the lower appcast/realmcast pane in the pMarineViewer infocast area.",
+          "default": "75",
+          "example": "appcast_height = 75",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:792, MOOS-IvP app_pmviewer.pdf: Section 7.2"
+        },
+        "appcast_width": {
+          "description": "Legacy spelling for infocast_width. It sets the width of the appcast/realmcast pane area as a percentage of the pMarineViewer window width.",
+          "default": "30",
+          "example": "appcast_width = 30",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 7.2"
+        },
+        "back_shade": {
+          "description": "Sets the grayscale shade of the background when no TIFF image is being shown. Values range from 0 for black to 1 for white.",
+          "default": null,
+          "example": "back_shade = 0.4",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: BackView configuration"
+        },
+        "bearing_lines": {
+          "description": "Controls whether bearing-line visualization messages are rendered. This is a display setting for viewer artifacts, not contact or navigation logic.",
+          "default": "true",
+          "example": "bearing_lines = true",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:146"
+        },
+        "bearing_lines_viewable": {
+          "description": "Toggles rendering of bearing-line visual artifacts. Setting it false suppresses bearing lines while leaving other viewer objects unaffected.",
+          "default": "true",
+          "example": "bearing_lines_viewable = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        },
+        "center_view": {
+          "description": "Sets automatic panning behavior relative to vehicles. Use active to keep the active vehicle centered, average to center the average position of vehicles, or leave unset for normal pan settings.",
+          "default": "neither",
+          "example": "center_view = active",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 6.5, moos-ivp/ivp/src/pMarineViewer/PMV_Viewer.cpp:251"
+        },
+        "content_mode": {
+          "description": "Selects the startup content shown in the infocast panes. Supported modes include appcast and realmcast.",
+          "default": "appcast",
+          "example": "content_mode = appcast",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: InfoCast configuration"
+        },
+        "drop_point_coords": {
+          "description": "Controls how drop-point labels show coordinates. Supported values include as-dropped, lat-lon, and local-grid.",
+          "default": "as-dropped",
+          "example": "drop_point_coords = as-dropped",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        },
+        "drop_point_vertex_size": {
+          "description": "Sets the point size used to render drop points. Legal values are integer sizes in the supported viewer range.",
+          "default": "2",
+          "example": "drop_point_vertex_size = 2",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        },
+        "extrap_policy": {
+          "description": "Chooses how pMarineViewer extrapolates stale node reports for display. This affects visual display of vehicle positions when reports are delayed.",
+          "default": null,
+          "example": "extrap_policy = normal",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
+        },
+        "full_screen": {
+          "description": "Starts pMarineViewer in full-screen geo-display mode, hiding appcast/realmcast panes and bottom fields. This is a display layout setting.",
+          "default": "false",
+          "example": "full_screen = false",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: display modes"
+        },
+        "grid_opaqueness": {
+          "description": "Sets the opacity of rendered grid objects. Values range from 0 for transparent to 1 for fully opaque.",
+          "default": "0.3",
+          "example": "grid_opaqueness = 0.3",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        },
+        "grid_viewable_opaqueness": {
+          "description": "Sets the opacity of rendered grid objects. Values range from 0 for transparent to 1 for fully opaque.",
+          "default": "0.3",
+          "example": "grid_viewable_opaqueness = 0.3",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
+        },
+        "hash_delta": {
+          "description": "Sets the spacing, in meters, between background hash/grid lines. Common supported spacings include 50, 100, 200, 500, and 1000.",
+          "default": "100",
+          "example": "hash_delta = 100",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: BackView configuration"
+        },
+        "hash_shade": {
+          "description": "Sets the grayscale shade used for hash marks. Values range from 0 for black to 1 for white.",
+          "default": null,
+          "example": "hash_shade = 0.4",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:105"
+        },
+        "infocast_height": {
+          "description": "Sets the height of the lower appcast/realmcast pane as a percentage of the pMarineViewer window. Supported values are stepped from 30 through 90.",
+          "default": "75",
+          "example": "infocast_height = 75",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 7.2, moos-ivp/ivp/src/pMarineViewer/PMV_GUI.cpp:1247"
+        },
+        "infocast_viewable": {
+          "description": "Controls whether the infocast pane set is visible on the left side of the viewer. This affects layout only.",
+          "default": "true",
+          "example": "infocast_viewable = true",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 7.1"
+        },
+        "infocast_width": {
+          "description": "Sets the width of the appcast/realmcast pane area as a percentage of the pMarineViewer window width. Supported values are stepped from 20 through 70.",
+          "default": "30",
+          "example": "infocast_width = 30",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 7.2"
+        },
+        "left_context": {
+          "description": "Defines a left-click context menu command that posts a MOOS variable-value pair using mouse-position macros such as $(XPOS), $(YPOS), $(LAT), and $(LON).",
+          "default": null,
+          "example": "left_context[return_point] = RETURN_POINT = point=$(XPOS),$(YPOS)",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 10, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:915"
+        },
+        "log_the_file": {
+          "description": "Requests that pLogger copy a configured file into the mission log set. This is used to preserve viewer-related files alongside mission logs.",
+          "default": null,
+          "example": "log_the_file = mission.info",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
+        },
+        "log_the_image": {
+          "description": "Requests that pLogger copy the active background image and related info file into the mission log set. This helps alogview later reproduce the viewer background.",
+          "default": "false",
+          "example": "log_the_image = false",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: BackView configuration, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:987"
+        },
+        "marker": {
+          "description": "Defines a static marker using the same comma-separated field syntax as VIEW_MARKER messages. A marker needs a type and a position, with optional label, color, width, and message fields.",
+          "default": null,
+          "example": "marker = type=efield,x=100,y=20,label=alpha,color=red,width=4.5",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 5.2, moos-ivp/ivp/src/pMarineViewer/PMV_Viewer.cpp:280"
+        },
+        "marker_scale": {
+          "description": "Applies a global scale factor to marker rendering. This changes visual marker size without changing marker positions.",
+          "default": "1",
+          "example": "marker_scale = 1",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 5.2"
+        },
+        "mission_hash_display": {
+          "description": "Controls whether mission-hash information is displayed in pMarineViewer. Use this with mission_hash_var when mission hashes are part of the operator display.",
+          "default": null,
+          "example": "mission_hash_display = true",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
+        },
+        "mission_hash_var": {
+          "description": "Names the MOOS variable containing the mission hash to display in pMarineViewer.",
+          "default": "MISSION_HASH",
+          "example": "mission_hash_var = MISSION_HASH",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
+        },
+        "oparea": {
+          "description": "Defines the operation-area boundary for optional rendering. The value is a polygon specification in the same style used by other MOOS-IvP geometry objects.",
+          "default": null,
+          "example": "oparea = pts={0,0:100,0:100,100:0,100}",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: datum and oparea rendering"
+        },
+        "op_vertex": {
+          "description": "Adds one vertex to the operation-area polygon rendered by pMarineViewer. Use repeated op_vertex lines to build the displayed operation-area boundary.",
+          "default": null,
+          "example": "op_vertex = 0,0",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
+        },
+        "realmcast_channel": {
+          "description": "Selects the realmcast channel or cluster shown in the pMarineViewer realmcast pane. This controls displayed realmcast content, not publication by pRealm itself.",
+          "default": null,
+          "example": "realmcast_channel = mission_top",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: realmcast/watch cluster display"
+        },
+        "refresh_mode": {
+          "description": "Controls how pMarineViewer requests appcasts from apps. Supported modes include paused, events, and streaming.",
+          "default": "events",
+          "example": "refresh_mode = events",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: InfoCast refresh mode"
+        },
+        "right_context": {
+          "description": "Defines a right-click context menu command that posts a MOOS variable-value pair using mouse-position macros such as $(XPOS), $(YPOS), $(LAT), and $(LON).",
+          "default": null,
+          "example": "right_context[loiter_point] = LOITER_POINT = lat=$(LAT),lon=$(LON)",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 10, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:919"
+        },
+        "scope": {
+          "description": "Registers one or more MOOS variables for display in the pMarineViewer scope field and Scope menu. Multiple scope lines may be used.",
+          "default": null,
+          "example": "scope = RETURN, WPT_STAT, VIEW_SEGLIST",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 8, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:951"
+        },
+        "stale_remove_thresh": {
+          "description": "Sets how long after a vehicle becomes stale pMarineViewer waits before removing it from rendering. This affects display cleanup for vehicles that stop reporting.",
+          "default": "30",
+          "example": "stale_remove_thresh = 30",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 6.6"
+        },
+        "stale_report_thresh": {
+          "description": "Sets how many seconds without a node report cause a vehicle to be considered stale in pMarineViewer. This affects stale display state, not contact management.",
+          "default": "60",
+          "example": "stale_report_thresh = 60",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 6.6"
+        },
+        "tiff_file": {
+          "description": "Adds a TIFF background image for the viewer. Current pMarineViewer versions allow multiple tiff_file lines and cycle among them.",
+          "default": null,
+          "example": "tiff_file = MIT_SP.tif",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 3.2, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:925"
+        },
+        "tiff_file_b": {
+          "description": "Deprecated second TIFF background image parameter. Prefer multiple tiff_file lines in current pMarineViewer versions.",
+          "default": null,
+          "example": "tiff_file_b = MIT_SP_sat.tif",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 3.2, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:927"
+        },
+        "tiff_type": {
+          "description": "Deprecated parameter no longer supported after Release 22.8.x. Use multiple tiff_file entries and the viewer's image toggle behavior instead.",
+          "default": null,
+          "example": "tiff_type = toggle",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: BackView configuration"
+        },
+        "trails_point_size": {
+          "description": "Sets the point size used when rendering vehicle trail points. Legal values are integer sizes in the supported viewer range.",
+          "default": "1",
+          "example": "trails_point_size = 1",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: vehicle trail configuration"
+        },
+        "vehicles_shape_scale": {
+          "description": "Applies a scale factor to rendered vehicle shapes. This changes visual vehicle size without changing reported vehicle state.",
+          "default": "1",
+          "example": "vehicles_shape_scale = 1",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: vehicle rendering configuration"
+        },
+        "view_center": {
+          "description": "Sets the initial center of the viewer image in local x,y coordinates. This controls the startup pan origin.",
+          "default": "0,0",
+          "example": "view_center = 0,0",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+        },
+        "watch_cluster": {
+          "description": "Defines a realmcast watch cluster so selected variables can be monitored across vehicles in a table. The value names the cluster and its scoped variables.",
+          "default": null,
+          "example": "watch_cluster = key=mission_top, vars=DEPLOY,RETURN",
+          "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 7.7"
+        },
+        "cmd": {
+          "description": "Defines one command-button post for pMarineViewer command GUI support, with fields such as label, target variable, and string or numeric value.",
+          "default": null,
+          "example": "cmd = label=loiter, var=LOITER, sval=true",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:1167"
+        },
+        "node_report_unc": {
+          "description": "Enables handling and rendering of NODE_REPORT_UNC uncertainty reports in addition to ordinary node reports.",
+          "default": "false",
+          "example": "node_report_unc = true",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:203"
+        },
+        "rows": {
+          "description": "Configures the background grid row orientation and spacing used by pMarineViewer.",
+          "default": null,
+          "example": "rows = north-south, degs=80",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:175"
+        },
+        "show_title_ip": {
+          "description": "Controls whether the viewer title bar includes IP address information.",
+          "default": "true",
+          "example": "show_title_ip = true",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_GUI.cpp:50, PMV_Info.cpp:215"
+        },
+        "show_title_mhash": {
+          "description": "Controls whether the viewer title bar includes the mission hash.",
+          "default": "true",
+          "example": "show_title_mhash = true",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_GUI.cpp:52, PMV_Info.cpp:217"
+        },
+        "show_title_user": {
+          "description": "Controls whether the viewer title bar includes the user name.",
+          "default": "true",
+          "example": "show_title_user = true",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_GUI.cpp:51, PMV_Info.cpp:216"
+        },
+        "vehicle_shape_scale": {
+          "description": "Scales the rendered vehicle shape size in the pMarineViewer display.",
+          "default": null,
+          "example": "vehicle_shape_scale = 1.35",
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:101"
+        }
+      }
+    },
+    "pNodeReporter": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_pnreporter.pdf and moos-ivp/ivp/src/pNodeReporter",
+      "parameters": {
+        "allow_color_change": {
+          "description": "Allows incoming NODE_COLOR_CHANGE mail to update the color field included in generated node reports. When false, runtime color-change requests are ignored.",
+          "default": "false",
+          "example": "allow_color_change = false",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: configuration parameters, moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:165"
+        },
+        "alt_nav_group": {
+          "description": "Sets the group field used in alternate navigation node reports. If omitted, the alternate report uses the baseline node report group.",
+          "default": null,
+          "example": "alt_nav_group = ground_truth",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 2.7"
+        },
+        "alt_nav_name": {
+          "description": "Sets the node name used for alternate navigation node reports. A common value is _GT for ground-truth reports.",
+          "default": "_GT",
+          "example": "alt_nav_name = _GT",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 2.7"
+        },
+        "alt_nav_prefix": {
+          "description": "Sets the NAV_* prefix used as the source for alternate navigation reports. For example, NAV_GT reads NAV_GT_X, NAV_GT_Y, and related variables.",
+          "default": "NAV_GT",
+          "example": "alt_nav_prefix = NAV_GT",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 2.7"
+        },
+        "app_logging": {
+          "description": "Enables AppCastingMOOSApp logging for pNodeReporter. This records app-level diagnostics and is separate from NODE_REPORT_LOCAL or PLATFORM_REPORT_LOCAL output.",
+          "default": "disabled",
+          "example": "app_logging = true",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        },
+        "blackout_interval": {
+          "description": "Sets the minimum time, in seconds, between node report postings when simulating sparse or dropped reports. A zero value disables this blackout spacing.",
+          "default": "0",
+          "example": "blackout_interval = 0",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: message blackout configuration"
+        },
+        "blackout_variance": {
+          "description": "Adds uniformly random variation to the blackout interval when sparse report posting is enabled. The value is a non-negative duration in seconds.",
+          "default": "0",
+          "example": "blackout_variance = 0",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: message blackout configuration"
+        },
+        "coord_policy_global": {
+          "description": "When true, node reports publish only latitude/longitude coordinates and omit local x/y coordinates. The crossfill policy controls how lat/lon values are obtained.",
+          "default": "false",
+          "example": "coord_policy_global = false",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 2.6"
+        },
+        "cross_fill_policy": {
+          "description": "Controls how pNodeReporter fills missing local x/y coordinates from lat/lon or missing lat/lon coordinates from local x/y. Supported policies include literal, fill-empty, use-latest, and global.",
+          "default": "literal",
+          "example": "cross_fill_policy = literal",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 2.6, moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:532"
+        },
+        "crossfill_policy": {
+          "description": "Controls how pNodeReporter fills missing local x/y coordinates from lat/lon or missing lat/lon coordinates from local x/y. Supported policies include literal, fill-empty, use-latest, and global.",
+          "default": "literal",
+          "example": "crossfill_policy = literal",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 2.6"
+        },
+        "extrap_enabled": {
+          "description": "Enables sparse node-report posting based on extrapolation. When enabled, reports may be held back until movement, heading change, or max-gap thresholds require a fresh report.",
+          "default": "false",
+          "example": "extrap_enabled = false",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 2.4"
+        },
+        "extrap_hdg_thresh": {
+          "description": "Sets the heading-change threshold, in degrees, that forces a new node report when extrapolated reporting is enabled.",
+          "default": "1",
+          "example": "extrap_hdg_thresh = 1",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 2.4"
+        },
+        "extrap_hdg_thres": {
+          "description": "Legacy or misspelled spelling of extrap_hdg_thresh. It sets the heading-change threshold, in degrees, that forces a new node report when extrapolated reporting is enabled.",
+          "default": "1",
+          "example": "extrap_hdg_thres = 1",
+          "reviewSource": "moos-ivp/ivp/src/pNodeReporter"
+        },
+        "extrap_max_gap": {
+          "description": "Sets the maximum time, in seconds, that may pass without posting a node report when extrapolated reporting is enabled.",
+          "default": "5",
+          "example": "extrap_max_gap = 5",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 2.4"
+        },
+        "extrap_pos_thresh": {
+          "description": "Sets the position-change threshold, in meters, that forces a new node report when extrapolated reporting is enabled.",
+          "default": "0.25",
+          "example": "extrap_pos_thresh = 0.25",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 2.4"
+        },
+        "group": {
+          "description": "Sets the group label included in generated node reports. This is a source-level alias for platform_group.",
+          "default": null,
+          "example": "group = alpha",
+          "reviewSource": "moos-ivp/ivp/src/pNodeReporter"
+        },
+        "hdg_error": {
+          "description": "Adds a test offset, in degrees, to the heading field in generated node reports. This is intended for testing downstream consumers with inconsistent heading/course data.",
+          "default": "0",
+          "example": "hdg_error = 0",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: configuration parameters"
+        },
+        "json_report": {
+          "description": "Controls JSON node-report publication. When true, the node report is published in JSON format; when set to another variable name, JSON is posted there while normal CSP output continues.",
+          "default": "true",
+          "example": "json_report = true",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: configuration parameters"
+        },
+        "max_appcast_events": {
+          "description": "Limits how many appcast events pNodeReporter retains for diagnostic reporting. This does not affect NODE_REPORT or PLATFORM_REPORT content.",
+          "default": null,
+          "example": "max_appcast_events = 8",
+          "reviewSource": "MOOS AppCastingMOOSApp configuration"
+        },
+        "nav_grace_period": {
+          "description": "Sets the startup grace period, in seconds, before pNodeReporter warns about missing navigation inputs such as NAV_LAT or NAV_LONG. A negative value disables the grace limit.",
+          "default": "60",
+          "example": "nav_grace_period = 60",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: configuration parameters, moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:97"
+        },
+        "nav_grace_periode": {
+          "description": "Misspelled source-discovered spelling of nav_grace_period. It sets the startup grace period before missing navigation inputs trigger warnings.",
+          "default": "60",
+          "example": "nav_grace_periode = 60",
+          "reviewSource": "moos-ivp/ivp/src/pNodeReporter"
+        },
+        "node_report_output": {
+          "description": "Names the MOOS variable used for the local node report output. The conventional default is NODE_REPORT_LOCAL.",
+          "default": "NODE_REPORT_LOCAL",
+          "example": "node_report_output = NODE_REPORT_LOCAL",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: example configuration, moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:445"
+        },
+        "nohelm_threshold": {
+          "description": "Sets how many seconds of quiet helm output are tolerated before pNodeReporter reports the helm as AWOL. This affects the helm-status fields in node reporting.",
+          "default": "5",
+          "example": "nohelm_threshold = 5",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: configuration parameters"
+        },
+        "paused": {
+          "description": "Starts or places pNodeReporter in a paused state, suspending report publication while still allowing the app to run.",
+          "default": "false",
+          "example": "paused = false",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: configuration parameters"
+        },
+        "plat_report_input": {
+          "description": "Adds one MOOS variable to the optional platform report, with optional fields such as gap and alias. The platform report is posted only when configured inputs require an update.",
+          "default": null,
+          "example": "plat_report_input = GPS_SAT, gap=5",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 6, moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:439"
+        },
+        "plat_report_output": {
+          "description": "Names the MOOS variable used for optional platform-report output. The conventional default is PLATFORM_REPORT_LOCAL.",
+          "default": "PLATFORM_REPORT_LOCAL",
+          "example": "plat_report_output = PLATFORM_REPORT_LOCAL",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 6, moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:453"
+        },
+        "platform_aspect": {
+          "description": "Adds a static param=value rider field to generated node reports. If the same field is configured more than once, the later value replaces the earlier one.",
+          "default": null,
+          "example": "platform_aspect = ID=439",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 2.3.1, moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:405"
+        },
+        "platform_beam": {
+          "description": "Sets the reported platform beam, in meters, included in node reports.",
+          "default": "0",
+          "example": "platform_beam = 5",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: platform characteristics"
+        },
+        "platform_color": {
+          "description": "Sets the color hint included in node reports for viewers such as pMarineViewer and alogview.",
+          "default": null,
+          "example": "platform_color = green",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: platform characteristics, moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:385"
+        },
+        "platform_group": {
+          "description": "Sets the group label included in generated node reports. This is useful for team or fleet grouping in downstream viewers and contact tools.",
+          "default": null,
+          "example": "platform_group = alpha",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: platform characteristics, moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:459"
+        },
+        "platform_length": {
+          "description": "Sets the reported platform length, in meters, included in node reports. Some known platform types may imply a rough default length when no length is configured.",
+          "default": "0",
+          "example": "platform_length = 8",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: platform characteristics"
+        },
+        "platform_transparency": {
+          "description": "Sets the transparency hint included in node reports for viewers. Values range from 0 for nearly transparent to 1 for fully opaque.",
+          "default": "1",
+          "example": "platform_transparency = 1",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: platform characteristics"
+        },
+        "platform_type": {
+          "description": "Sets the reported platform type included in node reports, such as kayak, uuv, auv, ship, or glider.",
+          "default": "unknown",
+          "example": "platform_type = kayak",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: platform characteristics, moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:379"
+        },
+        "platform_vsource": {
+          "description": "Sets the reported vehicle source field included in node reports. This is useful when node reports are derived from a particular sensor or tracking source.",
+          "default": null,
+          "example": "platform_vsource = AIS",
+          "reviewSource": "moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:464"
+        },
+        "report_cog": {
+          "description": "Adds calculated course-over-ground information to node reports. The value is computed from recent position changes rather than the raw heading field.",
+          "default": "false",
+          "example": "report_cog = false",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: configuration parameters"
+        },
+        "rider": {
+          "description": "Adds a dynamic rider field to node reports by subscribing to a MOOS variable and appending a formatted field to outgoing reports. Common fields include var, rfld, policy, and precision.",
+          "default": null,
+          "example": "rider = var=DB_UPTIME, policy=always, rfld=upt, prec=3",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: Section 2.3.2, moos-ivp/ivp/src/pNodeReporter/NodeReporter.cpp:430"
+        },
+        "terse_reports": {
+          "description": "Omits selected less-essential fields such as YAW from node reports when true. Use this to reduce report size.",
+          "default": "false",
+          "example": "terse_reports = false",
+          "reviewSource": "MOOS-IvP app_pnreporter.pdf: configuration parameters"
         }
       }
     },
@@ -979,7 +1599,7 @@
       }
     },
     "uQueryDB": {
-      "reviewStatus": "manual-reviewed-source-only-parameters",
+      "reviewStatus": "manual-reviewed",
       "reviewSource": "moos-ivp/ivp/src/uQueryDB",
       "parameters": {
         "halt_condition": {
@@ -999,24 +1619,53 @@
           "default": null,
           "example": "max_time = 30",
           "reviewSource": "moos-ivp/ivp/src/uQueryDB"
+        },
+        "wait": {
+          "description": "Waits this many seconds for queried variables to appear before uQueryDB exits with failure when an initial query is missing.",
+          "default": "0",
+          "example": "wait = 5",
+          "reviewSource": "moos-ivp/ivp/src/uQueryDB"
         }
       }
     },
     "uTermCommand": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "moos-ivp/ivp/src/uTermCommand",
+      "reviewSource": "MOOS-IvP app_utermcommand.pdf and moos-ivp/ivp/src/uTermCommand",
       "parameters": {
         "cmd": {
-          "description": "Defines a terminal-selectable command that posts a MOOS variable-value pair. This is a MOOS command menu entry, not an operating-system shell command.",
+          "description": "Defines a terminal-selectable cue that posts one MOOS variable-value pair, using the form cue --> variable --> value.",
           "default": null,
-          "example": "CMD = DEPLOY = true",
-          "reviewSource": "moos-ivp/ivp/src/uTermCommand"
+          "example": "cmd = deploy_true --> DEPLOY --> true",
+          "reviewSource": "MOOS-IvP app_utermcommand.pdf: Listing 2.1"
         }
-      }
+      },
+      "excludedParameters": [
+        "block_on",
+        "condition",
+        "values",
+        "delay_reset",
+        "delay_start",
+        "event",
+        "forward_var",
+        "paused",
+        "pause_var",
+        "rand_var",
+        "reset_max",
+        "reset_time",
+        "reset_var",
+        "script_atomic",
+        "script_name",
+        "shuffle",
+        "status_var",
+        "time_warp",
+        "time_zero",
+        "upon_awake",
+        "verbose"
+      ]
     },
     "uTimerScript": {
-      "reviewStatus": "manual-reviewed-source-only-parameters",
-      "reviewSource": "moos-ivp/ivp/src/uTimerScript/TS_Info.cpp and TS_MOOSApp.cpp",
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_utscript.pdf and moos-ivp/ivp/src/uTimerScript",
       "parameters": {
         "app_logging": {
           "description": "Enables AppCastingMOOSApp logging for uTimerScript. This records app-level diagnostics and is separate from scripted MOOS posts.",
@@ -1047,12 +1696,30 @@
           "default": null,
           "example": "randvar = varname=ANG, min=0, max=359, key=at_reset",
           "reviewSource": "moos-ivp/ivp/src/uTimerScript/TS_Info.cpp:122"
+        },
+        "block_on": {
+          "description": "Blocks script execution until the named MOOS apps have appeared in DB_CLIENTS.",
+          "default": null,
+          "example": "block_on = pGenerateInfo, pPostValues",
+          "reviewSource": "MOOS-IvP app_utscript.pdf: Listing 7.3"
+        },
+        "reset_max": {
+          "description": "Sets the maximum number of script resets allowed. Use a non-negative integer or nolimit.",
+          "default": "nolimit",
+          "example": "reset_max = nolimit",
+          "reviewSource": "MOOS-IvP app_utscript.pdf: Listing 7.3"
+        },
+        "upon_awake": {
+          "description": "Controls what happens when script conditions become true after being false. Supported values include n/a, reset, and restart.",
+          "default": "n/a",
+          "example": "upon_awake = n/a",
+          "reviewSource": "MOOS-IvP app_utscript.pdf: Listing 7.3"
         }
       }
     },
     "uXMS": {
-      "reviewStatus": "manual-reviewed-source-only-parameters",
-      "reviewSource": "moos-ivp/ivp/src/uXMS/XMS.cpp and XMS_Info.cpp",
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/uXMS",
       "parameters": {
         "app_logging": {
           "description": "Enables AppCastingMOOSApp logging for uXMS. This records app-level diagnostics and is separate from the scoped MOOS mail display.",
@@ -1071,9 +1738,1236 @@
           "default": null,
           "example": "paused = false",
           "reviewSource": "moos-ivp/ivp/src/uXMS"
+        },
+        "source": {
+          "description": "Restricts displayed variables to mail from the named MOOS source app.",
+          "default": null,
+          "example": "source = pHelmIvP",
+          "reviewSource": "moos-ivp/ivp/src/uXMS"
+        },
+        "wrap_data_len": {
+          "description": "Sets the string-content line length used when uXMS wraps long data values for display.",
+          "default": "45",
+          "example": "wrap_data_len = 45",
+          "reviewSource": "moos-ivp/ivp/src/uXMS"
+        }
+      }
+    },
+    "pAutoPoke": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_pautopoke.pdf and moos-ivp/ivp/src/pAutoPoke",
+      "parameters": {
+        "flag": {
+          "description": "Defines one MOOS variable-value post that pAutoPoke will publish once the required node count has been reached.",
+          "default": null,
+          "example": "flag = DEPLOY_ALL = true",
+          "reviewSource": "MOOS-IvP app_pautopoke.pdf: Listing 2.1"
+        },
+        "required_nodes": {
+          "description": "Sets how many nodes must be detected before pAutoPoke publishes its configured flags. A value of 0 allows the flags to be posted without waiting for node reports.",
+          "default": "0",
+          "example": "required_nodes = 2",
+          "reviewSource": "MOOS-IvP app_pautopoke.pdf: Listing 2.1"
+        }
+      }
+    },
+    "pMissionEval": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/pMissionEval",
+      "parameters": {
+        "mission_form": {
+          "description": "Sets the mission-form name used when expanding MISSION_FORM macros in generated reports.",
+          "default": "mission",
+          "example": "mission_form = alpha",
+          "reviewSource": "moos-ivp/ivp/src/pMissionEval/MissionEval_Info.cpp"
+        },
+        "report_column": {
+          "description": "Defines one output column in the mission-evaluation report file.",
+          "default": null,
+          "example": "report_column = name=score, value=$(SCORE)",
+          "reviewSource": "moos-ivp/ivp/src/pMissionEval/MissionEval_Info.cpp"
+        },
+        "report_line_format": {
+          "description": "Selects the separator format used between mission-evaluation report columns.",
+          "default": "white",
+          "example": "report_line_format = csp",
+          "reviewSource": "moos-ivp/ivp/src/pMissionEval/MissionEval_Info.cpp"
+        }
+      }
+    },
+    "pObstacleMgr": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP obstacle manager docs and moos-ivp/ivp/src/pObstacleMgr",
+      "parameters": {
+        "ignore_range": {
+          "description": "Ignores incoming obstacle points farther than this range from ownship. A negative value disables range-based ignoring.",
+          "default": "-1",
+          "example": "ignore_range = 100",
+          "reviewSource": "moos-ivp/ivp/src/pObstacleMgr"
+        },
+        "general_alert": {
+          "description": "Defines the default alert request posted by pObstacleMgr when obstacle conditions require a general alert.",
+          "default": "obstacle-manager",
+          "example": "general_alert = obstacle-manager",
+          "reviewSource": "moos-ivp/ivp/src/pObstacleMgr"
+        },
+        "given_obstacle": {
+          "description": "Supplies an obstacle polygon directly to pObstacleMgr, using the same polygon specification style used in GIVEN_OBSTACLE mail.",
+          "default": null,
+          "example": "given_obstacle = pts={0,0:20,0:20,20:0,20}",
+          "reviewSource": "moos-ivp/ivp/src/pObstacleMgr"
+        }
+      }
+    },
+    "pRealm": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/pRealm",
+      "parameters": {
+        "msg_max_hist": {
+          "description": "Sets how many recent messages pRealm keeps per variable for string-message history display.",
+          "default": "10",
+          "example": "msg_max_hist = 10",
+          "reviewSource": "moos-ivp/ivp/src/pRealm"
+        },
+        "scope_set": {
+          "description": "Defines a named set of MOOS variables or realmcast fields to include in pRealm reporting.",
+          "default": null,
+          "example": "scope_set = DEPLOY,RETURN,NAV_X,NAV_Y",
+          "reviewSource": "moos-ivp/ivp/src/pRealm"
+        }
+      }
+    },
+    "pSearchGrid": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/pSearchGrid",
+      "parameters": {
+        "grid_config": {
+          "description": "Defines the search grid geometry and labeling used by pSearchGrid.",
+          "default": null,
+          "example": "grid_config = label=alpha,pts={0,0:100,0:100,100:0,100}",
+          "reviewSource": "moos-ivp/ivp/src/pSearchGrid"
+        }
+      }
+    },
+    "pSpoofNode": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_pspoofnode.pdf and moos-ivp/ivp/src/pSpoofNode",
+      "parameters": {
+        "default_vsource": {
+          "description": "Sets the default vehicle source included in spoofed node reports when a spoof request does not provide vsource.",
+          "default": "empty string",
+          "example": "default_vsource = AIS",
+          "reviewSource": "MOOS-IvP app_pspoofnode.pdf: Listing 2.1"
+        },
+        "spoof": {
+          "description": "Defines one spoofed node-report request. Position is required; omitted optional fields use the configured default_* values or an auto-generated contact name.",
+          "default": null,
+          "example": "spoof = x=20,y=30,spd=2,hdg=90,type=kayak",
+          "reviewSource": "MOOS-IvP app_pspoofnode.pdf: Listing 2.1"
+        }
+      }
+    },
+    "uFldBeaconRangeSensor": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf and moos-ivp/ivp/src/uFldBeaconRangeSensor",
+      "parameters": {
+        "beacon": {
+          "description": "Defines one simulated beacon location and properties for vehicle-to-beacon range reports.",
+          "default": null,
+          "example": "beacon = x=50,y=25,label=beacon_one",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+        },
+        "default": {
+          "description": "Sets a default beacon property applied when an individual beacon does not provide that property.",
+          "default": null,
+          "example": "default = beacon_shape = circle",
+          "reviewSource": "moos-ivp/ivp/src/uFldBeaconRangeSensor"
+        },
+        "default_beacon_freq": {
+          "description": "Sets the default interval for unsolicited beacon broadcasts. The value may be never, a fixed number of seconds, or a random range such as 60:120.",
+          "default": "never",
+          "example": "default_beacon_freq = 60:120",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.2"
+        },
+        "default_beacon_shape": {
+          "description": "Sets the default rendered shape for beacons when an individual beacon does not specify a shape.",
+          "default": "circle",
+          "example": "default_beacon_shape = circle",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+        },
+        "ping_wait": {
+          "description": "Sets the mandatory number of seconds between successive vehicle pings to the beacon range sensor.",
+          "default": null,
+          "example": "ping_wait = 30",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+        },
+        "rn_algorithm": {
+          "description": "Selects the random-noise algorithm applied to simulated beacon range measurements.",
+          "default": "none",
+          "example": "rn_algorithm = none",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+        }
+      }
+    },
+    "uFldContactRangeSensor": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf and moos-ivp/ivp/src/uFldContactRangeSensor",
+      "parameters": {
+        "ignore_group": {
+          "description": "Ignores incoming node reports from contacts whose group matches this configured group.",
+          "default": null,
+          "example": "ignore_group = alpha",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
+        },
+        "ping_wait": {
+          "description": "Sets the minimum number of seconds enforced between range-sensor pings.",
+          "default": "30",
+          "example": "ping_wait = 30",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
+        },
+        "display_pulses": {
+          "description": "Controls whether simulated contact-range pings are rendered as visual pulse messages.",
+          "default": "true",
+          "example": "display_pulses = true",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
+        },
+        "ground_truth": {
+          "description": "When true, publishes ground-truth range reports alongside noisy simulated range reports for diagnostics.",
+          "default": "true",
+          "example": "ground_truth = true",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
+        },
+        "pull_dist": {
+          "description": "Sets a contact-specific pull distance used by the range sensor when evaluating whether a contact can be sensed or reported.",
+          "default": null,
+          "example": "pull_dist = abe:75",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
+        },
+        "pull_distance": {
+          "description": "Sets a contact-specific pull distance used by the range sensor when evaluating whether a contact can be sensed or reported.",
+          "default": null,
+          "example": "pull_distance = abe:75",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
+        },
+        "push_dist": {
+          "description": "Sets a contact-specific push distance used by the range sensor when evaluating whether a contact can be sensed or reported.",
+          "default": null,
+          "example": "push_dist = abe:125",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
+        },
+        "push_distance": {
+          "description": "Sets a contact-specific push distance used by the range sensor when evaluating whether a contact can be sensed or reported.",
+          "default": null,
+          "example": "push_distance = abe:125",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
+        },
+        "rn_gaussian_sigma": {
+          "description": "Sets the sigma value used when Gaussian random noise is applied to simulated range measurements.",
+          "default": "0",
+          "example": "rn_gaussian_sigma = 2",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
+        },
+        "sensor_arc": {
+          "description": "Sets the angular field of view, relative to vehicle heading, in which the range sensor can detect contacts.",
+          "default": "360",
+          "example": "sensor_arc = -45:45",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
+        }
+      }
+    },
+    "uFldMessageHandler": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/uFldMessageHandler",
+      "parameters": {
+        "appcast_trunc_msg": {
+          "description": "Sets the maximum number of characters from each successful message shown in the appcast report.",
+          "default": "75",
+          "example": "appcast_trunc_msg = 75",
+          "reviewSource": "moos-ivp/ivp/src/uFldMessageHandler"
+        },
+        "aux_info": {
+          "description": "Controls the source auxiliary field included with handled messages, such as node or node+app.",
+          "default": "node",
+          "example": "aux_info = node+app",
+          "reviewSource": "moos-ivp/ivp/src/uFldMessageHandler"
+        }
+      }
+    },
+    "uFldNodeBroker": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_ufld_nodebroker.pdf and moos-ivp/ivp/src/uFldNodeBroker",
+      "parameters": {
+        "bridge": {
+          "description": "Registers a MOOS variable with pShare for bridging to the shoreside MOOS community after a shore connection is established.",
+          "default": null,
+          "example": "bridge = src=NODE_REPORT_LOCAL, alias=NODE_REPORT",
+          "reviewSource": "MOOS-IvP app_ufld_nodebroker.pdf: Listing 2.1"
+        },
+        "try_shore_host": {
+          "description": "Adds a candidate pShare route used for initial pings while trying to establish a shoreside connection.",
+          "default": null,
+          "example": "try_shore_host = 192.168.1.10:9200",
+          "reviewSource": "MOOS-IvP app_ufld_nodebroker.pdf: Listing 2.1"
+        },
+        "keyword": {
+          "description": "Defines a keyword value included in brokered node communications when keyword matching is required by the shore broker.",
+          "default": null,
+          "example": "keyword = alpha_key",
+          "reviewSource": "moos-ivp/ivp/src/uFldNodeBroker"
+        }
+      }
+    },
+    "uFldNodeComms": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf and moos-ivp/ivp/src/uFldNodeComms",
+      "parameters": {
+        "ignore_group": {
+          "description": "Ignores incoming node reports from contacts whose group matches this configured group.",
+          "default": null,
+          "example": "ignore_group = alpha",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        },
+        "stealth": {
+          "description": "Reduces how far this vehicle can be heard by other vehicles when sharing node reports. Values are in the range 0 to 1.",
+          "default": "1",
+          "example": "stealth = 0.5",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        },
+        "earange": {
+          "description": "Extends the range at which this vehicle can hear node reports from other vehicles. Values are in the range 1 to 10, with 1 as the default range multiplier.",
+          "default": "1",
+          "example": "earange = 1",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        }
+      }
+    },
+    "uFldObstacleSim": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_ufld_obsim.pdf and moos-ivp/ivp/src/uFldObstacleSim",
+      "parameters": {
+        "region": {
+          "description": "Defines the convex polygon region within which random or regenerated obstacles are placed.",
+          "default": null,
+          "example": "region = pts={0,0:100,0:100,100:0,100}",
+          "reviewSource": "MOOS-IvP app_ufld_obsim.pdf: Section 3.1"
+        },
+        "match_group": {
+          "description": "Restricts obstacle simulation or Voronoi processing to vessels matching this group name.",
+          "default": null,
+          "example": "match_group = alpha",
+          "reviewSource": "moos-ivp/ivp/src/uFldObstacleSim"
+        },
+        "use_unc_reports": {
+          "description": "Uses NODE_REPORT_UNC rather than NODE_REPORT as the vehicle-report source, useful when simulating stale or delayed contact information.",
+          "default": null,
+          "example": "use_unc_reports = true",
+          "reviewSource": "moos-ivp/ivp/src/uFldObstacleSim"
+        },
+        "load_summary": {
+          "description": "Names the MOOS variable where uFldObstacleSim posts a summary of loaded obstacle information.",
+          "default": null,
+          "example": "load_summary = OBS_LOAD_SUMMARY",
+          "reviewSource": "moos-ivp/ivp/src/uFldObstacleSim"
+        }
+      }
+    },
+    "uFldScope": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_ufld_scope.pdf and moos-ivp/ivp/src/uFldScope",
+      "parameters": {
+        "scope": {
+          "description": "Adds a variable or field description to the uFldScope main report along with source information.",
+          "default": null,
+          "example": "scope = NODE_REPORT",
+          "reviewSource": "MOOS-IvP app_ufld_scope.pdf: Listing 2.1"
+        },
+        "layout": {
+          "description": "Defines an alternate report table layout by selecting which fields are shown in each uFldScope row.",
+          "default": null,
+          "example": "layout = name,x,y,spd,hdg",
+          "reviewSource": "MOOS-IvP app_ufld_scope.pdf: Listing 2.1"
+        }
+      }
+    },
+    "uFldShoreBroker": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf and moos-ivp/ivp/src/uFldShoreBroker",
+      "parameters": {
+        "bridge": {
+          "description": "Names a local MOOS variable and optional alias to bridge from the shore community to vehicle communities.",
+          "default": null,
+          "example": "bridge = src=DEPLOY_ALL, alias=DEPLOY",
+          "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2"
+        },
+        "keyword": {
+          "description": "Requires incoming NODE_BROKER_PING messages to contain this keyword before uFldShoreBroker responds.",
+          "default": null,
+          "example": "keyword = alpha_key",
+          "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2"
+        },
+        "qbridge": {
+          "description": "Adds shorthand bridge rules for both variable_$V and variable_ALL forms to vehicle communities.",
+          "default": null,
+          "example": "qbridge = RETURN",
+          "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Section 2.5 and Listing 5.2"
+        },
+        "try_vnode": {
+          "description": "Adds a candidate vehicle-node route for shore broker connection attempts.",
+          "default": null,
+          "example": "try_vnode = 192.168.4.24:9200",
+          "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2"
+        },
+        "auto_bridg_mhash": {
+          "description": "Legacy misspelled source-discovered alias for automatic MISSION_HASH bridging. Prefer auto_bridge_mhash when possible.",
+          "default": null,
+          "example": "auto_bridg_mhash = true",
+          "reviewSource": "moos-ivp/ivp/src/uFldShoreBroker"
+        }
+      }
+    },
+    "uLoadWatch": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/uLoadWatch",
+      "parameters": {
+        "breach_trigger": {
+          "description": "Sets how many threshold breaches are allowed before uLoadWatch posts a warning. A value of 1 warns on the first breach.",
+          "default": "1",
+          "example": "breach_trigger = 1",
+          "reviewSource": "moos-ivp/ivp/src/uLoadWatch"
+        }
+      }
+    },
+    "uMACView": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_appcasting_umactools.pdf and moos-ivp/ivp/src/uMACView",
+      "parameters": {
+        "appcast_height": {
+          "description": "Sets the height of the appcast display pane in uMACView.",
+          "default": null,
+          "example": "appcast_height = 70",
+          "reviewSource": "MOOS-IvP app_appcasting_umactools.pdf: Listing 2.1"
+        },
+        "infocast_height": {
+          "description": "Sets the height of the infocast display pane. Supported values are 30 through 90 in increments of 5.",
+          "default": "70",
+          "example": "infocast_height = 70",
+          "reviewSource": "MOOS-IvP app_appcasting_umactools.pdf: Listing 2.1"
+        },
+        "realmcast_channel": {
+          "description": "Selects which realmcast channel uMACView displays on startup.",
+          "default": null,
+          "example": "realmcast_channel = shoreside",
+          "reviewSource": "moos-ivp/ivp/src/uMACView"
+        },
+        "realmcast_show_communinity": {
+          "description": "Legacy misspelled alias for realmcast_show_community. Controls whether the Community column is shown in realmcast output.",
+          "default": "true",
+          "example": "realmcast_show_communinity = true",
+          "reviewSource": "moos-ivp/ivp/src/uMACView"
+        },
+        "watch_cluster": {
+          "description": "Selects the initial appcast or realmcast cluster watched by uMACView.",
+          "default": null,
+          "example": "watch_cluster = shoreside",
+          "reviewSource": "moos-ivp/ivp/src/uMACView"
+        }
+      }
+    },
+    "uMayFinish": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/uMayFinish",
+      "parameters": {
+        "finish_val": {
+          "description": "Sets the value that must be observed on the configured finish variable before uMayFinish allows completion.",
+          "default": null,
+          "example": "finish_val = true",
+          "reviewSource": "moos-ivp/ivp/src/uMayFinish"
+        },
+        "max_db_uptime": {
+          "description": "Sets the MOOSDB uptime, in seconds, after which uMayFinish exits. A negative value disables this timeout.",
+          "default": "-1",
+          "example": "max_db_uptime = 300",
+          "reviewSource": "moos-ivp/ivp/src/uMayFinish"
+        }
+      }
+    },
+    "uProcessWatch": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/uProcessWatch",
+      "parameters": {
+        "nowatch": {
+          "description": "Names one or more MOOS process names that uProcessWatch should ignore when checking process health.",
+          "default": null,
+          "example": "nowatch = uXMS",
+          "reviewSource": "moos-ivp/ivp/src/uProcessWatch"
+        },
+        "summary_wait": {
+          "description": "Sets the maximum time between PROC_WATCH_SUMMARY postings. A negative value posts summaries only when the watched process state changes.",
+          "default": "-1",
+          "example": "summary_wait = 5",
+          "reviewSource": "moos-ivp/ivp/src/uProcessWatch"
+        },
+        "watch": {
+          "description": "Names one or more MOOS processes that uProcessWatch should monitor and report as running or missing.",
+          "default": null,
+          "example": "watch = pHelmIvP",
+          "reviewSource": "moos-ivp/ivp/src/uProcessWatch"
+        }
+      }
+    },
+    "pLogger": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_plogger.pdf and moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger",
+      "parameters": {
+        "compressalogs": {
+          "description": "Compresses generated alog files after logging completes when compression support is available.",
+          "default": "false",
+          "example": "CompressAlogs = false",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:309"
+        },
+        "doubleprecision": {
+          "description": "Sets how many digits pLogger writes for double-valued entries in alog output.",
+          "default": "6",
+          "example": "DoublePrecision = 6",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:270"
+        },
+        "log": {
+          "description": "Adds a MOOS variable to pLogger synchronous logging output.",
+          "default": null,
+          "example": "Log = NAV_X",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp"
+        },
+        "logauxsrc": {
+          "description": "Includes MOOS auxiliary source information in asynchronous log entries when available.",
+          "default": "false",
+          "example": "LogAuxSrc = false",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:119,273"
+        },
+        "utclogdirectories": {
+          "description": "Uses UTC time when naming pLogger log directories.",
+          "default": "false",
+          "example": "UTCLogDirectories = false",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:116,264"
+        },
+        "wildcardexclusionlog": {
+          "description": "Writes wildcard-rejected variables to a separate exclusion log instead of silently omitting them.",
+          "default": "false",
+          "example": "WildCardExclusionLog = false",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:258"
+        },
+        "wildcardomitpattern": {
+          "description": "Adds a wildcard pattern for MOOS variables that pLogger should omit from wildcard logging.",
+          "default": null,
+          "example": "WildCardOmitPattern = DB_*",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:424"
+        },
+        "synclog": {
+          "description": "Controls synchronous logging. The value may include a boolean enable flag and an optional period.",
+          "default": "false",
+          "example": "SyncLog = true @ 1.0",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:227-245"
+        }
+      }
+    },
+    "pMapMarkers": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/pMapMarkers",
+      "parameters": {
+        "marker_shape": {
+          "description": "Sets the shape used when rendering map markers.",
+          "default": "circle",
+          "example": "marker_shape = triangle",
+          "reviewSource": "moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:27,133"
+        },
+        "show_markers": {
+          "description": "Controls whether map markers themselves are rendered.",
+          "default": "false",
+          "example": "show_markers = true",
+          "reviewSource": "moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:24,120"
+        },
+        "show_mlabels": {
+          "description": "Controls whether map-marker labels are rendered.",
+          "default": "true",
+          "example": "show_mlabels = true",
+          "reviewSource": "moos-ivp/ivp/src/pMapMarkers/MapMarkers.cpp:25,122"
+        },
+        "show_mlables": {
+          "description": "Misspelled source-discovered alias for show_mlabels. Prefer show_mlabels in new mission files.",
+          "default": null,
+          "example": "show_mlables = true",
+          "reviewSource": "moos-ivp/ivp/src/pMapMarkers"
+        }
+      }
+    },
+    "uFldCollObDetect": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/uFldCollObDetect",
+      "parameters": {
+        "bin_min_val": {
+          "description": "Sets the minimum value included in collision/obstacle detection histogram bins. A negative value disables the lower cutoff.",
+          "default": "-1",
+          "example": "bin_min_val = 0",
+          "reviewSource": "moos-ivp/ivp/src/uFldCollObDetect"
+        }
+      }
+    },
+    "uFldGenericSensor": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "moos-ivp/ivp/src/uFldGenericSensor",
+      "parameters": {
+        "sensor_config": {
+          "description": "Defines one simulated generic sensor, including its label and reporting behavior.",
+          "default": null,
+          "example": "sensor_config = label=temp_sensor, var=SENSOR_TEMP",
+          "reviewSource": "moos-ivp/ivp/src/uFldGenericSensor"
+        }
+      }
+    },
+    "uHelmScope": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_uhelmscope.pdf and moos-ivp/ivp/src/uHelmScope",
+      "parameters": {
+        "behaviors_consise": {
+          "description": "Legacy misspelled alias for behaviors_concise. Controls whether idle and completed behaviors are reported compactly.",
+          "default": null,
+          "example": "behaviors_consise = true",
+          "reviewSource": "moos-ivp/ivp/src/uHelmScope"
+        },
+        "truncated_output": {
+          "description": "Truncates the MOOS-scope or behavior-scope sections of uHelmScope output to fit compact terminal displays.",
+          "default": "false",
+          "example": "truncated_output = false",
+          "reviewSource": "MOOS-IvP app_uhelmscope.pdf: Listing 7.4"
         }
       }
     }
   },
-  "ivp-behavior": {}
+  "ivp-behavior": {
+    "BHV_OpRegionV24": {
+      "reviewStatus": "manual-reviewed-source-aliases",
+      "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp",
+      "parameters": {
+        "draw_save_statue": {
+          "description": "Source-discovered misspelling of draw_save_status. It controls whether the save-status polygon visualization is drawn while the behavior is recovering toward the save polygon.",
+          "default": null,
+          "example": "draw_save_statue = false",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp"
+        }
+      }
+    },
+    "BHV_LegRun": {
+      "reviewStatus": "manual-reviewed-high-risk-parameters",
+      "reviewSource": "MOOS-IvP bhv_legrun.pdf and moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp",
+      "parameters": {
+        "p1": {
+          "description": "Sets one endpoint of the primary leg-run track line in local x,y coordinates.",
+          "default": null,
+          "example": "p1 = 70,-35",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: example configuration"
+        },
+        "p2": {
+          "description": "Sets the other endpoint of the primary leg-run track line in local x,y coordinates.",
+          "default": null,
+          "example": "p2 = -35,-85",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: example configuration"
+        },
+        "leg": {
+          "description": "Defines the primary leg-run track line by center point, angle, and length rather than by explicit p1 and p2 endpoints.",
+          "default": null,
+          "example": "leg = x=0,y=0,ang=90,len=100",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
+        },
+        "leg_len": {
+          "description": "Sets a new length for the primary leg-run track while preserving its center and angle. The behavior recalculates both endpoints from the new length.",
+          "default": null,
+          "example": "leg_len = 100",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
+        },
+        "leg_length": {
+          "description": "Source-level spelling for setting the length of the primary leg-run track while preserving its center and angle.",
+          "default": null,
+          "example": "leg_length = 100",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
+        },
+        "leg_len_mod": {
+          "description": "Adds a runtime adjustment to the current primary-leg length while preserving the leg center and angle. The resulting length is bounded by leg_len_min.",
+          "default": null,
+          "example": "leg_len_mod = 20",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
+        },
+        "leg_length_mod": {
+          "description": "Source-level spelling for adding a runtime adjustment to the current primary-leg length.",
+          "default": null,
+          "example": "leg_length_mod = 20",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
+        },
+        "leg_len_min": {
+          "description": "Sets the minimum allowed leg length when leg length is modified dynamically. The behavior enforces a lower safety bound on this value.",
+          "default": "50",
+          "example": "leg_len_min = 50",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
+        },
+        "leg_ang": {
+          "description": "Sets a new angle for the primary leg-run track while preserving its center and length.",
+          "default": null,
+          "example": "leg_ang = 90",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
+        },
+        "leg_ang_mod": {
+          "description": "Adds a runtime adjustment to the current primary-leg angle while preserving the leg center and length.",
+          "default": null,
+          "example": "leg_ang_mod = 15",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
+        },
+        "full_leg": {
+          "description": "Requires the vehicle to complete the full configured leg before transitioning into turn behavior.",
+          "default": null,
+          "example": "full_leg = true",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
+        },
+        "init_leg_mode": {
+          "description": "Selects the initial leg/turn mode used when the behavior starts. Use this when startup should force a particular first leg direction or mode.",
+          "default": null,
+          "example": "init_leg_mode = normal",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp:468"
+        },
+        "lr_mode": {
+          "description": "Runtime status value indicating the current leg-run phase, such as leg1, leg2, turn1, or turn2. This is normally reported by the behavior, not configured by users.",
+          "default": null,
+          "example": "lr_mode = leg1",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
+        },
+        "lr_mode_report": {
+          "description": "Runtime coordination report containing the current leg-run mode, vehicle name, and timestamp for multi-vehicle coordination.",
+          "default": null,
+          "example": "lr_mode_report = name=abe,mode=leg1,time=123.4",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
+        },
+        "lr_os_degs": {
+          "description": "Runtime coordination value giving ownship position in degrees on the reference circle used by multi-vehicle leg-run coordination.",
+          "default": null,
+          "example": "lr_os_degs = 90",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
+        },
+        "shift_pt": {
+          "description": "Moves the primary leg so its center is at the given x,y point while preserving the original leg length and angle.",
+          "default": null,
+          "example": "shift_pt = 0,0",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: parameter table"
+        },
+        "shift_point": {
+          "description": "Source-level spelling for shifting the primary leg so its center is at the given x,y point while preserving length and angle.",
+          "default": null,
+          "example": "shift_point = 0,0",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
+        },
+        "variable": {
+          "description": "Runtime coordination field used by BHV_LegRun status reporting. It is not a primary user-facing mission tuning parameter.",
+          "default": null,
+          "example": "variable = LR_MODE_REPORT",
+          "reviewSource": "MOOS-IvP bhv_legrun.pdf: generated parameter table"
+        },
+        "vx1": {
+          "description": "Source-level coordinate for the x value of the first leg-run vertex.",
+          "default": null,
+          "example": "vx1 = 70",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
+        },
+        "vx2": {
+          "description": "Source-level coordinate for the x value of the second leg-run vertex.",
+          "default": null,
+          "example": "vx2 = -35",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp"
+        }
+      }
+    },
+    "BHV_ZigZag": {
+      "reviewStatus": "manual-reviewed-high-risk-parameters",
+      "reviewSource": "MOOS-IvP bhv_zigzag.pdf and moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp",
+      "parameters": {
+        "fierce_zigging": {
+          "description": "Requests the zig leg with a direct relative-heading command rather than the gentler default zig behavior.",
+          "default": "false",
+          "example": "fierce_zigging = false",
+          "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
+        },
+        "max_zig_legs": {
+          "description": "Sets how many zig legs must be completed before the behavior can complete.",
+          "default": "2",
+          "example": "max_zig_legs = 2",
+          "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
+        },
+        "max_zig_zags": {
+          "description": "Sets the maximum number of complete zig-zag cycles before the behavior can complete.",
+          "default": null,
+          "example": "max_zig_zags = 3",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp"
+        },
+        "max_stem_odo": {
+          "description": "Sets the maximum distance traveled along the stem line before the behavior completes. A negative value disables this completion criterion.",
+          "default": "-1",
+          "example": "max_stem_odo = -1",
+          "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
+        },
+        "zig_angle": {
+          "description": "Sets the relative angle used for the ordinary zig leg.",
+          "default": null,
+          "example": "zig_angle = 30",
+          "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
+        },
+        "zig_angle_fierce": {
+          "description": "Sets the relative heading request used when fierce_zigging is enabled.",
+          "default": null,
+          "example": "zig_angle_fierce = 60",
+          "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
+        },
+        "zig_first": {
+          "description": "Selects which side is used for the first zig. Supported values include port and starboard/star.",
+          "default": "port",
+          "example": "zig_first = port",
+          "reviewSource": "MOOS-IvP bhv_zigzag.pdf"
+        }
+      }
+    },
+    "BHV_Loiter": {
+      "reviewStatus": "manual-reviewed-high-risk-parameters",
+      "reviewSource": "MOOS-IvP bhv_loiter.pdf and moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
+      "parameters": {
+        "center_assign": {
+          "description": "Moves the loiter polygon center to the given x,y point during configuration or updates.",
+          "default": "present_position",
+          "example": "center_assign = 0,0",
+          "reviewSource": "MOOS-IvP bhv_loiter.pdf"
+        },
+        "xcenter_assign": {
+          "description": "Moves only the x-coordinate of the loiter polygon center, preserving the current y-coordinate.",
+          "default": "present_position",
+          "example": "xcenter_assign = 0",
+          "reviewSource": "MOOS-IvP bhv_loiter.pdf"
+        },
+        "ycenter_assign": {
+          "description": "Moves only the y-coordinate of the loiter polygon center, preserving the current x-coordinate.",
+          "default": "present_position",
+          "example": "ycenter_assign = 0",
+          "reviewSource": "MOOS-IvP bhv_loiter.pdf"
+        },
+        "post_suffix": {
+          "description": "Adds a suffix to MOOS variables posted by this loiter behavior so multiple loiter instances can be distinguished.",
+          "default": null,
+          "example": "post_suffix = ALPHA",
+          "reviewSource": "MOOS-IvP bhv_loiter.pdf"
+        },
+        "slingshot": {
+          "description": "Enables loiter slingshot handling when approaching the polygon. A negative value leaves this handling disabled.",
+          "default": "-1",
+          "example": "slingshot = -1",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+        }
+      }
+    },
+    "BHV_Convoy": {
+      "reviewStatus": "manual-reviewed-high-risk-parameters",
+      "reviewSource": "MOOS-IvP behavior convoy documentation and moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp",
+      "parameters": {
+        "compression": {
+          "description": "Compresses the ideal convoy range and speed policy so the follower can close distance more aggressively.",
+          "default": null,
+          "example": "compression = 0.5",
+          "reviewSource": "MOOS-IvP convoy behavior documentation"
+        },
+        "tail_length_max": {
+          "description": "Sets the maximum marker tail length retained for convoy visualization before older tail markers are dropped.",
+          "default": null,
+          "example": "tail_length_max = 20",
+          "reviewSource": "MOOS-IvP convoy behavior documentation"
+        },
+        "rng_estop": {
+          "description": "Sets the convoy emergency-stop range. When the follower is too close, the behavior can drive toward stopping.",
+          "default": "15",
+          "example": "rng_estop = 15",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
+        },
+        "rng_lagging": {
+          "description": "Sets the convoy range beyond which the follower is considered lagging behind the contact.",
+          "default": "70",
+          "example": "rng_lagging = 70",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
+        },
+        "rng_tgating": {
+          "description": "Sets the convoy tailgating range where the follower is considered too close but not necessarily in emergency stop.",
+          "default": "30",
+          "example": "rng_tgating = 30",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
+        }
+      }
+    },
+    "BHV_MaxSpeed": {
+      "reviewStatus": "manual-reviewed-high-risk-parameters",
+      "reviewSource": "MOOS-IvP max speed behavior documentation",
+      "parameters": {
+        "peakwidth": {
+          "description": "Sets the width, in meters per second, of the peak region in the speed utility function.",
+          "default": null,
+          "example": "peakwidth = 0.5",
+          "reviewSource": "MOOS-IvP max speed behavior documentation"
+        },
+        "summitdelta": {
+          "description": "Sets the summit delta used in the ZAIC-style speed objective function.",
+          "default": null,
+          "example": "summitdelta = 25",
+          "reviewSource": "MOOS-IvP max speed behavior documentation"
+        }
+      }
+    },
+    "BHV_PeriodicSpeed": {
+      "reviewStatus": "manual-reviewed-high-risk-parameters",
+      "reviewSource": "MOOS-IvP periodic speed behavior documentation",
+      "parameters": {
+        "period_busy": {
+          "description": "Sets the duration, in seconds, of the busy/high-speed portion of the periodic speed cycle.",
+          "default": "0",
+          "example": "period_busy = 60",
+          "reviewSource": "MOOS-IvP periodic speed behavior documentation"
+        },
+        "period_lazy": {
+          "description": "Sets the duration, in seconds, of the lazy/low-speed portion of the periodic speed cycle.",
+          "default": "0",
+          "example": "period_lazy = 120",
+          "reviewSource": "MOOS-IvP periodic speed behavior documentation"
+        }
+      }
+    },
+    "BHV_PeriodicSurface": {
+      "reviewStatus": "manual-reviewed-high-risk-parameters",
+      "reviewSource": "MOOS-IvP bhv_periodic_surface.pdf",
+      "parameters": {
+        "ascent_grade": {
+          "description": "Controls how desired speed is reduced during ascent toward the surface. The default linear grade approaches zero speed steadily.",
+          "default": "linear",
+          "example": "ascent_grade = linear",
+          "reviewSource": "MOOS-IvP bhv_periodic_surface.pdf"
+        },
+        "period": {
+          "description": "Sets the duration, in seconds, of the waiting interval before the behavior next requests surfacing.",
+          "default": "300",
+          "example": "period = 300",
+          "reviewSource": "MOOS-IvP bhv_periodic_surface.pdf"
+        }
+      }
+    },
+    "BHV_Trail": {
+      "reviewStatus": "manual-reviewed-high-risk-parameters",
+      "reviewSource": "MOOS-IvP bhv_trail.pdf and IvP contact behavior source",
+      "parameters": {
+        "trail_angle": {
+          "description": "Sets the relative angle behind or around the contact used to place the trail point.",
+          "default": "180",
+          "example": "trail_angle = 180",
+          "reviewSource": "MOOS-IvP bhv_trail.pdf"
+        },
+        "n_alert_request": {
+          "description": "Suppresses or controls the automatic contact-manager alert request normally used by contact behaviors.",
+          "default": null,
+          "example": "n_alert_request = true",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Trail.cpp"
+        }
+      }
+    },
+    "BHV_Waypoint": {
+      "reviewStatus": "manual-reviewed-high-risk-parameters",
+      "reviewSource": "MOOS-IvP bhv_waypoint.pdf and moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
+      "parameters": {
+        "efficiency_measure": {
+          "description": "Enables or disables leg-by-leg waypoint efficiency measurement and reporting.",
+          "default": "off",
+          "example": "efficiency_measure = off",
+          "reviewSource": "MOOS-IvP bhv_waypoint.pdf"
+        },
+        "order": {
+          "description": "Sets the order in which waypoints are traversed. Supported values include normal, reverse, and toggle.",
+          "default": "normal",
+          "example": "order = normal",
+          "reviewSource": "MOOS-IvP bhv_waypoint.pdf: Section 1.4"
+        },
+        "greedy_tour": {
+          "description": "Allows waypoint ordering to be optimized greedily before traversal.",
+          "default": "false",
+          "example": "greedy_tour = false",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+        },
+        "reset_on_idle": {
+          "description": "Resets waypoint progress when the behavior becomes idle.",
+          "default": "false",
+          "example": "reset_on_idle = false",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+        },
+        "shortest_tour": {
+          "description": "Requests shortest-tour ordering of the waypoint set before traversal.",
+          "default": null,
+          "example": "shortest_tour = true",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+        }
+      }
+    },
+    "BHV_AvdColregsV22": {
+      "reviewStatus": "manual-reviewed-source-parameters",
+      "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
+      "parameters": {
+        "eval_tol": {
+          "description": "Sets the tolerance used when evaluating candidate COLREGS maneuvers.",
+          "default": "120",
+          "example": "eval_tol = 120",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
+        },
+        "passing_side": {
+          "description": "Selects which side the COLREGS passing maneuver is evaluated or preferred on.",
+          "default": null,
+          "example": "passing_side = starboard",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
+        },
+        "post_status_info_on_idle": {
+          "description": "Keeps posting COLREGS status information even while the behavior is idle.",
+          "default": "false",
+          "example": "post_status_info_on_idle = false",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
+        },
+        "velocity_filter": {
+          "description": "Applies a velocity-based contact filter before evaluating COLREGS maneuvers.",
+          "default": null,
+          "example": "velocity_filter = min_speed=0.2",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
+        }
+      }
+    },
+    "BHV_AvoidCollision": {
+      "reviewStatus": "manual-reviewed-source-parameters",
+      "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
+      "parameters": {
+        "cnh": {
+          "description": "Sets the contact heading used by the avoidance geometry calculations.",
+          "default": null,
+          "example": "cnh = 90",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
+        },
+        "cnv": {
+          "description": "Sets the contact speed used by the avoidance geometry calculations.",
+          "default": null,
+          "example": "cnv = 1.2",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
+        },
+        "refine_piece": {
+          "description": "Enables objective-function piece refinement for the collision-avoidance utility surface.",
+          "default": null,
+          "example": "refine_piece = true",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
+        },
+        "roc_max_dampen": {
+          "description": "Limits how much rate-of-closure can dampen collision-avoidance utility.",
+          "default": "-2.0",
+          "example": "roc_max_dampen = -2.0",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
+        },
+        "roc_max_heighten": {
+          "description": "Limits how much rate-of-closure can heighten collision-avoidance utility.",
+          "default": "2.0",
+          "example": "roc_max_heighten = 2.0",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
+        }
+      }
+    },
+    "BHV_AvoidObstacleV24": {
+      "reviewStatus": "manual-reviewed-source-parameters",
+      "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp",
+      "parameters": {
+        "action": {
+          "description": "Selects the requested obstacle action, such as enabling, disabling, or otherwise changing a matching obstacle.",
+          "default": null,
+          "example": "action = disable",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp"
+        },
+        "obid": {
+          "description": "Matches an obstacle by obstacle id for the requested obstacle action.",
+          "default": null,
+          "example": "obid = obstacle_1",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp"
+        },
+        "obstacle_key": {
+          "description": "Matches an obstacle by obstacle key for the requested obstacle action.",
+          "default": null,
+          "example": "obstacle_key = obstacle_1",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp"
+        },
+        "vsource": {
+          "description": "Matches an obstacle by visualization/source identifier for the requested obstacle action.",
+          "default": null,
+          "example": "vsource = pObstacleMgr",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp"
+        }
+      }
+    },
+    "BHV_Hysteresis": {
+      "reviewStatus": "manual-reviewed-source-parameters",
+      "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp",
+      "parameters": {
+        "max_window_utility": {
+          "description": "Sets the maximum utility assigned inside the hysteresis window.",
+          "default": "90.0",
+          "example": "max_window_utility = 90.0",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp"
+        }
+      }
+    },
+    "*": {
+      "reviewStatus": "manual-reviewed-common-behavior-parameters",
+      "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp and IvPContactBehavior.cpp",
+      "patterns": {
+        "bearing_line*": {
+          "description": "Configures bearing-line visualization between ownship and a contact. The color thresholds map either relevance or range values to line colors, and related boolean parameters control whether the line and its label are shown.",
+          "default": null,
+          "exampleTemplate": "{param} = white:0, green:0.65, yellow:0.8, red:1.0",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:160"
+        },
+        "match_*": {
+          "description": "Adds a contact filter that requires the contact to match the named field before the behavior treats it as a valid contact.",
+          "default": null,
+          "exampleTemplate": "{param} = alpha",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
+        },
+        "ignore_*": {
+          "description": "Adds a contact filter that excludes contacts matching the named field before the behavior treats them as valid contacts.",
+          "default": null,
+          "exampleTemplate": "{param} = alpha",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
+        }
+      },
+      "parameters": {
+        "nostarve": {
+          "description": "Requires one or more MOOS variables to stay fresh for the behavior to remain runnable. The value is a comma-separated list of variable names followed by the maximum allowed age in seconds.",
+          "default": null,
+          "example": "nostarve = NAV_X, NAV_Y, 5",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
+        },
+        "no_starve": {
+          "description": "Alias of nostarve. It requires one or more MOOS variables to stay fresh for the behavior to remain runnable, with the final comma-separated value giving the allowed age in seconds.",
+          "default": null,
+          "example": "no_starve = NAV_X, NAV_Y, 5",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:261"
+        },
+        "bearing_lines": {
+          "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. When valid thresholds are provided, bearing-line drawing is enabled.",
+          "default": null,
+          "example": "bearing_lines = white:0, green:0.65, yellow:0.8, red:1.0",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
+        },
+        "bearing_line_config": {
+          "description": "Configures contact bearing-line visualization as color:threshold pairs, optionally including info=range or info=relevance. This is the source-level spelling accepted by IvP contact behaviors.",
+          "default": null,
+          "example": "bearing_line_config = info=range, white:0, yellow:50, red:100",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:166"
+        },
+        "bearing_line_show": {
+          "description": "Turns contact bearing-line drawing on or off when the behavior supports bearing-line visualization.",
+          "default": "false",
+          "example": "bearing_line_show = true",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:163"
+        },
+        "bearing_line_label_show": {
+          "description": "Controls whether labels are shown on contact bearing-line visualizations.",
+          "default": null,
+          "example": "bearing_line_label_show = true",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:160"
+        },
+        "match_group": {
+          "description": "Requires the contact group to match the configured group before the behavior treats the contact as valid.",
+          "default": null,
+          "example": "match_group = alpha",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
+        },
+        "match_name": {
+          "description": "Requires the contact name to match the configured name before the behavior treats the contact as valid.",
+          "default": null,
+          "example": "match_name = abe",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
+        },
+        "match_region": {
+          "description": "Requires the contact to be inside the configured convex region before the behavior treats the contact as valid.",
+          "default": null,
+          "example": "match_region = pts={0,0:100,0:100,100:0,100}",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
+        },
+        "match_type": {
+          "description": "Requires the contact type to match the configured type before the behavior treats the contact as valid.",
+          "default": null,
+          "example": "match_type = kayak",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
+        },
+        "ignore_group": {
+          "description": "Excludes contacts in the configured group before the behavior treats them as valid.",
+          "default": null,
+          "example": "ignore_group = alpha",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
+        },
+        "ignore_name": {
+          "description": "Excludes contacts with the configured name before the behavior treats them as valid.",
+          "default": null,
+          "example": "ignore_name = abe",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
+        },
+        "ignore_region": {
+          "description": "Excludes contacts inside the configured convex region before the behavior treats them as valid.",
+          "default": null,
+          "example": "ignore_region = pts={0,0:100,0:100,100:0,100}",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
+        },
+        "ignore_type": {
+          "description": "Excludes contacts with the configured type before the behavior treats them as valid.",
+          "default": null,
+          "example": "ignore_type = kayak",
+          "reviewSource": "MOOS-IvP contact behavior filtering documentation"
+        },
+        "parameter": {
+          "description": "Documentation table placeholder, not an ordinary behavior configuration parameter. Prefer the specific OpRegion parameters such as core_poly, save_poly, halt_poly, max_depth, min_altitude, and reset.",
+          "default": null,
+          "example": "parameter = value",
+          "reviewSource": "MOOS-IvP generated behavior documentation"
+        },
+        "core_poly": {
+          "description": "Defines the nominal operating area as a convex polygon. OpRegion behaviors use this as the primary region for containment and for deriving save/halt regions when distance offsets are configured.",
+          "default": null,
+          "example": "core_poly = pts={-80,-50:-30,-175:150,-100:95,25}",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1"
+        },
+        "save_poly": {
+          "description": "Defines the soft recovery polygon. When the vehicle exits this polygon, the behavior may produce an IvP function to guide it back inside before a harder halt breach occurs.",
+          "default": null,
+          "example": "save_poly = pts={-74.9,-52.1:54,14.5:94.9,-60.1:-34,-126.8}",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1"
+        },
+        "halt_poly": {
+          "description": "Defines the hard containment polygon. When the vehicle exits this polygon, the behavior signals a halt/all-stop style polygon breach.",
+          "default": null,
+          "example": "halt_poly = pts={-79.4,-54.3:51.8,19:99.4,-58:-31.8,-131.3}",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.1"
+        },
+        "max_depth": {
+          "description": "Sets the maximum allowable ownship depth in meters. A non-positive value leaves the depth limit disabled.",
+          "default": "0",
+          "example": "max_depth = 20",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3, moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:137"
+        },
+        "min_altitude": {
+          "description": "Sets the minimum allowable ownship altitude above the bottom in meters. A non-positive value leaves the altitude limit disabled.",
+          "default": "0",
+          "example": "min_altitude = 5",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.3"
+        },
+        "reset": {
+          "description": "Resets a previously breached OpRegion condition back to its launch-like monitoring state. This is most useful when sent through the behavior updates variable during a mission.",
+          "default": null,
+          "example": "reset = true",
+          "reviewSource": "MOOS-IvP bhv_opregion_v24.pdf: Section 1.3.4"
+        }
+      }
+    }
+  }
 }
