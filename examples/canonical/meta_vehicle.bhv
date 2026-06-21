@@ -1,0 +1,57 @@
+//-------------------------------------------------
+// FILE: meta_vehicle.bhv
+// NAME: MOOS-IvP Editor
+//-------------------------------------------------
+
+initialize DEPLOY = false
+initialize RETURN = false
+initialize STATION_KEEP = false
+
+set MODE = ACTIVE {
+  DEPLOY = true
+} INACTIVE
+
+set MODE = RETURNING {
+  MODE = ACTIVE
+  RETURN = true
+}
+
+set MODE = TRANSITING {
+  MODE = ACTIVE
+  RETURN != true
+  STATION_KEEP != true
+}
+
+//----------------------------------------------------
+Behavior = BHV_Waypoint
+{
+  name      = survey_waypoints
+  pwt       = 100
+  condition = MODE==TRANSITING
+
+  updates    = WPT_UPDATE
+  runflag    = SURVEY_ACTIVE=true
+  endflag    = RETURN=true
+  perpetual  = false
+
+  speed          = 1.4
+  capture_line   = true
+  capture_radius = 5.0
+  slip_radius    = 15.0
+  polygon        = 0,0 : 80,0 : 80,-80 : 0,-80
+  repeat         = 1
+}
+
+//----------------------------------------------------
+Behavior = BHV_StationKeep
+{
+  name      = station_keep
+  pwt       = 80
+  condition = STATION_KEEP = true
+
+  center_activate = true
+  inner_radius    = 5
+  outer_radius    = 10
+  outer_speed     = 1.0
+  transit_speed   = 1.4
+}

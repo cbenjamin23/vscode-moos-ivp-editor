@@ -1,0 +1,18 @@
+//-------------------------------------------------
+// FILE: patch_vehicle.xbhv
+// NAME: MOOS-IvP Editor
+//-------------------------------------------------
+
+Behavior = BHV_Waypoint
+{
+  name      = patched_waypoint
+  pwt       = 100
+  condition = DEPLOY = true
+  updates   = WPT_UPDATE
+  endflag   = WPT_COMPLETE = true
+
+  speed          = 1.2
+  capture_radius = 6
+  slip_radius    = 18
+  point          = 80,-40
+}

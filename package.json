@@ -25,8 +25,7 @@
                 ],
                 "extensions": [
                     ".moos",
-                    ".plug",
-                    ".meta"
+                    ".xmoos"
                 ],
                 "configuration": "./language-configuration.json"
             },
@@ -37,7 +36,8 @@
                     "ivp-behavior"
                 ],
                 "extensions": [
-                    ".bhv"
+                    ".bhv",
+                    ".xbhv"
                 ],
                 "configuration": "./language-configuration.json"
             }

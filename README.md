@@ -54,6 +54,12 @@ added.
 * Behavior Syntax:
   * Need to add the ability to add options specific to individual applications
 
+## Development Examples
+
+Example files for grammar and language-feature development are in
+`examples/`. The examples focus on canonical MOOS-IvP authoring and patch
+files: `.moos`, `.bhv`, `.xmoos`, and `.xbhv`.
+
 
 ## Release Notes
 

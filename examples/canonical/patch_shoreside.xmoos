@@ -1,0 +1,25 @@
+//-------------------------------------------------
+// FILE: patch_shoreside.xmoos
+// NAME: MOOS-IvP Editor
+//-------------------------------------------------
+
+ProcessConfig = pMissionEval
+{
+  AppTick   = 4
+  CommsTick = 4
+
+  lead_condition = DEPLOY = true
+  pass_condition = WPT_COMPLETE = true
+  fail_condition = EVAL_TIMEOUT = true
+
+  result_flag = MISSION_EVALUATED = true
+
+  mission_form = waypoint_motion
+  mission_mod  = $(MMOD:=single_point_arrival_pass)
+
+  prereport_column = form=$[MISSION_FORM]
+  prereport_column = mmod=$[MMOD]
+  report_column    = grade=$[GRADE]
+  report_column    = waypoint_complete=$[WPT_COMPLETE]
+  report_file      = results.txt
+}

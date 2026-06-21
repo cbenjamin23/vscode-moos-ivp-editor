@@ -1,0 +1,36 @@
+//-------------------------------------------------
+// FILE: plug_pMarineViewer.moos
+// NAME: MOOS-IvP Editor
+//-------------------------------------------------
+
+//----------------------------------------------------
+// pMarineViewer configuration block from plug file
+
+ProcessConfig = pMarineViewer
+{
+  AppTick   = 4
+  CommsTick = 4
+
+  tiff_file            = MIT_SP.tif
+  set_pan_x            = 5
+  set_pan_y            = -115
+  zoom                 = 1.5
+  vehicles_shape_scale = 1.5
+  vehicles_name_mode   = names
+
+  appcast_viewable = true
+  stale_report_thresh = 10
+  stale_remove_thresh = 18
+
+  scope = DEPLOY_ALL
+  scope = RETURN_ALL
+  scope = STATION_KEEP_ALL
+
+  left_context[return_point] = RETURN_$[UP_VNAME_CLOSEST] = true
+  left_context[return_point] = RETURN_UPDATES_$[UP_VNAME_CLOSEST] = points=$[XPOS],$[YPOS]
+
+  button_1 = DEPLOY # DEPLOY_ALL=true
+  button_1 = MOOS_MANUAL_OVERRIDE_ALL=false
+  button_2 = RETURN # RETURN_ALL=true
+  button_3 = ALLSTOP # DEPLOY_ALL=false
+}

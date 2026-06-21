@@ -1,0 +1,112 @@
+//-------------------------------------------------
+// FILE: meta_vehicle.moos
+// NAME: MOOS-IvP Editor
+//-------------------------------------------------
+
+ServerHost = $(IP_ADDR)
+ServerPort = $(MOOS_PORT)
+Community  = $(VNAME)
+
+MOOSTimeWarp = $(WARP)
+LatOrigin    = 43.825300
+LongOrigin   = -70.330400
+
+//----------------------------------------------------
+ProcessConfig = ANTLER
+{
+  MSBetweenLaunches = 100
+
+  Run = MOOSDB        @ NewConsole = false
+  Run = pShare        @ NewConsole = false
+  Run = pLogger       @ NewConsole = false
+  Run = uSimMarineV22 @ NewConsole = false
+  Run = pMarinePIDV22 @ NewConsole = false
+  Run = pNodeReporter @ NewConsole = false
+  Run = pHelmIvP      @ NewConsole = false
+}
+
+//----------------------------------------------------
+ProcessConfig = pShare
+{
+  AppTick   = 4
+  CommsTick = 4
+
+  input = route = localhost:$(PSHARE_PORT)
+}
+
+//----------------------------------------------------
+ProcessConfig = pLogger
+{
+  AppTick   = 5
+  CommsTick = 5
+
+  File            = LOG_$(VNAME)
+  PATH            = ./
+  AsyncLog        = true
+  FileTimeStamp   = true
+  WildCardLogging = true
+}
+
+//----------------------------------------------------
+ProcessConfig = uSimMarineV22
+{
+  AppTick   = 10
+  CommsTick = 10
+
+  start_pos = x=0,y=0,heading=0
+  prefix    = NAV
+
+  max_speed        = 2.0
+  max_deceleration = 0.1
+  turn_rate        = 95
+  turn_spd_loss    = 0.6
+
+  post_des_thrust = DESIRED_THRUST
+  post_des_rudder = DESIRED_RUDDER
+}
+
+//----------------------------------------------------
+ProcessConfig = pMarinePIDV22
+{
+  AppTick   = 10
+  CommsTick = 10
+
+  verbose       = true
+  depth_control = false
+  active_start  = true
+
+  yaw_pid_kp = 1.2
+  yaw_pid_kd = 0.1
+  yaw_pid_ki = 0.3
+
+  speed_pid_kp = 1.0
+  speed_pid_kd = 0.0
+  speed_pid_ki = 0.0
+
+  maxrudder    = 100
+  maxthrust    = 100
+  speed_factor = 20
+}
+
+//----------------------------------------------------
+ProcessConfig = pNodeReporter
+{
+  AppTick   = 2
+  CommsTick = 2
+
+  platform_color = yellow
+  vessel_type    = kayak
+}
+
+//----------------------------------------------------
+ProcessConfig = pHelmIvP
+{
+  AppTick   = 4
+  CommsTick = 4
+
+  behaviors = targ_$(VNAME).bhv
+  verbose   = false
+
+  domain = course:0:359:360
+  domain = speed:0:2.0:21
+}
