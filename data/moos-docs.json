@@ -30,13 +30,13 @@
           "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer_Info.cpp:98"
         },
         "interval_policy": {
-          "description": "Controls whether the minimum interval between utterances is measured from the start or the end of the previous utterance. Supported values are from_start and from_end.",
+          "description": "Selects whether the minimum interval between utterances is measured from the start or the end of the previous utterance. Supported values are from_start and from_end.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
           "default": "from_end",
           "defaultSource": "manual review",
           "example": "interval_policy = from_end",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:44,176"
+          "reviewSource": "moos-ivp/ivp/src/iSay/Sayer.cpp:44,176-179,409"
         },
         "os_mode": {
           "description": "Selects which operating-system speech backend iSay should use for speech and audio playback. Supported values are osx, linux, and both.",
@@ -92,13 +92,13 @@
           "reviewSource": "MOOS-IvP app_pcmanager.pdf: Section 4.1, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:115"
         },
         "contact_local_coords": {
-          "description": "Controls whether local x/y coordinates in incoming node reports are filled from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
+          "description": "Selects the policy for filling local x/y coordinates in incoming node reports from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
           "default": "verbatim",
           "defaultSource": "manual review",
           "example": "contact_local_coords = verbatim",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
+          "reviewSource": "MOOS-IvP contact-manager documentation/source review"
         },
         "default_alert_range": {
           "description": "Sets the default alert range, in meters, used by alert rules that do not specify their own alert_range. Contacts inside this range can trigger the alert posting.",
@@ -218,13 +218,13 @@
           "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
         },
         "contact_local_coords": {
-          "description": "Controls whether local x/y coordinates in incoming node reports are filled from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
+          "description": "Selects the policy for filling local x/y coordinates in incoming node reports from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
           "default": "verbatim",
           "defaultSource": "manual review",
           "example": "contact_local_coords = verbatim",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:269 and ContactMgrV20_Info.cpp:139"
         },
         "contact_max_age": {
           "description": "Sets how many seconds may pass without a fresh contact report before the contact is retired and dropped from the active contact list. The current pContactMgrV20 source initializes this to 60 seconds.",
@@ -4519,23 +4519,23 @@
     "contact_local_coords": [
       {
         "owner": "pBasicContactMgr",
-        "description": "Controls whether local x/y coordinates in incoming node reports are filled from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
+        "description": "Selects the policy for filling local x/y coordinates in incoming node reports from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
         "default": "verbatim",
         "defaultSource": "manual review",
         "example": "contact_local_coords = verbatim",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
+        "reviewSource": "MOOS-IvP contact-manager documentation/source review"
       },
       {
         "owner": "pContactMgrV20",
-        "description": "Controls whether local x/y coordinates in incoming node reports are filled from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
+        "description": "Selects the policy for filling local x/y coordinates in incoming node reports from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
         "default": "verbatim",
         "defaultSource": "manual review",
         "example": "contact_local_coords = verbatim",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
+        "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:269 and ContactMgrV20_Info.cpp:139"
       }
     ],
     "contact_max_age": [
@@ -5931,13 +5931,13 @@
     "interval_policy": [
       {
         "owner": "iSay",
-        "description": "Controls whether the minimum interval between utterances is measured from the start or the end of the previous utterance. Supported values are from_start and from_end.",
+        "description": "Selects whether the minimum interval between utterances is measured from the start or the end of the previous utterance. Supported values are from_start and from_end.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
         "default": "from_end",
         "defaultSource": "manual review",
         "example": "interval_policy = from_end",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:44,176"
+        "reviewSource": "moos-ivp/ivp/src/iSay/Sayer.cpp:44,176-179,409"
       }
     ],
     "json_report": [

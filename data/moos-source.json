@@ -1580,13 +1580,13 @@
         },
         "log_the_file": {
           "name": "log_the_file",
-          "description": "Requests that pLogger copy a configured file into the mission log set. This is used to preserve viewer-related files alongside mission logs.",
+          "description": "Names a file that pLogger should copy into the mission log set, preserving viewer-related mission files alongside the logs.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "log_the_file = mission.info",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/pMarineViewer source/config review"
         },
         "match_name": {
           "name": "match_name",
@@ -5282,13 +5282,13 @@
     "log_the_file": [
       {
         "owner": "pMarineViewer",
-        "description": "Requests that pLogger copy a configured file into the mission log set. This is used to preserve viewer-related files alongside mission logs.",
+        "description": "Names a file that pLogger should copy into the mission log set, preserving viewer-related mission files alongside the logs.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "log_the_file = mission.info",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
+        "reviewSource": "moos-ivp/ivp/src/pMarineViewer/pMarineViewer source/config review"
       }
     ],
     "logauxsrc": [

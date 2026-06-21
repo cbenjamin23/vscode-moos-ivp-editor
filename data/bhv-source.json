@@ -43,56 +43,56 @@
         },
         "nm_radius": {
           "name": "nm_radius",
-          "description": "Sets the radius for declaring no-more/arrival completion.",
+          "description": "Sets the nonmonotonic arrival radius. Within this radius, the waypoint engine may declare arrival/no-more progress even if range is no longer monotonically decreasing.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "nm_radius                    = 10",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp nonmonotonic radius review",
           "default": "200",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp:65"
         },
         "osx": {
           "name": "osx",
-          "description": "Sets the ownship x-coordinate supplied to the objective function.",
+          "description": "Sets the ownship x-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "osx                          = 0",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
         },
         "osy": {
           "name": "osy",
-          "description": "Sets the ownship y-coordinate supplied to the objective function.",
+          "description": "Sets the ownship y-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "osy                          = 0",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
         },
         "ptx": {
           "name": "ptx",
-          "description": "Sets the target point x-coordinate supplied to the objective function.",
+          "description": "Sets the target point x-coordinate used by the behavior's target-point geometry and objective-function calculations.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "ptx                          = 0",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
         },
         "pty": {
           "name": "pty",
-          "description": "Sets the target point y-coordinate supplied to the objective function.",
+          "description": "Sets the target point y-coordinate used by the behavior's target-point geometry and objective-function calculations.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "pty                          = 0",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
         },
         "radius": {
           "name": "radius",
@@ -145,27 +145,29 @@
         },
         "avoid_mode": {
           "name": "avoid_mode",
-          "description": "Reports or selects the active COLREGS avoidance mode.",
+          "description": "Selects or reports the current COLREGS encounter mode used by the avoidance logic, such as headon, overtaking, giveway, standon, cpa, or none.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "none",
-          "defaultSource": "manual review",
-          "example": "avoid_mode = none",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
+          "defaultSource": "source initializer for parsed parameter",
+          "example": "avoid_mode                   = normal",
+          "exampleSource": "generated coverage fixture",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp mode review",
+          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:78"
         },
         "avoid_submode": {
           "name": "avoid_submode",
-          "description": "Reports or selects the active COLREGS avoidance submode.",
+          "description": "Selects or reports the current COLREGS submode within the active encounter mode, such as port, starboard, bow, stern, or inextremis depending on the mode.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "none",
-          "defaultSource": "manual review",
-          "example": "avoid_submode = none",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
+          "defaultSource": "source initializer for parsed parameter",
+          "example": "avoid_submode                = normal",
+          "exampleSource": "generated coverage fixture",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp mode/submode review",
+          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:79"
         },
         "bearing_line_config": {
           "name": "bearing_line_config",
@@ -367,15 +369,16 @@
         },
         "full_avoid_mode": {
           "name": "full_avoid_mode",
-          "description": "Reports the combined COLREGS avoidance mode and submode.",
+          "description": "Reports the combined COLREGS mode and submode string used for status/debug output, combining avoid_mode with avoid_submode.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "none",
-          "defaultSource": "manual review",
-          "example": "full_avoid_mode = none",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
+          "defaultSource": "source initializer for parsed parameter",
+          "example": "full_avoid_mode              = normal",
+          "exampleSource": "generated coverage fixture",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp mode/submode review",
+          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:78"
         },
         "headon_only": {
           "name": "headon_only",
@@ -887,23 +890,23 @@
         },
         "osx": {
           "name": "osx",
-          "description": "Sets the ownship x-coordinate supplied to the objective function.",
+          "description": "Sets the ownship x-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "osx                          = 0",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp geometry/AOF parameter review"
         },
         "osy": {
           "name": "osy",
-          "description": "Sets the ownship y-coordinate supplied to the objective function.",
+          "description": "Sets the ownship y-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "osy                          = 0",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp geometry/AOF parameter review"
         },
         "pcheck_thresh": {
           "name": "pcheck_thresh",
@@ -1492,13 +1495,13 @@
         },
         "nm_radius": {
           "name": "nm_radius",
-          "description": "Sets the radius for declaring no-more/arrival completion.",
+          "description": "Sets the nonmonotonic arrival radius. Within this radius, the waypoint engine may declare arrival/no-more progress even if range is no longer monotonically decreasing.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "nm_radius                    = 10",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:86-95",
           "default": "20",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:59"
@@ -2437,7 +2440,7 @@
         },
         "max_window_utility": {
           "name": "max_window_utility",
-          "description": "Sets the maximum utility assigned inside the hysteresis window.",
+          "description": "Sets the utility value assigned at the preferred side of the hysteresis window, shaping how strongly the behavior favors staying inside that window.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
@@ -2445,7 +2448,7 @@
           "defaultSource": "manual review",
           "example": "max_window_utility = 90.0",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp hysteresis window review"
         },
         "memory_time": {
           "name": "memory_time",
@@ -2878,13 +2881,13 @@
         },
         "nm_radius": {
           "name": "nm_radius",
-          "description": "Sets the radius for declaring no-more/arrival completion.",
+          "description": "Sets the nonmonotonic arrival radius. Within this radius, the waypoint engine may declare arrival/no-more progress even if range is no longer monotonically decreasing.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "nm_radius                    = 10",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp nonmonotonic radius review"
         },
         "patience": {
           "name": "patience",
@@ -2900,7 +2903,7 @@
         },
         "slingshot": {
           "name": "slingshot",
-          "description": "Enables loiter slingshot handling when approaching the polygon. A negative value leaves this handling disabled.",
+          "description": "Sets the bearing-change threshold used for loiter slingshot handling when approaching the polygon. A negative value leaves slingshot handling disabled.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
@@ -2908,7 +2911,7 @@
           "defaultSource": "manual review",
           "example": "slingshot = -1",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:74,168-169,310-347"
         },
         "spawnx_flag": {
           "name": "spawnx_flag",
@@ -3100,13 +3103,13 @@
         },
         "speed_slack_var": {
           "name": "speed_slack_var",
-          "description": "Names the MOOS variable that receives speed-slack reports.",
+          "description": "Names the MOOS variable where BHV_MaxSpeed posts remaining speed slack, computed as max_speed minus current NAV_SPEED.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxSpeed.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "speed_slack_var              = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxSpeed.cpp"
+          "example": "speed_slack_var = SPEED_SLACK",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxSpeed.cpp:74-75,128-131"
         },
         "tolerance": {
           "name": "tolerance",
@@ -3487,7 +3490,7 @@
         },
         "period_peakwidth": {
           "name": "period_peakwidth",
-          "description": "Sets the peak width, in speed units, for the periodic-speed objective during the active speed pulse. A nonzero value creates a flat high-utility band around the desired speed.",
+          "description": "Sets the peak width, in speed units, for the periodic-speed objective during the active speed pulse. A nonzero value creates a flat high-utility band around the target speed.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
@@ -3510,7 +3513,7 @@
         },
         "zaic_basewidth": {
           "name": "zaic_basewidth",
-          "description": "Sets the base width, in speed units, for the underlying speed ZAIC used by BHV_PeriodicSpeed. It controls the broadness of acceptable speeds around the desired speed.",
+          "description": "Deprecated spelling for basewidth; sets the base width, in speed units, for the underlying speed ZAIC used by BHV_PeriodicSpeed.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
@@ -3556,13 +3559,13 @@
       "parameters": {
         "atsurface_status_variable": {
           "name": "atsurface_status_variable",
-          "description": "Names the MOOS variable that reports when the vehicle is at the surface.",
+          "description": "Alias for atsurface_status_var; names the MOOS variable where elapsed seconds at the surface are posted.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "atsurface_status_variable    = EXAMPLE_VAR",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:140-145,246-281",
           "default": "TIME_AT_SURFACE",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:54"
@@ -3579,13 +3582,13 @@
         },
         "pending_status_variable": {
           "name": "pending_status_variable",
-          "description": "Names the MOOS variable reporting a pending surface request.",
+          "description": "Alias for pending_status_var; names the MOOS variable where remaining seconds before the next required surfacing event are posted.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "pending_status_variable      = EXAMPLE_VAR",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:134-139,211-237",
           "default": "PENDING_SURFACE",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:53"
@@ -3925,13 +3928,13 @@
         },
         "pwt_outer_dist": {
           "name": "pwt_outer_dist",
-          "description": "Sets the priority weight outer dist threshold or distance.",
+          "description": "Sets the contact range threshold for Shadow relevance. At ranges below this distance the behavior has full relevance; at or beyond it the source returns zero relevance. A value of 0 keeps relevance fully on.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "pwt_outer_dist               = 100",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:66-67,145-160",
           "default": "0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:49"
@@ -4189,27 +4192,29 @@
         },
         "var_status_idle": {
           "name": "var_status_idle",
-          "description": "Names the MOOS variable posted when the timer behavior is idle.",
+          "description": "Names the MOOS variable posted with timer-idle status. The configured status suffix is appended when status is posted.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "TIMER_IDLE",
-          "defaultSource": "manual review",
-          "example": "var_status_idle = TIMER_IDLE",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
+          "defaultSource": "source initializer for parsed parameter",
+          "example": "var_status_idle              = EXAMPLE_VAR",
+          "exampleSource": "generated coverage fixture",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:36,46-47,68-71,80-83",
+          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:36"
         },
         "var_status_running": {
           "name": "var_status_running",
-          "description": "Names the MOOS variable posted when the timer behavior is running.",
+          "description": "Names the MOOS variable posted with timer-running status. The configured status suffix is appended when status is posted.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "TIMER_RUNNING",
-          "defaultSource": "manual review",
-          "example": "var_status_running = TIMER_RUNNING",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
+          "defaultSource": "source initializer for parsed parameter",
+          "example": "var_status_running           = EXAMPLE_VAR",
+          "exampleSource": "generated coverage fixture",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:37,49-50,68-71,80-83",
+          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:37"
         }
       }
     },
@@ -4422,13 +4427,13 @@
         },
         "cycle_index_var": {
           "name": "cycle_index_var",
-          "description": "Names the MOOS variable for cycle index.",
+          "description": "Names the MOOS variable used to post the current waypoint-cycle index when the waypoint behavior repeats its route.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "cycle_index_var              = EXAMPLE_VAR",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp waypoint index/status review",
           "default": "CYCLE_INDEX",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:70"
@@ -4445,16 +4450,15 @@
         },
         "draw_path_loop": {
           "name": "draw_path_loop",
-          "description": "Controls whether the waypoint path is drawn as a loop.",
+          "description": "When true, renders the posted waypoint path as a closed loop connecting the final waypoint back to the first waypoint.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "draw_path_loop               = ./",
-          "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
+          "example": "draw_path_loop = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:119,289-290,942",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:119"
+          "defaultSource": "manual review"
         },
         "eager_prev_index_flag": {
           "name": "eager_prev_index_flag",
@@ -4524,33 +4528,33 @@
         },
         "nm_radius": {
           "name": "nm_radius",
-          "description": "Sets the radius for declaring no-more/arrival completion.",
+          "description": "Sets the nonmonotonic arrival radius. Within this radius, the waypoint engine may declare arrival/no-more progress even if range is no longer monotonically decreasing.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "nm_radius                    = 10",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp nonmonotonic radius review"
         },
         "osx": {
           "name": "osx",
-          "description": "Sets the ownship x-coordinate supplied to the objective function.",
+          "description": "Sets the ownship x-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "osx                          = 0",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp geometry/AOF parameter review"
         },
         "osy": {
           "name": "osy",
-          "description": "Sets the ownship y-coordinate supplied to the objective function.",
+          "description": "Sets the ownship y-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "osy                          = 0",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp geometry/AOF parameter review"
         },
         "patience": {
           "name": "patience",
@@ -4566,23 +4570,23 @@
         },
         "ptx": {
           "name": "ptx",
-          "description": "Sets the target point x-coordinate supplied to the objective function.",
+          "description": "Sets the target point x-coordinate used by the behavior's target-point geometry and objective-function calculations.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "ptx                          = 0",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp geometry/AOF parameter review"
         },
         "pty": {
           "name": "pty",
-          "description": "Sets the target point y-coordinate supplied to the objective function.",
+          "description": "Sets the target point y-coordinate used by the behavior's target-point geometry and objective-function calculations.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "pty                          = 0",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp geometry/AOF parameter review"
         },
         "reset_on_idle": {
           "name": "reset_on_idle",
@@ -4851,13 +4855,13 @@
         },
         "spd_on_active": {
           "name": "spd_on_active",
-          "description": "Sets the speed command posted when the zig-zag behavior becomes active.",
+          "description": "Sets the speed command value posted when the zig-zag behavior becomes active.",
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "spd_on_active                = 1.2",
           "exampleSource": "generated coverage fixture",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:111",
           "default": "false",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:77"
@@ -5010,7 +5014,7 @@
     "atsurface_status_variable": [
       {
         "owner": "BHV_PeriodicSurface",
-        "description": "Names the MOOS variable that reports when the vehicle is at the surface.",
+        "description": "Alias for atsurface_status_var; names the MOOS variable where elapsed seconds at the surface are posted.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -5019,35 +5023,37 @@
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:54",
         "example": "atsurface_status_variable    = EXAMPLE_VAR",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:140-145,246-281"
       }
     ],
     "avoid_mode": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Reports or selects the active COLREGS avoidance mode.",
+        "description": "Selects or reports the current COLREGS encounter mode used by the avoidance logic, such as headon, overtaking, giveway, standon, cpa, or none.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "none",
-        "defaultSource": "manual review",
-        "example": "avoid_mode = none",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
+        "defaultSource": "source initializer for parsed parameter",
+        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:78",
+        "example": "avoid_mode                   = normal",
+        "exampleSource": "generated coverage fixture",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp mode review"
       }
     ],
     "avoid_submode": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Reports or selects the active COLREGS avoidance submode.",
+        "description": "Selects or reports the current COLREGS submode within the active encounter mode, such as port, starboard, bow, stern, or inextremis depending on the mode.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "none",
-        "defaultSource": "manual review",
-        "example": "avoid_submode = none",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
+        "defaultSource": "source initializer for parsed parameter",
+        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:79",
+        "example": "avoid_submode                = normal",
+        "exampleSource": "generated coverage fixture",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp mode/submode review"
       }
     ],
     "basewidth": [
@@ -5581,7 +5587,7 @@
     "cycle_index_var": [
       {
         "owner": "BHV_Waypoint",
-        "description": "Names the MOOS variable for cycle index.",
+        "description": "Names the MOOS variable used to post the current waypoint-cycle index when the waypoint behavior repeats its route.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -5590,7 +5596,7 @@
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:70",
         "example": "cycle_index_var              = EXAMPLE_VAR",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp waypoint index/status review"
       }
     ],
     "cycleflag": [
@@ -5996,16 +6002,15 @@
     "draw_path_loop": [
       {
         "owner": "BHV_Waypoint",
-        "description": "Controls whether the waypoint path is drawn as a loop.",
+        "description": "When true, renders the posted waypoint path as a closed loop connecting the final waypoint back to the first waypoint.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:119",
-        "example": "draw_path_loop               = ./",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+        "defaultSource": "manual review",
+        "example": "draw_path_loop = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:119,289-290,942"
       }
     ],
     "draw_req_hdg": [
@@ -6362,15 +6367,16 @@
     "full_avoid_mode": [
       {
         "owner": "BHV_AvdColregsV22",
-        "description": "Reports the combined COLREGS avoidance mode and submode.",
+        "description": "Reports the combined COLREGS mode and submode string used for status/debug output, combining avoid_mode with avoid_submode.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "none",
-        "defaultSource": "manual review",
-        "example": "full_avoid_mode = none",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
+        "defaultSource": "source initializer for parsed parameter",
+        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:78",
+        "example": "full_avoid_mode              = normal",
+        "exampleSource": "generated coverage fixture",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp mode/submode review"
       }
     ],
     "full_leg": [
@@ -7168,7 +7174,7 @@
     "max_window_utility": [
       {
         "owner": "BHV_Hysteresis",
-        "description": "Sets the maximum utility assigned inside the hysteresis window.",
+        "description": "Sets the utility value assigned at the preferred side of the hysteresis window, shaping how strongly the behavior favors staying inside that window.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -7176,7 +7182,7 @@
         "defaultSource": "manual review",
         "example": "max_window_utility = 90.0",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp hysteresis window review"
       }
     ],
     "max_zig_zags": [
@@ -7418,7 +7424,7 @@
     "nm_radius": [
       {
         "owner": "BHV_AbortToPoint",
-        "description": "Sets the radius for declaring no-more/arrival completion.",
+        "description": "Sets the nonmonotonic arrival radius. Within this radius, the waypoint engine may declare arrival/no-more progress even if range is no longer monotonically decreasing.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -7427,11 +7433,11 @@
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp:65",
         "example": "nm_radius                    = 10",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp nonmonotonic radius review"
       },
       {
         "owner": "BHV_Convoy",
-        "description": "Sets the radius for declaring no-more/arrival completion.",
+        "description": "Sets the nonmonotonic arrival radius. Within this radius, the waypoint engine may declare arrival/no-more progress even if range is no longer monotonically decreasing.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -7440,27 +7446,27 @@
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:59",
         "example": "nm_radius                    = 10",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:86-95"
       },
       {
         "owner": "BHV_Loiter",
-        "description": "Sets the radius for declaring no-more/arrival completion.",
+        "description": "Sets the nonmonotonic arrival radius. Within this radius, the waypoint engine may declare arrival/no-more progress even if range is no longer monotonically decreasing.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "nm_radius                    = 10",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp nonmonotonic radius review"
       },
       {
         "owner": "BHV_Waypoint",
-        "description": "Sets the radius for declaring no-more/arrival completion.",
+        "description": "Sets the nonmonotonic arrival radius. Within this radius, the waypoint engine may declare arrival/no-more progress even if range is no longer monotonically decreasing.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "nm_radius                    = 10",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp nonmonotonic radius review"
       }
     ],
     "no_alert_request": [
@@ -7628,65 +7634,65 @@
     "osx": [
       {
         "owner": "BHV_AbortToPoint",
-        "description": "Sets the ownship x-coordinate supplied to the objective function.",
+        "description": "Sets the ownship x-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "osx                          = 0",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
       },
       {
         "owner": "BHV_AvoidCollision",
-        "description": "Sets the ownship x-coordinate supplied to the objective function.",
+        "description": "Sets the ownship x-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "osx                          = 0",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp geometry/AOF parameter review"
       },
       {
         "owner": "BHV_Waypoint",
-        "description": "Sets the ownship x-coordinate supplied to the objective function.",
+        "description": "Sets the ownship x-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "osx                          = 0",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp geometry/AOF parameter review"
       }
     ],
     "osy": [
       {
         "owner": "BHV_AbortToPoint",
-        "description": "Sets the ownship y-coordinate supplied to the objective function.",
+        "description": "Sets the ownship y-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "osy                          = 0",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
       },
       {
         "owner": "BHV_AvoidCollision",
-        "description": "Sets the ownship y-coordinate supplied to the objective function.",
+        "description": "Sets the ownship y-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "osy                          = 0",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp geometry/AOF parameter review"
       },
       {
         "owner": "BHV_Waypoint",
-        "description": "Sets the ownship y-coordinate supplied to the objective function.",
+        "description": "Sets the ownship y-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "osy                          = 0",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp geometry/AOF parameter review"
       }
     ],
     "passing_side": [
@@ -7771,7 +7777,7 @@
     "pending_status_variable": [
       {
         "owner": "BHV_PeriodicSurface",
-        "description": "Names the MOOS variable reporting a pending surface request.",
+        "description": "Alias for pending_status_var; names the MOOS variable where remaining seconds before the next required surfacing event are posted.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -7780,7 +7786,7 @@
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:53",
         "example": "pending_status_variable      = EXAMPLE_VAR",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:134-139,211-237"
       }
     ],
     "period_basewidth": [
@@ -7801,7 +7807,7 @@
     "period_peakwidth": [
       {
         "owner": "BHV_PeriodicSpeed",
-        "description": "Sets the peak width, in speed units, for the periodic-speed objective during the active speed pulse. A nonzero value creates a flat high-utility band around the desired speed.",
+        "description": "Sets the peak width, in speed units, for the periodic-speed objective during the active speed pulse. A nonzero value creates a flat high-utility band around the target speed.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -8002,51 +8008,51 @@
     "ptx": [
       {
         "owner": "BHV_AbortToPoint",
-        "description": "Sets the target point x-coordinate supplied to the objective function.",
+        "description": "Sets the target point x-coordinate used by the behavior's target-point geometry and objective-function calculations.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "ptx                          = 0",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
       },
       {
         "owner": "BHV_Waypoint",
-        "description": "Sets the target point x-coordinate supplied to the objective function.",
+        "description": "Sets the target point x-coordinate used by the behavior's target-point geometry and objective-function calculations.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "ptx                          = 0",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp geometry/AOF parameter review"
       }
     ],
     "pty": [
       {
         "owner": "BHV_AbortToPoint",
-        "description": "Sets the target point y-coordinate supplied to the objective function.",
+        "description": "Sets the target point y-coordinate used by the behavior's target-point geometry and objective-function calculations.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "pty                          = 0",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
       },
       {
         "owner": "BHV_Waypoint",
-        "description": "Sets the target point y-coordinate supplied to the objective function.",
+        "description": "Sets the target point y-coordinate used by the behavior's target-point geometry and objective-function calculations.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "pty                          = 0",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp geometry/AOF parameter review"
       }
     ],
     "pwt_outer_dist": [
       {
         "owner": "BHV_Shadow",
-        "description": "Sets the priority weight outer dist threshold or distance.",
+        "description": "Sets the contact range threshold for Shadow relevance. At ranges below this distance the behavior has full relevance; at or beyond it the source returns zero relevance. A value of 0 keeps relevance fully on.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -8055,7 +8061,7 @@
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:49",
         "example": "pwt_outer_dist               = 100",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:66-67,145-160"
       }
     ],
     "radius": [
@@ -8402,7 +8408,7 @@
     "slingshot": [
       {
         "owner": "BHV_Loiter",
-        "description": "Enables loiter slingshot handling when approaching the polygon. A negative value leaves this handling disabled.",
+        "description": "Sets the bearing-change threshold used for loiter slingshot handling when approaching the polygon. A negative value leaves slingshot handling disabled.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -8410,7 +8416,7 @@
         "defaultSource": "manual review",
         "example": "slingshot = -1",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:74,168-169,310-347"
       }
     ],
     "slow_dist": [
@@ -8893,7 +8899,7 @@
     "spd_on_active": [
       {
         "owner": "BHV_ZigZag",
-        "description": "Sets the speed command posted when the zig-zag behavior becomes active.",
+        "description": "Sets the speed command value posted when the zig-zag behavior becomes active.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -8902,7 +8908,7 @@
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:77",
         "example": "spd_on_active                = 1.2",
         "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp"
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:111"
       }
     ],
     "spd_peakwidth": [
@@ -8937,13 +8943,13 @@
     "speed_slack_var": [
       {
         "owner": "BHV_MaxSpeed",
-        "description": "Names the MOOS variable that receives speed-slack reports.",
+        "description": "Names the MOOS variable where BHV_MaxSpeed posts remaining speed slack, computed as max_speed minus current NAV_SPEED.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxSpeed.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "speed_slack_var              = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture",
-        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxSpeed.cpp"
+        "example": "speed_slack_var = SPEED_SLACK",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxSpeed.cpp:74-75,128-131"
       }
     ],
     "speed_to_surface": [
@@ -9636,29 +9642,31 @@
     "var_status_idle": [
       {
         "owner": "BHV_Timer",
-        "description": "Names the MOOS variable posted when the timer behavior is idle.",
+        "description": "Names the MOOS variable posted with timer-idle status. The configured status suffix is appended when status is posted.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "TIMER_IDLE",
-        "defaultSource": "manual review",
-        "example": "var_status_idle = TIMER_IDLE",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
+        "defaultSource": "source initializer for parsed parameter",
+        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:36",
+        "example": "var_status_idle              = EXAMPLE_VAR",
+        "exampleSource": "generated coverage fixture",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:36,46-47,68-71,80-83"
       }
     ],
     "var_status_running": [
       {
         "owner": "BHV_Timer",
-        "description": "Names the MOOS variable posted when the timer behavior is running.",
+        "description": "Names the MOOS variable posted with timer-running status. The configured status suffix is appended when status is posted.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "TIMER_RUNNING",
-        "defaultSource": "manual review",
-        "example": "var_status_running = TIMER_RUNNING",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP behavior documentation and local behavior source review"
+        "defaultSource": "source initializer for parsed parameter",
+        "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:37",
+        "example": "var_status_running           = EXAMPLE_VAR",
+        "exampleSource": "generated coverage fixture",
+        "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:37,49-50,68-71,80-83"
       }
     ],
     "velocity_filter": [
@@ -9952,7 +9960,7 @@
     "zaic_basewidth": [
       {
         "owner": "BHV_PeriodicSpeed",
-        "description": "Sets the base width, in speed units, for the underlying speed ZAIC used by BHV_PeriodicSpeed. It controls the broadness of acceptable speeds around the desired speed.",
+        "description": "Deprecated spelling for basewidth; sets the base width, in speed units, for the underlying speed ZAIC used by BHV_PeriodicSpeed.",
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",

@@ -155,10 +155,10 @@
           "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "contact_local_coords": {
-          "description": "Controls whether local x/y coordinates in incoming node reports are filled from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
+          "description": "Selects the policy for filling local x/y coordinates in incoming node reports from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
           "default": "verbatim",
           "example": "contact_local_coords = verbatim",
-          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
+          "reviewSource": "MOOS-IvP contact-manager documentation/source review"
         },
         "contact_max_age": {
           "description": "Sets how many seconds may pass without a fresh contact report before the contact is dropped from the active contact list. This bounds stale contact state in the manager.",
@@ -353,10 +353,10 @@
           "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: early warning configuration"
         },
         "contact_local_coords": {
-          "description": "Controls whether local x/y coordinates in incoming node reports are filled from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
+          "description": "Selects the policy for filling local x/y coordinates in incoming node reports from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
           "default": "verbatim",
           "example": "contact_local_coords = verbatim",
-          "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
+          "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:269 and ContactMgrV20_Info.cpp:139"
         },
         "contact_max_age": {
           "description": "Sets how many seconds may pass without a fresh contact report before the contact is retired and dropped from the active contact list. The current pContactMgrV20 source initializes this to 60 seconds.",
@@ -641,10 +641,10 @@
           "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer_Info.cpp:98"
         },
         "interval_policy": {
-          "description": "Controls whether the minimum interval between utterances is measured from the start or the end of the previous utterance. Supported values are from_start and from_end.",
+          "description": "Selects whether the minimum interval between utterances is measured from the start or the end of the previous utterance. Supported values are from_start and from_end.",
           "default": "from_end",
           "example": "interval_policy = from_end",
-          "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:44,176"
+          "reviewSource": "moos-ivp/ivp/src/iSay/Sayer.cpp:44,176-179,409"
         },
         "os_mode": {
           "description": "Selects which operating-system speech backend iSay should use for speech and audio playback. Supported values are osx, linux, and both.",
@@ -967,10 +967,10 @@
           "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 10, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:915"
         },
         "log_the_file": {
-          "description": "Requests that pLogger copy a configured file into the mission log set. This is used to preserve viewer-related files alongside mission logs.",
+          "description": "Names a file that pLogger should copy into the mission log set, preserving viewer-related mission files alongside the logs.",
           "default": null,
           "example": "log_the_file = mission.info",
-          "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
+          "reviewSource": "moos-ivp/ivp/src/pMarineViewer/pMarineViewer source/config review"
         },
         "log_the_image": {
           "description": "Requests that pLogger copy the active background image and related info file into the mission log set. This helps alogview later reproduce the viewer background.",
@@ -4279,8 +4279,9 @@
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf"
         },
         "visual_hints": {
-          "description": "Hints for visual properties in variables posted intended for rendering.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf"
+          "description": "Overrides operating-region polygon rendering hints posted for display. Accepted keys include vertex_color, edge_color, label_color, edge_size, and vertex_size.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:169 and moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegion.cpp:170-174,719-736",
+          "example": "visual_hints = edge_color=gray50, vertex_color=gray50, label_color=off"
         },
         "dynamic_region_var": {
           "description": "Names the MOOS variable that supplies dynamic operating-region polygons.",
@@ -4310,7 +4311,10 @@
           "default": null,
           "example": "savex_flag = OPREGION_SAVE = true"
         }
-      }
+      },
+      "excludedParameters": [
+        "parameter"
+      ]
     },
     "BHV_LegRun": {
       "reviewStatus": "manual-reviewed",
@@ -4677,8 +4681,10 @@
           "example": "wpt_status_var = LEGRUN_STATUS"
         },
         "repeat": {
-          "description": "The number of times the trackline leg will be repeated before this behavior completes. The default values is 0, meaning it will repeat endlessly. (check this)",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf"
+          "description": "Sets how many times the leg-run waypoint engine repeats the two-leg track before completion. Use the waypoint-engine repeat syntax accepted by the behavior source.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp:150 and waypoint-engine repeat handling",
+          "default": null,
+          "example": "repeat = 3"
         },
         "turn_endflag": {
           "description": "Adds a variable-value flag posted when either turn at the end of a leg completes.",
@@ -4781,6 +4787,10 @@
           "reviewSource": "MOOS-IvP BHV_LegRun documentation and moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp",
           "default": null,
           "example": "wptflag = LEGRUN_WPT = true"
+        },
+        "lead": {
+          "description": "Sets the trackline lead distance used for leg-run path following. Larger values look farther ahead on the leg when producing course corrections.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp:120"
         }
       }
     },
@@ -4883,8 +4893,8 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp"
         },
         "spd_on_active": {
-          "description": "Sets the speed command posted when the zig-zag behavior becomes active.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp"
+          "description": "Sets the speed command value posted when the zig-zag behavior becomes active.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:111"
         },
         "starflag": {
           "description": "Adds a variable-value flag posted when the zig-zag behavior enters or completes a starboard-side leg.",
@@ -4947,10 +4957,10 @@
           "reviewSource": "MOOS-IvP bhv_loiter.pdf"
         },
         "slingshot": {
-          "description": "Enables loiter slingshot handling when approaching the polygon. A negative value leaves this handling disabled.",
+          "description": "Sets the bearing-change threshold used for loiter slingshot handling when approaching the polygon. A negative value leaves slingshot handling disabled.",
           "default": "-1",
           "example": "slingshot = -1",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:74,168-169,310-347"
         },
         "acquire_dist": {
           "description": "Distance to polygon outside which the behavior will be in ”acquire” mode.",
@@ -4961,8 +4971,8 @@
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf"
         },
         "polygon": {
-          "description": "Polygon about which the vehicle will traverse and loiter.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf"
+          "description": "Defines the loiter polygon to traverse. The vehicle follows the polygon vertices clockwise or counter-clockwise according to the behavior settings.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:98-110 and MOOS-IvP BHV_Loiter documentation"
         },
         "radius": {
           "description": "Compact spelling for capture_radius. It sets the tolerance used to decide when the vehicle has reached a loiter vertex.",
@@ -4975,8 +4985,8 @@
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf"
         },
         "speed": {
-          "description": "Sets the desired speed, in meters per second, while transiting around the loiter polygon.",
-          "reviewSource": "MOOS-IvP BHV_Loiter documentation and moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
+          "description": "Sets the target transit speed, in meters per second, while moving around the loiter polygon.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:161-165,504-518",
           "default": null,
           "example": "speed = 1.2"
         },
@@ -4985,8 +4995,9 @@
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf"
         },
         "visual_hints": {
-          "description": "Hints for visual properties in variables posted intended for rendering.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf"
+          "description": "Overrides loiter visualization hints for the polygon and next-point marker. Accepted keys include vertex_size, edge_size, vertex_color, edge_color, nextpt_color, nextpt_lcolor, nextpt_vertex_size, label, lcolor, and label_color.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:211-215,657-681",
+          "example": "visual_hints = vertex_color=dodger_blue, edge_color=white, nextpt_color=yellow"
         },
         "acquire_distance": {
           "description": "Sets the distance to the loiter polygon at which the behavior considers the vehicle to have acquired the loiter pattern.",
@@ -5031,8 +5042,8 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
         },
         "nm_radius": {
-          "description": "Sets the radius for declaring no-more/arrival completion.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp"
+          "description": "Sets the nonmonotonic arrival radius. Within this radius, the waypoint engine may declare arrival/no-more progress even if range is no longer monotonically decreasing.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp nonmonotonic radius review"
         },
         "vertex_color": {
           "description": "Sets the color of the loiter polygon vertices posted for viewer display.",
@@ -5151,8 +5162,8 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
         },
         "nm_radius": {
-          "description": "Sets the radius for declaring no-more/arrival completion.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
+          "description": "Sets the nonmonotonic arrival radius. Within this radius, the waypoint engine may declare arrival/no-more progress even if range is no longer monotonically decreasing.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:86-95"
         },
         "rng_tailgating": {
           "description": "Alias-style source parameter for range_tailgating. It sets the close convoy range where ownship is considered to be tailgating.",
@@ -5204,10 +5215,17 @@
           "example": "max_speed = 1.0"
         },
         "speed_slack_var": {
-          "description": "Names the MOOS variable that receives speed-slack reports.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxSpeed.cpp"
+          "description": "Names the MOOS variable where BHV_MaxSpeed posts remaining speed slack, computed as max_speed minus current NAV_SPEED.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxSpeed.cpp:74-75,128-131",
+          "example": "speed_slack_var = SPEED_SLACK"
         }
-      }
+      },
+      "excludedParameters": [
+        "peakwidth",
+        "speed",
+        "speed_mismatch_var",
+        "summitdelta"
+      ]
     },
     "BHV_PeriodicSpeed": {
       "reviewStatus": "manual-reviewed",
@@ -5236,8 +5254,8 @@
           "example": "peakwidth = 0"
         },
         "period_speed": {
-          "description": "The desired speed, in m/sec, in the IvP function.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf"
+          "description": "Sets the target speed, in meters per second, used during the busy/running phase of the periodic-speed objective.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:91-96"
         },
         "summit_delta": {
           "description": "Sets the summit-delta utility drop in the periodic-speed ZAIC objective. It shapes how strongly the behavior prefers the exact desired speed over nearby speeds.",
@@ -5250,12 +5268,12 @@
           "example": "period_basewidth = 0"
         },
         "period_peakwidth": {
-          "description": "Sets the peak width, in speed units, for the periodic-speed objective during the active speed pulse. A nonzero value creates a flat high-utility band around the desired speed.",
+          "description": "Sets the peak width, in speed units, for the periodic-speed objective during the active speed pulse. A nonzero value creates a flat high-utility band around the target speed.",
           "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "example": "period_peakwidth = 0"
         },
         "zaic_basewidth": {
-          "description": "Sets the base width, in speed units, for the underlying speed ZAIC used by BHV_PeriodicSpeed. It controls the broadness of acceptable speeds around the desired speed.",
+          "description": "Deprecated spelling for basewidth; sets the base width, in speed units, for the underlying speed ZAIC used by BHV_PeriodicSpeed.",
           "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "example": "zaic_basewidth = 0"
         },
@@ -5288,32 +5306,32 @@
           "reviewSource": "MOOS-IvP bhv_periodic_surface.pdf"
         },
         "acomms_mark_variable": {
-          "description": "The incoming MOOS variable for resetting the acomms period clock.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf"
+          "description": "Configures acoustic-comms marking as variable,interval,max_time. New mail on the variable extends the surface-wait clock in interval-sized increments up to max_time.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:109-129,391-407"
         },
         "ascent_speed": {
           "description": "Desired speed of the vehicle during the ascent mode.",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf"
         },
         "atsurface_status_var": {
-          "description": "MOOS variable indicating number of seconds at the surface.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf"
+          "description": "Names the MOOS variable where the behavior posts elapsed seconds spent at the surface, resetting to zero when leaving the surface state.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:140-145,246-281"
         },
         "mark_variable": {
-          "description": "The incoming MOOS variable for resetting the period clock.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf"
+          "description": "Names the MOOS variable monitored for new mail that resets the periodic-surface idle clock. A changed numeric or string value marks the start of a new wait period.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:103-107,345-379"
         },
         "pending_status_var": {
-          "description": "MOOS variable written to with remaining time on idle clock.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf"
+          "description": "Names the MOOS variable where the behavior posts remaining seconds before the next required surfacing event, or ERROR when the timing state is invalid.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:134-139,211-237"
         },
         "atsurface_status_variable": {
-          "description": "Names the MOOS variable that reports when the vehicle is at the surface.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp"
+          "description": "Alias for atsurface_status_var; names the MOOS variable where elapsed seconds at the surface are posted.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:140-145,246-281"
         },
         "pending_status_variable": {
-          "description": "Names the MOOS variable reporting a pending surface request.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp"
+          "description": "Alias for pending_status_var; names the MOOS variable where remaining seconds before the next required surfacing event are posted.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSurface.cpp:134-139,211-237"
         }
       }
     },
@@ -5388,10 +5406,10 @@
       "reviewSource": "MOOS-IvP bhv_waypoint.pdf and moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
       "parameters": {
         "efficiency_measure": {
-          "description": "Enables or disables leg-by-leg waypoint efficiency measurement and reporting.",
+          "description": "Selects waypoint efficiency reporting. The local source accepts off to disable reporting and all to post leg and summary efficiency measurements.",
           "default": "off",
           "example": "efficiency_measure = off",
-          "reviewSource": "MOOS-IvP bhv_waypoint.pdf"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:65,405-408,1041-1085"
         },
         "order": {
           "description": "Sets the order in which waypoints are traversed. Supported values include normal, reverse, and toggle.",
@@ -5444,16 +5462,18 @@
           "example": "radius = 3"
         },
         "repeat": {
-          "description": "The number of extra times traversed through the waypoints. Or \"forever\". The default is \"normal\" meaning the points will be visited in the order listed.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf"
+          "description": "Sets how many extra cycles through the waypoint list are performed, or forever for endless cycling. A positive repeat also makes the behavior perpetual in the local source.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:400-423,1160-1165",
+          "default": "0",
+          "example": "repeat = forever"
         },
         "slip_radius": {
           "description": "An ”outer” capture radius. Arrival declared when the vehicle is in this range and the distance to the next waypoint begins to increase. The default is 15 meters.",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf"
         },
         "speed": {
-          "description": "The desired speed (m/s) at which the vehicle travels through the points. Accepts only non-negative numbers. The default is 0.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf"
+          "description": "Sets the non-negative target transit speed, in meters per second, for moving through the waypoint list. The local source defaults this to zero until configured.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp speed parameter review"
         },
         "use_alt_speed": {
           "description": "If true then attempt to use the alternate speed set with the speed alt parameter, if that speed is set to a non-negative value. The default is false.",
@@ -5490,16 +5510,18 @@
           "example": "currix = 0"
         },
         "cycle_index_var": {
-          "description": "Names the MOOS variable for cycle index.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+          "description": "Names the MOOS variable used to post the current waypoint-cycle index when the waypoint behavior repeats its route.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp waypoint index/status review"
         },
         "desired_speed": {
           "description": "Sets the desired transit speed for this BHV_Waypoint behavior.",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
         },
         "draw_path_loop": {
-          "description": "Controls whether the waypoint path is drawn as a loop.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+          "description": "When true, renders the posted waypoint path as a closed loop connecting the final waypoint back to the first waypoint.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:119,289-290,942",
+          "default": "false",
+          "example": "draw_path_loop = false"
         },
         "eager_prev_index_flag": {
           "description": "Adds a variable-value flag posted when the behavior eagerly advances or records the previous waypoint index.",
@@ -5512,24 +5534,24 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
         },
         "nm_radius": {
-          "description": "Sets the radius for declaring no-more/arrival completion.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+          "description": "Sets the nonmonotonic arrival radius. Within this radius, the waypoint engine may declare arrival/no-more progress even if range is no longer monotonically decreasing.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp nonmonotonic radius review"
         },
         "osx": {
-          "description": "Sets the ownship x-coordinate supplied to the objective function.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+          "description": "Sets the ownship x-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp geometry/AOF parameter review"
         },
         "osy": {
-          "description": "Sets the ownship y-coordinate supplied to the objective function.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+          "description": "Sets the ownship y-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp geometry/AOF parameter review"
         },
         "ptx": {
-          "description": "Sets the target point x-coordinate supplied to the objective function.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+          "description": "Sets the target point x-coordinate used by the behavior's target-point geometry and objective-function calculations.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp geometry/AOF parameter review"
         },
         "pty": {
-          "description": "Sets the target point y-coordinate supplied to the objective function.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+          "description": "Sets the target point y-coordinate used by the behavior's target-point geometry and objective-function calculations.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp geometry/AOF parameter review"
         },
         "slow_dist": {
           "description": "Sets the distance from the next waypoint where slowing begins.",
@@ -5550,6 +5572,10 @@
           "default": null,
           "example": "newpt = 25,10",
           "reviewSource": "MOOS-IvP BHV_Waypoint documentation and moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp"
+        },
+        "lead": {
+          "description": "Sets the trackline lead distance used for waypoint path following. Larger values look farther ahead on the route when producing course corrections.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:360"
         }
       }
     },
@@ -5642,6 +5668,18 @@
           "default": "false",
           "example": "verbose = false",
           "reviewSource": "MOOS-IvP BHV_AvdColregsV22 source audit"
+        },
+        "avoid_mode": {
+          "description": "Selects or reports the current COLREGS encounter mode used by the avoidance logic, such as headon, overtaking, giveway, standon, cpa, or none.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp mode review"
+        },
+        "avoid_submode": {
+          "description": "Selects or reports the current COLREGS submode within the active encounter mode, such as port, starboard, bow, stern, or inextremis depending on the mode.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp mode/submode review"
+        },
+        "full_avoid_mode": {
+          "description": "Reports the combined COLREGS mode and submode string used for status/debug output, combining avoid_mode with avoid_submode.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp mode/submode review"
         }
       }
     },
@@ -5724,12 +5762,12 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
         },
         "osx": {
-          "description": "Sets the ownship x-coordinate supplied to the objective function.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
+          "description": "Sets the ownship x-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp geometry/AOF parameter review"
         },
         "osy": {
-          "description": "Sets the ownship y-coordinate supplied to the objective function.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp"
+          "description": "Sets the ownship y-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp geometry/AOF parameter review"
         },
         "plateau_region": {
           "description": "Supplies the plateau-check polygon used when validating the collision-avoidance objective function.",
@@ -5864,10 +5902,10 @@
       "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp",
       "parameters": {
         "max_window_utility": {
-          "description": "Sets the maximum utility assigned inside the hysteresis window.",
+          "description": "Sets the utility value assigned at the preferred side of the hysteresis window, shaping how strongly the behavior favors staying inside that window.",
           "default": "90.0",
           "example": "max_window_utility = 90.0",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp"
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Hysteresis.cpp hysteresis window review"
         }
       }
     },
@@ -7213,8 +7251,13 @@
           "example": "summitdelta = 50"
         },
         "depth_mismatch_var": {
-          "description": "Name of the MOOS variable indicating the present delta between the desired depth and the current depth.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf"
+          "description": "Names the MOOS variable where BHV_ConstantDepth posts the current depth error, computed as desired depth minus current NAV_DEPTH.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantDepth.cpp:93-94,153-154",
+          "example": "depth_mismatch_var = DEPTH_DELTA"
+        },
+        "depth": {
+          "description": "Sets the single target depth, in meters, that the behavior tries to hold. Negative values are clipped to zero by the local source.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantDepth.cpp:73-76,113"
         }
       }
     },
@@ -7238,8 +7281,9 @@
           "example": "summitdelta = 25"
         },
         "heading_mismatch_var": {
-          "description": "Name of the MOOS variable indicating the present delta between the desired heading and the current heading.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_hdg.pdf"
+          "description": "Names the MOOS variable where BHV_ConstantHeading posts the current heading error between the desired heading and ownship heading.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantHeading.cpp:105-106,172-173",
+          "example": "heading_mismatch_var = HEADING_DELTA"
         }
       }
     },
@@ -7248,18 +7292,18 @@
       "reviewSource": "MOOS-IvP behavior docs/source audit",
       "parameters": {
         "basewidth": {
-          "description": "Sets the speed-error span, in meters per second, over which the speed ZAIC objective tapers away from the desired speed. Wider values make nearby speeds more acceptable.",
+          "description": "Sets the speed-error span, in meters per second, over which the speed ZAIC objective tapers away from the target speed. Wider values make nearby speeds more acceptable.",
           "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "example": "basewidth = 0.2"
         },
         "peakwidth": {
-          "description": "Sets the speed-error span, in meters per second, around the desired speed that receives peak utility. A nonzero peak width creates a flat preferred speed band.",
+          "description": "Sets the speed-error span, in meters per second, around the target speed that receives peak utility. A nonzero peak width creates a flat preferred speed band.",
           "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "example": "peakwidth = 0"
         },
         "speed": {
-          "description": "The desired speed of the vehicle, in meters per second.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf"
+          "description": "Sets the target speed, in meters per second, that BHV_ConstantSpeed tries to maintain.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantSpeed.cpp:71-74,106-114"
         },
         "summitdelta": {
           "description": "Sets the summit-delta utility drop for the speed ZAIC objective. Larger values sharpen preference for the exact desired speed.",
@@ -7267,8 +7311,9 @@
           "example": "summitdelta = 0"
         },
         "speed_mismatch_var": {
-          "description": "Name of the MOOS variable indicating the present delta between the desired speed and the current speed. If left unspecified, no posting is made.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf"
+          "description": "Names the MOOS variable where BHV_ConstantSpeed posts the current speed error, computed as desired speed minus current NAV_SPEED.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantSpeed.cpp:87-88,147-148",
+          "example": "speed_mismatch_var = SPEED_DELTA"
         }
       }
     },
@@ -7335,8 +7380,8 @@
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_fixedturn.pdf"
         },
         "visual_hints": {
-          "description": "Color and other settings for posted visual artifacts.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_fixedturn.pdf"
+          "description": "Overrides viewer rendering hints for the fixed-turn preview geometry, such as vertex size, edge color, vertex color, and label display.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_FixedTurn.cpp visual-hints review"
         },
         "radius_rep_var": {
           "description": "Names the MOOS variable used to report the fixed-turn radius.",
@@ -7353,12 +7398,18 @@
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_goto_depth.pdf"
         },
         "repeat": {
-          "description": "The number of times the vehicle will traverse through the evolution of depths.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_goto_depth.pdf"
+          "description": "Sets how many additional times the configured depth sequence is repeated after the first traversal. The local source accepts non-negative integers.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_GoToDepth.cpp:49,105-109,236-248",
+          "default": "0",
+          "example": "repeat = 1"
         },
         "arrival_flag": {
           "description": "Posts a flag when BHV_GoToDepth reaches its target depth.",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_GoToDepth.cpp"
+        },
+        "depth": {
+          "description": "Defines the target depth sequence. Each entry is depth or depth,time, with colon-separated entries used for multi-level depth plans.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_GoToDepth.cpp:71-101"
         }
       }
     },
@@ -7372,8 +7423,9 @@
           "example": "basewidth = 100"
         },
         "depth_slack_var": {
-          "description": "Name of the MOOS variable indicating the present delta between the maximum depth and the current depth.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_max_depth.pdf"
+          "description": "Names the MOOS variable where BHV_MaxDepth posts remaining depth slack, computed as max_depth minus current NAV_DEPTH.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_MaxDepth.cpp:74-75,128-131",
+          "example": "depth_slack_var = DEPTH_SLACK"
         },
         "tolerance": {
           "description": "Alternative way to set the max-depth basewidth tolerance. It controls how close to the maximum depth ownship may get before utility strongly penalizes deeper commands.",
@@ -7435,8 +7487,9 @@
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf"
         },
         "visual_hints": {
-          "description": "Hints for visual properties in variables posted intended for rendering.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf"
+          "description": "Overrides recovery-region polygon rendering hints posted for display. Accepted keys include vertex_color, edge_color, label_color, edge_size, and vertex_size.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:151-155,680-697",
+          "example": "visual_hints = edge_color=aqua, vertex_color=brown, label_color=aqua"
         },
         "buffer_dist": {
           "description": "Sets the buffer distance around the operating region.",
@@ -7484,7 +7537,10 @@
           "default": "1",
           "example": "vertex_size = 1"
         }
-      }
+      },
+      "excludedParameters": [
+        "parameter"
+      ]
     },
     "BHV_Shadow": {
       "reviewStatus": "manual-reviewed",
@@ -7506,7 +7562,7 @@
           "example": "speed_peakwidth = 0.1"
         },
         "speed_basewidth": {
-          "description": "Sets the base width, in meters per second, of the speed objective used while shadowing the contact. It controls how quickly utility falls away from the desired speed.",
+          "description": "Sets the base width, in meters per second, of the speed objective used while shadowing the contact. It controls how quickly utility falls away from the target shadowing speed.",
           "reviewSource": "MOOS-IvP behavior documentation/source review for objective-function shaping parameters",
           "example": "speed_basewidth = 2.0"
         },
@@ -7521,8 +7577,8 @@
           "example": "hdg_peakwidth = 20"
         },
         "pwt_outer_dist": {
-          "description": "Sets the priority weight outer dist threshold or distance.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp"
+          "description": "Sets the contact range threshold for Shadow relevance. At ranges below this distance the behavior has full relevance; at or beyond it the source returns zero relevance. A value of 0 keeps relevance fully on.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:66-67,145-160"
         },
         "spd_basewidth": {
           "description": "Source spelling for speed_basewidth. It sets the base width, in meters per second, of the shadowing speed objective.",
@@ -7561,8 +7617,9 @@
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf"
         },
         "visual_hints": {
-          "description": "Preferences for rendering visual artifacts produced by the behavior.",
-          "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf"
+          "description": "Overrides station-keeping region polygon rendering hints posted for display. Accepted keys include vertex_color, edge_color, label_color, edge_size, and vertex_size.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:188-192,573-590",
+          "example": "visual_hints = edge_color=light_blue, vertex_color=red, label_color=white"
         },
         "edge_color": {
           "description": "Sets the color of the station-keeping region polygon edges posted for viewer display.",
@@ -7609,24 +7666,24 @@
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
         },
         "nm_radius": {
-          "description": "Sets the radius for declaring no-more/arrival completion.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+          "description": "Sets the nonmonotonic arrival radius. Within this radius, the waypoint engine may declare arrival/no-more progress even if range is no longer monotonically decreasing.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp nonmonotonic radius review"
         },
         "osx": {
-          "description": "Sets the ownship x-coordinate supplied to the objective function.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+          "description": "Sets the ownship x-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
         },
         "osy": {
-          "description": "Sets the ownship y-coordinate supplied to the objective function.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+          "description": "Sets the ownship y-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
         },
         "ptx": {
-          "description": "Sets the target point x-coordinate supplied to the objective function.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+          "description": "Sets the target point x-coordinate used by the behavior's target-point geometry and objective-function calculations.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
         },
         "pty": {
-          "description": "Sets the target point y-coordinate supplied to the objective function.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
+          "description": "Sets the target point y-coordinate used by the behavior's target-point geometry and objective-function calculations.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
         },
         "radius": {
           "description": "Sets the arrival radius, in meters, used to decide when the abort-to-point destination has been reached.",
@@ -7744,6 +7801,18 @@
           "reviewSource": "MOOS-IvP BHV_TimeOut source review",
           "default": "0",
           "example": "max_time = 60"
+        }
+      }
+    },
+    "BHV_Timer": {
+      "parameters": {
+        "var_status_idle": {
+          "description": "Names the MOOS variable posted with timer-idle status. The configured status suffix is appended when status is posted.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:36,46-47,68-71,80-83"
+        },
+        "var_status_running": {
+          "description": "Names the MOOS variable posted with timer-running status. The configured status suffix is appended when status is posted.",
+          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:37,49-50,68-71,80-83"
         }
       }
     }
