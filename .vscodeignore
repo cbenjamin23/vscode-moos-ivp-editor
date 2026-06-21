@@ -1,8 +1,12 @@
 .vscode/**
 .vscode-test/**
+.cache/**
+DEVELOPMENT_PLAN.md
 .gitignore
 .gitattributes
 .github/**
+examples/**
+scripts/**
 vsc-extension-quickstart.md
 CONTRIBUTING.md
 *.vsix

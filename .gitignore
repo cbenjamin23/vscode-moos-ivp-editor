@@ -1,3 +1,5 @@
 /dist
+.cache/
+DEVELOPMENT_PLAN.md
 node_modules
 *.vsix
