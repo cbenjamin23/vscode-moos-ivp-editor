@@ -7,52 +7,54 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
       "parameters": {
         "audio_dir": {
-          "description": "Names a system directory to be added to path of directories to search for audio files named in a particular utterance request.",
+          "description": "Adds a directory to the search path used when an utterance request names an audio file. Multiple audio_dir lines may be used; iSay checks these directories when resolving file= requests.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
-          "example": "audio_dir                    = ./",
-          "exampleSource": "generated coverage fixture"
+          "example": "audio_dir = ./audio",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_isay.pdf: Listing 2.1; moos-ivp/ivp/src/iSay/Sayer.cpp:190,374"
         },
         "default_rate": {
-          "description": "The speech rate to be used, in words per minute, if left unspecified for a particular utterance request (200).",
+          "description": "Sets the default speech rate used when an incoming SAY_MOOS utterance does not specify its own rate. The value is passed to the speech backend as the rate for spoken text.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
           "default": "200",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/iSay/Sayer.cpp:41",
-          "example": "default_rate                 = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "default_rate = 200",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:41,172,336"
         },
         "default_voice": {
-          "description": "The default voice to be used if left unspecified for a particular utterance request.",
+          "description": "Sets the voice used for spoken utterances when a SAY_MOOS request omits the voice field. Available voice names depend on the platform speech backend.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
-          "example": "default_voice                = default",
-          "exampleSource": "generated coverage fixture"
+          "example": "default_voice = alex",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer_Info.cpp:98"
         },
         "interval_policy": {
-          "description": "Either \"from start\" or \"from end\", indicating whether the interval of time between utterances is marked from the start of the previous utterance or the end of the previous utterance (\"from end\").",
+          "description": "Controls whether the minimum interval between utterances is measured from the start or the end of the previous utterance. Supported values are from_start and from_end.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
           "default": "from_end",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/iSay/Sayer.cpp:44",
-          "example": "interval_policy              = normal",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "interval_policy = from_end",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:44,176"
         },
         "os_mode": {
-          "description": "Either \"osx or \"linux\" or \"both\". The default is \"both\"",
+          "description": "Selects which operating-system speech backend iSay should use for speech and audio playback. Supported values are osx, linux, and both.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
-          "default": "osx",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/iSay/Sayer_Info.cpp",
-          "example": "os_mode                      = normal",
-          "exampleSource": "generated coverage fixture"
+          "default": "both",
+          "defaultSource": "manual review",
+          "example": "os_mode = both",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:45,183"
         },
         "min_utter_interval": {
-          "description": "The minimum time (in seconds) between utterances before a next queued utterance will commence (1.0).",
+          "description": "Sets the minimum number of seconds between queued utterances. iSay will not start the next utterance until this interval permits it.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
           "default": "1.0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/iSay/Sayer.cpp:43",
-          "example": "min_utter_interval           = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "min_utter_interval = 1",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:43,196"
         }
       },
       "description": "The iSay application is a way to invoke the native speech generation utilities of OSX (the say command) and GNU/Linux (the espeak command).  It may also invoke the afplay commands available in both OSX and GNU/Linux to play a given wav or mp3 file."
@@ -540,38 +542,36 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_phostinfo.pdf",
       "parameters": {
         "temp_file_dir": {
-          "description": "Directory where temporary files are written. Default is \"∼/\".",
+          "description": "Sets the directory pHostInfo uses for temporary files while discovering host address information. Use a directory path, not an output filename.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_phostinfo.pdf",
           "default": "~/",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:41",
-          "example": "temp_file_dir                = results.txt",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "temp_file_dir = ./",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:147"
         },
         "default_hostip": {
-          "description": "IP address used if no IP address can otherwise be determined.",
+          "description": "Sets the fallback IP address pHostInfo posts when it cannot determine an address from the machine interfaces.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_phostinfo.pdf",
           "default": "localhost",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pHostInfo/HostInfo_Info.cpp",
-          "example": "default_hostip               = localhost",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "default_hostip = 192.168.0.55",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:42,156"
         },
         "default_hostip_force": {
-          "description": "This IP address will override any IP address from an auto-discovered network interface. Useful for debugging.",
+          "description": "Forces pHostInfo to use the configured fallback IP address instead of an auto-discovered network-interface address. This is mainly useful for debugging or controlled simulations.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_phostinfo.pdf",
-          "default": "localhost",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:42",
-          "example": "default_hostip_force         = localhost",
-          "exampleSource": "generated coverage fixture"
+          "example": "default_hostip_force = 192.168.0.99",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:163,360"
         },
         "prefer_inerface": {
-          "description": "Legacy misspelled alias accepted by the pHostInfo documentation/source for selecting the preferred network interface. Prefer prefer_interface when possible.",
+          "description": "Documentation typo for prefer_interface. The intended setting selects the preferred network interface when multiple valid IP addresses are available.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_phostinfo.pdf",
-          "example": "prefer_inerface = en0",
+          "example": "prefer_inerface = wlan0",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/pHostInfo and generated docs inventory"
+          "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1 typo; moos-ivp/ivp/src/pHostInfo/HostInfo_Info.cpp:103 documents prefer_interface"
         }
       },
       "description": "The pHostInfo application is a tool with a simple objective - determine the IP address of the machine on which it is running and post it to the MOOSDB.  Although this information is available in a number of ways to a user at the keyboard, it may not be readily available for reasoning about within a MOOS community."
@@ -1273,34 +1273,39 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
       "parameters": {
         "fail_condition": {
-          "description": "A logic condition that must not be satisfied or otherwise the overall mission will be considered successful.",
+          "description": "Adds a logic condition that causes the mission evaluation to fail if it is satisfied.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
-          "example": "fail_condition               = DEPLOY = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "fail_condition = COLLISION = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 3.1 and Listing 5.1; moos-ivp/ivp/src/pMissionEval/MissionEval.cpp:162"
         },
         "fail_flag": {
-          "description": "A flag to be publish once the result is known and is mission has been deemed to be not successful.",
+          "description": "Defines one MOOS variable-value post made after pMissionEval determines that the mission did not pass.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
-          "example": "fail_flag                    = EXAMPLE_FLAG = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "fail_flag = MISSION_PASSED = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Listing 5.1"
         },
         "lead_condition": {
-          "description": "A logic condition that must be satisfied before the mission can be evaluated.",
+          "description": "Adds a logic condition that must become true before the associated pass/fail aspect is evaluated.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
-          "example": "lead_condition               = DEPLOY = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "lead_condition = ARRIVED_MID = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 3.2 and Listing 5.1"
         },
         "pass_condition": {
-          "description": "A logic condition that must be satisfied for the overall mission to be consid- ered successful.",
+          "description": "Adds a logic condition that must be true for the mission, or the current evaluation aspect, to pass.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
-          "example": "pass_condition               = DEPLOY = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "pass_condition = ODOMETRY < 500",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 3.1 and Listing 5.1; moos-ivp/ivp/src/pMissionEval/MissionEval.cpp:160"
         },
         "pass_flag": {
-          "description": "A flag to be publish once the result is known and is mission has been deemed to be successful.",
+          "description": "Defines one MOOS variable-value post made after pMissionEval determines that the mission passed.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
-          "example": "pass_flag                    = EXAMPLE_FLAG = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "pass_flag = MISSION_PASSED = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Listing 5.1"
         },
         "mission_form": {
           "description": "Sets the mission-form name used when expanding MISSION_FORM macros in generated reports.",
@@ -1319,10 +1324,11 @@
           "reviewSource": "moos-ivp/ivp/src/pMissionEval/MissionEval_Info.cpp"
         },
         "report_file": {
-          "description": "Name the report file to receive output of results.",
+          "description": "Names the file where pMissionEval writes the configured report columns and final mission result.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
-          "example": "report_file                  = results.txt",
-          "exampleSource": "generated coverage fixture"
+          "example": "report_file = results.log",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 4.1 and Listing 5.1"
         },
         "report_line_format": {
           "description": "Selects the separator format used between mission-evaluation report columns.",
@@ -1334,10 +1340,11 @@
           "reviewSource": "moos-ivp/ivp/src/pMissionEval/MissionEval_Info.cpp"
         },
         "result_flag": {
-          "description": "A flag to be publish once the result is known.",
+          "description": "Defines one MOOS variable-value post made once pMissionEval has determined the mission result, regardless of pass or fail.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
-          "example": "result_flag                  = EXAMPLE_FLAG = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "result_flag = MISSION_EVALUATED = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 4.1 and Listing 5.1"
         }
       },
       "description": "The pMissionEval application is a tool primarily used in a mission that is part of an automated test.  , no GUI, no human interaction."
@@ -1346,22 +1353,22 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmhash.pdf",
       "parameters": {
         "mission_hash_var": {
-          "description": "The variable to which the mission hash is posted. The default is MISSION HASH.",
+          "description": "Names the MOOS variable where pMissionHash posts the full mission hash. Set this to off to disable full-hash posting.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmhash.pdf",
           "default": "MISSION_HASH",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMissionHash/MissionHash_MOOSApp.cpp:39",
-          "example": "mission_hash_var             = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "mission_hash_var = MISSION_HASH",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmhash.pdf: Listing 3.1; moos-ivp/ivp/src/pMissionHash/MissionHash_MOOSApp.cpp:39,135"
         },
         "mhash_short_var": {
-          "description": "The variable to which the short version of the mission hash is posted. If this parameter is not specified, this information will not be published. This cannot be the same variable as the mission hash var.",
+          "description": "Names the MOOS variable where pMissionHash posts the short mission hash. The local source initializes this to MHASH; setting it to off disables the short-hash post.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmhash.pdf",
           "default": "MHASH",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/pMissionHash/MissionHash_MOOSApp.cpp:40",
-          "example": "mhash_short_var              = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "mhash_short_var = MHASH",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_pmhash.pdf: Listing 3.1; moos-ivp/ivp/src/pMissionHash/MissionHash_MOOSApp.cpp:40,140"
         }
       },
       "description": "The pMissionHash app was meant to run and generate a mission hash when (a) pMarineViewer is not being run, and (b) mission hash generation is still desired.  A mission hash is normally generated on the shoreside MOOS community in the form of a posting to the variable MISSION HASH."
@@ -1766,40 +1773,40 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_prealm.pdf",
       "parameters": {
         "relcast_interval": {
-          "description": "Time duration, in seconds, that must occur between the previously generated realmcast and a new one. The allowable range is [0.4, 15]. Values outside this range will be clipped to the range. The default value is 0.8 seconds.",
+          "description": "Sets the minimum time, in seconds, between generated REALMCAST reports. Values are clipped to the supported range.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_prealm.pdf",
-          "default": "0",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pRealm/Realm_Info.cpp",
-          "example": "relcast_interval             = 5",
-          "exampleSource": "generated coverage fixture"
+          "default": "0.8",
+          "defaultSource": "manual review",
+          "example": "relcast_interval = 0.8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1; moos-ivp/ivp/src/pRealm/Realm.cpp:41,127"
         },
         "summary_interval": {
-          "description": "Time duration, in seconds, between auto-generated postings of REALMCAST CHANNELS. The allowable range is [1, 10]. Values outside this range will be clipped to the range. The default value is 2 seconds.",
+          "description": "Sets the time, in seconds, between automatic REALMCAST_CHANNELS summary postings. The local source initializes this to 5 seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_prealm.pdf",
-          "default": "2",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pRealm/Realm_Info.cpp",
-          "example": "summary_interval             = 5",
-          "exampleSource": "generated coverage fixture"
+          "default": "5",
+          "defaultSource": "manual review",
+          "example": "summary_interval = 5",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1; moos-ivp/ivp/src/pRealm/Realm.cpp:42,129"
         },
         "wrap_length": {
-          "description": "The number of characters, per line, when the user has opted to have the variable value field wrapped. Legal values are any integer value greater than zero. The default is 90.",
+          "description": "Sets the number of characters per line when pRealm wraps long variable values in realmcast output.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_prealm.pdf",
           "default": "90",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pRealm/Realm_Info.cpp",
-          "example": "wrap_length                  = 4",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "wrap_length = 90",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1"
         },
         "trunc_length": {
-          "description": "The number of characters that the value field of an output line will be truncated to, when the user has opted to enable truncated output. Legal values are any integer value greater than zero. It is recommended to choose a number that is a multiple of the wrap length. The default is 270.",
+          "description": "Sets the maximum value-field length used when pRealm truncates long realmcast output values.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_prealm.pdf",
           "default": "270",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pRealm/Realm_Info.cpp",
-          "example": "trunc_length                 = 4",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "trunc_length = 270",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1"
         },
         "msg_max_hist": {
           "description": "Sets how many recent messages pRealm keeps per variable for string-message history display.",
@@ -1808,7 +1815,7 @@
           "defaultSource": "manual review",
           "example": "msg_max_hist = 10",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/pRealm"
+          "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1; moos-ivp/ivp/src/pRealm/Realm.cpp:135,329"
         }
       },
       "description": "The pRealm application is a tool to enable a shoreside multi-vehicle scope of the MOOSDB for all connected vehicles, as well as the shoreside MOOSDB.  An instance of pRealm in each MOOS community, one per MOOSDB."
@@ -1922,76 +1929,90 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
       "parameters": {
         "default_beacon_freq": {
-          "description": "Sets the default interval for unsolicited beacon broadcasts. The value may be never, a fixed number of seconds, or a random range such as 60:120.",
+          "description": "Sets the default unsolicited report interval for beacons. The value may be never, a fixed number of seconds, or a random range such as 60:120.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-          "example": "default_beacon_freq = 60:120",
+          "example": "default_beacon_freq = never",
           "exampleSource": "manual review",
           "default": "never",
           "defaultSource": "manual review",
-          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.2"
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.2; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:137"
         },
         "default_beacon_push_dist": {
-          "description": "Range at which...",
+          "description": "Sets the default distance from a beacon within which its unsolicited or solicited range report can be received.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-          "example": "default_beacon_push_dist     = 10",
-          "exampleSource": "generated coverage fixture"
+          "example": "default_beacon_push_dist = 50",
+          "exampleSource": "manual review",
+          "default": "50",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:46,145"
         },
         "default_beacon_pull_dist": {
-          "description": "Range at which...",
+          "description": "Sets the default distance a vehicle-side ping can reach when querying beacons.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-          "example": "default_beacon_pull_dist     = 10",
-          "exampleSource": "generated coverage fixture"
+          "example": "default_beacon_pull_dist = 50",
+          "exampleSource": "manual review",
+          "default": "50",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:47,147"
         },
         "default_beacon_width": {
-          "description": "Width of beacons (meters) when rendered (4).",
+          "description": "Sets the default rendered marker width for beacons.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-          "example": "default_beacon_width         = 4",
-          "exampleSource": "generated coverage fixture"
+          "example": "default_beacon_width = 4",
+          "exampleSource": "manual review",
+          "default": "4",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:143"
         },
         "default_beacon_color": {
-          "description": "Color of beacons when rendered (”red”).",
+          "description": "Sets the default marker color used when rendering beacons.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-          "example": "default_beacon_color         = yellow",
-          "exampleSource": "generated coverage fixture"
+          "example": "default_beacon_color = orange",
+          "exampleSource": "manual review",
+          "default": "orange",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:141"
         },
         "default_beacon_shape": {
-          "description": "Sets the default rendered shape for beacons when an individual beacon does not specify a shape.",
+          "description": "Sets the default marker shape used when rendering beacons.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
           "example": "default_beacon_shape = circle",
           "exampleSource": "manual review",
           "default": "circle",
           "defaultSource": "manual review",
-          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:139"
         },
         "ground_truth": {
-          "description": "If true, ground truth is also reported when noise is added.",
+          "description": "When true, publishes ground-truth beacon range reports in addition to noisy simulated reports when random noise is enabled.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
           "default": "true",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:51",
-          "example": "ground_truth                 = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "ground_truth = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.5; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:51,165"
         },
         "node_pull_dist": {
-          "description": "TBW",
+          "description": "Sets a vehicle-specific pull distance for vehicle-to-beacon range requests, overriding the default node pull distance for that vehicle.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-          "example": "node_pull_dist               = 10",
-          "exampleSource": "generated coverage fixture"
+          "example": "node_pull_dist = henry=120",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:610"
         },
         "node_push_dist": {
-          "description": "TBW",
+          "description": "Sets a vehicle-specific push distance for beacon range reports, overriding the default node push distance for that vehicle.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-          "example": "node_push_dist               = 10",
-          "exampleSource": "generated coverage fixture"
+          "example": "node_push_dist = henry=120",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:585"
         },
         "ping_payments": {
-          "description": "How pings treated w.r.t. ping wait time (”upon response”). ping wait: Mandatory number of seconds between successive vehicle pings. report vars: Determines variable name(s) used for range report (”short”). rn algorithm: Algorithm for adding random noise to range measurements. verbose: If true, verbose status message terminal output (false).",
+          "description": "Controls when a vehicle ping consumes its ping-wait interval. Supported modes include upon_request, upon_accept, and upon_response.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:57",
-          "example": "ping_payments                = true",
-          "exampleSource": "generated coverage fixture"
+          "default": "upon_response",
+          "defaultSource": "manual review",
+          "example": "ping_payments = upon_response",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.4; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:49,652"
         }
       },
       "description": "The uFldBeaconRangeSensor application is a tool for simulating an on-board sensor that provides a range measurement to a beacon where either (a) the vehicle knows its own position but is trying to determine the position of the beacon via a series of range measurements, or (b) the vehicle knows where the beacon(s) are but is trying to determine its own."
@@ -2185,21 +2206,20 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
       "parameters": {
         "allow_echo_types": {
-          "description": "A list of platform types for which an reply will be generated from another source. Legal values: auv, uuv, usv, asv, kayak, kingfisher, glider, and ship. The default is the empty set, indicating that all types are honored.",
+          "description": "Restricts simulated range replies to contacts whose platform type is in the configured list. If no types are configured, all platform types are honored.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
-          "default": "white",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:45",
-          "example": "allow_echo_types             = kayak",
-          "exampleSource": "generated coverage fixture"
+          "example": "allow_echo_types = kayak",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:139,634"
         },
         "ground_true": {
-          "description": "If true, ground truth reports are also published alongside the normal range reports, with noise removed. This information is not bridge to the vehicles however. Legal values: true, false. The default is true.",
+          "description": "Documentation spelling for ground_truth. When true, publishes ground-truth range reports with noise removed for diagnostics.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
           "default": "true",
-          "defaultSource": "documentation text",
+          "defaultSource": "manual review",
           "example": "ground_true = true",
-          "exampleSource": "generated from parameter name"
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
         },
         "ignore_group": {
           "description": "Ignores incoming node reports from contacts whose group matches this configured group.",
@@ -2209,13 +2229,13 @@
           "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
         },
         "ping_color": {
-          "description": "Visual preference: color of initiating ping message. Legal values: any color in the Colore Appendix. The default is white.",
+          "description": "Sets the visual color used for initiating range-request pulses.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
           "default": "white",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:45",
-          "example": "ping_color                   = yellow",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "ping_color = white",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
         },
         "ping_wait": {
           "description": "Sets the minimum number of seconds enforced between range-sensor pings.",
@@ -2227,63 +2247,67 @@
           "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
         },
         "reach_distance": {
-          "description": "Distance out to which the pinging vehicle will be heard. Legal values: any numerical value or the keyword \"nolimit\". The default is 100.",
+          "description": "Sets the distance out to which the pinging vehicle can be heard. The value may be numeric meters or nolimit.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
           "default": "100",
-          "defaultSource": "documentation text",
-          "example": "reach_distance = 100",
-          "exampleSource": "generated from parameter name"
+          "defaultSource": "manual review",
+          "example": "reach_distance = default = 100",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.4"
         },
         "reply_distance": {
-          "description": "Distance out to which the pinged vehicle will be heard. Legal values: any numerical value or the keyword \"nolimit\". The default is 100.",
+          "description": "Sets the distance out to which the pinged contact can reply. The value may be numeric meters or nolimit.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
           "default": "100",
-          "defaultSource": "documentation text",
-          "example": "reply_distance = 100",
-          "exampleSource": "generated from parameter name"
+          "defaultSource": "manual review",
+          "example": "reply_distance = default = 100",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.4"
         },
         "exponential_decay": {
-          "description": "Determines if the there is an exponentially decaying with range probability of detection beyond the reach distance + reply distance. Default is false.",
+          "description": "Enables exponentially decaying detection probability beyond the combined reach and reply distances.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
           "default": "false",
-          "defaultSource": "documentation text",
+          "defaultSource": "manual review",
           "example": "exponential_decay = false",
-          "exampleSource": "generated from parameter name"
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.5"
         },
         "reply_color": {
-          "description": "Visual preference: color of replying message Legal values: any color in Color Appendix. The default is chartreuse.",
+          "description": "Deprecated alias for echo_color. Sets the visual color used for reply/echo range pulses.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
           "default": "chartreuse",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:46",
-          "example": "reply_color                  = yellow",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "reply_color = chartreuse",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:146"
         },
         "report_vars": {
-          "description": "Determines if CRS RANGE REPORT or CRS RANGE REPORT VNAME, or both are published for individual range reports. Legal settings are short, long, or both. The default is short. Determines variable name style used for range reports. Legal values: short, long, both. The default is long.",
+          "description": "Selects which contact range report variable style is posted. Supported values are short, long, and both.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
-          "default": "white",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:45",
-          "example": "report_vars                  = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "default": "short",
+          "defaultSource": "manual review",
+          "example": "report_vars = short",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:47,137"
         },
         "sensor_arcs": {
-          "description": "Set arcs relative to the heading of the vehicle in which the range sensor is able to detect vehicles. The default is 360 degrees.",
+          "description": "Adds angular sensor field-of-view arcs relative to vehicle heading. Multiple arcs may be configured; 360 gives full-circle coverage.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
-          "default": "360 degrees",
-          "defaultSource": "documentation text",
-          "example": "sensor_arcs = 360 degrees",
-          "exampleSource": "generated from parameter name"
+          "default": "360",
+          "defaultSource": "manual review",
+          "example": "sensor_arcs = 45:135,225:315",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.6"
         },
         "rn_algorithm": {
-          "description": "Algorithm for adding random noise to the range measurement. Legal parameter values discussed in The default is no noise.",
+          "description": "Selects the random-noise algorithm applied to simulated contact range measurements. An empty value means no random noise.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
-          "default": "true",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:60",
-          "example": "rn_algorithm = true",
-          "exampleSource": "generated from parameter name"
+          "default": "none",
+          "defaultSource": "manual review",
+          "example": "rn_algorithm = uniform,pct=0.5",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.8; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:150,615"
         }
       },
       "description": "The uFldContactRangeSensor application is a tool for simulating range measurements to off-board contacts, as a proxy for an on-board active sonar sensor.  The range-only measurements are provided conditionally, depending on the range between the pinging vehicle and the contact."
@@ -2292,43 +2316,45 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_msghandler.pdf",
       "parameters": {
         "appcast_trunc_msg": {
-          "description": "Sets the maximum number of characters from each successful message shown in the appcast report.",
+          "description": "Sets the maximum number of message characters shown per line in the appcast report.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_msghandler.pdf",
           "default": "75",
           "defaultSource": "manual review",
           "example": "appcast_trunc_msg = 75",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uFldMessageHandler"
+          "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.2"
         },
         "strict_addressing": {
-          "description": "If true, only messages with a destination specified by dest node, match- ing the local community name are processed. Other messages with a destination specified by a group designation are ignored. The default is false.",
+          "description": "When true, handles only messages whose destination node matches the local community; broad group or all-node messages are rejected.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_msghandler.pdf",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldMessageHandler/MessageHandler.cpp:50",
-          "example": "strict_addressing            = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "strict_addressing = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.1; moos-ivp/ivp/src/uFldMessageHandler/MessageHandler.cpp:50,125,230"
         },
         "msg_flag": {
-          "description": "A variable-value pair posted upon receipt of a valid, un-rejected incoming message and posting to the MOOSDB.",
+          "description": "Defines a MOOS variable-value post made when a valid incoming message is accepted and posted to the local MOOSDB.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_msghandler.pdf",
-          "example": "msg_flag                     = EXAMPLE_FLAG = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "msg_flag = RETURN=true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.2; moos-ivp/ivp/src/uFldMessageHandler/MessageHandler.cpp:141,252"
         },
         "bad_msg_flag": {
-          "description": "A variable-value pair posted upon receipt of a valid, but rejected incoming message.",
+          "description": "Defines a MOOS variable-value post made when an incoming message is validly formed but rejected by the handler.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_msghandler.pdf",
-          "example": "bad_msg_flag                 = EXAMPLE_FLAG = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "bad_msg_flag = TOTAL_BAD=$[BAD_CTR]",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.2; moos-ivp/ivp/src/uFldMessageHandler/MessageHandler.cpp:143,239"
         },
         "aux_info": {
-          "description": "Controls the source auxiliary field included with handled messages, such as node or node+app.",
+          "description": "Controls the source auxiliary field attached to handled messages, such as node or node+app.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_msghandler.pdf",
           "default": "node",
           "defaultSource": "manual review",
           "example": "aux_info = node+app",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uFldMessageHandler"
+          "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.2"
         }
       },
       "description": "The uFldMessageHandler application handles incoming messages from a remote MOOSDB.  In MOOS, applications ”talk” to each other through the normal publish-subscribe means of a common MOOSDB."
@@ -2337,20 +2363,22 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodebroker.pdf",
       "parameters": {
         "auto_bridge_appcast": {
-          "description": "Suppress the normal automatic bridging of the APPCAST variable. The default is false.",
+          "description": "Controls whether uFldNodeBroker automatically bridges APPCAST traffic to support appcasting. Set false to opt out of the automatic bridge.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodebroker.pdf",
-          "default": "false",
-          "defaultSource": "documentation text",
-          "example": "auto_bridge_appcast          = true",
-          "exampleSource": "generated coverage fixture"
+          "default": "true",
+          "defaultSource": "manual review",
+          "example": "auto_bridge_appcast = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodebroker.pdf: Listing 2.1; moos-ivp/ivp/src/uFldNodeBroker/NodeBroker.cpp:154,171"
         },
         "auto_bridge_realmcast": {
-          "description": "Suppress the normal automatic bridging of the REALMCAST and REALMCAST CHANNELS variables. The default is false.",
+          "description": "Controls whether uFldNodeBroker automatically bridges REALMCAST and REALMCAST_CHANNELS traffic to support realmcasting. Set false to opt out.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodebroker.pdf",
-          "default": "false",
-          "defaultSource": "documentation text",
-          "example": "auto_bridge_realmcast        = true",
-          "exampleSource": "generated coverage fixture"
+          "default": "true",
+          "defaultSource": "manual review",
+          "example": "auto_bridge_realmcast = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodebroker.pdf: Listing 2.1; moos-ivp/ivp/src/uFldNodeBroker/NodeBroker.cpp:153,169"
         },
         "bridge": {
           "description": "Registers a MOOS variable with pShare for bridging to the shoreside MOOS community after a shore connection is established.",
@@ -2360,7 +2388,7 @@
           "reviewSource": "MOOS-IvP app_ufld_nodebroker.pdf: Listing 2.1"
         },
         "try_shore_host": {
-          "description": "Adds a candidate pShare route used for initial pings while trying to establish a shoreside connection.",
+          "description": "Adds a candidate pShare input route used for initial pings while trying to establish a shoreside connection.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodebroker.pdf",
           "example": "try_shore_host = 192.168.1.10:9200",
           "exampleSource": "manual review",
@@ -2373,30 +2401,31 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
       "parameters": {
         "comms_range": {
-          "description": "Max range outside which inter-vehicle node reports and node messages will not be sent. Legal values: any numerical value. The default is 100 meters.",
+          "description": "Sets the maximum range, in meters, for sharing inter-vehicle node reports and node messages. The value nolimit disables range cutoff.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
           "default": "100",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:42",
-          "example": "comms_range                  = 10",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "comms_range = 100",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Section 2.1; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:42,239"
         },
         "critical_range": {
-          "description": "Range in meters within which inter-vehicle node reports will be shared even if group membership would otherwise disallow. Legal values: any numerical value. The default is 30 meters.",
+          "description": "Sets the range within which node reports are shared for safety even when normal group or range rules would block them.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
           "default": "30",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:46",
-          "example": "critical_range               = 10",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "critical_range = 30",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Section 2.1; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:46,249"
         },
         "debug": {
-          "description": "If true, further debugging information is produced to the terminal output. Legal values: true, false. The default is false.",
+          "description": "Enables extra terminal debugging output from uFldNodeComms.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
           "default": "false",
-          "defaultSource": "documentation text",
+          "defaultSource": "manual review",
           "example": "debug = false",
-          "exampleSource": "generated from parameter name"
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
         },
         "earange": {
           "description": "Extends the range at which this vehicle can hear node reports from other vehicles. Values are in the range 1 to 10, with 1 as the default range multiplier.",
@@ -2408,13 +2437,13 @@
           "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
         },
         "groups": {
-          "description": "If true, inter-vehicle node reports are shared only if two vehicles are in the same group. May be overridden if the two vehicles are within the critical range. The vehicle group designation is typically declared in pNodeReporter. The default is false.",
+          "description": "When true, shares inter-vehicle node reports only between vehicles in the same group, except within the critical range.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:74",
-          "example": "groups                       = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "groups = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
         },
         "ignore_group": {
           "description": "Ignores incoming node reports from contacts whose group matches this configured group.",
@@ -2424,58 +2453,58 @@
           "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
         },
         "min_msg_interval": {
-          "description": "The number of seconds required between messaged sends for any one source vehicle. The default is 30 seconds.",
+          "description": "Sets the minimum time, in seconds, between node-message sends from any one source vehicle.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
-          "default": "30.0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:55",
-          "example": "min_msg_interval             = 5",
-          "exampleSource": "generated coverage fixture"
+          "default": "30",
+          "defaultSource": "manual review",
+          "example": "min_msg_interval = 30",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
         },
         "max_msg_length": {
-          "description": "The total number of characters that may be sent in a string component of a node message. The default is 1000.",
+          "description": "Sets the maximum number of characters allowed in the string component of an inter-vehicle node message.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
           "default": "1000",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:57",
-          "example": "max_msg_length               = 4",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "max_msg_length = 1000",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
         },
         "min_rpt_interval": {
-          "description": "The number of seconds required between report sends for any one source vehicle. The default is -1, meaning no dropping of reports.",
+          "description": "Sets the minimum time, in seconds, between node-report sends from any one source vehicle. A negative value disables report dropping.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
           "default": "-1",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:56",
-          "example": "min_rpt_interval             = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "min_rpt_interval = -1",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
         },
         "msg_groups": {
-          "description": "If true, inter-vehicle node messages are shared only if the two vehicles are in the same group. The vehicle group designation is typically declared in pNodeReporter. The default is false.",
+          "description": "When true, shares inter-vehicle node messages only between vehicles in the same group.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:75",
-          "example": "msg_groups                   = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "msg_groups = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
         },
         "msg_color": {
-          "description": "The color of inter-vehicle message comms pulses. The default is \"white\".",
+          "description": "Sets the color used for inter-vehicle message communication pulses.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
           "default": "white",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:64",
-          "example": "msg_color                    = yellow",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "msg_color = white",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
         },
         "msg_repeat_color": {
-          "description": "The color of inter-vehicle message comms pulses when the message represents a repeat of a previously dropped message, under mediated message passing. The default is \"light green\".",
+          "description": "Sets the color used for communication pulses representing repeated previously dropped node messages.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
           "default": "light_green",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:65",
-          "example": "msg_repeat_color             = yellow",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "msg_repeat_color = light_green",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
         },
         "stealth": {
           "description": "Reduces how far this vehicle can be heard by other vehicles when sharing node reports. Values are in the range 0 to 1.",
@@ -2487,48 +2516,49 @@
           "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
         },
         "pulse_duration": {
-          "description": "A duration, in seconds, that the comms or node pulse should be viewable. It is a field in VIEW COMMS PULSE message that is respected by at least pMarineViewer to render and slowly fade-out the rendering after this duration. The default is 10 seconds.",
+          "description": "Sets how long communication pulses remain visible in viewers such as pMarineViewer.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
           "default": "10",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:69",
-          "example": "pulse_duration               = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "pulse_duration = 10",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Section 5; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:69,275"
         },
         "shared_node_reports": {
-          "description": "When enabled with true, node reports are re-posted to the shoreside community as NODE REPORT UNC. The default is false. This feature may also be more commonly enabled via in incoming message. See UNC SHARED NODE REPORTS.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
-          "default": "white",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:64",
-          "example": "shared_node_reports          = true",
-          "exampleSource": "generated coverage fixture"
-        },
-        "stale_time": {
-          "description": "Time in seconds after which a vehicle will not receive node reports or messages unless a node report has been received by that vehicle. The default is 5 seconds.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
-          "default": "5.0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:53",
-          "example": "stale_time                   = 5",
-          "exampleSource": "generated coverage fixture"
-        },
-        "verbose": {
-          "description": "If true, status reports are displayed to the terminal during operation. The default is false.",
+          "description": "When true, reposts shared node reports to the shoreside community as NODE_REPORT_UNC.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
           "default": "false",
-          "defaultSource": "documentation text",
-          "example": "verbose                      = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "shared_node_reports = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:277"
+        },
+        "stale_time": {
+          "description": "Sets how long a vehicle may go without a fresh node report before it is considered stale and no longer eligible to receive reports or messages.",
+          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
+          "default": "5",
+          "defaultSource": "manual review",
+          "example": "stale_time = 5",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        },
+        "verbose": {
+          "description": "Enables verbose terminal status output from uFldNodeComms.",
+          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
+          "default": "false",
+          "defaultSource": "manual review",
+          "example": "verbose = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
         },
         "view_node_rpt_pulses": {
-          "description": "If true, comms pulses are rendered between vehicles whenever a node report successfully makes its way from one vehicle to another. The default is true.",
+          "description": "Controls whether uFldNodeComms posts visual communication pulses for successfully shared node reports.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
           "default": "true",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:70",
-          "example": "view_node_rpt_pulses         = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "view_node_rpt_pulses = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Section 2.2; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:70,270"
         }
       },
       "description": "The uFldNodeComms application is a tool for handling node reports and messages between vehicles.  Rather than directly sending node reports and messages between vehicles, uFldNodeComms acts as an intermediary to conditionally pass a report or message on to another vehicle, where conditions may be the inter-vehicle range or other criteria."
@@ -2782,12 +2812,13 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_pathcheck.pdf",
       "parameters": {
         "history": {
-          "description": "Length of queue used for calculating present speed. The default is 10.",
+          "description": "Sets how many recent node records uFldPathCheck keeps for each vehicle when estimating present speed and checking path progress.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_pathcheck.pdf",
           "default": "10",
-          "defaultSource": "documentation text",
+          "defaultSource": "manual review",
           "example": "history = 10",
-          "exampleSource": "generated from parameter name"
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_pathcheck.pdf: Listing 2.1; moos-ivp/ivp/src/uFldPathCheck/PathCheck_MOOSApp.cpp:40,126"
         }
       },
       "description": "The uFldPathCheck application is a tool for summarizing a few properties in a field of vehicles remotely deployed.  The primary focus is on summarizing the speed and distance travelled for each vehicle."
@@ -2816,31 +2847,31 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_shorebroker.pdf",
       "parameters": {
         "auto_bridge_appcast": {
-          "description": "Suppress the normal automatic bridging of the APPCAST REQ variable. The default is false.",
+          "description": "Controls whether uFldShoreBroker automatically bridges APPCAST_REQ traffic to support appcasting. Set false to opt out of the automatic bridge.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_shorebroker.pdf",
-          "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker.cpp:41",
-          "example": "auto_bridge_appcast          = true",
-          "exampleSource": "generated coverage fixture"
+          "default": "true",
+          "defaultSource": "manual review",
+          "example": "auto_bridge_appcast = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2; moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp:99"
         },
         "auto_bridge_mhash": {
-          "description": "Suppress the normal automatic bridging of the MISSION HASH variable. The default is false.",
+          "description": "Controls whether uFldShoreBroker automatically bridges MISSION_HASH traffic. Set false to opt out of the automatic bridge.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_shorebroker.pdf",
-          "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker.cpp:41",
-          "example": "auto_bridge_mhash            = true",
-          "exampleSource": "generated coverage fixture"
+          "default": "true",
+          "defaultSource": "manual review",
+          "example": "auto_bridge_mhash = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2; moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp:100"
         },
         "auto_bridge_realmcast": {
-          "description": "Suppress the normal automatic bridging of the REALMCAST REQ variable. The default is false.",
+          "description": "Controls whether uFldShoreBroker automatically bridges REALMCAST_REQ traffic to support realmcasting. Set false to opt out of the automatic bridge.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_shorebroker.pdf",
-          "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker.cpp:41",
-          "example": "auto_bridge_realmcast        = true",
-          "exampleSource": "generated coverage fixture"
+          "default": "true",
+          "defaultSource": "manual review",
+          "example": "auto_bridge_realmcast = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2; moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp:98"
         },
         "bridge": {
           "description": "Names a local MOOS variable and optional alias to bridge from the shore community to vehicle communities.",
@@ -2871,13 +2902,13 @@
           "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2"
         },
         "warning_on_stale": {
-          "description": "If true, generate a warning if a previously known node has not been heard from in more than 10 seconds.",
+          "description": "When true, posts a warning if a previously known node has not been heard from for more than the stale-node interval.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_shorebroker.pdf",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker.cpp:41",
-          "example": "warning_on_stale             = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "warning_on_stale = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2; moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp:97"
         }
       },
       "description": "The uFldShoreBroker application is a tool for brokering connections between a shoreside community and one or more nodes (simulated or real vehicles).  A shoreside community is collection of MOOS processes typically running a GUI providing a situational display and managing messages to and from fielded vehicles."
@@ -2946,31 +2977,29 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uloadwatch.pdf",
       "parameters": {
         "breach_trigger": {
-          "description": "Sets how many threshold breaches are allowed before uLoadWatch posts a warning. A value of 1 warns on the first breach.",
+          "description": "Sets how many load-gap threshold breaches are tolerated before uLoadWatch posts a warning. A value of 1 warns on the first breach.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uloadwatch.pdf",
           "default": "1",
           "defaultSource": "manual review",
           "example": "breach_trigger = 1",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uLoadWatch"
+          "reviewSource": "MOOS-IvP app_uloadwatch.pdf: Listing 2.1"
         },
         "near_breach_thresh": {
-          "description": "In addition to normal threshold breaches, the uLoadWatch app may also monitor for near breaches. A near breach occurs when the normal breach thresh is nearly met. For example, if the threshold for a certain app is 2.0, this means a breach is declared if time between app iterations is greater than 2x the normal gap between iterations. If the near breach thresh is set to 1.6, a near breach is declared if the gap reaches 1.6x the normal gap.",
+          "description": "Sets the fractional point between normal load and the configured breach threshold where uLoadWatch begins reporting near-breaches. For example, 0.9 reports when the gap reaches 90% of the way to the breach threshold.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uloadwatch.pdf",
-          "default": "1",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uLoadWatch/LoadWatch.cpp:39",
-          "example": "near_breach_thresh           = 10",
-          "exampleSource": "generated coverage fixture"
+          "default": "0.9",
+          "defaultSource": "manual review",
+          "example": "near_breach_thresh = 0.9",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uloadwatch.pdf: Listing 2.1; moos-ivp/ivp/src/uLoadWatch/LoadWatch.cpp:48,245,406"
         },
         "thresh": {
-          "description": "A gap threshold for reporting a LOAD WARNING. Each threshold line specifies the application name and the gap threshold value.",
+          "description": "Defines an app-specific or catch-all load-gap threshold using fields such as app and gapthresh. When the measured app iteration gap exceeds this multiplier, uLoadWatch can post a load warning.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uloadwatch.pdf",
-          "default": "1",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uLoadWatch/LoadWatch.cpp:39",
-          "example": "thresh                       = 10",
-          "exampleSource": "generated coverage fixture"
+          "example": "thresh = app=pHelmIvP, gapthresh=1.5",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uloadwatch.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/uLoadWatch/LoadWatch.cpp:365"
         }
       },
       "description": "The uLoadWatch application monitors data produced by individual applications and reports a warning when the MOOS community begins to exhibit a strain in the CPU load.  Load data is derived solely from two MOOS variables published by participating MOOS apps."
@@ -3116,26 +3145,31 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_umayfinish.pdf",
       "parameters": {
         "finish_var": {
-          "description": "A MOOS variable.",
+          "description": "Names the MOOS variable uMayFinish monitors to decide whether the mission may finish.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_umayfinish.pdf",
-          "example": "finish_var                   = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "example": "finish_var = MISSION_EVALUATED",
+          "exampleSource": "manual review",
+          "default": "MISSION_EVALUATED",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_umayfinish.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/uMayFinish/MayFinish.cpp:118,132"
         },
         "finish_val": {
-          "description": "Sets the value that must be observed on the configured finish variable before uMayFinish allows completion.",
+          "description": "Sets the value that must be observed on finish_var before uMayFinish allows completion.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_umayfinish.pdf",
           "example": "finish_val = true",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uMayFinish"
+          "reviewSource": "MOOS-IvP app_umayfinish.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/uMayFinish/MayFinish.cpp:120,134",
+          "default": "true",
+          "defaultSource": "manual review"
         },
         "max_db_uptime": {
-          "description": "Sets the MOOSDB uptime, in seconds, after which uMayFinish exits. A negative value disables this timeout.",
+          "description": "Sets the MOOSDB uptime, in seconds, after which uMayFinish exits regardless of finish_var state. A negative value disables this timeout.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_umayfinish.pdf",
           "default": "-1",
           "defaultSource": "manual review",
-          "example": "max_db_uptime = 300",
+          "example": "max_db_uptime = 3600",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uMayFinish"
+          "reviewSource": "MOOS-IvP app_umayfinish.pdf: Listing 2.2; moos-ivp/ivp/src/uMayFinish/MayFinish.cpp:20,122"
         }
       },
       "description": "sh.  It will connect to a MOOS community and monitor for a completion event or timeout based on DB UPTIME."
@@ -3144,54 +3178,52 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
       "parameters": {
         "allow_retractions": {
-          "description": "If true, run warnings are retracted if a process reappears after disappearing. Legal values: true, false. The default is true.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
-          "default": "-1",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uProcessWatch/ProcessWatch.cpp:61",
-          "example": "allow_retractions            = true",
-          "exampleSource": "generated coverage fixture"
-        },
-        "nowatch": {
-          "description": "Names one or more MOOS process names that uProcessWatch should ignore when checking process health.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
-          "example": "nowatch = uXMS",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uProcessWatch"
-        },
-        "post_mapping": {
-          "description": "A mapping from one posting variable name to another.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
-          "default": "true",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uProcessWatch/ProcessWatch.cpp:45",
-          "example": "post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT",
-          "exampleSource": "generated coverage fixture"
-        },
-        "summary_wait": {
-          "description": "Sets the maximum time between PROC_WATCH_SUMMARY postings. A negative value posts summaries only when the watched process state changes.",
+          "description": "Controls whether uProcessWatch retracts run warnings when a missing process reappears. true always allows retraction, false disables it, and a numeric value limits retraction to that many seconds.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
           "default": "-1",
           "defaultSource": "manual review",
-          "example": "summary_wait = 5",
+          "example": "allow_retractions = true",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uProcessWatch"
+          "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.1; moos-ivp/ivp/src/uProcessWatch/ProcessWatch.cpp:61,205,682"
+        },
+        "nowatch": {
+          "description": "Names process patterns that uProcessWatch should ignore even if they appear in DB_CLIENTS or the Antler-launched process list.",
+          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
+          "example": "nowatch = uXMS*",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.2; moos-ivp/ivp/src/uProcessWatch/ProcessWatch_Info.cpp:108"
+        },
+        "post_mapping": {
+          "description": "Maps one uProcessWatch posting variable to another output variable name.",
+          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
+          "example": "post_mapping = PROC_WATCH_FULL_SUMMARY, UPW_FULL_SUMMARY",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.2; moos-ivp/ivp/src/uProcessWatch/ProcessWatch.cpp:215"
+        },
+        "summary_wait": {
+          "description": "Sets the maximum time between PROC_WATCH_SUMMARY postings. A negative value posts summaries only when watched process status changes.",
+          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
+          "default": "-1",
+          "defaultSource": "manual review",
+          "example": "summary_wait = 10",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.2; moos-ivp/ivp/src/uProcessWatch/ProcessWatch_Info.cpp:112"
         },
         "watch": {
-          "description": "Names one or more MOOS processes that uProcessWatch should monitor and report as running or missing.",
+          "description": "Names a process that uProcessWatch should monitor and report as running or missing. Optional mappings may associate a watched process with a status variable.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
           "example": "watch = pHelmIvP",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uProcessWatch"
+          "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.1 and 4.2"
         },
         "watch_all": {
-          "description": "If true, watch all processes that become known either via the DB CLIENTS list or the Antler list. Legal values: true, false. The default is true.",
+          "description": "Controls whether uProcessWatch automatically monitors processes discovered from DB_CLIENTS and the Antler launch list.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
           "default": "true",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uProcessWatch/ProcessWatch_Info.cpp",
-          "example": "watch_all                    = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "watch_all = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.1; moos-ivp/ivp/src/uProcessWatch/ProcessWatch.cpp:40,178"
         }
       },
       "description": "The uProcessWatch application monitors the health of a set of MOOS application.  It does two things:"
@@ -3200,36 +3232,41 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uquerydb.pdf",
       "parameters": {
         "check_var": {
-          "description": "When the query results in a return value of zero, an optional variable report can be written to a file.",
+          "description": "Adds a MOOS variable whose final value should be included in the optional query result report when uQueryDB exits successfully.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uquerydb.pdf",
-          "example": "check_var                    = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "example": "check_var = MISSION_RESULT",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uquerydb.pdf: Section 5.2 and Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:120,230"
         },
         "check_var_format": {
-          "description": "Sets the output format for check variables written to the.checkvars file. Options are esv, or csv, or wsv, or vo. The default is esv. 5.3.",
+          "description": "Selects the output format for check_var reports. Supported formats are esv, csv, wsv, and vo.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uquerydb.pdf",
           "default": "esv",
-          "defaultSource": "documentation text",
-          "example": "check_var_format             = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "check_var_format = csv",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uquerydb.pdf: Section 5.3 and Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:48,141"
         },
         "condition": {
-          "description": "Same as pass condition. When all pass conditions are met, the query will result in a return value of zero.",
+          "description": "Adds a pass condition; this is an alias for pass_condition. All pass conditions must be true for uQueryDB to return success.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uquerydb.pdf",
-          "example": "condition                    = DEPLOY = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "condition = DEPLOY = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uquerydb.pdf: Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:225"
         },
         "fail_condition": {
-          "description": "When any fail condition is unsatisfied, the query will result ina return value of zero.",
+          "description": "Adds a logic condition that causes uQueryDB to return failure if it becomes true. Any satisfied fail condition is enough to fail the query.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uquerydb.pdf",
-          "example": "fail_condition               = DEPLOY = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "fail_condition = COLLISION = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uquerydb.pdf: Section 4 and Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:228,372"
         },
         "pass_condition": {
-          "description": "When all pass conditions are met, the query will result in a return value of zero.",
+          "description": "Adds a logic condition that must be true for uQueryDB to return success. All configured pass conditions are evaluated together.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uquerydb.pdf",
-          "example": "pass_condition               = DEPLOY = true",
-          "exampleSource": "generated coverage fixture"
+          "example": "pass_condition = MISSION_RESULT = pass",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uquerydb.pdf: Section 3 and Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:226,371"
         },
         "wait": {
           "description": "Waits this many seconds for queried variables to appear before uQueryDB exits with failure when an initial query is missing.",
@@ -3657,151 +3694,149 @@
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
       "parameters": {
         "colormap": {
-          "description": "Associates a color for the line of text reporting the given variable.",
+          "description": "Associates a MOOS variable, source, or community substring with a terminal color in uXMS output.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-          "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:51",
-          "example": "colormap                     = yellow",
-          "exampleSource": "generated coverage fixture"
+          "example": "colormap = NAV_SPEED, blue",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.1"
         },
         "content_mode": {
-          "description": "Set content mode to either scoping, history, procs, or help.",
+          "description": "Selects which uXMS report view is shown at startup. Supported modes include scoping, history, procs, and help.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-          "default": "events",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:55",
-          "example": "content_mode                 = normal",
-          "exampleSource": "generated coverage fixture"
+          "default": "scoping",
+          "defaultSource": "manual review",
+          "example": "content_mode = scoping",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.2; moos-ivp/ivp/src/uXMS/XMS.cpp:56"
         },
         "display_all": {
-          "description": "If true, all variables are reported in the scoping content mode.",
+          "description": "When true, uXMS shows all MOOSDB variables in scoping mode rather than only the configured watch variables.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:51",
-          "example": "display_all                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "display_all = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:69"
         },
         "display_aux_source": {
-          "description": "If true, non-null auxilliary source is shown in place of source.",
+          "description": "When true, uXMS shows non-empty auxiliary source information in the source column instead of the ordinary source app name.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:44",
-          "example": "display_aux_source           = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "display_aux_source = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:45"
         },
         "display_community": {
-          "description": "If true, the Community column is rendered.",
+          "description": "Controls whether the Community column is shown in scoping and history reports.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:47",
-          "example": "display_community            = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "display_community = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:47"
         },
         "display_history_var": {
-          "description": "If false, history var not shown in history mode.",
+          "description": "Controls whether the variable name is shown on each row in history mode. Turning it off saves horizontal space when the history view is scoped to one variable.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
           "default": "true",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:49",
+          "defaultSource": "manual review",
           "example": "display_history_var = true",
-          "exampleSource": "generated from parameter name"
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3"
         },
         "display_source": {
-          "description": "If true, the Source column is rendered.",
+          "description": "Controls whether the Source column is shown in scoping and history reports.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:44",
-          "example": "display_source               = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "display_source = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:44"
         },
         "display_time": {
-          "description": "If true, the Time column is rendered.",
+          "description": "Controls whether the Time column is shown in scoping and history reports.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:46",
-          "example": "display_time                 = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "display_time = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:46"
         },
         "display_virgins": {
-          "description": "If false, variables never written to the MOOSDB are not reported.",
+          "description": "Controls whether variables that have never been written, or have empty-string values, are shown in uXMS reports.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
           "default": "true",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:63",
-          "example": "display_virgins              = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "display_virgins = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:63"
         },
         "history_var": {
-          "description": "Names the MOOS variable reported in the history mode.",
+          "description": "Names the single MOOS variable shown in uXMS history mode. If multiple history_var lines are provided, the last one is used.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-          "default": "true",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:63",
-          "example": "history_var                  = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "example": "history_var = DB_CLIENTS",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.4; moos-ivp/ivp/src/uXMS/XMS.cpp:271"
         },
         "refresh_mode": {
-          "description": "Determines when new reports are written to the screen.",
+          "description": "Controls when uXMS refreshes terminal output. Supported modes are events, streaming, and paused.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-          "example": "refresh_mode                 = normal",
-          "exampleSource": "generated coverage fixture"
+          "example": "refresh_mode = events",
+          "exampleSource": "manual review",
+          "default": "events",
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.5; moos-ivp/ivp/src/uXMS/XMS.cpp:55,261"
         },
         "source": {
-          "description": "Restricts displayed variables to mail from the named MOOS source app.",
+          "description": "Restricts displayed variables to mail from the named MOOS source app or apps.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-          "example": "source = pHelmIvP",
+          "example": "source = pHelmIvP, pMarineViewer",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uXMS"
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.6; moos-ivp/ivp/src/uXMS"
         },
         "term_report_interval": {
-          "description": "Time (secs) between report updates (default 0.6).",
+          "description": "Sets the minimum time, in seconds, between uXMS terminal report updates. Accepted values are clipped to the supported range.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
           "default": "0.6",
-          "defaultSource": "documentation text",
-          "example": "term_report_interval         = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "term_report_interval = 0.6",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.7; moos-ivp/ivp/src/uXMS/XMS_Info.cpp:149"
         },
         "trunc_data": {
-          "description": "If true, variable string values are truncated.",
+          "description": "Sets the maximum number of characters shown for long string values before uXMS truncates them and appends an ellipsis. A value of 0 disables truncation.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-          "default": "no trucation",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS_Info.cpp",
-          "example": "trunc_data                   = true",
-          "exampleSource": "generated coverage fixture"
+          "default": "0",
+          "defaultSource": "manual review",
+          "example": "trunc_data = 40",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.8; moos-ivp/ivp/src/uXMS/XMS.cpp:61"
         },
         "wrap_data": {
-          "description": "If true, variable string values are multi-line wrapped.",
+          "description": "Controls whether long variable values are wrapped across multiple lines in uXMS output.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
           "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:59",
-          "example": "wrap_data                    = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "wrap_data = false",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.9; moos-ivp/ivp/src/uXMS/XMS.cpp:59"
         },
         "wrap_data_len": {
-          "description": "Sets the string-content line length used when uXMS wraps long data values for display.",
+          "description": "Sets the line length used when uXMS wraps long variable values.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
           "default": "45",
           "defaultSource": "manual review",
           "example": "wrap_data_len = 45",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uXMS"
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.9; moos-ivp/ivp/src/uXMS/XMS.cpp:60"
         },
         "var": {
-          "description": "A comma-separated list of variables to scope on in the scoping mode.",
+          "description": "Adds one or more MOOS variables to the uXMS scoping watch list.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-          "default": "false",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:51",
-          "example": "var                          = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "example": "var = PROC_WATCH_EVENT",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.10"
         }
       },
       "description": "uXMS is a terminal based MOOS app for scoping the MOOSDB.  It has no graphics library build"
@@ -3909,25 +3944,23 @@
     "allow_echo_types": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "A list of platform types for which an reply will be generated from another source. Legal values: auv, uuv, usv, asv, kayak, kingfisher, glider, and ship. The default is the empty set, indicating that all types are honored.",
+        "description": "Restricts simulated range replies to contacts whose platform type is in the configured list. If no types are configured, all platform types are honored.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
-        "default": "white",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:45",
-        "example": "allow_echo_types             = kayak",
-        "exampleSource": "generated coverage fixture"
+        "example": "allow_echo_types = kayak",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:139,634"
       }
     ],
     "allow_retractions": [
       {
         "owner": "uProcessWatch",
-        "description": "If true, run warnings are retracted if a process reappears after disappearing. Legal values: true, false. The default is true.",
+        "description": "Controls whether uProcessWatch retracts run warnings when a missing process reappears. true always allows retraction, false disables it, and a numeric value limits retraction to that many seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
         "default": "-1",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uProcessWatch/ProcessWatch.cpp:61",
-        "example": "allow_retractions            = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "allow_retractions = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.1; moos-ivp/ivp/src/uProcessWatch/ProcessWatch.cpp:61,205,682"
       }
     ],
     "alt_nav_group": [
@@ -3988,88 +4021,91 @@
     "appcast_trunc_msg": [
       {
         "owner": "uFldMessageHandler",
-        "description": "Sets the maximum number of characters from each successful message shown in the appcast report.",
+        "description": "Sets the maximum number of message characters shown per line in the appcast report.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_msghandler.pdf",
         "default": "75",
         "defaultSource": "manual review",
         "example": "appcast_trunc_msg = 75",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uFldMessageHandler"
+        "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.2"
       }
     ],
     "audio_dir": [
       {
         "owner": "iSay",
-        "description": "Names a system directory to be added to path of directories to search for audio files named in a particular utterance request.",
+        "description": "Adds a directory to the search path used when an utterance request names an audio file. Multiple audio_dir lines may be used; iSay checks these directories when resolving file= requests.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
-        "example": "audio_dir                    = ./",
-        "exampleSource": "generated coverage fixture"
+        "example": "audio_dir = ./audio",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_isay.pdf: Listing 2.1; moos-ivp/ivp/src/iSay/Sayer.cpp:190,374"
       }
     ],
     "auto_bridge_appcast": [
       {
         "owner": "uFldNodeBroker",
-        "description": "Suppress the normal automatic bridging of the APPCAST variable. The default is false.",
+        "description": "Controls whether uFldNodeBroker automatically bridges APPCAST traffic to support appcasting. Set false to opt out of the automatic bridge.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodebroker.pdf",
-        "default": "false",
-        "defaultSource": "documentation text",
-        "example": "auto_bridge_appcast          = true",
-        "exampleSource": "generated coverage fixture"
+        "default": "true",
+        "defaultSource": "manual review",
+        "example": "auto_bridge_appcast = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodebroker.pdf: Listing 2.1; moos-ivp/ivp/src/uFldNodeBroker/NodeBroker.cpp:154,171"
       },
       {
         "owner": "uFldShoreBroker",
-        "description": "Suppress the normal automatic bridging of the APPCAST REQ variable. The default is false.",
+        "description": "Controls whether uFldShoreBroker automatically bridges APPCAST_REQ traffic to support appcasting. Set false to opt out of the automatic bridge.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_shorebroker.pdf",
-        "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker.cpp:41",
-        "example": "auto_bridge_appcast          = true",
-        "exampleSource": "generated coverage fixture"
+        "default": "true",
+        "defaultSource": "manual review",
+        "example": "auto_bridge_appcast = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2; moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp:99"
       }
     ],
     "auto_bridge_mhash": [
       {
         "owner": "uFldShoreBroker",
-        "description": "Suppress the normal automatic bridging of the MISSION HASH variable. The default is false.",
+        "description": "Controls whether uFldShoreBroker automatically bridges MISSION_HASH traffic. Set false to opt out of the automatic bridge.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_shorebroker.pdf",
-        "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker.cpp:41",
-        "example": "auto_bridge_mhash            = true",
-        "exampleSource": "generated coverage fixture"
+        "default": "true",
+        "defaultSource": "manual review",
+        "example": "auto_bridge_mhash = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2; moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp:100"
       }
     ],
     "auto_bridge_realmcast": [
       {
         "owner": "uFldNodeBroker",
-        "description": "Suppress the normal automatic bridging of the REALMCAST and REALMCAST CHANNELS variables. The default is false.",
+        "description": "Controls whether uFldNodeBroker automatically bridges REALMCAST and REALMCAST_CHANNELS traffic to support realmcasting. Set false to opt out.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodebroker.pdf",
-        "default": "false",
-        "defaultSource": "documentation text",
-        "example": "auto_bridge_realmcast        = true",
-        "exampleSource": "generated coverage fixture"
+        "default": "true",
+        "defaultSource": "manual review",
+        "example": "auto_bridge_realmcast = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodebroker.pdf: Listing 2.1; moos-ivp/ivp/src/uFldNodeBroker/NodeBroker.cpp:153,169"
       },
       {
         "owner": "uFldShoreBroker",
-        "description": "Suppress the normal automatic bridging of the REALMCAST REQ variable. The default is false.",
+        "description": "Controls whether uFldShoreBroker automatically bridges REALMCAST_REQ traffic to support realmcasting. Set false to opt out of the automatic bridge.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_shorebroker.pdf",
-        "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker.cpp:41",
-        "example": "auto_bridge_realmcast        = true",
-        "exampleSource": "generated coverage fixture"
+        "default": "true",
+        "defaultSource": "manual review",
+        "example": "auto_bridge_realmcast = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2; moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp:98"
       }
     ],
     "aux_info": [
       {
         "owner": "uFldMessageHandler",
-        "description": "Controls the source auxiliary field included with handled messages, such as node or node+app.",
+        "description": "Controls the source auxiliary field attached to handled messages, such as node or node+app.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_msghandler.pdf",
         "default": "node",
         "defaultSource": "manual review",
         "example": "aux_info = node+app",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uFldMessageHandler"
+        "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.2"
       }
     ],
     "back_shade": [
@@ -4085,10 +4121,11 @@
     "bad_msg_flag": [
       {
         "owner": "uFldMessageHandler",
-        "description": "A variable-value pair posted upon receipt of a valid, but rejected incoming message.",
+        "description": "Defines a MOOS variable-value post made when an incoming message is validly formed but rejected by the handler.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_msghandler.pdf",
-        "example": "bad_msg_flag                 = EXAMPLE_FLAG = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "bad_msg_flag = TOTAL_BAD=$[BAD_CTR]",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.2; moos-ivp/ivp/src/uFldMessageHandler/MessageHandler.cpp:143,239"
       }
     ],
     "bearing_lines_viewable": [
@@ -4151,13 +4188,13 @@
     "breach_trigger": [
       {
         "owner": "uLoadWatch",
-        "description": "Sets how many threshold breaches are allowed before uLoadWatch posts a warning. A value of 1 warns on the first breach.",
+        "description": "Sets how many load-gap threshold breaches are tolerated before uLoadWatch posts a warning. A value of 1 warns on the first breach.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uloadwatch.pdf",
         "default": "1",
         "defaultSource": "manual review",
         "example": "breach_trigger = 1",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uLoadWatch"
+        "reviewSource": "MOOS-IvP app_uloadwatch.pdf: Listing 2.1"
       }
     ],
     "bridge": [
@@ -4265,21 +4302,23 @@
     "check_var": [
       {
         "owner": "uQueryDB",
-        "description": "When the query results in a return value of zero, an optional variable report can be written to a file.",
+        "description": "Adds a MOOS variable whose final value should be included in the optional query result report when uQueryDB exits successfully.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uquerydb.pdf",
-        "example": "check_var                    = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "example": "check_var = MISSION_RESULT",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uquerydb.pdf: Section 5.2 and Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:120,230"
       }
     ],
     "check_var_format": [
       {
         "owner": "uQueryDB",
-        "description": "Sets the output format for check variables written to the.checkvars file. Options are esv, or csv, or wsv, or vo. The default is esv. 5.3.",
+        "description": "Selects the output format for check_var reports. Supported formats are esv, csv, wsv, and vo.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uquerydb.pdf",
         "default": "esv",
-        "defaultSource": "documentation text",
-        "example": "check_var_format             = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "check_var_format = csv",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uquerydb.pdf: Section 5.3 and Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:48,141"
       }
     ],
     "circle_viewable_all": [
@@ -4359,13 +4398,11 @@
     "colormap": [
       {
         "owner": "uXMS",
-        "description": "Associates a color for the line of text reporting the given variable.",
+        "description": "Associates a MOOS variable, source, or community substring with a terminal color in uXMS output.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-        "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:51",
-        "example": "colormap                     = yellow",
-        "exampleSource": "generated coverage fixture"
+        "example": "colormap = NAV_SPEED, blue",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.1"
       }
     ],
     "comms_pulse_viewable_all": [
@@ -4383,13 +4420,13 @@
     "comms_range": [
       {
         "owner": "uFldNodeComms",
-        "description": "Max range outside which inter-vehicle node reports and node messages will not be sent. Legal values: any numerical value. The default is 100 meters.",
+        "description": "Sets the maximum range, in meters, for sharing inter-vehicle node reports and node messages. The value nolimit disables range cutoff.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
         "default": "100",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:42",
-        "example": "comms_range                  = 10",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "comms_range = 100",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Section 2.1; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:42,239"
       }
     ],
     "condition": [
@@ -4410,10 +4447,11 @@
       },
       {
         "owner": "uQueryDB",
-        "description": "Same as pass condition. When all pass conditions are met, the query will result in a return value of zero.",
+        "description": "Adds a pass condition; this is an alias for pass_condition. All pass conditions must be true for uQueryDB to return success.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uquerydb.pdf",
-        "example": "condition                    = DEPLOY = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "condition = DEPLOY = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uquerydb.pdf: Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:225"
       },
       {
         "owner": "uTimerScript",
@@ -4502,13 +4540,13 @@
       },
       {
         "owner": "uXMS",
-        "description": "Set content mode to either scoping, history, procs, or help.",
+        "description": "Selects which uXMS report view is shown at startup. Supported modes include scoping, history, procs, and help.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-        "default": "events",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:55",
-        "example": "content_mode                 = normal",
-        "exampleSource": "generated coverage fixture"
+        "default": "scoping",
+        "defaultSource": "manual review",
+        "example": "content_mode = scoping",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.2; moos-ivp/ivp/src/uXMS/XMS.cpp:56"
       }
     ],
     "coord_policy_global": [
@@ -4538,13 +4576,13 @@
     "critical_range": [
       {
         "owner": "uFldNodeComms",
-        "description": "Range in meters within which inter-vehicle node reports will be shared even if group membership would otherwise disallow. Legal values: any numerical value. The default is 30 meters.",
+        "description": "Sets the range within which node reports are shared for safety even when normal group or range rules would block them.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
         "default": "30",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:46",
-        "example": "critical_range               = 10",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "critical_range = 30",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Section 2.1; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:46,249"
       }
     ],
     "crossfill_policy": [
@@ -4625,12 +4663,13 @@
     "debug": [
       {
         "owner": "uFldNodeComms",
-        "description": "If true, further debugging information is produced to the terminal output. Legal values: true, false. The default is false.",
+        "description": "Enables extra terminal debugging output from uFldNodeComms.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
         "default": "false",
-        "defaultSource": "documentation text",
+        "defaultSource": "manual review",
         "example": "debug = false",
-        "exampleSource": "generated from parameter name"
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
       }
     ],
     "decay": [
@@ -4672,61 +4711,73 @@
     "default_beacon_color": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Color of beacons when rendered (”red”).",
+        "description": "Sets the default marker color used when rendering beacons.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-        "example": "default_beacon_color         = yellow",
-        "exampleSource": "generated coverage fixture"
+        "default": "orange",
+        "defaultSource": "manual review",
+        "example": "default_beacon_color = orange",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:141"
       }
     ],
     "default_beacon_freq": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Sets the default interval for unsolicited beacon broadcasts. The value may be never, a fixed number of seconds, or a random range such as 60:120.",
+        "description": "Sets the default unsolicited report interval for beacons. The value may be never, a fixed number of seconds, or a random range such as 60:120.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
         "default": "never",
         "defaultSource": "manual review",
-        "example": "default_beacon_freq = 60:120",
+        "example": "default_beacon_freq = never",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.2"
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.2; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:137"
       }
     ],
     "default_beacon_pull_dist": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Range at which...",
+        "description": "Sets the default distance a vehicle-side ping can reach when querying beacons.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-        "example": "default_beacon_pull_dist     = 10",
-        "exampleSource": "generated coverage fixture"
+        "default": "50",
+        "defaultSource": "manual review",
+        "example": "default_beacon_pull_dist = 50",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:47,147"
       }
     ],
     "default_beacon_push_dist": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Range at which...",
+        "description": "Sets the default distance from a beacon within which its unsolicited or solicited range report can be received.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-        "example": "default_beacon_push_dist     = 10",
-        "exampleSource": "generated coverage fixture"
+        "default": "50",
+        "defaultSource": "manual review",
+        "example": "default_beacon_push_dist = 50",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:46,145"
       }
     ],
     "default_beacon_shape": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Sets the default rendered shape for beacons when an individual beacon does not specify a shape.",
+        "description": "Sets the default marker shape used when rendering beacons.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
         "default": "circle",
         "defaultSource": "manual review",
         "example": "default_beacon_shape = circle",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:139"
       }
     ],
     "default_beacon_width": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Width of beacons (meters) when rendered (4).",
+        "description": "Sets the default rendered marker width for beacons.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-        "example": "default_beacon_width         = 4",
-        "exampleSource": "generated coverage fixture"
+        "default": "4",
+        "defaultSource": "manual review",
+        "example": "default_beacon_width = 4",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:143"
       }
     ],
     "default_color": [
@@ -4802,25 +4853,23 @@
     "default_hostip": [
       {
         "owner": "pHostInfo",
-        "description": "IP address used if no IP address can otherwise be determined.",
+        "description": "Sets the fallback IP address pHostInfo posts when it cannot determine an address from the machine interfaces.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_phostinfo.pdf",
         "default": "localhost",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pHostInfo/HostInfo_Info.cpp",
-        "example": "default_hostip               = localhost",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "default_hostip = 192.168.0.55",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:42,156"
       }
     ],
     "default_hostip_force": [
       {
         "owner": "pHostInfo",
-        "description": "This IP address will override any IP address from an auto-discovered network interface. Useful for debugging.",
+        "description": "Forces pHostInfo to use the configured fallback IP address instead of an auto-discovered network-interface address. This is mainly useful for debugging or controlled simulations.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_phostinfo.pdf",
-        "default": "localhost",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:42",
-        "example": "default_hostip_force         = localhost",
-        "exampleSource": "generated coverage fixture"
+        "example": "default_hostip_force = 192.168.0.99",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:163,360"
       }
     ],
     "default_length": [
@@ -4838,13 +4887,13 @@
     "default_rate": [
       {
         "owner": "iSay",
-        "description": "The speech rate to be used, in words per minute, if left unspecified for a particular utterance request (200).",
+        "description": "Sets the default speech rate used when an incoming SAY_MOOS utterance does not specify its own rate. The value is passed to the speech backend as the rate for spoken text.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
         "default": "200",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/iSay/Sayer.cpp:41",
-        "example": "default_rate                 = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "default_rate = 200",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:41,172,336"
       }
     ],
     "default_spd": [
@@ -4862,10 +4911,11 @@
     "default_voice": [
       {
         "owner": "iSay",
-        "description": "The default voice to be used if left unspecified for a particular utterance request.",
+        "description": "Sets the voice used for spoken utterances when a SAY_MOOS request omits the voice field. Available voice names depend on the platform speech backend.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
-        "example": "default_voice                = default",
-        "exampleSource": "generated coverage fixture"
+        "example": "default_voice = alex",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer_Info.cpp:98"
       }
     ],
     "default_vsource": [
@@ -4949,25 +4999,25 @@
     "display_all": [
       {
         "owner": "uXMS",
-        "description": "If true, all variables are reported in the scoping content mode.",
+        "description": "When true, uXMS shows all MOOSDB variables in scoping mode rather than only the configured watch variables.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:51",
-        "example": "display_all                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "display_all = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:69"
       }
     ],
     "display_aux_source": [
       {
         "owner": "uXMS",
-        "description": "If true, non-null auxilliary source is shown in place of source.",
+        "description": "When true, uXMS shows non-empty auxiliary source information in the source column instead of the ordinary source app name.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:44",
-        "example": "display_aux_source           = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "display_aux_source = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:45"
       }
     ],
     "display_bhv_posts": [
@@ -4984,25 +5034,25 @@
     "display_community": [
       {
         "owner": "uXMS",
-        "description": "If true, the Community column is rendered.",
+        "description": "Controls whether the Community column is shown in scoping and history reports.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:47",
-        "example": "display_community            = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "display_community = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:47"
       }
     ],
     "display_history_var": [
       {
         "owner": "uXMS",
-        "description": "If false, history var not shown in history mode.",
+        "description": "Controls whether the variable name is shown on each row in history mode. Turning it off saves horizontal space when the history view is scoped to one variable.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
         "default": "true",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:49",
+        "defaultSource": "manual review",
         "example": "display_history_var = true",
-        "exampleSource": "generated from parameter name"
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3"
       }
     ],
     "display_moos_scope": [
@@ -5051,25 +5101,25 @@
     "display_source": [
       {
         "owner": "uXMS",
-        "description": "If true, the Source column is rendered.",
+        "description": "Controls whether the Source column is shown in scoping and history reports.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:44",
-        "example": "display_source               = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "display_source = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:44"
       }
     ],
     "display_time": [
       {
         "owner": "uXMS",
-        "description": "If true, the Time column is rendered.",
+        "description": "Controls whether the Time column is shown in scoping and history reports.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:46",
-        "example": "display_time                 = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "display_time = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:46"
       }
     ],
     "display_virgins": [
@@ -5084,13 +5134,13 @@
       },
       {
         "owner": "uXMS",
-        "description": "If false, variables never written to the MOOSDB are not reported.",
+        "description": "Controls whether variables that have never been written, or have empty-string values, are shown in uXMS reports.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
         "default": "true",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:63",
-        "example": "display_virgins              = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "display_virgins = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:63"
       }
     ],
     "draw_region": [
@@ -5344,12 +5394,13 @@
     "exponential_decay": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Determines if the there is an exponentially decaying with range probability of detection beyond the reach distance + reply distance. Default is false.",
+        "description": "Enables exponentially decaying detection probability beyond the combined reach and reply distances.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
         "default": "false",
-        "defaultSource": "documentation text",
+        "defaultSource": "manual review",
         "example": "exponential_decay = false",
-        "exampleSource": "generated from parameter name"
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.5"
       }
     ],
     "extrap_enabled": [
@@ -5403,45 +5454,53 @@
     "fail_condition": [
       {
         "owner": "pMissionEval",
-        "description": "A logic condition that must not be satisfied or otherwise the overall mission will be considered successful.",
+        "description": "Adds a logic condition that causes the mission evaluation to fail if it is satisfied.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
-        "example": "fail_condition               = DEPLOY = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "fail_condition = COLLISION = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 3.1 and Listing 5.1; moos-ivp/ivp/src/pMissionEval/MissionEval.cpp:162"
       },
       {
         "owner": "uQueryDB",
-        "description": "When any fail condition is unsatisfied, the query will result ina return value of zero.",
+        "description": "Adds a logic condition that causes uQueryDB to return failure if it becomes true. Any satisfied fail condition is enough to fail the query.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uquerydb.pdf",
-        "example": "fail_condition               = DEPLOY = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "fail_condition = COLLISION = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uquerydb.pdf: Section 4 and Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:228,372"
       }
     ],
     "fail_flag": [
       {
         "owner": "pMissionEval",
-        "description": "A flag to be publish once the result is known and is mission has been deemed to be not successful.",
+        "description": "Defines one MOOS variable-value post made after pMissionEval determines that the mission did not pass.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
-        "example": "fail_flag                    = EXAMPLE_FLAG = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "fail_flag = MISSION_PASSED = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Listing 5.1"
       }
     ],
     "finish_val": [
       {
         "owner": "uMayFinish",
-        "description": "Sets the value that must be observed on the configured finish variable before uMayFinish allows completion.",
+        "description": "Sets the value that must be observed on finish_var before uMayFinish allows completion.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_umayfinish.pdf",
+        "default": "true",
+        "defaultSource": "manual review",
         "example": "finish_val = true",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uMayFinish"
+        "reviewSource": "MOOS-IvP app_umayfinish.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/uMayFinish/MayFinish.cpp:120,134"
       }
     ],
     "finish_var": [
       {
         "owner": "uMayFinish",
-        "description": "A MOOS variable.",
+        "description": "Names the MOOS variable uMayFinish monitors to decide whether the mission may finish.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_umayfinish.pdf",
-        "example": "finish_var                   = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "default": "MISSION_EVALUATED",
+        "defaultSource": "manual review",
+        "example": "finish_var = MISSION_EVALUATED",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_umayfinish.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/uMayFinish/MayFinish.cpp:118,132"
       }
     ],
     "flag": [
@@ -5537,36 +5596,37 @@
     "ground_true": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "If true, ground truth reports are also published alongside the normal range reports, with noise removed. This information is not bridge to the vehicles however. Legal values: true, false. The default is true.",
+        "description": "Documentation spelling for ground_truth. When true, publishes ground-truth range reports with noise removed for diagnostics.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
         "default": "true",
-        "defaultSource": "documentation text",
+        "defaultSource": "manual review",
         "example": "ground_true = true",
-        "exampleSource": "generated from parameter name"
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
       }
     ],
     "ground_truth": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "If true, ground truth is also reported when noise is added.",
+        "description": "When true, publishes ground-truth beacon range reports in addition to noisy simulated reports when random noise is enabled.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
         "default": "true",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:51",
-        "example": "ground_truth                 = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "ground_truth = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.5; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:51,165"
       }
     ],
     "groups": [
       {
         "owner": "uFldNodeComms",
-        "description": "If true, inter-vehicle node reports are shared only if two vehicles are in the same group. May be overridden if the two vehicles are within the critical range. The vehicle group designation is typically declared in pNodeReporter. The default is false.",
+        "description": "When true, shares inter-vehicle node reports only between vehicles in the same group, except within the critical range.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:74",
-        "example": "groups                       = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "groups = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
       }
     ],
     "hash_delta": [
@@ -5627,24 +5687,23 @@
     "history": [
       {
         "owner": "uFldPathCheck",
-        "description": "Length of queue used for calculating present speed. The default is 10.",
+        "description": "Sets how many recent node records uFldPathCheck keeps for each vehicle when estimating present speed and checking path progress.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_pathcheck.pdf",
         "default": "10",
-        "defaultSource": "documentation text",
+        "defaultSource": "manual review",
         "example": "history = 10",
-        "exampleSource": "generated from parameter name"
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_pathcheck.pdf: Listing 2.1; moos-ivp/ivp/src/uFldPathCheck/PathCheck_MOOSApp.cpp:40,126"
       }
     ],
     "history_var": [
       {
         "owner": "uXMS",
-        "description": "Names the MOOS variable reported in the history mode.",
+        "description": "Names the single MOOS variable shown in uXMS history mode. If multiple history_var lines are provided, the last one is used.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-        "default": "true",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:63",
-        "example": "history_var                  = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "example": "history_var = DB_CLIENTS",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.4; moos-ivp/ivp/src/uXMS/XMS.cpp:271"
       }
     ],
     "hold_messages": [
@@ -5803,13 +5862,13 @@
     "interval_policy": [
       {
         "owner": "iSay",
-        "description": "Either \"from start\" or \"from end\", indicating whether the interval of time between utterances is marked from the start of the previous utterance or the end of the previous utterance (\"from end\").",
+        "description": "Controls whether the minimum interval between utterances is measured from the start or the end of the previous utterance. Supported values are from_start and from_end.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
         "default": "from_end",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/iSay/Sayer.cpp:44",
-        "example": "interval_policy              = normal",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "interval_policy = from_end",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:44,176"
       }
     ],
     "json_report": [
@@ -5895,10 +5954,11 @@
     "lead_condition": [
       {
         "owner": "pMissionEval",
-        "description": "A logic condition that must be satisfied before the mission can be evaluated.",
+        "description": "Adds a logic condition that must become true before the associated pass/fail aspect is evaluated.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
-        "example": "lead_condition               = DEPLOY = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "lead_condition = ARRIVED_MID = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 3.2 and Listing 5.1"
       }
     ],
     "left_context": [
@@ -6065,13 +6125,13 @@
     "max_db_uptime": [
       {
         "owner": "uMayFinish",
-        "description": "Sets the MOOSDB uptime, in seconds, after which uMayFinish exits. A negative value disables this timeout.",
+        "description": "Sets the MOOSDB uptime, in seconds, after which uMayFinish exits regardless of finish_var state. A negative value disables this timeout.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_umayfinish.pdf",
         "default": "-1",
         "defaultSource": "manual review",
-        "example": "max_db_uptime = 300",
+        "example": "max_db_uptime = 3600",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uMayFinish"
+        "reviewSource": "MOOS-IvP app_umayfinish.pdf: Listing 2.2; moos-ivp/ivp/src/uMayFinish/MayFinish.cpp:20,122"
       }
     ],
     "max_deceleration": [
@@ -6113,13 +6173,13 @@
     "max_msg_length": [
       {
         "owner": "uFldNodeComms",
-        "description": "The total number of characters that may be sent in a string component of a node message. The default is 1000.",
+        "description": "Sets the maximum number of characters allowed in the string component of an inter-vehicle node message.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
         "default": "1000",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:57",
-        "example": "max_msg_length               = 4",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "max_msg_length = 1000",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
       }
     ],
     "max_noheart": [
@@ -6161,13 +6221,13 @@
     "mhash_short_var": [
       {
         "owner": "pMissionHash",
-        "description": "The variable to which the short version of the mission hash is posted. If this parameter is not specified, this information will not be published. This cannot be the same variable as the mission hash var.",
+        "description": "Names the MOOS variable where pMissionHash posts the short mission hash. The local source initializes this to MHASH; setting it to off disables the short-hash post.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmhash.pdf",
         "default": "MHASH",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMissionHash/MissionHash_MOOSApp.cpp:40",
-        "example": "mhash_short_var              = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "mhash_short_var = MHASH",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmhash.pdf: Listing 3.1; moos-ivp/ivp/src/pMissionHash/MissionHash_MOOSApp.cpp:40,140"
       }
     ],
     "min_duration": [
@@ -6185,37 +6245,37 @@
     "min_msg_interval": [
       {
         "owner": "uFldNodeComms",
-        "description": "The number of seconds required between messaged sends for any one source vehicle. The default is 30 seconds.",
+        "description": "Sets the minimum time, in seconds, between node-message sends from any one source vehicle.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
-        "default": "30.0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:55",
-        "example": "min_msg_interval             = 5",
-        "exampleSource": "generated coverage fixture"
+        "default": "30",
+        "defaultSource": "manual review",
+        "example": "min_msg_interval = 30",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
       }
     ],
     "min_rpt_interval": [
       {
         "owner": "uFldNodeComms",
-        "description": "The number of seconds required between report sends for any one source vehicle. The default is -1, meaning no dropping of reports.",
+        "description": "Sets the minimum time, in seconds, between node-report sends from any one source vehicle. A negative value disables report dropping.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
         "default": "-1",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:56",
-        "example": "min_rpt_interval             = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "min_rpt_interval = -1",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
       }
     ],
     "min_utter_interval": [
       {
         "owner": "iSay",
-        "description": "The minimum time (in seconds) between utterances before a next queued utterance will commence (1.0).",
+        "description": "Sets the minimum number of seconds between queued utterances. iSay will not start the next utterance until this interval permits it.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
         "default": "1.0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/iSay/Sayer.cpp:43",
-        "example": "min_utter_interval           = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "min_utter_interval = 1",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:43,196"
       }
     ],
     "mission_form": [
@@ -6233,46 +6293,47 @@
     "mission_hash_var": [
       {
         "owner": "pMissionHash",
-        "description": "The variable to which the mission hash is posted. The default is MISSION HASH.",
+        "description": "Names the MOOS variable where pMissionHash posts the full mission hash. Set this to off to disable full-hash posting.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmhash.pdf",
         "default": "MISSION_HASH",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pMissionHash/MissionHash_MOOSApp.cpp:39",
-        "example": "mission_hash_var             = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "mission_hash_var = MISSION_HASH",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmhash.pdf: Listing 3.1; moos-ivp/ivp/src/pMissionHash/MissionHash_MOOSApp.cpp:39,135"
       }
     ],
     "msg_color": [
       {
         "owner": "uFldNodeComms",
-        "description": "The color of inter-vehicle message comms pulses. The default is \"white\".",
+        "description": "Sets the color used for inter-vehicle message communication pulses.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
         "default": "white",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:64",
-        "example": "msg_color                    = yellow",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "msg_color = white",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
       }
     ],
     "msg_flag": [
       {
         "owner": "uFldMessageHandler",
-        "description": "A variable-value pair posted upon receipt of a valid, un-rejected incoming message and posting to the MOOSDB.",
+        "description": "Defines a MOOS variable-value post made when a valid incoming message is accepted and posted to the local MOOSDB.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_msghandler.pdf",
-        "example": "msg_flag                     = EXAMPLE_FLAG = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "msg_flag = RETURN=true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.2; moos-ivp/ivp/src/uFldMessageHandler/MessageHandler.cpp:141,252"
       }
     ],
     "msg_groups": [
       {
         "owner": "uFldNodeComms",
-        "description": "If true, inter-vehicle node messages are shared only if the two vehicles are in the same group. The vehicle group designation is typically declared in pNodeReporter. The default is false.",
+        "description": "When true, shares inter-vehicle node messages only between vehicles in the same group.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:75",
-        "example": "msg_groups                   = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "msg_groups = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
       }
     ],
     "msg_max_hist": [
@@ -6284,19 +6345,19 @@
         "defaultSource": "manual review",
         "example": "msg_max_hist = 10",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/pRealm"
+        "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1; moos-ivp/ivp/src/pRealm/Realm.cpp:135,329"
       }
     ],
     "msg_repeat_color": [
       {
         "owner": "uFldNodeComms",
-        "description": "The color of inter-vehicle message comms pulses when the message represents a repeat of a previously dropped message, under mediated message passing. The default is \"light green\".",
+        "description": "Sets the color used for communication pulses representing repeated previously dropped node messages.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
         "default": "light_green",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:65",
-        "example": "msg_repeat_color             = yellow",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "msg_repeat_color = light_green",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
       }
     ],
     "nav_grace_period": [
@@ -6314,13 +6375,13 @@
     "near_breach_thresh": [
       {
         "owner": "uLoadWatch",
-        "description": "In addition to normal threshold breaches, the uLoadWatch app may also monitor for near breaches. A near breach occurs when the normal breach thresh is nearly met. For example, if the threshold for a certain app is 2.0, this means a breach is declared if time between app iterations is greater than 2x the normal gap between iterations. If the near breach thresh is set to 1.6, a near breach is declared if the gap reaches 1.6x the normal gap.",
+        "description": "Sets the fractional point between normal load and the configured breach threshold where uLoadWatch begins reporting near-breaches. For example, 0.9 reports when the gap reaches 90% of the way to the breach threshold.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uloadwatch.pdf",
-        "default": "1",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uLoadWatch/LoadWatch.cpp:39",
-        "example": "near_breach_thresh           = 10",
-        "exampleSource": "generated coverage fixture"
+        "default": "0.9",
+        "defaultSource": "manual review",
+        "example": "near_breach_thresh = 0.9",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uloadwatch.pdf: Listing 2.1; moos-ivp/ivp/src/uLoadWatch/LoadWatch.cpp:48,245,406"
       }
     ],
     "near_miss_dist": [
@@ -6378,19 +6439,21 @@
     "node_pull_dist": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "TBW",
+        "description": "Sets a vehicle-specific pull distance for vehicle-to-beacon range requests, overriding the default node pull distance for that vehicle.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-        "example": "node_pull_dist               = 10",
-        "exampleSource": "generated coverage fixture"
+        "example": "node_pull_dist = henry=120",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:610"
       }
     ],
     "node_push_dist": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "TBW",
+        "description": "Sets a vehicle-specific push distance for beacon range reports, overriding the default node push distance for that vehicle.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-        "example": "node_push_dist               = 10",
-        "exampleSource": "generated coverage fixture"
+        "example": "node_push_dist = henry=120",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:585"
       }
     ],
     "node_report_output": [
@@ -6440,11 +6503,11 @@
     "nowatch": [
       {
         "owner": "uProcessWatch",
-        "description": "Names one or more MOOS process names that uProcessWatch should ignore when checking process health.",
+        "description": "Names process patterns that uProcessWatch should ignore even if they appear in DB_CLIENTS or the Antler-launched process list.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
-        "example": "nowatch = uXMS",
+        "example": "nowatch = uXMS*",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uProcessWatch"
+        "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.2; moos-ivp/ivp/src/uProcessWatch/ProcessWatch_Info.cpp:108"
       }
     ],
     "obstacle_file": [
@@ -6508,38 +6571,41 @@
     "os_mode": [
       {
         "owner": "iSay",
-        "description": "Either \"osx or \"linux\" or \"both\". The default is \"both\"",
+        "description": "Selects which operating-system speech backend iSay should use for speech and audio playback. Supported values are osx, linux, and both.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_isay.pdf",
-        "default": "osx",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/iSay/Sayer_Info.cpp",
-        "example": "os_mode                      = normal",
-        "exampleSource": "generated coverage fixture"
+        "default": "both",
+        "defaultSource": "manual review",
+        "example": "os_mode = both",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:45,183"
       }
     ],
     "pass_condition": [
       {
         "owner": "pMissionEval",
-        "description": "A logic condition that must be satisfied for the overall mission to be consid- ered successful.",
+        "description": "Adds a logic condition that must be true for the mission, or the current evaluation aspect, to pass.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
-        "example": "pass_condition               = DEPLOY = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "pass_condition = ODOMETRY < 500",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 3.1 and Listing 5.1; moos-ivp/ivp/src/pMissionEval/MissionEval.cpp:160"
       },
       {
         "owner": "uQueryDB",
-        "description": "When all pass conditions are met, the query will result in a return value of zero.",
+        "description": "Adds a logic condition that must be true for uQueryDB to return success. All configured pass conditions are evaluated together.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uquerydb.pdf",
-        "example": "pass_condition               = DEPLOY = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "pass_condition = MISSION_RESULT = pass",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uquerydb.pdf: Section 3 and Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:226,371"
       }
     ],
     "pass_flag": [
       {
         "owner": "pMissionEval",
-        "description": "A flag to be publish once the result is known and is mission has been deemed to be successful.",
+        "description": "Defines one MOOS variable-value post made after pMissionEval determines that the mission passed.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
-        "example": "pass_flag                    = EXAMPLE_FLAG = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "pass_flag = MISSION_PASSED = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Listing 5.1"
       }
     ],
     "pause_var": [
@@ -6588,25 +6654,25 @@
     "ping_color": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Visual preference: color of initiating ping message. Legal values: any color in the Colore Appendix. The default is white.",
+        "description": "Sets the visual color used for initiating range-request pulses.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
         "default": "white",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:45",
-        "example": "ping_color                   = yellow",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "ping_color = white",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
       }
     ],
     "ping_payments": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "How pings treated w.r.t. ping wait time (”upon response”). ping wait: Mandatory number of seconds between successive vehicle pings. report vars: Determines variable name(s) used for range report (”short”). rn algorithm: Algorithm for adding random noise to range measurements. verbose: If true, verbose status message terminal output (false).",
+        "description": "Controls when a vehicle ping consumes its ping-wait interval. Supported modes include upon_request, upon_accept, and upon_response.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_beacon_rsensor.pdf",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:57",
-        "example": "ping_payments                = true",
-        "exampleSource": "generated coverage fixture"
+        "default": "upon_response",
+        "defaultSource": "manual review",
+        "example": "ping_payments = upon_response",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.4; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:49,652"
       }
     ],
     "ping_wait": [
@@ -6961,13 +7027,11 @@
     "post_mapping": [
       {
         "owner": "uProcessWatch",
-        "description": "A mapping from one posting variable name to another.",
+        "description": "Maps one uProcessWatch posting variable to another output variable name.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
-        "default": "true",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uProcessWatch/ProcessWatch.cpp:45",
-        "example": "post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT",
-        "exampleSource": "generated coverage fixture"
+        "example": "post_mapping = PROC_WATCH_FULL_SUMMARY, UPW_FULL_SUMMARY",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.2; moos-ivp/ivp/src/uProcessWatch/ProcessWatch.cpp:215"
       }
     ],
     "post_points": [
@@ -7019,11 +7083,11 @@
     "prefer_inerface": [
       {
         "owner": "pHostInfo",
-        "description": "Legacy misspelled alias accepted by the pHostInfo documentation/source for selecting the preferred network interface. Prefer prefer_interface when possible.",
+        "description": "Documentation typo for prefer_interface. The intended setting selects the preferred network interface when multiple valid IP addresses are available.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_phostinfo.pdf",
-        "example": "prefer_inerface = en0",
+        "example": "prefer_inerface = wlan0",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/pHostInfo and generated docs inventory"
+        "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1 typo; moos-ivp/ivp/src/pHostInfo/HostInfo_Info.cpp:103 documents prefer_interface"
       }
     ],
     "prefix": [
@@ -7115,13 +7179,13 @@
       },
       {
         "owner": "uFldNodeComms",
-        "description": "A duration, in seconds, that the comms or node pulse should be viewable. It is a field in VIEW COMMS PULSE message that is respected by at least pMarineViewer to render and slowly fade-out the rendering after this duration. The default is 10 seconds.",
+        "description": "Sets how long communication pulses remain visible in viewers such as pMarineViewer.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
         "default": "10",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:69",
-        "example": "pulse_duration               = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "pulse_duration = 10",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Section 5; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:69,275"
       }
     ],
     "pulse_range": [
@@ -7206,12 +7270,13 @@
     "reach_distance": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Distance out to which the pinging vehicle will be heard. Legal values: any numerical value or the keyword \"nolimit\". The default is 100.",
+        "description": "Sets the distance out to which the pinging vehicle can be heard. The value may be numeric meters or nolimit.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
         "default": "100",
-        "defaultSource": "documentation text",
-        "example": "reach_distance = 100",
-        "exampleSource": "generated from parameter name"
+        "defaultSource": "manual review",
+        "example": "reach_distance = default = 100",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.4"
       }
     ],
     "realmcast_color_scheme": [
@@ -7437,10 +7502,13 @@
       },
       {
         "owner": "uXMS",
-        "description": "Determines when new reports are written to the screen.",
+        "description": "Controls when uXMS refreshes terminal output. Supported modes are events, streaming, and paused.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-        "example": "refresh_mode                 = normal",
-        "exampleSource": "generated coverage fixture"
+        "default": "events",
+        "defaultSource": "manual review",
+        "example": "refresh_mode = events",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.5; moos-ivp/ivp/src/uXMS/XMS.cpp:55,261"
       }
     ],
     "region": [
@@ -7489,36 +7557,37 @@
     "relcast_interval": [
       {
         "owner": "pRealm",
-        "description": "Time duration, in seconds, that must occur between the previously generated realmcast and a new one. The allowable range is [0.4, 15]. Values outside this range will be clipped to the range. The default value is 0.8 seconds.",
+        "description": "Sets the minimum time, in seconds, between generated REALMCAST reports. Values are clipped to the supported range.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_prealm.pdf",
-        "default": "0",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pRealm/Realm_Info.cpp",
-        "example": "relcast_interval             = 5",
-        "exampleSource": "generated coverage fixture"
+        "default": "0.8",
+        "defaultSource": "manual review",
+        "example": "relcast_interval = 0.8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1; moos-ivp/ivp/src/pRealm/Realm.cpp:41,127"
       }
     ],
     "reply_color": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Visual preference: color of replying message Legal values: any color in Color Appendix. The default is chartreuse.",
+        "description": "Deprecated alias for echo_color. Sets the visual color used for reply/echo range pulses.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
         "default": "chartreuse",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:46",
-        "example": "reply_color                  = yellow",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "reply_color = chartreuse",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:146"
       }
     ],
     "reply_distance": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Distance out to which the pinged vehicle will be heard. Legal values: any numerical value or the keyword \"nolimit\". The default is 100.",
+        "description": "Sets the distance out to which the pinged contact can reply. The value may be numeric meters or nolimit.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
         "default": "100",
-        "defaultSource": "documentation text",
-        "example": "reply_distance = 100",
-        "exampleSource": "generated from parameter name"
+        "defaultSource": "manual review",
+        "example": "reply_distance = default = 100",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.4"
       }
     ],
     "report_all_encounters": [
@@ -7558,10 +7627,11 @@
     "report_file": [
       {
         "owner": "pMissionEval",
-        "description": "Name the report file to receive output of results.",
+        "description": "Names the file where pMissionEval writes the configured report columns and final mission result.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
-        "example": "report_file                  = results.txt",
-        "exampleSource": "generated coverage fixture"
+        "example": "report_file = results.log",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 4.1 and Listing 5.1"
       }
     ],
     "report_line_format": [
@@ -7579,13 +7649,13 @@
     "report_vars": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Determines if CRS RANGE REPORT or CRS RANGE REPORT VNAME, or both are published for individual range reports. Legal settings are short, long, or both. The default is short. Determines variable name style used for range reports. Legal values: short, long, both. The default is long.",
+        "description": "Selects which contact range report variable style is posted. Supported values are short, long, and both.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
-        "default": "white",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:45",
-        "example": "report_vars                  = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "default": "short",
+        "defaultSource": "manual review",
+        "example": "report_vars = short",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:47,137"
       }
     ],
     "required_nodes": [
@@ -7663,10 +7733,11 @@
     "result_flag": [
       {
         "owner": "pMissionEval",
-        "description": "A flag to be publish once the result is known.",
+        "description": "Defines one MOOS variable-value post made once pMissionEval has determined the mission result, regardless of pass or fail.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pmissioneval.pdf",
-        "example": "result_flag                  = EXAMPLE_FLAG = true",
-        "exampleSource": "generated coverage fixture"
+        "example": "result_flag = MISSION_EVALUATED = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 4.1 and Listing 5.1"
       }
     ],
     "reuse_ids": [
@@ -7704,13 +7775,13 @@
     "rn_algorithm": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Algorithm for adding random noise to the range measurement. Legal parameter values discussed in The default is no noise.",
+        "description": "Selects the random-noise algorithm applied to simulated contact range measurements. An empty value means no random noise.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
-        "default": "true",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:60",
-        "example": "rn_algorithm = true",
-        "exampleSource": "generated from parameter name"
+        "default": "none",
+        "defaultSource": "manual review",
+        "example": "rn_algorithm = uniform,pct=0.5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.8; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:150,615"
       }
     ],
     "rotate_speed": [
@@ -7794,12 +7865,13 @@
     "sensor_arcs": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Set arcs relative to the heading of the vehicle in which the range sensor is able to detect vehicles. The default is 360 degrees.",
+        "description": "Adds angular sensor field-of-view arcs relative to vehicle heading. Multiple arcs may be configured; 360 gives full-circle coverage.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_contact_rsensor.pdf",
-        "default": "360 degrees",
-        "defaultSource": "documentation text",
-        "example": "sensor_arcs = 360 degrees",
-        "exampleSource": "generated from parameter name"
+        "default": "360",
+        "defaultSource": "manual review",
+        "example": "sensor_arcs = 45:135,225:315",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.6"
       }
     ],
     "sensor_range": [
@@ -7817,13 +7889,13 @@
     "shared_node_reports": [
       {
         "owner": "uFldNodeComms",
-        "description": "When enabled with true, node reports are re-posted to the shoreside community as NODE REPORT UNC. The default is false. This feature may also be more commonly enabled via in incoming message. See UNC SHARED NODE REPORTS.",
+        "description": "When true, reposts shared node reports to the shoreside community as NODE_REPORT_UNC.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
-        "default": "white",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:64",
-        "example": "shared_node_reports          = true",
-        "exampleSource": "generated coverage fixture"
+        "default": "false",
+        "defaultSource": "manual review",
+        "example": "shared_node_reports = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:277"
       }
     ],
     "shuffle": [
@@ -7853,11 +7925,11 @@
     "source": [
       {
         "owner": "uXMS",
-        "description": "Restricts displayed variables to mail from the named MOOS source app.",
+        "description": "Restricts displayed variables to mail from the named MOOS source app or apps.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-        "example": "source = pHelmIvP",
+        "example": "source = pHelmIvP, pMarineViewer",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uXMS"
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.6; moos-ivp/ivp/src/uXMS"
       }
     ],
     "spoof": [
@@ -7897,13 +7969,13 @@
     "stale_time": [
       {
         "owner": "uFldNodeComms",
-        "description": "Time in seconds after which a vehicle will not receive node reports or messages unless a node report has been received by that vehicle. The default is 5 seconds.",
+        "description": "Sets how long a vehicle may go without a fresh node report before it is considered stale and no longer eligible to receive reports or messages.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
-        "default": "5.0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:53",
-        "example": "stale_time                   = 5",
-        "exampleSource": "generated coverage fixture"
+        "default": "5",
+        "defaultSource": "manual review",
+        "example": "stale_time = 5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
       }
     ],
     "start_depth": [
@@ -8003,13 +8075,13 @@
     "strict_addressing": [
       {
         "owner": "uFldMessageHandler",
-        "description": "If true, only messages with a destination specified by dest node, match- ing the local community name are processed. Other messages with a destination specified by a group designation are ignored. The default is false.",
+        "description": "When true, handles only messages whose destination node matches the local community; broad group or all-node messages are rejected.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_msghandler.pdf",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldMessageHandler/MessageHandler.cpp:50",
-        "example": "strict_addressing            = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "strict_addressing = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.1; moos-ivp/ivp/src/uFldMessageHandler/MessageHandler.cpp:50,125,230"
       }
     ],
     "strict_ignore": [
@@ -8027,48 +8099,49 @@
     "summary_interval": [
       {
         "owner": "pRealm",
-        "description": "Time duration, in seconds, between auto-generated postings of REALMCAST CHANNELS. The allowable range is [1, 10]. Values outside this range will be clipped to the range. The default value is 2 seconds.",
+        "description": "Sets the time, in seconds, between automatic REALMCAST_CHANNELS summary postings. The local source initializes this to 5 seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_prealm.pdf",
-        "default": "2",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pRealm/Realm_Info.cpp",
-        "example": "summary_interval             = 5",
-        "exampleSource": "generated coverage fixture"
+        "default": "5",
+        "defaultSource": "manual review",
+        "example": "summary_interval = 5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1; moos-ivp/ivp/src/pRealm/Realm.cpp:42,129"
       }
     ],
     "summary_wait": [
       {
         "owner": "uProcessWatch",
-        "description": "Sets the maximum time between PROC_WATCH_SUMMARY postings. A negative value posts summaries only when the watched process state changes.",
+        "description": "Sets the maximum time between PROC_WATCH_SUMMARY postings. A negative value posts summaries only when watched process status changes.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
         "default": "-1",
         "defaultSource": "manual review",
-        "example": "summary_wait = 5",
+        "example": "summary_wait = 10",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uProcessWatch"
+        "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.2; moos-ivp/ivp/src/uProcessWatch/ProcessWatch_Info.cpp:112"
       }
     ],
     "temp_file_dir": [
       {
         "owner": "pHostInfo",
-        "description": "Directory where temporary files are written. Default is \"∼/\".",
+        "description": "Sets the directory pHostInfo uses for temporary files while discovering host address information. Use a directory path, not an output filename.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_phostinfo.pdf",
         "default": "~/",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:41",
-        "example": "temp_file_dir                = results.txt",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "temp_file_dir = ./",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:147"
       }
     ],
     "term_report_interval": [
       {
         "owner": "uXMS",
-        "description": "Time (secs) between report updates (default 0.6).",
+        "description": "Sets the minimum time, in seconds, between uXMS terminal report updates. Accepted values are clipped to the supported range.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
         "default": "0.6",
-        "defaultSource": "documentation text",
-        "example": "term_report_interval         = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "term_report_interval = 0.6",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.7; moos-ivp/ivp/src/uXMS/XMS_Info.cpp:149"
       }
     ],
     "terse_reports": [
@@ -8086,13 +8159,11 @@
     "thresh": [
       {
         "owner": "uLoadWatch",
-        "description": "A gap threshold for reporting a LOAD WARNING. Each threshold line specifies the application name and the gap threshold value.",
+        "description": "Defines an app-specific or catch-all load-gap threshold using fields such as app and gapthresh. When the measured app iteration gap exceeds this multiplier, uLoadWatch can post a load warning.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uloadwatch.pdf",
-        "default": "1",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uLoadWatch/LoadWatch.cpp:39",
-        "example": "thresh                       = 10",
-        "exampleSource": "generated coverage fixture"
+        "example": "thresh = app=pHelmIvP, gapthresh=1.5",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uloadwatch.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/uLoadWatch/LoadWatch.cpp:365"
       }
     ],
     "thrust_factor": [
@@ -8252,31 +8323,31 @@
     "trunc_data": [
       {
         "owner": "uXMS",
-        "description": "If true, variable string values are truncated.",
+        "description": "Sets the maximum number of characters shown for long string values before uXMS truncates them and appends an ellipsis. A value of 0 disables truncation.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-        "default": "no trucation",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS_Info.cpp",
-        "example": "trunc_data                   = true",
-        "exampleSource": "generated coverage fixture"
+        "default": "0",
+        "defaultSource": "manual review",
+        "example": "trunc_data = 40",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.8; moos-ivp/ivp/src/uXMS/XMS.cpp:61"
       }
     ],
     "trunc_length": [
       {
         "owner": "pRealm",
-        "description": "The number of characters that the value field of an output line will be truncated to, when the user has opted to enable truncated output. Legal values are any integer value greater than zero. It is recommended to choose a number that is a multiple of the wrap length. The default is 270.",
+        "description": "Sets the maximum value-field length used when pRealm truncates long realmcast output values.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_prealm.pdf",
         "default": "270",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pRealm/Realm_Info.cpp",
-        "example": "trunc_length                 = 4",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "trunc_length = 270",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1"
       }
     ],
     "try_shore_host": [
       {
         "owner": "uFldNodeBroker",
-        "description": "Adds a candidate pShare route used for initial pings while trying to establish a shoreside connection.",
+        "description": "Adds a candidate pShare input route used for initial pings while trying to establish a shoreside connection.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodebroker.pdf",
         "example": "try_shore_host = 192.168.1.10:9200",
         "exampleSource": "manual review",
@@ -8371,13 +8442,11 @@
       },
       {
         "owner": "uXMS",
-        "description": "A comma-separated list of variables to scope on in the scoping mode.",
+        "description": "Adds one or more MOOS variables to the uXMS scoping watch list.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-        "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:51",
-        "example": "var                          = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "example": "var = PROC_WATCH_EVENT",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.10"
       }
     ],
     "vector_viewable_all": [
@@ -8474,12 +8543,13 @@
     "verbose": [
       {
         "owner": "uFldNodeComms",
-        "description": "If true, status reports are displayed to the terminal during operation. The default is false.",
+        "description": "Enables verbose terminal status output from uFldNodeComms.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
         "default": "false",
-        "defaultSource": "documentation text",
-        "example": "verbose                      = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "verbose = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
       },
       {
         "owner": "uTimerScript",
@@ -8507,13 +8577,13 @@
     "view_node_rpt_pulses": [
       {
         "owner": "uFldNodeComms",
-        "description": "If true, comms pulses are rendered between vehicles whenever a node report successfully makes its way from one vehicle to another. The default is true.",
+        "description": "Controls whether uFldNodeComms posts visual communication pulses for successfully shared node reports.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_nodecomms.pdf",
         "default": "true",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:70",
-        "example": "view_node_rpt_pulses         = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "view_node_rpt_pulses = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Section 2.2; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:70,270"
       }
     ],
     "wait": [
@@ -8531,71 +8601,71 @@
     "warning_on_stale": [
       {
         "owner": "uFldShoreBroker",
-        "description": "If true, generate a warning if a previously known node has not been heard from in more than 10 seconds.",
+        "description": "When true, posts a warning if a previously known node has not been heard from for more than the stale-node interval.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_ufld_shorebroker.pdf",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker.cpp:41",
-        "example": "warning_on_stale             = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "warning_on_stale = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2; moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp:97"
       }
     ],
     "watch": [
       {
         "owner": "uProcessWatch",
-        "description": "Names one or more MOOS processes that uProcessWatch should monitor and report as running or missing.",
+        "description": "Names a process that uProcessWatch should monitor and report as running or missing. Optional mappings may associate a watched process with a status variable.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
         "example": "watch = pHelmIvP",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uProcessWatch"
+        "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.1 and 4.2"
       }
     ],
     "watch_all": [
       {
         "owner": "uProcessWatch",
-        "description": "If true, watch all processes that become known either via the DB CLIENTS list or the Antler list. Legal values: true, false. The default is true.",
+        "description": "Controls whether uProcessWatch automatically monitors processes discovered from DB_CLIENTS and the Antler launch list.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uprocwatch.pdf",
         "default": "true",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uProcessWatch/ProcessWatch_Info.cpp",
-        "example": "watch_all                    = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "watch_all = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.1; moos-ivp/ivp/src/uProcessWatch/ProcessWatch.cpp:40,178"
       }
     ],
     "wrap_data": [
       {
         "owner": "uXMS",
-        "description": "If true, variable string values are multi-line wrapped.",
+        "description": "Controls whether long variable values are wrapped across multiple lines in uXMS output.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
         "default": "false",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:59",
-        "example": "wrap_data                    = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "wrap_data = false",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.9; moos-ivp/ivp/src/uXMS/XMS.cpp:59"
       }
     ],
     "wrap_data_len": [
       {
         "owner": "uXMS",
-        "description": "Sets the string-content line length used when uXMS wraps long data values for display.",
+        "description": "Sets the line length used when uXMS wraps long variable values.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
         "default": "45",
         "defaultSource": "manual review",
         "example": "wrap_data_len = 45",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uXMS"
+        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.9; moos-ivp/ivp/src/uXMS/XMS.cpp:60"
       }
     ],
     "wrap_length": [
       {
         "owner": "pRealm",
-        "description": "The number of characters, per line, when the user has opted to have the variable value field wrapped. Legal values are any integer value greater than zero. The default is 90.",
+        "description": "Sets the number of characters per line when pRealm wraps long variable values in realmcast output.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_prealm.pdf",
         "default": "90",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pRealm/Realm_Info.cpp",
-        "example": "wrap_length                  = 4",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "wrap_length = 90",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1"
       }
     ]
   }

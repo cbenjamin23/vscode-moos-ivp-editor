@@ -52,7 +52,7 @@
         },
         "volume": {
           "name": "volume",
-          "description": "Sets the default playback volume for iSay utterances and audio files. Named values include mute, vsoft, soft, normal, loud, and vloud; numeric values are clipped to the supported volume range.",
+          "description": "Sets the default playback volume for utterances and audio files. Named values include mute, vsoft, soft, normal, loud, and vloud; numeric values are clipped to the supported range.",
           "source": "../moos-ivp/ivp/src/iSay",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
@@ -60,7 +60,7 @@
           "defaultSource": "manual review",
           "example": "volume = normal",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/iSay/Sayer.cpp:46, moos-ivp/ivp/src/iSay/Sayer.cpp:265"
+          "reviewSource": "moos-ivp/ivp/src/iSay/Sayer.cpp:46,265"
         }
       }
     },
@@ -756,13 +756,13 @@
         },
         "prefer_interface": {
           "name": "prefer_interface",
-          "description": "Selects the preferred network interface pHostInfo should use when reporting host address information. Use this when the machine has multiple interfaces and the default selection is not the desired mission network.",
+          "description": "Selects the preferred network interface when multiple valid IP addresses are available. Supported interface selectors include wlan0, wifi, eth0, eth1, usb0, usb1, and usb2.",
           "source": "../moos-ivp/ivp/src/pHostInfo",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "prefer_interface = en0",
+          "example": "prefer_interface = wlan0",
           "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/pHostInfo"
+          "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1; moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:154,382"
         }
       }
     },
@@ -1054,12 +1054,13 @@
       "parameters": {
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in pMarinePIDV22 reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/pMarinePIDV22",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         }
       }
     },
@@ -1080,15 +1081,15 @@
         },
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for pMarineViewer.",
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "appcast_font_size": {
           "name": "appcast_font_size",
@@ -1594,12 +1595,13 @@
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in pMarineViewer reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/pMarineViewer",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "mission_hash_display": {
           "name": "mission_hash_display",
@@ -1778,24 +1780,25 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for pMissionEval.",
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
           "source": "../moos-ivp/ivp/src/pMissionEval",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pMissionEval/MissionEval_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in pMissionEval reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/pMissionEval",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         }
       }
     },
@@ -1891,15 +1894,15 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for pObstacleMgr.",
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
           "source": "../moos-ivp/ivp/src/pObstacleMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pObstacleMgr/ObstacleManager_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "disable_var": {
           "name": "disable_var",
@@ -1973,12 +1976,13 @@
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in pObstacleMgr reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/pObstacleMgr",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "new_obs_flag": {
           "name": "new_obs_flag",
@@ -1998,15 +2002,15 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for pRealm.",
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
           "source": "../moos-ivp/ivp/src/pRealm",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/pRealm/Realm_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "hist_var": {
           "name": "hist_var",
@@ -2019,12 +2023,13 @@
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in pRealm reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/pRealm",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "msg_max_history": {
           "name": "msg_max_history",
@@ -2096,12 +2101,13 @@
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in pSearchGrid reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/pSearchGrid",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "report_deltas": {
           "name": "report_deltas",
@@ -2204,13 +2210,13 @@
       "parameters": {
         "beacon": {
           "name": "beacon",
-          "description": "Defines one simulated beacon location and properties for vehicle-to-beacon range reports.",
+          "description": "Defines one simulated beacon, including its position, label, and optional per-beacon range/reporting properties.",
           "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "beacon = x=50,y=25,label=beacon_one",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:276"
         },
         "default": {
           "name": "default",
@@ -2224,57 +2230,63 @@
         },
         "default_beacon_report_range": {
           "name": "default_beacon_report_range",
-          "description": "Sets the default range at which beacon reports are generated.",
+          "description": "Sets the default visual report range used for rendered beacon range-report artifacts.",
           "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "range",
-          "defaultSource": "documentation text",
-          "example": "default_beacon_report_range  = 10",
-          "exampleSource": "generated coverage fixture"
+          "default": "100",
+          "defaultSource": "manual review",
+          "example": "default_beacon_report_range = 100",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.1"
         },
         "ping_wait": {
           "name": "ping_wait",
-          "description": "Sets the mandatory number of seconds between successive vehicle pings to the beacon range sensor.",
+          "description": "Sets the mandatory wait time, in seconds, between successive vehicle pings to the beacon range sensor.",
           "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "example": "ping_wait = 30",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.4; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:44,152",
+          "default": "30",
+          "defaultSource": "manual review"
         },
         "reach_distance": {
           "name": "reach_distance",
-          "description": "Sets the distance at which a vehicle is considered to have reached a beacon.",
+          "description": "Sets a default or vehicle-specific range distance used when deciding whether beacon reports can be received.",
           "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "reach_distance               = 10",
-          "exampleSource": "generated coverage fixture"
+          "example": "reach_distance = default = 200",
+          "exampleSource": "manual review",
+          "default": "100",
+          "defaultSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldBeaconRangeSensor/uFldBeaconRangeSensor.moos:10"
         },
         "report_vars": {
           "name": "report_vars",
-          "description": "Names the MOOS variables used for beacon range reports.",
+          "description": "Selects which beacon range report variable style is posted. Supported values are short, long, and both.",
           "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:57",
-          "example": "report_vars                  = EXAMPLE_VAR",
-          "exampleSource": "generated coverage fixture"
+          "default": "short",
+          "defaultSource": "manual review",
+          "example": "report_vars = short",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:50,666"
         },
         "rn_algorithm": {
           "name": "rn_algorithm",
-          "description": "Selects the random-noise algorithm applied to simulated beacon range measurements.",
+          "description": "Selects the random-noise algorithm applied to simulated beacon range measurements, such as uniform noise with a configured percentage.",
           "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "none",
           "defaultSource": "manual review",
-          "example": "rn_algorithm = none",
+          "example": "rn_algorithm = uniform,pct=0.5",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:694"
         }
       }
     },
@@ -2285,15 +2297,15 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for uFldCollisionDetect.",
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
           "source": "../moos-ivp/ivp/src/uFldCollisionDetect",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uFldCollisionDetect/CollisionDetector_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "collision_dist": {
           "name": "collision_dist",
@@ -2327,12 +2339,13 @@
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in uFldCollisionDetect reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/uFldCollisionDetect",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "post_closest_range": {
           "name": "post_closest_range",
@@ -2355,15 +2368,15 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for uFldCollObDetect.",
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
           "source": "../moos-ivp/ivp/src/uFldCollObDetect",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uFldCollObDetect/CollObDetect_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "bin_delta": {
           "name": "bin_delta",
@@ -2400,12 +2413,13 @@
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in uFldCollObDetect reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/uFldCollObDetect",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "reject_group": {
           "name": "reject_group",
@@ -2437,19 +2451,19 @@
         },
         "echo_color": {
           "name": "echo_color",
-          "description": "Sets the display color for echo.",
+          "description": "Sets the visual color used for reply/echo range pulses.",
           "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "chartreuse",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:46",
-          "example": "echo_color                   = yellow",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "echo_color = chartreuse",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:46,143"
         },
         "ground_truth": {
           "name": "ground_truth",
-          "description": "When true, publishes ground-truth range reports alongside noisy simulated range reports for diagnostics.",
+          "description": "When true, publishes ground-truth range reports with noise removed alongside normal simulated range reports for diagnostics.",
           "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
@@ -2457,16 +2471,17 @@
           "defaultSource": "manual review",
           "example": "ground_truth = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.3; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:48,154"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in uFldContactRangeSensor reports.",
+          "description": "Limits how many appcast events uFldContactRangeSensor retains in diagnostic report history.",
           "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "pull_dist": {
           "name": "pull_dist",
@@ -2522,27 +2537,27 @@
         },
         "rn_uniform_pct": {
           "name": "rn_uniform_pct",
-          "description": "Sets the percentage bound for uniform simulated range noise.",
+          "description": "Sets the percent bound used by uniform random noise for simulated contact range measurements. Values are clipped to the range 0 to 1.",
           "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "0",
-          "defaultSource": "source initializer for parsed parameter",
-          "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:53",
-          "example": "rn_uniform_pct               = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "rn_uniform_pct = 0.5",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:53,156"
         },
         "sensor_arc": {
           "name": "sensor_arc",
-          "description": "Sets the angular field of view, relative to vehicle heading, in which the range sensor can detect contacts.",
+          "description": "Adds an angular sensor field-of-view arc relative to vehicle heading. Multiple arcs may be configured; 360 gives full-circle coverage.",
           "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "sensor_arc = -45:45",
+          "example": "sensor_arc = 315:45",
           "exampleSource": "manual review",
           "default": "360",
           "defaultSource": "manual review",
-          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.6; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:160"
         }
       }
     },
@@ -2658,24 +2673,25 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for uFldMessageHandler.",
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
           "source": "../moos-ivp/ivp/src/uFldMessageHandler",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uFldMessageHandler/MessageHandler_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in uFldMessageHandler reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/uFldMessageHandler",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         }
       }
     },
@@ -2686,7 +2702,7 @@
       "parameters": {
         "keyword": {
           "name": "KEYWORD",
-          "description": "Defines a keyword value included in brokered node communications when keyword matching is required by the shore broker.",
+          "description": "Defines a keyword included in brokered node communications when keyword matching is required by the shore broker.",
           "source": "../moos-ivp/ivp/src/uFldNodeBroker",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
@@ -2696,24 +2712,25 @@
         },
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for uFldNodeBroker.",
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
           "source": "../moos-ivp/ivp/src/uFldNodeBroker",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeBroker/NodeBroker_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in uFldNodeBroker reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/uFldNodeBroker",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         }
       }
     },
@@ -2724,36 +2741,37 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for uFldNodeComms.",
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
           "source": "../moos-ivp/ivp/src/uFldNodeComms",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "drop_percentage": {
           "name": "drop_percentage",
-          "description": "Sets the percentage of node communication messages randomly dropped.",
+          "description": "Sets the percentage of node messages randomly dropped to simulate lossy communications.",
           "source": "../moos-ivp/ivp/src/uFldNodeComms",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "0",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms_Info.cpp",
-          "example": "drop_percentage              = 5",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "drop_percentage = 10",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/ivp/src/uFldNodeComms/FldNodeComms_Info.cpp:113; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:273"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in uFldNodeComms reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/uFldNodeComms",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         }
       }
     },
@@ -2764,24 +2782,25 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for uFldObstacleSim.",
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
           "source": "../moos-ivp/ivp/src/uFldObstacleSim",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uFldObstacleSim/ObstacleSim_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in uFldObstacleSim reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/uFldObstacleSim",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "max_duration": {
           "name": "max_duration",
@@ -2847,15 +2866,15 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for uFldShoreBroker.",
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
           "source": "../moos-ivp/ivp/src/uFldShoreBroker",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "auto_bridg_mhash": {
           "name": "auto_bridg_mhash",
@@ -2869,12 +2888,13 @@
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in uFldShoreBroker reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/uFldShoreBroker",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         }
       }
     },
@@ -2914,24 +2934,25 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for uLoadWatch.",
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
           "source": "../moos-ivp/ivp/src/uLoadWatch",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uLoadWatch/LoadWatch_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in uLoadWatch reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/uLoadWatch",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         }
       }
     },
@@ -3012,15 +3033,15 @@
         },
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for uMemWatch.",
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
           "source": "../moos-ivp/ivp/src/uMemWatch",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uMemWatch/MemWatch_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "ignore": {
           "name": "ignore",
@@ -3033,12 +3054,13 @@
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in uMemWatch reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/uMemWatch",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "watch_only": {
           "name": "watch_only",
@@ -3091,24 +3113,25 @@
       "parameters": {
         "app_logging": {
           "name": "app_logging",
-          "description": "Enables app-level logging for uProcessWatch.",
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
           "source": "../moos-ivp/ivp/src/uProcessWatch",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "disabled",
-          "defaultSource": "source example comment",
-          "defaultReference": "../moos-ivp/ivp/src/uProcessWatch/ProcessWatch_Info.cpp",
-          "example": "app_logging                  = true",
-          "exampleSource": "generated coverage fixture"
+          "defaultSource": "manual review",
+          "example": "app_logging = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         },
         "max_appcast_events": {
           "name": "max_appcast_events",
-          "description": "Limits how many appcast events are retained in uProcessWatch reports.",
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
           "source": "../moos-ivp/ivp/src/uProcessWatch",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events           = 8",
-          "exampleSource": "generated coverage fixture"
+          "example": "max_appcast_events = 8",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         }
       }
     },
@@ -3576,27 +3599,27 @@
       },
       {
         "owner": "pMarineViewer",
-        "description": "Enables app-level logging for pMarineViewer.",
+        "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "pMissionEval",
-        "description": "Enables app-level logging for pMissionEval.",
+        "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
         "source": "../moos-ivp/ivp/src/pMissionEval",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pMissionEval/MissionEval_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "pNodeReporter",
@@ -3612,147 +3635,147 @@
       },
       {
         "owner": "pObstacleMgr",
-        "description": "Enables app-level logging for pObstacleMgr.",
+        "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
         "source": "../moos-ivp/ivp/src/pObstacleMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pObstacleMgr/ObstacleManager_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "pRealm",
-        "description": "Enables app-level logging for pRealm.",
+        "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
         "source": "../moos-ivp/ivp/src/pRealm",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/pRealm/Realm_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldCollisionDetect",
-        "description": "Enables app-level logging for uFldCollisionDetect.",
+        "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
         "source": "../moos-ivp/ivp/src/uFldCollisionDetect",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uFldCollisionDetect/CollisionDetector_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldCollObDetect",
-        "description": "Enables app-level logging for uFldCollObDetect.",
+        "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
         "source": "../moos-ivp/ivp/src/uFldCollObDetect",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uFldCollObDetect/CollObDetect_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldMessageHandler",
-        "description": "Enables app-level logging for uFldMessageHandler.",
+        "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
         "source": "../moos-ivp/ivp/src/uFldMessageHandler",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uFldMessageHandler/MessageHandler_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldNodeBroker",
-        "description": "Enables app-level logging for uFldNodeBroker.",
+        "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
         "source": "../moos-ivp/ivp/src/uFldNodeBroker",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeBroker/NodeBroker_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldNodeComms",
-        "description": "Enables app-level logging for uFldNodeComms.",
+        "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
         "source": "../moos-ivp/ivp/src/uFldNodeComms",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldObstacleSim",
-        "description": "Enables app-level logging for uFldObstacleSim.",
+        "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
         "source": "../moos-ivp/ivp/src/uFldObstacleSim",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uFldObstacleSim/ObstacleSim_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldShoreBroker",
-        "description": "Enables app-level logging for uFldShoreBroker.",
+        "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
         "source": "../moos-ivp/ivp/src/uFldShoreBroker",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uLoadWatch",
-        "description": "Enables app-level logging for uLoadWatch.",
+        "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
         "source": "../moos-ivp/ivp/src/uLoadWatch",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uLoadWatch/LoadWatch_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uMemWatch",
-        "description": "Enables app-level logging for uMemWatch.",
+        "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
         "source": "../moos-ivp/ivp/src/uMemWatch",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uMemWatch/MemWatch_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uProcessWatch",
-        "description": "Enables app-level logging for uProcessWatch.",
+        "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
         "source": "../moos-ivp/ivp/src/uProcessWatch",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "disabled",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uProcessWatch/ProcessWatch_Info.cpp",
-        "example": "app_logging                  = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "app_logging = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uTimerScript",
@@ -3867,13 +3890,13 @@
     "beacon": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Defines one simulated beacon location and properties for vehicle-to-beacon range reports.",
+        "description": "Defines one simulated beacon, including its position, label, and optional per-beacon range/reporting properties.",
         "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "beacon = x=50,y=25,label=beacon_one",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:276"
       }
     ],
     "bearing_lines": [
@@ -4545,14 +4568,15 @@
     "default_beacon_report_range": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Sets the default range at which beacon reports are generated.",
+        "description": "Sets the default visual report range used for rendered beacon range-report artifacts.",
         "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "range",
-        "defaultSource": "documentation text",
-        "example": "default_beacon_report_range  = 10",
-        "exampleSource": "generated coverage fixture"
+        "default": "100",
+        "defaultSource": "manual review",
+        "example": "default_beacon_report_range = 100",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.1"
       }
     ],
     "default_hdg": [
@@ -4626,15 +4650,15 @@
     "drop_percentage": [
       {
         "owner": "uFldNodeComms",
-        "description": "Sets the percentage of node communication messages randomly dropped.",
+        "description": "Sets the percentage of node messages randomly dropped to simulate lossy communications.",
         "source": "../moos-ivp/ivp/src/uFldNodeComms",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "0",
-        "defaultSource": "source example comment",
-        "defaultReference": "../moos-ivp/ivp/src/uFldNodeComms/FldNodeComms_Info.cpp",
-        "example": "drop_percentage              = 5",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "drop_percentage = 10",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldNodeComms/FldNodeComms_Info.cpp:113; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:273"
       }
     ],
     "dual_state": [
@@ -4654,15 +4678,15 @@
     "echo_color": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Sets the display color for echo.",
+        "description": "Sets the visual color used for reply/echo range pulses.",
         "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "chartreuse",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:46",
-        "example": "echo_color                   = yellow",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "echo_color = chartreuse",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:46,143"
       }
     ],
     "enable_var": [
@@ -4955,7 +4979,7 @@
     "ground_truth": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "When true, publishes ground-truth range reports alongside noisy simulated range reports for diagnostics.",
+        "description": "When true, publishes ground-truth range reports with noise removed alongside normal simulated range reports for diagnostics.",
         "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -4963,7 +4987,7 @@
         "defaultSource": "manual review",
         "example": "ground_truth = true",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
+        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.3; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:48,154"
       }
     ],
     "group": [
@@ -5206,7 +5230,7 @@
     "keyword": [
       {
         "owner": "uFldNodeBroker",
-        "description": "Defines a keyword value included in brokered node communications when keyword matching is required by the shore broker.",
+        "description": "Defines a keyword included in brokered node communications when keyword matching is required by the shore broker.",
         "source": "../moos-ivp/ivp/src/uFldNodeBroker",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -5495,30 +5519,33 @@
       },
       {
         "owner": "pMarinePIDV22",
-        "description": "Limits how many appcast events are retained in pMarinePIDV22 reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/pMarinePIDV22",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "pMarineViewer",
-        "description": "Limits how many appcast events are retained in pMarineViewer reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/pMarineViewer",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "pMissionEval",
-        "description": "Limits how many appcast events are retained in pMissionEval reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/pMissionEval",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "pNodeReporter",
@@ -5532,129 +5559,143 @@
       },
       {
         "owner": "pObstacleMgr",
-        "description": "Limits how many appcast events are retained in pObstacleMgr reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/pObstacleMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "pRealm",
-        "description": "Limits how many appcast events are retained in pRealm reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/pRealm",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "pSearchGrid",
-        "description": "Limits how many appcast events are retained in pSearchGrid reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/pSearchGrid",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldCollisionDetect",
-        "description": "Limits how many appcast events are retained in uFldCollisionDetect reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/uFldCollisionDetect",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldCollObDetect",
-        "description": "Limits how many appcast events are retained in uFldCollObDetect reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/uFldCollObDetect",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Limits how many appcast events are retained in uFldContactRangeSensor reports.",
+        "description": "Limits how many appcast events uFldContactRangeSensor retains in diagnostic report history.",
         "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldMessageHandler",
-        "description": "Limits how many appcast events are retained in uFldMessageHandler reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/uFldMessageHandler",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldNodeBroker",
-        "description": "Limits how many appcast events are retained in uFldNodeBroker reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/uFldNodeBroker",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldNodeComms",
-        "description": "Limits how many appcast events are retained in uFldNodeComms reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/uFldNodeComms",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldObstacleSim",
-        "description": "Limits how many appcast events are retained in uFldObstacleSim reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/uFldObstacleSim",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uFldShoreBroker",
-        "description": "Limits how many appcast events are retained in uFldShoreBroker reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/uFldShoreBroker",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uLoadWatch",
-        "description": "Limits how many appcast events are retained in uLoadWatch reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/uLoadWatch",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uMemWatch",
-        "description": "Limits how many appcast events are retained in uMemWatch reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/uMemWatch",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uProcessWatch",
-        "description": "Limits how many appcast events are retained in uProcessWatch reports.",
+        "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
         "source": "../moos-ivp/ivp/src/uProcessWatch",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events           = 8",
-        "exampleSource": "generated coverage fixture"
+        "example": "max_appcast_events = 8",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS AppCastingMOOSApp common configuration"
       },
       {
         "owner": "uSimMarineV22",
@@ -6067,13 +6108,15 @@
     "ping_wait": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Sets the mandatory number of seconds between successive vehicle pings to the beacon range sensor.",
+        "description": "Sets the mandatory wait time, in seconds, between successive vehicle pings to the beacon range sensor.",
         "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
+        "default": "30",
+        "defaultSource": "manual review",
         "example": "ping_wait = 30",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.4; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:44,152"
       }
     ],
     "platform_vsource": [
@@ -6194,13 +6237,13 @@
     "prefer_interface": [
       {
         "owner": "pHostInfo",
-        "description": "Selects the preferred network interface pHostInfo should use when reporting host address information. Use this when the machine has multiple interfaces and the default selection is not the desired mission network.",
+        "description": "Selects the preferred network interface when multiple valid IP addresses are available. Supported interface selectors include wlan0, wifi, eth0, eth1, usb0, usb1, and usb2.",
         "source": "../moos-ivp/ivp/src/pHostInfo",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "prefer_interface = en0",
+        "example": "prefer_interface = wlan0",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/pHostInfo"
+        "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1; moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:154,382"
       }
     ],
     "pull_dist": [
@@ -6334,12 +6377,15 @@
     "reach_distance": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Sets the distance at which a vehicle is considered to have reached a beacon.",
+        "description": "Sets a default or vehicle-specific range distance used when deciding whether beacon reports can be received.",
         "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "reach_distance               = 10",
-        "exampleSource": "generated coverage fixture"
+        "default": "100",
+        "defaultSource": "manual review",
+        "example": "reach_distance = default = 200",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldBeaconRangeSensor/uFldBeaconRangeSensor.moos:10"
       }
     ],
     "realmcast_channel": [
@@ -6434,29 +6480,29 @@
     "report_vars": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Names the MOOS variables used for beacon range reports.",
+        "description": "Selects which beacon range report variable style is posted. Supported values are short, long, and both.",
         "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:57",
-        "example": "report_vars                  = EXAMPLE_VAR",
-        "exampleSource": "generated coverage fixture"
+        "default": "short",
+        "defaultSource": "manual review",
+        "example": "report_vars = short",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:50,666"
       }
     ],
     "rn_algorithm": [
       {
         "owner": "uFldBeaconRangeSensor",
-        "description": "Selects the random-noise algorithm applied to simulated beacon range measurements.",
+        "description": "Selects the random-noise algorithm applied to simulated beacon range measurements, such as uniform noise with a configured percentage.",
         "source": "../moos-ivp/ivp/src/uFldBeaconRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "none",
         "defaultSource": "manual review",
-        "example": "rn_algorithm = none",
+        "example": "rn_algorithm = uniform,pct=0.5",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+        "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:694"
       }
     ],
     "rn_gaussian_sigma": [
@@ -6476,15 +6522,15 @@
     "rn_uniform_pct": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Sets the percentage bound for uniform simulated range noise.",
+        "description": "Sets the percent bound used by uniform random noise for simulated contact range measurements. Values are clipped to the range 0 to 1.",
         "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "0",
-        "defaultSource": "source initializer for parsed parameter",
-        "defaultReference": "../moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:53",
-        "example": "rn_uniform_pct               = true",
-        "exampleSource": "generated coverage fixture"
+        "defaultSource": "manual review",
+        "example": "rn_uniform_pct = 0.5",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:53,156"
       }
     ],
     "rows": [
@@ -6528,15 +6574,15 @@
     "sensor_arc": [
       {
         "owner": "uFldContactRangeSensor",
-        "description": "Sets the angular field of view, relative to vehicle heading, in which the range sensor can detect contacts.",
+        "description": "Adds an angular sensor field-of-view arc relative to vehicle heading. Multiple arcs may be configured; 360 gives full-circle coverage.",
         "source": "../moos-ivp/ivp/src/uFldContactRangeSensor",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "360",
         "defaultSource": "manual review",
-        "example": "sensor_arc = -45:45",
+        "example": "sensor_arc = 315:45",
         "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
+        "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.6; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:160"
       }
     ],
     "sensor_config": [
@@ -6881,7 +6927,7 @@
     "volume": [
       {
         "owner": "iSay",
-        "description": "Sets the default playback volume for iSay utterances and audio files. Named values include mute, vsoft, soft, normal, loud, and vloud; numeric values are clipped to the supported volume range.",
+        "description": "Sets the default playback volume for utterances and audio files. Named values include mute, vsoft, soft, normal, loud, and vloud; numeric values are clipped to the supported range.",
         "source": "../moos-ivp/ivp/src/iSay",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
@@ -6889,7 +6935,7 @@
         "defaultSource": "manual review",
         "example": "volume = normal",
         "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/iSay/Sayer.cpp:46, moos-ivp/ivp/src/iSay/Sayer.cpp:265"
+        "reviewSource": "moos-ivp/ivp/src/iSay/Sayer.cpp:46,265"
       }
     ],
     "watch_cluster": [

@@ -601,8 +601,8 @@
       }
     },
     "iSay": {
-      "reviewStatus": "manual-reviewed-source-only-parameters",
-      "reviewSource": "moos-ivp/ivp/src/iSay/Sayer.cpp and Sayer_Info.cpp",
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_isay.pdf and moos-ivp/ivp/src/iSay/Sayer.cpp",
       "parameters": {
         "app_logging": {
           "description": "Enables AppCastingMOOSApp logging for iSay. This records app-level diagnostics and is separate from the speech/audio output itself.",
@@ -617,10 +617,46 @@
           "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "volume": {
-          "description": "Sets the default playback volume for iSay utterances and audio files. Named values include mute, vsoft, soft, normal, loud, and vloud; numeric values are clipped to the supported volume range.",
+          "description": "Sets the default playback volume for utterances and audio files. Named values include mute, vsoft, soft, normal, loud, and vloud; numeric values are clipped to the supported range.",
           "default": "normal",
           "example": "volume = normal",
-          "reviewSource": "moos-ivp/ivp/src/iSay/Sayer.cpp:46, moos-ivp/ivp/src/iSay/Sayer.cpp:265"
+          "reviewSource": "moos-ivp/ivp/src/iSay/Sayer.cpp:46,265"
+        },
+        "audio_dir": {
+          "description": "Adds a directory to the search path used when an utterance request names an audio file. Multiple audio_dir lines may be used; iSay checks these directories when resolving file= requests.",
+          "default": null,
+          "example": "audio_dir = ./audio",
+          "reviewSource": "MOOS-IvP app_isay.pdf: Listing 2.1; moos-ivp/ivp/src/iSay/Sayer.cpp:190,374"
+        },
+        "default_rate": {
+          "description": "Sets the default speech rate used when an incoming SAY_MOOS utterance does not specify its own rate. The value is passed to the speech backend as the rate for spoken text.",
+          "default": "200",
+          "example": "default_rate = 200",
+          "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:41,172,336"
+        },
+        "default_voice": {
+          "description": "Sets the voice used for spoken utterances when a SAY_MOOS request omits the voice field. Available voice names depend on the platform speech backend.",
+          "default": null,
+          "example": "default_voice = alex",
+          "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer_Info.cpp:98"
+        },
+        "interval_policy": {
+          "description": "Controls whether the minimum interval between utterances is measured from the start or the end of the previous utterance. Supported values are from_start and from_end.",
+          "default": "from_end",
+          "example": "interval_policy = from_end",
+          "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:44,176"
+        },
+        "os_mode": {
+          "description": "Selects which operating-system speech backend iSay should use for speech and audio playback. Supported values are osx, linux, and both.",
+          "default": "both",
+          "example": "os_mode = both",
+          "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:45,183"
+        },
+        "min_utter_interval": {
+          "description": "Sets the minimum number of seconds between queued utterances. iSay will not start the next utterance until this interval permits it.",
+          "default": "1.0",
+          "example": "min_utter_interval = 1",
+          "reviewSource": "MOOS-IvP app_isay.pdf: configuration parameters; moos-ivp/ivp/src/iSay/Sayer.cpp:43,196"
         }
       }
     },
@@ -734,7 +770,7 @@
     },
     "pHostInfo": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "moos-ivp/ivp/src/pHostInfo",
+      "reviewSource": "MOOS-IvP app_phostinfo.pdf and moos-ivp/ivp/src/pHostInfo/HostInfo.cpp",
       "parameters": {
         "app_logging": {
           "description": "Enables AppCastingMOOSApp logging for pHostInfo. This records app-level diagnostics and is separate from the host/interface report values.",
@@ -743,16 +779,34 @@
           "reviewSource": "MOOS AppCastingMOOSApp configuration"
         },
         "prefer_interface": {
-          "description": "Selects the preferred network interface pHostInfo should use when reporting host address information. Use this when the machine has multiple interfaces and the default selection is not the desired mission network.",
+          "description": "Selects the preferred network interface when multiple valid IP addresses are available. Supported interface selectors include wlan0, wifi, eth0, eth1, usb0, usb1, and usb2.",
           "default": null,
-          "example": "prefer_interface = en0",
-          "reviewSource": "moos-ivp/ivp/src/pHostInfo"
+          "example": "prefer_interface = wlan0",
+          "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1; moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:154,382"
         },
         "prefer_inerface": {
-          "description": "Legacy misspelled alias accepted by the pHostInfo documentation/source for selecting the preferred network interface. Prefer prefer_interface when possible.",
+          "description": "Documentation typo for prefer_interface. The intended setting selects the preferred network interface when multiple valid IP addresses are available.",
           "default": null,
-          "example": "prefer_inerface = en0",
-          "reviewSource": "moos-ivp/ivp/src/pHostInfo and generated docs inventory"
+          "example": "prefer_inerface = wlan0",
+          "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1 typo; moos-ivp/ivp/src/pHostInfo/HostInfo_Info.cpp:103 documents prefer_interface"
+        },
+        "temp_file_dir": {
+          "description": "Sets the directory pHostInfo uses for temporary files while discovering host address information. Use a directory path, not an output filename.",
+          "default": "~/",
+          "example": "temp_file_dir = ./",
+          "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:147"
+        },
+        "default_hostip": {
+          "description": "Sets the fallback IP address pHostInfo posts when it cannot determine an address from the machine interfaces.",
+          "default": "localhost",
+          "example": "default_hostip = 192.168.0.55",
+          "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:42,156"
+        },
+        "default_hostip_force": {
+          "description": "Forces pHostInfo to use the configured fallback IP address instead of an auto-discovered network-interface address. This is mainly useful for debugging or controlled simulations.",
+          "default": null,
+          "example": "default_hostip_force = 192.168.0.99",
+          "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:163,360"
         }
       }
     },
@@ -1600,7 +1654,7 @@
     },
     "uQueryDB": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "moos-ivp/ivp/src/uQueryDB",
+      "reviewSource": "MOOS-IvP app_uquerydb.pdf and moos-ivp/ivp/src/uQueryDB/QueryDB.cpp",
       "parameters": {
         "halt_condition": {
           "description": "Stops uQueryDB when the given MOOS logic condition evaluates true. Use this to make a query session terminate after a mission state or variable condition is reached.",
@@ -1625,6 +1679,36 @@
           "default": "0",
           "example": "wait = 5",
           "reviewSource": "moos-ivp/ivp/src/uQueryDB"
+        },
+        "check_var": {
+          "description": "Adds a MOOS variable whose final value should be included in the optional query result report when uQueryDB exits successfully.",
+          "default": null,
+          "example": "check_var = MISSION_RESULT",
+          "reviewSource": "MOOS-IvP app_uquerydb.pdf: Section 5.2 and Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:120,230"
+        },
+        "check_var_format": {
+          "description": "Selects the output format for check_var reports. Supported formats are esv, csv, wsv, and vo.",
+          "default": "esv",
+          "example": "check_var_format = csv",
+          "reviewSource": "MOOS-IvP app_uquerydb.pdf: Section 5.3 and Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:48,141"
+        },
+        "condition": {
+          "description": "Adds a pass condition; this is an alias for pass_condition. All pass conditions must be true for uQueryDB to return success.",
+          "default": null,
+          "example": "condition = DEPLOY = true",
+          "reviewSource": "MOOS-IvP app_uquerydb.pdf: Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:225"
+        },
+        "pass_condition": {
+          "description": "Adds a logic condition that must be true for uQueryDB to return success. All configured pass conditions are evaluated together.",
+          "default": null,
+          "example": "pass_condition = MISSION_RESULT = pass",
+          "reviewSource": "MOOS-IvP app_uquerydb.pdf: Section 3 and Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:226,371"
+        },
+        "fail_condition": {
+          "description": "Adds a logic condition that causes uQueryDB to return failure if it becomes true. Any satisfied fail condition is enough to fail the query.",
+          "default": null,
+          "example": "fail_condition = COLLISION = true",
+          "reviewSource": "MOOS-IvP app_uquerydb.pdf: Section 4 and Listing 6.1; moos-ivp/ivp/src/uQueryDB/QueryDB.cpp:228,372"
         }
       }
     },
@@ -1719,7 +1803,7 @@
     },
     "uXMS": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "moos-ivp/ivp/src/uXMS",
+      "reviewSource": "MOOS-IvP app_uxms.pdf and moos-ivp/ivp/src/uXMS/XMS.cpp",
       "parameters": {
         "app_logging": {
           "description": "Enables AppCastingMOOSApp logging for uXMS. This records app-level diagnostics and is separate from the scoped MOOS mail display.",
@@ -1740,16 +1824,106 @@
           "reviewSource": "moos-ivp/ivp/src/uXMS"
         },
         "source": {
-          "description": "Restricts displayed variables to mail from the named MOOS source app.",
+          "description": "Restricts displayed variables to mail from the named MOOS source app or apps.",
           "default": null,
-          "example": "source = pHelmIvP",
-          "reviewSource": "moos-ivp/ivp/src/uXMS"
+          "example": "source = pHelmIvP, pMarineViewer",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.6; moos-ivp/ivp/src/uXMS"
         },
         "wrap_data_len": {
-          "description": "Sets the string-content line length used when uXMS wraps long data values for display.",
+          "description": "Sets the line length used when uXMS wraps long variable values.",
           "default": "45",
           "example": "wrap_data_len = 45",
-          "reviewSource": "moos-ivp/ivp/src/uXMS"
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.9; moos-ivp/ivp/src/uXMS/XMS.cpp:60"
+        },
+        "colormap": {
+          "description": "Associates a MOOS variable, source, or community substring with a terminal color in uXMS output.",
+          "default": null,
+          "example": "colormap = NAV_SPEED, blue",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.1"
+        },
+        "content_mode": {
+          "description": "Selects which uXMS report view is shown at startup. Supported modes include scoping, history, procs, and help.",
+          "default": "scoping",
+          "example": "content_mode = scoping",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.2; moos-ivp/ivp/src/uXMS/XMS.cpp:56"
+        },
+        "display_all": {
+          "description": "When true, uXMS shows all MOOSDB variables in scoping mode rather than only the configured watch variables.",
+          "default": "false",
+          "example": "display_all = false",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:69"
+        },
+        "display_aux_source": {
+          "description": "When true, uXMS shows non-empty auxiliary source information in the source column instead of the ordinary source app name.",
+          "default": "false",
+          "example": "display_aux_source = false",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:45"
+        },
+        "display_community": {
+          "description": "Controls whether the Community column is shown in scoping and history reports.",
+          "default": "false",
+          "example": "display_community = false",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:47"
+        },
+        "display_history_var": {
+          "description": "Controls whether the variable name is shown on each row in history mode. Turning it off saves horizontal space when the history view is scoped to one variable.",
+          "default": "true",
+          "example": "display_history_var = true",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3"
+        },
+        "display_source": {
+          "description": "Controls whether the Source column is shown in scoping and history reports.",
+          "default": "false",
+          "example": "display_source = false",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:44"
+        },
+        "display_time": {
+          "description": "Controls whether the Time column is shown in scoping and history reports.",
+          "default": "false",
+          "example": "display_time = false",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:46"
+        },
+        "display_virgins": {
+          "description": "Controls whether variables that have never been written, or have empty-string values, are shown in uXMS reports.",
+          "default": "true",
+          "example": "display_virgins = true",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.3; moos-ivp/ivp/src/uXMS/XMS.cpp:63"
+        },
+        "history_var": {
+          "description": "Names the single MOOS variable shown in uXMS history mode. If multiple history_var lines are provided, the last one is used.",
+          "default": null,
+          "example": "history_var = DB_CLIENTS",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.4; moos-ivp/ivp/src/uXMS/XMS.cpp:271"
+        },
+        "refresh_mode": {
+          "description": "Controls when uXMS refreshes terminal output. Supported modes are events, streaming, and paused.",
+          "default": "events",
+          "example": "refresh_mode = events",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.5; moos-ivp/ivp/src/uXMS/XMS.cpp:55,261"
+        },
+        "term_report_interval": {
+          "description": "Sets the minimum time, in seconds, between uXMS terminal report updates. Accepted values are clipped to the supported range.",
+          "default": "0.6",
+          "example": "term_report_interval = 0.6",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.7; moos-ivp/ivp/src/uXMS/XMS_Info.cpp:149"
+        },
+        "trunc_data": {
+          "description": "Sets the maximum number of characters shown for long string values before uXMS truncates them and appends an ellipsis. A value of 0 disables truncation.",
+          "default": "0",
+          "example": "trunc_data = 40",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.8; moos-ivp/ivp/src/uXMS/XMS.cpp:61"
+        },
+        "wrap_data": {
+          "description": "Controls whether long variable values are wrapped across multiple lines in uXMS output.",
+          "default": "false",
+          "example": "wrap_data = false",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.9; moos-ivp/ivp/src/uXMS/XMS.cpp:59"
+        },
+        "var": {
+          "description": "Adds one or more MOOS variables to the uXMS scoping watch list.",
+          "default": null,
+          "example": "var = PROC_WATCH_EVENT",
+          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.10"
         }
       }
     },
@@ -1773,7 +1947,7 @@
     },
     "pMissionEval": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "moos-ivp/ivp/src/pMissionEval",
+      "reviewSource": "MOOS-IvP app_pmissioneval.pdf and moos-ivp/ivp/src/pMissionEval/MissionEval.cpp",
       "parameters": {
         "mission_form": {
           "description": "Sets the mission-form name used when expanding MISSION_FORM macros in generated reports.",
@@ -1792,6 +1966,48 @@
           "default": "white",
           "example": "report_line_format = csp",
           "reviewSource": "moos-ivp/ivp/src/pMissionEval/MissionEval_Info.cpp"
+        },
+        "fail_condition": {
+          "description": "Adds a logic condition that causes the mission evaluation to fail if it is satisfied.",
+          "default": null,
+          "example": "fail_condition = COLLISION = true",
+          "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 3.1 and Listing 5.1; moos-ivp/ivp/src/pMissionEval/MissionEval.cpp:162"
+        },
+        "fail_flag": {
+          "description": "Defines one MOOS variable-value post made after pMissionEval determines that the mission did not pass.",
+          "default": null,
+          "example": "fail_flag = MISSION_PASSED = false",
+          "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Listing 5.1"
+        },
+        "lead_condition": {
+          "description": "Adds a logic condition that must become true before the associated pass/fail aspect is evaluated.",
+          "default": null,
+          "example": "lead_condition = ARRIVED_MID = true",
+          "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 3.2 and Listing 5.1"
+        },
+        "pass_condition": {
+          "description": "Adds a logic condition that must be true for the mission, or the current evaluation aspect, to pass.",
+          "default": null,
+          "example": "pass_condition = ODOMETRY < 500",
+          "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 3.1 and Listing 5.1; moos-ivp/ivp/src/pMissionEval/MissionEval.cpp:160"
+        },
+        "pass_flag": {
+          "description": "Defines one MOOS variable-value post made after pMissionEval determines that the mission passed.",
+          "default": null,
+          "example": "pass_flag = MISSION_PASSED = true",
+          "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Listing 5.1"
+        },
+        "report_file": {
+          "description": "Names the file where pMissionEval writes the configured report columns and final mission result.",
+          "default": null,
+          "example": "report_file = results.log",
+          "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 4.1 and Listing 5.1"
+        },
+        "result_flag": {
+          "description": "Defines one MOOS variable-value post made once pMissionEval has determined the mission result, regardless of pass or fail.",
+          "default": null,
+          "example": "result_flag = MISSION_EVALUATED = true",
+          "reviewSource": "MOOS-IvP app_pmissioneval.pdf: Section 4.1 and Listing 5.1"
         }
       }
     },
@@ -1821,19 +2037,43 @@
     },
     "pRealm": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "moos-ivp/ivp/src/pRealm",
+      "reviewSource": "MOOS-IvP app_prealm.pdf and moos-ivp/ivp/src/pRealm/Realm.cpp",
       "parameters": {
         "msg_max_hist": {
           "description": "Sets how many recent messages pRealm keeps per variable for string-message history display.",
           "default": "10",
           "example": "msg_max_hist = 10",
-          "reviewSource": "moos-ivp/ivp/src/pRealm"
+          "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1; moos-ivp/ivp/src/pRealm/Realm.cpp:135,329"
         },
         "scope_set": {
           "description": "Defines a named set of MOOS variables or realmcast fields to include in pRealm reporting.",
           "default": null,
           "example": "scope_set = DEPLOY,RETURN,NAV_X,NAV_Y",
           "reviewSource": "moos-ivp/ivp/src/pRealm"
+        },
+        "relcast_interval": {
+          "description": "Sets the minimum time, in seconds, between generated REALMCAST reports. Values are clipped to the supported range.",
+          "default": "0.8",
+          "example": "relcast_interval = 0.8",
+          "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1; moos-ivp/ivp/src/pRealm/Realm.cpp:41,127"
+        },
+        "summary_interval": {
+          "description": "Sets the time, in seconds, between automatic REALMCAST_CHANNELS summary postings. The local source initializes this to 5 seconds.",
+          "default": "5",
+          "example": "summary_interval = 5",
+          "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1; moos-ivp/ivp/src/pRealm/Realm.cpp:42,129"
+        },
+        "wrap_length": {
+          "description": "Sets the number of characters per line when pRealm wraps long variable values in realmcast output.",
+          "default": "90",
+          "example": "wrap_length = 90",
+          "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1"
+        },
+        "trunc_length": {
+          "description": "Sets the maximum value-field length used when pRealm truncates long realmcast output values.",
+          "default": "270",
+          "example": "trunc_length = 270",
+          "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1"
         }
       }
     },
@@ -1869,13 +2109,13 @@
     },
     "uFldBeaconRangeSensor": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf and moos-ivp/ivp/src/uFldBeaconRangeSensor",
+      "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf and moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp",
       "parameters": {
         "beacon": {
-          "description": "Defines one simulated beacon location and properties for vehicle-to-beacon range reports.",
+          "description": "Defines one simulated beacon, including its position, label, and optional per-beacon range/reporting properties.",
           "default": null,
           "example": "beacon = x=50,y=25,label=beacon_one",
-          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:276"
         },
         "default": {
           "description": "Sets a default beacon property applied when an individual beacon does not provide that property.",
@@ -1884,34 +2124,106 @@
           "reviewSource": "moos-ivp/ivp/src/uFldBeaconRangeSensor"
         },
         "default_beacon_freq": {
-          "description": "Sets the default interval for unsolicited beacon broadcasts. The value may be never, a fixed number of seconds, or a random range such as 60:120.",
+          "description": "Sets the default unsolicited report interval for beacons. The value may be never, a fixed number of seconds, or a random range such as 60:120.",
           "default": "never",
-          "example": "default_beacon_freq = 60:120",
-          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.2"
+          "example": "default_beacon_freq = never",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.2; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:137"
         },
         "default_beacon_shape": {
-          "description": "Sets the default rendered shape for beacons when an individual beacon does not specify a shape.",
+          "description": "Sets the default marker shape used when rendering beacons.",
           "default": "circle",
           "example": "default_beacon_shape = circle",
-          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:139"
         },
         "ping_wait": {
-          "description": "Sets the mandatory number of seconds between successive vehicle pings to the beacon range sensor.",
-          "default": null,
+          "description": "Sets the mandatory wait time, in seconds, between successive vehicle pings to the beacon range sensor.",
+          "default": "30",
           "example": "ping_wait = 30",
-          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.4; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:44,152"
         },
         "rn_algorithm": {
-          "description": "Selects the random-noise algorithm applied to simulated beacon range measurements.",
+          "description": "Selects the random-noise algorithm applied to simulated beacon range measurements, such as uniform noise with a configured percentage.",
           "default": "none",
-          "example": "rn_algorithm = none",
+          "example": "rn_algorithm = uniform,pct=0.5",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:694"
+        },
+        "default_beacon_push_dist": {
+          "description": "Sets the default distance from a beacon within which its unsolicited or solicited range report can be received.",
+          "default": "50",
+          "example": "default_beacon_push_dist = 50",
+          "reviewSource": "moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:46,145"
+        },
+        "default_beacon_pull_dist": {
+          "description": "Sets the default distance a vehicle-side ping can reach when querying beacons.",
+          "default": "50",
+          "example": "default_beacon_pull_dist = 50",
+          "reviewSource": "moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:47,147"
+        },
+        "default_beacon_width": {
+          "description": "Sets the default rendered marker width for beacons.",
+          "default": "4",
+          "example": "default_beacon_width = 4",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:143"
+        },
+        "default_beacon_color": {
+          "description": "Sets the default marker color used when rendering beacons.",
+          "default": "orange",
+          "example": "default_beacon_color = orange",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:141"
+        },
+        "default_beacon_report_range": {
+          "description": "Sets the default visual report range used for rendered beacon range-report artifacts.",
+          "default": "100",
+          "example": "default_beacon_report_range = 100",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.1"
+        },
+        "ground_truth": {
+          "description": "When true, publishes ground-truth beacon range reports in addition to noisy simulated reports when random noise is enabled.",
+          "default": "true",
+          "example": "ground_truth = true",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.5; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:51,165"
+        },
+        "node_pull_dist": {
+          "description": "Sets a vehicle-specific pull distance for vehicle-to-beacon range requests, overriding the default node pull distance for that vehicle.",
+          "default": null,
+          "example": "node_pull_dist = henry=120",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:610"
+        },
+        "node_push_dist": {
+          "description": "Sets a vehicle-specific push distance for beacon range reports, overriding the default node push distance for that vehicle.",
+          "default": null,
+          "example": "node_push_dist = henry=120",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:585"
+        },
+        "ping_payments": {
+          "description": "Controls when a vehicle ping consumes its ping-wait interval. Supported modes include upon_request, upon_accept, and upon_response.",
+          "default": "upon_response",
+          "example": "ping_payments = upon_response",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.4; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:49,652"
+        },
+        "reach_distance": {
+          "description": "Sets a default or vehicle-specific range distance used when deciding whether beacon reports can be received.",
+          "default": "100",
+          "example": "reach_distance = default = 200",
+          "reviewSource": "moos-ivp/ivp/src/uFldBeaconRangeSensor/uFldBeaconRangeSensor.moos:10"
+        },
+        "report_vars": {
+          "description": "Selects which beacon range report variable style is posted. Supported values are short, long, and both.",
+          "default": "short",
+          "example": "report_vars = short",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:50,666"
+        },
+        "verbose": {
+          "description": "Enables verbose terminal status output from uFldBeaconRangeSensor.",
+          "default": "false",
+          "example": "verbose = false",
           "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Listing 2.1"
         }
       }
     },
     "uFldContactRangeSensor": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf and moos-ivp/ivp/src/uFldContactRangeSensor",
+      "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf and moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp",
       "parameters": {
         "ignore_group": {
           "description": "Ignores incoming node reports from contacts whose group matches this configured group.",
@@ -1932,10 +2244,10 @@
           "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
         },
         "ground_truth": {
-          "description": "When true, publishes ground-truth range reports alongside noisy simulated range reports for diagnostics.",
+          "description": "When true, publishes ground-truth range reports with noise removed alongside normal simulated range reports for diagnostics.",
           "default": "true",
           "example": "ground_truth = true",
-          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.3; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:48,154"
         },
         "pull_dist": {
           "description": "Sets a contact-specific pull distance used by the range sensor when evaluating whether a contact can be sensed or reported.",
@@ -1968,34 +2280,130 @@
           "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
         },
         "sensor_arc": {
-          "description": "Sets the angular field of view, relative to vehicle heading, in which the range sensor can detect contacts.",
+          "description": "Adds an angular sensor field-of-view arc relative to vehicle heading. Multiple arcs may be configured; 360 gives full-circle coverage.",
           "default": "360",
-          "example": "sensor_arc = -45:45",
+          "example": "sensor_arc = 315:45",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.6; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:160"
+        },
+        "allow_echo_types": {
+          "description": "Restricts simulated range replies to contacts whose platform type is in the configured list. If no types are configured, all platform types are honored.",
+          "default": null,
+          "example": "allow_echo_types = kayak",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:139,634"
+        },
+        "ground_true": {
+          "description": "Documentation spelling for ground_truth. When true, publishes ground-truth range reports with noise removed for diagnostics.",
+          "default": "true",
+          "example": "ground_true = true",
           "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
+        },
+        "ping_color": {
+          "description": "Sets the visual color used for initiating range-request pulses.",
+          "default": "white",
+          "example": "ping_color = white",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1"
+        },
+        "reach_distance": {
+          "description": "Sets the distance out to which the pinging vehicle can be heard. The value may be numeric meters or nolimit.",
+          "default": "100",
+          "example": "reach_distance = default = 100",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.4"
+        },
+        "reply_distance": {
+          "description": "Sets the distance out to which the pinged contact can reply. The value may be numeric meters or nolimit.",
+          "default": "100",
+          "example": "reply_distance = default = 100",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.4"
+        },
+        "exponential_decay": {
+          "description": "Enables exponentially decaying detection probability beyond the combined reach and reply distances.",
+          "default": "false",
+          "example": "exponential_decay = false",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.5"
+        },
+        "reply_color": {
+          "description": "Deprecated alias for echo_color. Sets the visual color used for reply/echo range pulses.",
+          "default": "chartreuse",
+          "example": "reply_color = chartreuse",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:146"
+        },
+        "echo_color": {
+          "description": "Sets the visual color used for reply/echo range pulses.",
+          "default": "chartreuse",
+          "example": "echo_color = chartreuse",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:46,143"
+        },
+        "report_vars": {
+          "description": "Selects which contact range report variable style is posted. Supported values are short, long, and both.",
+          "default": "short",
+          "example": "report_vars = short",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Listing 3.1; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:47,137"
+        },
+        "sensor_arcs": {
+          "description": "Adds angular sensor field-of-view arcs relative to vehicle heading. Multiple arcs may be configured; 360 gives full-circle coverage.",
+          "default": "360",
+          "example": "sensor_arcs = 45:135,225:315",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.6"
+        },
+        "rn_algorithm": {
+          "description": "Selects the random-noise algorithm applied to simulated contact range measurements. An empty value means no random noise.",
+          "default": "none",
+          "example": "rn_algorithm = uniform,pct=0.5",
+          "reviewSource": "MOOS-IvP app_ufld_contact_rsensor.pdf: Section 2.8; moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:150,615"
+        },
+        "rn_uniform_pct": {
+          "description": "Sets the percent bound used by uniform random noise for simulated contact range measurements. Values are clipped to the range 0 to 1.",
+          "default": "0",
+          "example": "rn_uniform_pct = 0.5",
+          "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor/CRS_App_HP.cpp:53,156"
+        },
+        "max_appcast_events": {
+          "description": "Limits how many appcast events uFldContactRangeSensor retains in diagnostic report history.",
+          "default": null,
+          "example": "max_appcast_events = 8",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         }
       }
     },
     "uFldMessageHandler": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "moos-ivp/ivp/src/uFldMessageHandler",
+      "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf and moos-ivp/ivp/src/uFldMessageHandler/MessageHandler.cpp",
       "parameters": {
         "appcast_trunc_msg": {
-          "description": "Sets the maximum number of characters from each successful message shown in the appcast report.",
+          "description": "Sets the maximum number of message characters shown per line in the appcast report.",
           "default": "75",
           "example": "appcast_trunc_msg = 75",
-          "reviewSource": "moos-ivp/ivp/src/uFldMessageHandler"
+          "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.2"
         },
         "aux_info": {
-          "description": "Controls the source auxiliary field included with handled messages, such as node or node+app.",
+          "description": "Controls the source auxiliary field attached to handled messages, such as node or node+app.",
           "default": "node",
           "example": "aux_info = node+app",
-          "reviewSource": "moos-ivp/ivp/src/uFldMessageHandler"
+          "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.2"
+        },
+        "strict_addressing": {
+          "description": "When true, handles only messages whose destination node matches the local community; broad group or all-node messages are rejected.",
+          "default": "false",
+          "example": "strict_addressing = false",
+          "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.1; moos-ivp/ivp/src/uFldMessageHandler/MessageHandler.cpp:50,125,230"
+        },
+        "msg_flag": {
+          "description": "Defines a MOOS variable-value post made when a valid incoming message is accepted and posted to the local MOOSDB.",
+          "default": null,
+          "example": "msg_flag = RETURN=true",
+          "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.2; moos-ivp/ivp/src/uFldMessageHandler/MessageHandler.cpp:141,252"
+        },
+        "bad_msg_flag": {
+          "description": "Defines a MOOS variable-value post made when an incoming message is validly formed but rejected by the handler.",
+          "default": null,
+          "example": "bad_msg_flag = TOTAL_BAD=$[BAD_CTR]",
+          "reviewSource": "MOOS-IvP app_ufld_msghandler.pdf: Listing 7.2; moos-ivp/ivp/src/uFldMessageHandler/MessageHandler.cpp:143,239"
         }
       }
     },
     "uFldNodeBroker": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "MOOS-IvP app_ufld_nodebroker.pdf and moos-ivp/ivp/src/uFldNodeBroker",
+      "reviewSource": "MOOS-IvP app_ufld_nodebroker.pdf and moos-ivp/ivp/src/uFldNodeBroker/NodeBroker.cpp",
       "parameters": {
         "bridge": {
           "description": "Registers a MOOS variable with pShare for bridging to the shoreside MOOS community after a shore connection is established.",
@@ -2004,22 +2412,34 @@
           "reviewSource": "MOOS-IvP app_ufld_nodebroker.pdf: Listing 2.1"
         },
         "try_shore_host": {
-          "description": "Adds a candidate pShare route used for initial pings while trying to establish a shoreside connection.",
+          "description": "Adds a candidate pShare input route used for initial pings while trying to establish a shoreside connection.",
           "default": null,
           "example": "try_shore_host = 192.168.1.10:9200",
           "reviewSource": "MOOS-IvP app_ufld_nodebroker.pdf: Listing 2.1"
         },
         "keyword": {
-          "description": "Defines a keyword value included in brokered node communications when keyword matching is required by the shore broker.",
+          "description": "Defines a keyword included in brokered node communications when keyword matching is required by the shore broker.",
           "default": null,
           "example": "keyword = alpha_key",
           "reviewSource": "moos-ivp/ivp/src/uFldNodeBroker"
+        },
+        "auto_bridge_appcast": {
+          "description": "Controls whether uFldNodeBroker automatically bridges APPCAST traffic to support appcasting. Set false to opt out of the automatic bridge.",
+          "default": "true",
+          "example": "auto_bridge_appcast = true",
+          "reviewSource": "MOOS-IvP app_ufld_nodebroker.pdf: Listing 2.1; moos-ivp/ivp/src/uFldNodeBroker/NodeBroker.cpp:154,171"
+        },
+        "auto_bridge_realmcast": {
+          "description": "Controls whether uFldNodeBroker automatically bridges REALMCAST and REALMCAST_CHANNELS traffic to support realmcasting. Set false to opt out.",
+          "default": "true",
+          "example": "auto_bridge_realmcast = true",
+          "reviewSource": "MOOS-IvP app_ufld_nodebroker.pdf: Listing 2.1; moos-ivp/ivp/src/uFldNodeBroker/NodeBroker.cpp:153,169"
         }
       }
     },
     "uFldNodeComms": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf and moos-ivp/ivp/src/uFldNodeComms",
+      "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf and moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp",
       "parameters": {
         "ignore_group": {
           "description": "Ignores incoming node reports from contacts whose group matches this configured group.",
@@ -2038,6 +2458,102 @@
           "default": "1",
           "example": "earange = 1",
           "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        },
+        "comms_range": {
+          "description": "Sets the maximum range, in meters, for sharing inter-vehicle node reports and node messages. The value nolimit disables range cutoff.",
+          "default": "100",
+          "example": "comms_range = 100",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Section 2.1; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:42,239"
+        },
+        "critical_range": {
+          "description": "Sets the range within which node reports are shared for safety even when normal group or range rules would block them.",
+          "default": "30",
+          "example": "critical_range = 30",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Section 2.1; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:46,249"
+        },
+        "debug": {
+          "description": "Enables extra terminal debugging output from uFldNodeComms.",
+          "default": "false",
+          "example": "debug = false",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        },
+        "groups": {
+          "description": "When true, shares inter-vehicle node reports only between vehicles in the same group, except within the critical range.",
+          "default": "false",
+          "example": "groups = false",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        },
+        "min_msg_interval": {
+          "description": "Sets the minimum time, in seconds, between node-message sends from any one source vehicle.",
+          "default": "30",
+          "example": "min_msg_interval = 30",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        },
+        "max_msg_length": {
+          "description": "Sets the maximum number of characters allowed in the string component of an inter-vehicle node message.",
+          "default": "1000",
+          "example": "max_msg_length = 1000",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        },
+        "min_rpt_interval": {
+          "description": "Sets the minimum time, in seconds, between node-report sends from any one source vehicle. A negative value disables report dropping.",
+          "default": "-1",
+          "example": "min_rpt_interval = -1",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        },
+        "msg_groups": {
+          "description": "When true, shares inter-vehicle node messages only between vehicles in the same group.",
+          "default": "false",
+          "example": "msg_groups = false",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        },
+        "msg_color": {
+          "description": "Sets the color used for inter-vehicle message communication pulses.",
+          "default": "white",
+          "example": "msg_color = white",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        },
+        "msg_repeat_color": {
+          "description": "Sets the color used for communication pulses representing repeated previously dropped node messages.",
+          "default": "light_green",
+          "example": "msg_repeat_color = light_green",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        },
+        "pulse_duration": {
+          "description": "Sets how long communication pulses remain visible in viewers such as pMarineViewer.",
+          "default": "10",
+          "example": "pulse_duration = 10",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Section 5; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:69,275"
+        },
+        "shared_node_reports": {
+          "description": "When true, reposts shared node reports to the shoreside community as NODE_REPORT_UNC.",
+          "default": "false",
+          "example": "shared_node_reports = false",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:277"
+        },
+        "stale_time": {
+          "description": "Sets how long a vehicle may go without a fresh node report before it is considered stale and no longer eligible to receive reports or messages.",
+          "default": "5",
+          "example": "stale_time = 5",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        },
+        "verbose": {
+          "description": "Enables verbose terminal status output from uFldNodeComms.",
+          "default": "false",
+          "example": "verbose = false",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Listing 8.2"
+        },
+        "view_node_rpt_pulses": {
+          "description": "Controls whether uFldNodeComms posts visual communication pulses for successfully shared node reports.",
+          "default": "true",
+          "example": "view_node_rpt_pulses = true",
+          "reviewSource": "MOOS-IvP app_ufld_nodecomms.pdf: Section 2.2; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:70,270"
+        },
+        "drop_percentage": {
+          "description": "Sets the percentage of node messages randomly dropped to simulate lossy communications.",
+          "default": "0",
+          "example": "drop_percentage = 10",
+          "reviewSource": "moos-ivp/ivp/src/uFldNodeComms/FldNodeComms_Info.cpp:113; moos-ivp/ivp/src/uFldNodeComms/FldNodeComms.cpp:273"
         }
       }
     },
@@ -2091,7 +2607,7 @@
     },
     "uFldShoreBroker": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf and moos-ivp/ivp/src/uFldShoreBroker",
+      "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf and moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker.cpp",
       "parameters": {
         "bridge": {
           "description": "Names a local MOOS variable and optional alias to bridge from the shore community to vehicle communities.",
@@ -2122,18 +2638,54 @@
           "default": null,
           "example": "auto_bridg_mhash = true",
           "reviewSource": "moos-ivp/ivp/src/uFldShoreBroker"
+        },
+        "auto_bridge_appcast": {
+          "description": "Controls whether uFldShoreBroker automatically bridges APPCAST_REQ traffic to support appcasting. Set false to opt out of the automatic bridge.",
+          "default": "true",
+          "example": "auto_bridge_appcast = true",
+          "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2; moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp:99"
+        },
+        "auto_bridge_mhash": {
+          "description": "Controls whether uFldShoreBroker automatically bridges MISSION_HASH traffic. Set false to opt out of the automatic bridge.",
+          "default": "true",
+          "example": "auto_bridge_mhash = true",
+          "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2; moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp:100"
+        },
+        "auto_bridge_realmcast": {
+          "description": "Controls whether uFldShoreBroker automatically bridges REALMCAST_REQ traffic to support realmcasting. Set false to opt out of the automatic bridge.",
+          "default": "true",
+          "example": "auto_bridge_realmcast = true",
+          "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2; moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp:98"
+        },
+        "warning_on_stale": {
+          "description": "When true, posts a warning if a previously known node has not been heard from for more than the stale-node interval.",
+          "default": "false",
+          "example": "warning_on_stale = false",
+          "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2; moos-ivp/ivp/src/uFldShoreBroker/ShoreBroker_Info.cpp:97"
         }
       }
     },
     "uLoadWatch": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "moos-ivp/ivp/src/uLoadWatch",
+      "reviewSource": "MOOS-IvP app_uloadwatch.pdf and moos-ivp/ivp/src/uLoadWatch/LoadWatch.cpp",
       "parameters": {
         "breach_trigger": {
-          "description": "Sets how many threshold breaches are allowed before uLoadWatch posts a warning. A value of 1 warns on the first breach.",
+          "description": "Sets how many load-gap threshold breaches are tolerated before uLoadWatch posts a warning. A value of 1 warns on the first breach.",
           "default": "1",
           "example": "breach_trigger = 1",
-          "reviewSource": "moos-ivp/ivp/src/uLoadWatch"
+          "reviewSource": "MOOS-IvP app_uloadwatch.pdf: Listing 2.1"
+        },
+        "near_breach_thresh": {
+          "description": "Sets the fractional point between normal load and the configured breach threshold where uLoadWatch begins reporting near-breaches. For example, 0.9 reports when the gap reaches 90% of the way to the breach threshold.",
+          "default": "0.9",
+          "example": "near_breach_thresh = 0.9",
+          "reviewSource": "MOOS-IvP app_uloadwatch.pdf: Listing 2.1; moos-ivp/ivp/src/uLoadWatch/LoadWatch.cpp:48,245,406"
+        },
+        "thresh": {
+          "description": "Defines an app-specific or catch-all load-gap threshold using fields such as app and gapthresh. When the measured app iteration gap exceeds this multiplier, uLoadWatch can post a load warning.",
+          "default": null,
+          "example": "thresh = app=pHelmIvP, gapthresh=1.5",
+          "reviewSource": "MOOS-IvP app_uloadwatch.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/uLoadWatch/LoadWatch.cpp:365"
         }
       }
     },
@@ -2175,43 +2727,67 @@
     },
     "uMayFinish": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "moos-ivp/ivp/src/uMayFinish",
+      "reviewSource": "MOOS-IvP app_umayfinish.pdf and moos-ivp/ivp/src/uMayFinish/MayFinish.cpp",
       "parameters": {
         "finish_val": {
-          "description": "Sets the value that must be observed on the configured finish variable before uMayFinish allows completion.",
-          "default": null,
+          "description": "Sets the value that must be observed on finish_var before uMayFinish allows completion.",
+          "default": "true",
           "example": "finish_val = true",
-          "reviewSource": "moos-ivp/ivp/src/uMayFinish"
+          "reviewSource": "MOOS-IvP app_umayfinish.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/uMayFinish/MayFinish.cpp:120,134"
         },
         "max_db_uptime": {
-          "description": "Sets the MOOSDB uptime, in seconds, after which uMayFinish exits. A negative value disables this timeout.",
+          "description": "Sets the MOOSDB uptime, in seconds, after which uMayFinish exits regardless of finish_var state. A negative value disables this timeout.",
           "default": "-1",
-          "example": "max_db_uptime = 300",
-          "reviewSource": "moos-ivp/ivp/src/uMayFinish"
+          "example": "max_db_uptime = 3600",
+          "reviewSource": "MOOS-IvP app_umayfinish.pdf: Listing 2.2; moos-ivp/ivp/src/uMayFinish/MayFinish.cpp:20,122"
+        },
+        "finish_var": {
+          "description": "Names the MOOS variable uMayFinish monitors to decide whether the mission may finish.",
+          "default": "MISSION_EVALUATED",
+          "example": "finish_var = MISSION_EVALUATED",
+          "reviewSource": "MOOS-IvP app_umayfinish.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/uMayFinish/MayFinish.cpp:118,132"
         }
       }
     },
     "uProcessWatch": {
       "reviewStatus": "manual-reviewed",
-      "reviewSource": "moos-ivp/ivp/src/uProcessWatch",
+      "reviewSource": "MOOS-IvP app_uprocwatch.pdf and moos-ivp/ivp/src/uProcessWatch/ProcessWatch.cpp",
       "parameters": {
         "nowatch": {
-          "description": "Names one or more MOOS process names that uProcessWatch should ignore when checking process health.",
+          "description": "Names process patterns that uProcessWatch should ignore even if they appear in DB_CLIENTS or the Antler-launched process list.",
           "default": null,
-          "example": "nowatch = uXMS",
-          "reviewSource": "moos-ivp/ivp/src/uProcessWatch"
+          "example": "nowatch = uXMS*",
+          "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.2; moos-ivp/ivp/src/uProcessWatch/ProcessWatch_Info.cpp:108"
         },
         "summary_wait": {
-          "description": "Sets the maximum time between PROC_WATCH_SUMMARY postings. A negative value posts summaries only when the watched process state changes.",
+          "description": "Sets the maximum time between PROC_WATCH_SUMMARY postings. A negative value posts summaries only when watched process status changes.",
           "default": "-1",
-          "example": "summary_wait = 5",
-          "reviewSource": "moos-ivp/ivp/src/uProcessWatch"
+          "example": "summary_wait = 10",
+          "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.2; moos-ivp/ivp/src/uProcessWatch/ProcessWatch_Info.cpp:112"
         },
         "watch": {
-          "description": "Names one or more MOOS processes that uProcessWatch should monitor and report as running or missing.",
+          "description": "Names a process that uProcessWatch should monitor and report as running or missing. Optional mappings may associate a watched process with a status variable.",
           "default": null,
           "example": "watch = pHelmIvP",
-          "reviewSource": "moos-ivp/ivp/src/uProcessWatch"
+          "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.1 and 4.2"
+        },
+        "allow_retractions": {
+          "description": "Controls whether uProcessWatch retracts run warnings when a missing process reappears. true always allows retraction, false disables it, and a numeric value limits retraction to that many seconds.",
+          "default": "-1",
+          "example": "allow_retractions = true",
+          "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.1; moos-ivp/ivp/src/uProcessWatch/ProcessWatch.cpp:61,205,682"
+        },
+        "post_mapping": {
+          "description": "Maps one uProcessWatch posting variable to another output variable name.",
+          "default": null,
+          "example": "post_mapping = PROC_WATCH_FULL_SUMMARY, UPW_FULL_SUMMARY",
+          "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.2; moos-ivp/ivp/src/uProcessWatch/ProcessWatch.cpp:215"
+        },
+        "watch_all": {
+          "description": "Controls whether uProcessWatch automatically monitors processes discovered from DB_CLIENTS and the Antler launch list.",
+          "default": "true",
+          "example": "watch_all = true",
+          "reviewSource": "MOOS-IvP app_uprocwatch.pdf: Listing 4.1; moos-ivp/ivp/src/uProcessWatch/ProcessWatch.cpp:40,178"
         }
       }
     },
@@ -2338,6 +2914,54 @@
           "default": "false",
           "example": "truncated_output = false",
           "reviewSource": "MOOS-IvP app_uhelmscope.pdf: Listing 7.4"
+        }
+      }
+    },
+    "pMissionHash": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_pmhash.pdf and moos-ivp/ivp/src/pMissionHash/MissionHash_MOOSApp.cpp",
+      "parameters": {
+        "mission_hash_var": {
+          "description": "Names the MOOS variable where pMissionHash posts the full mission hash. Set this to off to disable full-hash posting.",
+          "default": "MISSION_HASH",
+          "example": "mission_hash_var = MISSION_HASH",
+          "reviewSource": "MOOS-IvP app_pmhash.pdf: Listing 3.1; moos-ivp/ivp/src/pMissionHash/MissionHash_MOOSApp.cpp:39,135"
+        },
+        "mhash_short_var": {
+          "description": "Names the MOOS variable where pMissionHash posts the short mission hash. The local source initializes this to MHASH; setting it to off disables the short-hash post.",
+          "default": "MHASH",
+          "example": "mhash_short_var = MHASH",
+          "reviewSource": "MOOS-IvP app_pmhash.pdf: Listing 3.1; moos-ivp/ivp/src/pMissionHash/MissionHash_MOOSApp.cpp:40,140"
+        }
+      }
+    },
+    "uFldPathCheck": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS-IvP app_ufld_pathcheck.pdf and moos-ivp/ivp/src/uFldPathCheck/PathCheck_MOOSApp.cpp",
+      "parameters": {
+        "history": {
+          "description": "Sets how many recent node records uFldPathCheck keeps for each vehicle when estimating present speed and checking path progress.",
+          "default": "10",
+          "example": "history = 10",
+          "reviewSource": "MOOS-IvP app_ufld_pathcheck.pdf: Listing 2.1; moos-ivp/ivp/src/uFldPathCheck/PathCheck_MOOSApp.cpp:40,126"
+        }
+      }
+    },
+    "*": {
+      "reviewStatus": "manual-reviewed",
+      "reviewSource": "MOOS AppCastingMOOSApp common configuration",
+      "parameters": {
+        "app_logging": {
+          "description": "Enables app-level AppCasting logging for the current MOOS app. This records diagnostic app output and does not change the app-specific mission behavior.",
+          "default": "disabled",
+          "example": "app_logging = true",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
+        },
+        "max_appcast_events": {
+          "description": "Limits how many appcast events the current MOOS app retains in its diagnostic report history.",
+          "default": null,
+          "example": "max_appcast_events = 8",
+          "reviewSource": "MOOS AppCastingMOOSApp common configuration"
         }
       }
     }
