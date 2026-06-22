@@ -6,4 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-- Initial release
+- Added source-backed geometry diagnostics for selected MOOS-IvP app and
+  behavior parameters.
+- Added semantic highlighting and hover help backed by bundled MOOS-IvP
+  metadata.
+- Added canonical examples and intentional diagnostic observation fixtures.

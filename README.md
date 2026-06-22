@@ -29,7 +29,7 @@ false positives.
 * Conservative diagnostics for source-backed value constraints, including
   selected `pContactMgrV20` contact filter region geometry checks
 
-![MOOS Mission File](https://raw.githubusercontent.com/cgagner/vscode-moos-ivp-editor/main/images/example_mission.png)
+![MOOS Mission File](https://raw.githubusercontent.com/moos-ivp/vscode-moos-ivp-editor/main/images/example_mission.png)
 
 ### IvP Behavior Files
 
@@ -45,7 +45,7 @@ false positives.
 * Conservative diagnostics for source-backed value constraints, including
   selected convex polygon, waypoint path, and contact filter region checks
 
-![IvP Behavior File](https://raw.githubusercontent.com/cgagner/vscode-moos-ivp-editor/main/images/example_behavior.png)
+![IvP Behavior File](https://raw.githubusercontent.com/moos-ivp/vscode-moos-ivp-editor/main/images/example_behavior.png)
 
 ### pAntler Options
 
@@ -93,8 +93,25 @@ Intentional good/bad diagnostic observation files are also provided:
 These files are not runnable missions. They are meant to show which geometry
 values should and should not produce diagnostics.
 
-
 ## Release Notes
+
+### 0.0.3
+
+Current development checkpoint:
+
+* Adds owner-aware semantic highlighting for known MOOS apps, IvP behaviors,
+  and block-valid parameters.
+* Adds hover help backed by MIT documentation and local MOOS-IvP source
+  metadata.
+* Adds conservative, source-backed diagnostics for selected value constraints,
+  including geometry checks for convex polygons, waypoint paths, and contact
+  filter regions.
+* Adds canonical examples, patch examples, and intentional good/bad diagnostic
+  observation fixtures.
+
+### 0.0.2
+
+Expanded MOOS-IvP language metadata and examples.
 
 ### 0.0.1
 
