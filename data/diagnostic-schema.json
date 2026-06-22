@@ -223,6 +223,34 @@
           "moos-ivp/ivp/src/lib_mbutil/MBUtils.cpp:2074-2086"
         ]
       },
+      "match_region": {
+        "valueType": "contact-filter-region",
+        "constraints": {},
+        "diagnostic": true,
+        "confidence": "source-enforced-fixture-backed",
+        "source": [
+          "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:121-122",
+          "moos-ivp/ivp/src/lib_bhvutil/ExFilterSet.cpp:398-405",
+          "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:66-121",
+          "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:132-212",
+          "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:220-251"
+        ],
+        "notes": "Diagnostics cover simple standard and abbreviated convex region polygons. Source-supported generated and field/property forms are accepted/skipped until modeled."
+      },
+      "ignore_region": {
+        "valueType": "contact-filter-region",
+        "constraints": {},
+        "diagnostic": true,
+        "confidence": "source-enforced-fixture-backed",
+        "source": [
+          "moos-ivp/ivp/src/lib_behaviors/IvPContactBehavior.cpp:123-124",
+          "moos-ivp/ivp/src/lib_bhvutil/ExFilterSet.cpp:385-392",
+          "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:66-121",
+          "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:132-212",
+          "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:220-251"
+        ],
+        "notes": "Diagnostics cover simple standard and abbreviated convex region polygons. Source-supported generated and field/property forms are accepted/skipped until modeled."
+      },
       "on_no_contact_ok": {
         "valueType": "boolean-token",
         "constraints": {
@@ -1182,25 +1210,31 @@
       "source": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp",
       "parameters": {
         "polygon": {
-          "valueType": "polygon",
-          "diagnostic": false,
-          "confidence": "source-parser-complex",
+          "valueType": "convex-polygon",
+          "diagnostic": true,
+          "confidence": "source-enforced-fixture-backed",
           "source": [
             "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp:131-134",
-            "moos-ivp/ivp/src/lib_bhvutil/ObShipModelV24.cpp:236-263"
+            "moos-ivp/ivp/src/lib_bhvutil/ObShipModelV24.cpp:236-263",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:66-121",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:132-212",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:220-251"
           ],
-          "notes": "The source parses an XYPolygon and requires convexity; detailed polygon diagnostics are deferred."
+          "notes": "Diagnostics cover simple standard and abbreviated convex polygon forms. Source-supported generated and field/property forms are accepted/skipped until modeled."
         },
         "poly": {
           "aliasOf": "polygon",
-          "valueType": "polygon",
-          "diagnostic": false,
-          "confidence": "source-parser-complex",
+          "valueType": "convex-polygon",
+          "diagnostic": true,
+          "confidence": "source-enforced-fixture-backed",
           "source": [
             "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidObstacleV24.cpp:131-134",
-            "moos-ivp/ivp/src/lib_bhvutil/ObShipModelV24.cpp:236-263"
+            "moos-ivp/ivp/src/lib_bhvutil/ObShipModelV24.cpp:236-263",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:66-121",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:132-212",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:220-251"
           ],
-          "notes": "Alias for polygon."
+          "notes": "Alias for polygon. Diagnostics cover simple standard and abbreviated convex polygon forms. Source-supported generated and field/property forms are accepted/skipped until modeled."
         },
         "allowable_ttc": {
           "valueType": "number-like",
@@ -3586,14 +3620,16 @@
       "source": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
       "parameters": {
         "polygon": {
-          "valueType": "polygon",
-          "diagnostic": false,
-          "confidence": "source-parser-complex",
+          "valueType": "convex-polygon",
+          "diagnostic": true,
+          "confidence": "source-enforced-fixture-backed",
           "source": [
             "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:98-110",
-            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp"
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:66-121",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:132-212",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:220-251"
           ],
-          "notes": "The source parses and requires a convex polygon; detailed polygon syntax/convexity diagnostics are deferred."
+          "notes": "Diagnostics cover simple standard and abbreviated convex polygon forms. Source-supported generated and field/property forms are accepted/skipped until modeled."
         },
         "center_assign": {
           "valueType": "string",
@@ -4149,14 +4185,16 @@
       "source": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
       "parameters": {
         "polygon": {
-          "valueType": "polygon",
-          "diagnostic": false,
-          "confidence": "source-parser-complex",
+          "valueType": "convex-polygon",
+          "diagnostic": true,
+          "confidence": "source-enforced-fixture-backed",
           "source": [
             "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:107-114",
-            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp"
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:66-121",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:132-212",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:220-251"
           ],
-          "notes": "The source parses and requires a convex polygon; detailed polygon syntax/convexity diagnostics are deferred."
+          "notes": "Diagnostics cover simple standard and abbreviated convex polygon forms. Source-supported generated and field/property forms are accepted/skipped until modeled."
         },
         "reset_var": {
           "valueType": "non-empty-no-whitespace-string",
@@ -4247,31 +4285,43 @@
       "source": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp",
       "parameters": {
         "core_poly": {
-          "valueType": "polygon",
-          "diagnostic": false,
-          "confidence": "source-parser-complex",
+          "valueType": "convex-polygon",
+          "diagnostic": true,
+          "confidence": "source-enforced-fixture-backed",
           "source": [
-            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:127-132"
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:127-132",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:969-979",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:66-121",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:132-212",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:220-251"
           ],
-          "notes": "The source parses polygons through setPolyOnString; detailed polygon syntax/convexity diagnostics are deferred."
+          "notes": "Diagnostics cover simple standard and abbreviated convex polygon forms through setPolyOnString. Source-supported generated and field/property forms are accepted/skipped until modeled."
         },
         "save_poly": {
-          "valueType": "polygon",
-          "diagnostic": false,
-          "confidence": "source-parser-complex",
+          "valueType": "convex-polygon",
+          "diagnostic": true,
+          "confidence": "source-enforced-fixture-backed",
           "source": [
-            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:127-132"
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:127-132",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:969-979",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:66-121",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:132-212",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:220-251"
           ],
-          "notes": "The source parses polygons through setPolyOnString; detailed polygon syntax/convexity diagnostics are deferred."
+          "notes": "Diagnostics cover simple standard and abbreviated convex polygon forms through setPolyOnString. Source-supported generated and field/property forms are accepted/skipped until modeled."
         },
         "halt_poly": {
-          "valueType": "polygon",
-          "diagnostic": false,
-          "confidence": "source-parser-complex",
+          "valueType": "convex-polygon",
+          "diagnostic": true,
+          "confidence": "source-enforced-fixture-backed",
           "source": [
-            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:127-132"
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:127-132",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:969-979",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:66-121",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:132-212",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:220-251"
           ],
-          "notes": "The source parses polygons through setPolyOnString; detailed polygon syntax/convexity diagnostics are deferred."
+          "notes": "Diagnostics cover simple standard and abbreviated convex polygon forms through setPolyOnString. Source-supported generated and field/property forms are accepted/skipped until modeled."
         },
         "save_dist": {
           "valueType": "number",
@@ -5685,31 +5735,43 @@
       "source": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
       "parameters": {
         "polygon": {
-          "valueType": "waypoint-segment-list-or-polygon",
-          "diagnostic": false,
-          "confidence": "source-parser-complex",
+          "valueType": "seglist-or-polygon",
+          "diagnostic": true,
+          "confidence": "source-enforced-fixture-backed",
           "source": [
-            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:196-238"
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:196-238",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsSegl.cpp:51-80",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsSegl.cpp:88-170",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsSegl.cpp:181-215",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:66-121"
           ],
-          "notes": "Accepts empty/start or parsed segment-list/polygon input; detailed geometry diagnostics are deferred."
+          "notes": "Diagnostics cover empty/start plus simple standard and abbreviated waypoint point-list forms. Source-supported generated and field/property forms are accepted/skipped until modeled."
         },
         "points": {
-          "valueType": "waypoint-segment-list-or-polygon",
-          "diagnostic": false,
-          "confidence": "source-parser-complex",
+          "valueType": "seglist-or-polygon",
+          "diagnostic": true,
+          "confidence": "source-enforced-fixture-backed",
           "source": [
-            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:196-238"
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:196-238",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsSegl.cpp:51-80",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsSegl.cpp:88-170",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsSegl.cpp:181-215",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:66-121"
           ],
-          "notes": "Accepts empty/start or parsed segment-list/polygon input; detailed geometry diagnostics are deferred."
+          "notes": "Diagnostics cover empty/start plus simple standard and abbreviated waypoint point-list forms. Source-supported generated and field/property forms are accepted/skipped until modeled."
         },
         "xpoints": {
-          "valueType": "waypoint-segment-list-or-polygon",
-          "diagnostic": false,
-          "confidence": "source-parser-complex",
+          "valueType": "seglist-or-polygon",
+          "diagnostic": true,
+          "confidence": "source-enforced-fixture-backed",
           "source": [
-            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:196-238"
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:196-238",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsSegl.cpp:51-80",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsSegl.cpp:88-170",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsSegl.cpp:181-215",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:66-121"
           ],
-          "notes": "Also requires the new waypoint count to match the current count; diagnostics are deferred."
+          "notes": "Diagnostics cover empty/start plus simple standard and abbreviated waypoint point-list forms. Source-supported generated and field/property forms are accepted/skipped until modeled. Runtime-only current-count matching is not diagnosed statically."
         },
         "point": {
           "valueType": "point",
@@ -7028,24 +7090,32 @@
           ]
         },
         "match_region": {
-          "valueType": "convex-region-spec",
+          "valueType": "contact-filter-region",
           "constraints": {},
-          "diagnostic": false,
-          "confidence": "accepted-by-source; diagnostics deferred",
+          "diagnostic": true,
+          "confidence": "source-enforced-fixture-backed",
           "source": [
             "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:242-243",
-            "moos-ivp/ivp/src/lib_bhvutil/ExFilterSet.cpp:396-407"
-          ]
+            "moos-ivp/ivp/src/lib_bhvutil/ExFilterSet.cpp:398-405",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:66-121",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:132-212",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:220-251"
+          ],
+          "notes": "Diagnostics cover simple standard and abbreviated convex region polygons. Source-supported generated and field/property forms are accepted/skipped until modeled."
         },
         "ignore_region": {
-          "valueType": "convex-region-spec",
+          "valueType": "contact-filter-region",
           "constraints": {},
-          "diagnostic": false,
-          "confidence": "accepted-by-source; diagnostics deferred",
+          "diagnostic": true,
+          "confidence": "source-enforced-fixture-backed",
           "source": [
             "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:244-245",
-            "moos-ivp/ivp/src/lib_bhvutil/ExFilterSet.cpp:385-394"
-          ]
+            "moos-ivp/ivp/src/lib_bhvutil/ExFilterSet.cpp:385-392",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:66-121",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:132-212",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoly.cpp:220-251"
+          ],
+          "notes": "Diagnostics cover simple standard and abbreviated convex region polygons. Source-supported generated and field/property forms are accepted/skipped until modeled."
         },
         "strict_ignore": {
           "valueType": "boolean-token",

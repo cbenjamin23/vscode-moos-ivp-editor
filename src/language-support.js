@@ -152,6 +152,198 @@ function stripValue(value) {
   return value.trim().replace(/^["']|["']$/g, "");
 }
 
+const GENERATED_POLYGON_PREFIXES = [
+  "radial:",
+  "radial::",
+  "ellipse:",
+  "ellipse::",
+  "wedge:",
+  "piewedge:",
+  "rangewedge:",
+  "pylon:",
+  "oval:"
+];
+
+const GENERATED_SEGLIST_PREFIXES = [
+  "zigzag:",
+  "lawnmower:"
+];
+
+function unsupportedGeometrySyntax(value, prefixes) {
+  const raw = value.trim();
+  const compact = raw.replace(/\s/g, "").toLowerCase();
+  return prefixes.some((prefix) => compact.startsWith(prefix))
+    || /\bformat\s*=/.test(compact)
+    || /(?:^|,)\s*(?:label|source|active|msg|vertex_|edge_|point_|label_)/i.test(raw);
+}
+
+function parsePointToken(token) {
+  const parts = token.split(",").map((part) => part.trim());
+  if (parts.length < 2 || parts.length > 3) {
+    return undefined;
+  }
+  if (!isNumberLiteral(parts[0]) || !isNumberLiteral(parts[1])) {
+    return undefined;
+  }
+  if (parts[2] !== undefined && parts[2] !== "" && !isNumberLiteral(parts[2])) {
+    return undefined;
+  }
+  return {
+    x: Number(parts[0]),
+    y: Number(parts[1])
+  };
+}
+
+function parseColonPointList(pointsText) {
+  if (pointsText.trim() === "") {
+    return undefined;
+  }
+
+  const points = [];
+  const tokens = pointsText.split(":");
+  for (const item of tokens) {
+    const point = parsePointToken(item.trim());
+    if (!point) {
+      return undefined;
+    }
+    points.push(point);
+  }
+  return points;
+}
+
+function parseSimpleGeometryPoints(value, options = {}) {
+  const raw = value.trim();
+  if (raw === "") {
+    return { status: "invalid", reason: "empty" };
+  }
+
+  if (unsupportedGeometrySyntax(raw, options.generatedPrefixes || [])) {
+    return { status: "skipped", reason: "unsupported-source-backed-syntax" };
+  }
+
+  if (/^pts\s*=/i.test(raw)) {
+    const standard = raw.match(/^pts\s*=\s*\{([^}]*)\}\s*(.*)$/i);
+    if (!standard) {
+      return { status: "invalid", reason: "malformed-standard-points" };
+    }
+    if (standard[2].trim() !== "") {
+      return { status: "skipped", reason: "unsupported-source-backed-syntax" };
+    }
+    const points = parseColonPointList(standard[1]);
+    return points
+      ? { status: "valid", points, format: "standard" }
+      : { status: "invalid", reason: "malformed-point-list" };
+  }
+
+  if (raw.includes("=") || raw.includes("{") || raw.includes("}")) {
+    return { status: "skipped", reason: "unsupported-field-syntax" };
+  }
+
+  const points = parseColonPointList(raw);
+  return points
+    ? { status: "valid", points, format: "abbreviated" }
+    : { status: "invalid", reason: "malformed-abbreviated-points" };
+}
+
+function polygonArea(points) {
+  let area = 0;
+  for (let index = 0; index < points.length; index++) {
+    const current = points[index];
+    const next = points[(index + 1) % points.length];
+    area += (current.x * next.y) - (next.x * current.y);
+  }
+  return area / 2;
+}
+
+function isConvexPointList(points) {
+  if (points.length < 3 || polygonArea(points) === 0) {
+    return false;
+  }
+
+  let sign = 0;
+  for (let index = 0; index < points.length; index++) {
+    const a = points[index];
+    const b = points[(index + 1) % points.length];
+    const c = points[(index + 2) % points.length];
+    const cross = ((b.x - a.x) * (c.y - b.y)) - ((b.y - a.y) * (c.x - b.x));
+    if (cross === 0) {
+      continue;
+    }
+    const currentSign = Math.sign(cross);
+    if (sign !== 0 && currentSign !== sign) {
+      return false;
+    }
+    sign = currentSign;
+  }
+  return sign !== 0;
+}
+
+function validateGeometryValue(value, valueType) {
+  if (valueType === "convex-polygon" || valueType === "contact-filter-region") {
+    const parsed = parseSimpleGeometryPoints(value, {
+      generatedPrefixes: GENERATED_POLYGON_PREFIXES
+    });
+    if (parsed.status !== "valid") {
+      return parsed;
+    }
+    if (parsed.points.length < 3) {
+      return { status: "invalid", reason: "too-few-polygon-points" };
+    }
+    if (!isConvexPointList(parsed.points)) {
+      return { status: "invalid", reason: "non-convex-polygon" };
+    }
+    return parsed;
+  }
+
+  if (valueType === "seglist") {
+    const parsed = parseSimpleGeometryPoints(value, {
+      generatedPrefixes: GENERATED_SEGLIST_PREFIXES
+    });
+    if (parsed.status !== "valid") {
+      return parsed;
+    }
+    if (parsed.points.length < 1) {
+      return { status: "invalid", reason: "empty-seglist" };
+    }
+    return parsed;
+  }
+
+  if (valueType === "seglist-or-polygon" || valueType === "waypoint-segment-list-or-polygon") {
+    const lowered = value.trim().toLowerCase();
+    if (lowered === "empty" || lowered === "start") {
+      return { status: "valid", format: lowered };
+    }
+
+    if (unsupportedGeometrySyntax(value, [
+      ...GENERATED_SEGLIST_PREFIXES,
+      ...GENERATED_POLYGON_PREFIXES
+    ])) {
+      return { status: "skipped", reason: "unsupported-source-backed-syntax" };
+    }
+
+    const seglist = parseSimpleGeometryPoints(value, {
+      generatedPrefixes: GENERATED_SEGLIST_PREFIXES
+    });
+    if (seglist.status === "valid") {
+      return seglist.points.length > 0
+        ? seglist
+        : { status: "invalid", reason: "empty-seglist" };
+    }
+    if (seglist.status === "skipped") {
+      return seglist;
+    }
+
+    const polygon = parseSimpleGeometryPoints(value, {
+      generatedPrefixes: GENERATED_POLYGON_PREFIXES
+    });
+    return polygon.status === "valid" && polygon.points.length > 0
+      ? polygon
+      : { status: "invalid", reason: polygon.reason || seglist.reason };
+  }
+
+  return { status: "skipped", reason: "unsupported-geometry-value-type" };
+}
+
 function expectedDescription(entry) {
   const constraints = entry.constraints || {};
   if (entry.valueType === "enum") {
@@ -202,6 +394,18 @@ function expectedDescription(entry) {
   }
   if (entry.valueType === "non-empty-no-whitespace-string") {
     return "a non-empty string with no spaces or tabs";
+  }
+  if (entry.valueType === "convex-polygon") {
+    return "a source-supported convex polygon, such as pts={0,0:100,0:100,100:0,100} or 0,0:100,0:100,100:0,100";
+  }
+  if (entry.valueType === "contact-filter-region") {
+    return "a source-supported convex region polygon, such as pts={0,0:100,0:100,100:0,100} or 0,0:100,0:100,100:0,100";
+  }
+  if (entry.valueType === "seglist") {
+    return "a source-supported point list, such as pts={0,0:100,0} or 0,0:100,0";
+  }
+  if (entry.valueType === "seglist-or-polygon" || entry.valueType === "waypoint-segment-list-or-polygon") {
+    return "empty, start, or a source-supported waypoint point list such as pts={0,0:100,0} or 0,0:100,0";
   }
   return entry.valueType || "a valid value";
 }
@@ -395,6 +599,15 @@ function validateSchemaValue(value, entry) {
 
   if (entry.valueType === "non-empty-no-whitespace-string") {
     return raw === "" || /\s/.test(raw) ? expectedDescription(entry) : undefined;
+  }
+
+  if (entry.valueType === "convex-polygon"
+    || entry.valueType === "contact-filter-region"
+    || entry.valueType === "seglist"
+    || entry.valueType === "seglist-or-polygon"
+    || entry.valueType === "waypoint-segment-list-or-polygon") {
+    const result = validateGeometryValue(raw, entry.valueType);
+    return result.status === "invalid" ? expectedDescription(entry) : undefined;
   }
 
   return undefined;
@@ -797,7 +1010,6 @@ function parameterNote(language, item) {
 
   return undefined;
 }
-
 
 function commonMoosParameterHover(word, language) {
   if (language !== "moos") {
@@ -1503,6 +1715,9 @@ module.exports = {
   collectMoosDiagnostics,
   collectBehaviorDiagnostics,
   validateSchemaValue,
+  validateGeometryValue,
+  parseSimpleGeometryPoints,
+  isConvexPointList,
   findCurrentOwner,
   blockParameterLookup
 };
