@@ -6,6 +6,10 @@
     "license": "MIT",
     "publisher": "moos-ivp",
     "main": "./src/extension.js",
+    "scripts": {
+        "build:data": "node scripts/build-inventory.js && node scripts/build-source-descriptions.js && node scripts/build-hover-metadata.js",
+        "check": "node --check src/extension.js && node --check src/language-support.js && node --check scripts/build-inventory.js && node --check scripts/build-source-descriptions.js && node --check scripts/build-hover-metadata.js && node --check scripts/audit-diagnostic-schema.js && node --check scripts/check-example-diagnostics.js && node scripts/audit-diagnostic-schema.js && node scripts/check-example-diagnostics.js"
+    },
     "activationEvents": [
         "onLanguage:moos",
         "onLanguage:ivp-behavior"

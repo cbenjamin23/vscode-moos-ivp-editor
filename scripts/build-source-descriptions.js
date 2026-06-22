@@ -140,6 +140,7 @@ function sourceSynopsis(item) {
 }
 
 const sourceOnlyAppDescriptions = {
+  ANTLER: "The pAntler launch process reads ANTLER mission blocks and starts the configured MOOS processes.",
   iBlinkStick: "Interfaces with BlinkStick USB LEDs so missions can display status or alert indications.",
   uCommand: "Provides a GUI for posting configured command variables into a MOOS community.",
   pMapMarkers: "Consumes marker configuration and posts visual marker objects for display in marine viewers.",
@@ -148,6 +149,74 @@ const sourceOnlyAppDescriptions = {
   uFldGenericSensor: "Simulates configurable sensor reports for fielded multi-vehicle missions.",
   uMemWatch: "Monitors process memory usage and reports memory-related status through MOOS.",
   uPlotViewer: "Displays plotted MOOS data from mission logs or live mission streams."
+};
+
+const sourceReviewedMoosParameters = {
+  ANTLER: {
+    apptick: {
+      description: "Sets the target Iterate() rate for the ANTLER process, in Hertz. This controls pAntler itself, not the apps launched by Run lines.",
+      default: "4",
+      defaultSource: "MOOS app default",
+      example: "AppTick = 4",
+      exampleSource: "manual review",
+      reviewSource: "MOOS app framework default configuration"
+    },
+    commstick: {
+      description: "Sets the target MOOS communications processing rate for the ANTLER process, in Hertz. This controls pAntler's own mail handling.",
+      default: "4",
+      defaultSource: "MOOS app default",
+      example: "CommsTick = 4",
+      exampleSource: "manual review",
+      reviewSource: "MOOS app framework default configuration"
+    },
+    executablepath: {
+      description: "Sets the default directory used to locate executables launched by ANTLER. SYSTEMPATH means launched processes are resolved from the system path.",
+      source: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:395-396",
+      default: "SYSTEMPATH",
+      defaultSource: "source initializer",
+      defaultReference: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:395-396",
+      example: "ExecutablePath = SYSTEMPATH",
+      exampleSource: "manual review",
+      reviewSource: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:394-407"
+    },
+    gentlekill: {
+      description: "Controls whether ANTLER attempts a gentle shutdown of launched processes before stronger process termination.",
+      source: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:415-420",
+      default: "true on non-Windows, false on Windows",
+      defaultSource: "source initializer",
+      defaultReference: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:415-420",
+      example: "GentleKill = true",
+      exampleSource: "manual review",
+      reviewSource: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:415-420,1034"
+    },
+    msbetweenlaunches: {
+      description: "Sets the delay, in milliseconds, between successive processes launched from the ANTLER block.",
+      source: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:391-392",
+      default: "1000",
+      defaultSource: "source initializer",
+      defaultReference: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.h:35",
+      example: "MSBetweenLaunches = 100",
+      exampleSource: "manual review",
+      reviewSource: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:391-392"
+    },
+    newconsole: {
+      description: "Run option that starts the launched process in a separate console when true. It is normally written after the Run entry's @ options.",
+      source: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:721-723",
+      default: "false",
+      defaultSource: "source initializer",
+      defaultReference: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:721-723",
+      example: "Run = pHelmIvP @ NewConsole = false",
+      exampleSource: "manual review",
+      reviewSource: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:721-723"
+    },
+    run: {
+      description: "Adds one process for ANTLER to launch. The value starts with the executable name and may include @ launch options and an optional ~ MOOS name.",
+      source: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:432,594,721-804",
+      example: "Run = pHelmIvP @ NewConsole = false",
+      exampleSource: "manual review",
+      reviewSource: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:432,594,721-804"
+    }
+  }
 };
 
 const sourceOnlyBehaviorDescriptions = {
@@ -195,18 +264,20 @@ function itemDescription(owner, item, docs, curated, kind) {
   return candidates.find(isUsefulItemDescription) || generatedItemDescription(owner, kind);
 }
 
-function addParam(item, index, owner, param, description, source, basis, sourceStatus) {
-  item.parameters[normalizeName(param)] = {
+function addParam(item, index, owner, param, description, source, basis, sourceStatus, extra = {}) {
+  const entry = {
     name: param,
     description,
     source,
     basis,
-    sourceStatus
+    sourceStatus,
+    ...extra
   };
+  item.parameters[normalizeName(param)] = entry;
 
   const key = normalizeName(param);
   if (!index[key]) index[key] = [];
-  index[key].push({ owner, description, source, basis, sourceStatus });
+  index[key].push({ owner, description, source, basis, sourceStatus, ...extra });
 }
 
 function hasExactDoc(docs, owner, param) {
@@ -328,7 +399,7 @@ function appDescription(owner, param) {
     rate_frame: "Sets the frame rate used by uFldDelve.",
     reach_distance: "Sets the distance at which a vehicle is considered to have reached a beacon.",
     realmcast_channel: "Selects the realmcast channel displayed by the viewer.",
-    realmcast_show_communinity: "Controls whether the realmcast community column is shown.",
+    realmcast_show_community: "Controls whether the realmcast community column is shown.",
     report_deltas: "Reports only changes in search-grid cell values.",
     report_vars: "Names the MOOS variables used for beacon range reports.",
     rn_algorithm: "Selects the random-noise algorithm applied to simulated sensor measurements.",
@@ -660,6 +731,26 @@ function buildSourceDescriptions(kind) {
     };
 
     for (const param of item.parameters || []) {
+      const reviewed = isMoos
+        ? sourceReviewedMoosParameters[owner]?.[normalizeName(param)]
+        : undefined;
+      if (reviewed) {
+        const { description, ...extra } = reviewed;
+        addParam(
+          outputItem,
+          parameters,
+          owner,
+          param,
+          description,
+          extra.source || source,
+          basis,
+          item.sourceStatus || "unknown",
+          extra
+        );
+        generatedPairs++;
+        continue;
+      }
+
       if (hasExactDoc(docs, owner, param) || hasCurated(curated, param)) continue;
       addParam(
         outputItem,

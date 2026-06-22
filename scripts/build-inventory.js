@@ -287,6 +287,114 @@ const moosLanguage = loadOptionalJson("data/moos-language.json");
 const bhvLanguage = loadOptionalJson("data/bhv-language.json");
 const moosSource = loadOptionalJson("data/moos-source.json");
 const bhvSource = loadOptionalJson("data/bhv-source.json");
+const diagnosticSchema = loadOptionalJson("data/diagnostic-schema.json");
+
+function schemaParameterEntry(container, param) {
+  if (!container) return undefined;
+  const parameters = container.parameters || container;
+  return parameters[param]
+    || parameters[normalizeLookupKey(param)]
+    || parameters[param.toLowerCase()];
+}
+
+function diagnosticSchemaEntry(owner, param, kind) {
+  if (!diagnosticSchema) return undefined;
+  if (kind === "moos") {
+    return schemaParameterEntry(diagnosticSchema.apps?.[owner], param)
+      || schemaParameterEntry(diagnosticSchema.shared?.moosApp, param);
+  }
+
+  const ownerSchema = diagnosticSchema.behaviors?.[owner];
+  const ownerEntry = schemaParameterEntry(ownerSchema, param);
+  if (ownerEntry) return ownerEntry;
+
+  for (const sharedName of ownerSchema?.inherits || []) {
+    const inheritedEntry = schemaParameterEntry(diagnosticSchema.shared?.[sharedName], param);
+    if (inheritedEntry) return inheritedEntry;
+  }
+
+  return undefined;
+}
+
+function numericCandidate(constraints = {}) {
+  if (constraints.minimum !== undefined) {
+    return String(Number(constraints.minimum) + (constraints.minimumExclusive ? 1 : 0));
+  }
+  if (constraints.maximum !== undefined) {
+    return String(Number(constraints.maximum) - (constraints.maximumExclusive ? 1 : 0));
+  }
+  return constraints.integer ? "10" : "10";
+}
+
+function defaultSatisfiesEnum(entry) {
+  if (entry.default === undefined || entry.default === "") return false;
+  const defaultValue = String(entry.default);
+  const allowed = entry.constraints?.enum || [];
+  if (entry.constraints?.caseInsensitive) {
+    return allowed.map((value) => value.toLowerCase()).includes(defaultValue.toLowerCase());
+  }
+  return allowed.includes(defaultValue);
+}
+
+function sampleFromDiagnosticSchema(entry) {
+  if (!entry || entry.diagnostic !== true) return undefined;
+
+  if (entry.valueType === "enum" || entry.valueType === "boolean-token") {
+    return defaultSatisfiesEnum(entry)
+      ? String(entry.default)
+      : String((entry.constraints?.enum || ["true"])[0]);
+  }
+
+  if (entry.valueType === "number") {
+    return numericCandidate(entry.constraints || {});
+  }
+
+  if (entry.valueType === "number-or-enum") {
+    const numberConstraints = entry.constraints?.number || {};
+    return numericCandidate(numberConstraints);
+  }
+
+  if (entry.valueType === "number-or-delta" || entry.valueType === "number-or-adjustment") {
+    return "10";
+  }
+
+  if (entry.valueType === "number-range") {
+    const value = numericCandidate(entry.constraints || {});
+    return `${value}:${value}`;
+  }
+
+  if (entry.valueType === "number-pair-ascending") {
+    return "0,10";
+  }
+
+  if (entry.valueType === "number-pair") {
+    return "1,1";
+  }
+
+  if (entry.valueType === "ip-address") {
+    return "localhost";
+  }
+
+  if (entry.valueType === "tif-file") {
+    return "background.tif";
+  }
+
+  if (entry.valueType === "single-equals-pair") {
+    return "key=value";
+  }
+
+  if (entry.valueType === "comma-list-no-whitespace") {
+    return "alpha,beta";
+  }
+
+  if (entry.valueType === "no-whitespace-string"
+    || entry.valueType === "non-empty-string"
+    || entry.valueType === "non-empty-no-whitespace-string") {
+    return "example";
+  }
+
+  return undefined;
+}
 
 function paramDescription(owner, param, kind) {
   const key = normalizeLookupKey(param);
@@ -311,8 +419,12 @@ function isBooleanDescription(description) {
 
 function sampleValue(owner, param, kind) {
   const lower = param.toLowerCase();
+  const schemaSample = sampleFromDiagnosticSchema(diagnosticSchemaEntry(owner, param, kind));
+  if (schemaSample !== undefined) return schemaSample;
+
   const description = paramDescription(owner, param, kind);
   if (["apptick", "commstick"].includes(lower)) return "4";
+  if (lower === "gentlekill") return "true";
   if (lower === "msbetweenlaunches") return "100";
   if (lower === "newconsole") return "false";
   if (lower === "max_appcast_events") return "8";
@@ -333,6 +445,7 @@ function sampleValue(owner, param, kind) {
   if (lower === "visual_hints") return "vertex_size=3, edge_color=gray";
   if (lower === "perpetual" || lower === "templating") return "false";
   if (lower === "build_info" || lower === "deprecated" || lower.includes("deprecated") || lower.includes("debug")) return "false";
+  if (lower === "watch") return "pHelmIvP";
   if (lower.startsWith("draw_") && lower.includes("poly")) return "true";
   if (lower.endsWith("_breach")) return "true";
   if (lower === "show_pt" || lower === "view_pt" || lower === "show_source_pts") return "true";
@@ -433,7 +546,8 @@ const allowedBehaviors = new Set(Object.keys(behaviorParams));
 if (fs.existsSync(SRC_ROOT)) {
   for (const entry of fs.readdirSync(SRC_ROOT, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
-    const name = entry.name.startsWith("dep_") ? entry.name.slice(4) : entry.name;
+    if (entry.name.startsWith("dep_")) continue;
+    const name = entry.name;
     if (inactiveAppFamilyMembers.has(name)) continue;
     if (/^[pui][A-Z]/.test(name)) {
       allowedApps.add(name);
@@ -470,6 +584,9 @@ for (const [app, dir] of Object.entries(coreMoosApps)) {
   addSourceKind(appSourceKinds, app, "local-moos-source");
   addToSetMap(appSources, app, path.relative(REPO_ROOT, dir));
 }
+["ExecutablePath", "GentleKill"].forEach((param) => {
+  addParamToOwner(appParams, "ANTLER", param);
+});
 
 for (const [app, params] of Object.entries(emacsApps)) {
   if (!allowedApps.has(app)) continue;
@@ -488,11 +605,12 @@ for (const [behavior, params] of Object.entries(emacsBehaviors)) {
 if (fs.existsSync(SRC_ROOT)) {
   for (const entry of fs.readdirSync(SRC_ROOT, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
+    if (entry.name.startsWith("dep_")) continue;
     const dir = path.join(SRC_ROOT, entry.name);
     const infoFiles = walk(dir, (file) => /_Info\.cpp$/.test(file));
     for (const info of infoFiles) {
       const params = extractInfoConfigParams(info);
-      const appName = entry.name.startsWith("dep_") ? entry.name.slice(4) : entry.name;
+      const appName = entry.name;
       if (inactiveAppFamilyMembers.has(appName)) continue;
       if (!allowedApps.has(appName)) continue;
       for (const param of params) addParamToOwner(appParams, appName, param, true);
