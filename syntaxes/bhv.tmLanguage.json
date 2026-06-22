@@ -109,9 +109,6 @@
 					"match": "^\\s*\\b(name|pwt|condition|updates|runflag|endflag|inactiveflag|activeflag|idleflag|perpetual|duration_status|duration_reset|duration|duration_idle_decay|templating)\\b\\s*"
 				},
 				{
-					"include": "#documented_behavior_parameters"
-				},
-				{
 					"begin": "\\G ?",
 					"end": "(?:\\{|<%|\\?\\?<|(?=;))|(?=(?<!\\\\)\n)\\s*",
 					"beginCaptures": {},
@@ -136,14 +133,6 @@
 							"name": "punctuation.section.block.end.bracket.curly.behavior.bhv"
 						}
 					}
-				}
-			]
-		},
-		"documented_behavior_parameters": {
-			"patterns": [
-				{
-					"name": "entity.other.attribute-name.bhv",
-					"match": "^\\s*[A-Za-z_][A-Za-z0-9_+:-]*\\s*(?==)"
 				}
 			]
 		}

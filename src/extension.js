@@ -296,6 +296,57 @@ function scopedLookup(owner, word, language, docLookup, sourceLookup) {
   return undefined;
 }
 
+function inventoryScopedLookup(owner, word, language, inventoryLookup) {
+  if (!owner) {
+    return undefined;
+  }
+
+  for (const variant of ownerVariants(owner, language)) {
+    const item = inventoryLookup.get(keyFor(variant, word));
+    if (item) {
+      return item;
+    }
+  }
+
+  return undefined;
+}
+
+function sharedBlockParameterLookup(owner, word, language, lookup) {
+  const normalized = normalizedName(word);
+
+  if (language === "moos" && MOOS_COMMON_APP_PARAMETERS.has(lower(word))) {
+    return lookup.get(lower(word)) || lookup.get(normalized);
+  }
+
+  if (language === "ivp-behavior" && BEHAVIOR_INHERITED_PARAMETERS.has(normalized)) {
+    return lookup.get(lower(word)) || lookup.get(normalized);
+  }
+
+  return undefined;
+}
+
+function blockParameterLookup(owner, word, language, lookup, docLookup, sourceLookup) {
+  return scopedLookup(owner, word, language, docLookup, sourceLookup)
+    || inventoryScopedLookup(owner, word, language, lookup)
+    || sharedBlockParameterLookup(owner, word, language, lookup);
+}
+
+function assignmentKeyAtPosition(document, position, range) {
+  const line = stripInlineComment(document.lineAt(position.line).text);
+  const match = line.match(/^(\s*)([A-Za-z_][A-Za-z0-9_+:-]*(?:\[[^\]]+\])?)(\s*=\s*)/);
+  if (!match) {
+    return undefined;
+  }
+
+  const start = match[1].length;
+  const end = start + match[2].length;
+  if (range.start.character === start && range.end.character === end) {
+    return match[2];
+  }
+
+  return undefined;
+}
+
 const SEMANTIC_TOKEN_TYPES = [
   "keyword",
   "class",
@@ -656,7 +707,13 @@ function createHoverProvider(language, lookup, docLookup, sourceLookup) {
 
       const word = document.getText(range);
       const owner = findCurrentOwner(document, position, language);
-      const item = scopedLookup(owner, word, language, docLookup, sourceLookup)
+      const assignmentKey = assignmentKeyAtPosition(document, position, range);
+      const blockItem = blockParameterLookup(owner, word, language, lookup, docLookup, sourceLookup);
+      if (owner && assignmentKey && !blockItem) {
+        return undefined;
+      }
+
+      const item = blockItem
         || docLookup.lookup.get(normalizedName(word))
         || sourceLookup.lookup.get(normalizedName(word))
         || docLookup.ownerLookup.get(word.toLowerCase())
