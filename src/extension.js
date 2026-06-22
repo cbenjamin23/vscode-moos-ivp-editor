@@ -610,6 +610,117 @@ function stripInlineComment(line) {
   return line;
 }
 
+function braceDelta(text) {
+  let delta = 0;
+  let inString = false;
+  let escaped = false;
+
+  for (let index = 0; index < text.length; index++) {
+    const char = text[index];
+    if (escaped) {
+      escaped = false;
+      continue;
+    }
+    if (char === "\\") {
+      escaped = true;
+      continue;
+    }
+    if (char === "\"") {
+      inString = !inString;
+      continue;
+    }
+    if (inString) {
+      continue;
+    }
+    if (char === "{") {
+      delta++;
+    } else if (char === "}") {
+      delta--;
+    }
+  }
+
+  return delta;
+}
+
+function hasOpeningBrace(text) {
+  let inString = false;
+  let escaped = false;
+
+  for (let index = 0; index < text.length; index++) {
+    const char = text[index];
+    if (escaped) {
+      escaped = false;
+      continue;
+    }
+    if (char === "\\") {
+      escaped = true;
+      continue;
+    }
+    if (char === "\"") {
+      inString = !inString;
+      continue;
+    }
+    if (!inString && char === "{") {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function blockHeaderPattern(language) {
+  return language === "moos"
+    ? /^\s*ProcessConfig\s*=\s*[A-Za-z_][A-Za-z0-9_]*/i
+    : /^\s*Behavior\s*=\s*[A-Za-z_][A-Za-z0-9_]*/;
+}
+
+function collectBlockFoldingRanges(document, language) {
+  const ranges = [];
+  const headerPattern = blockHeaderPattern(language);
+  let current;
+
+  for (let lineNumber = 0; lineNumber < document.lineCount; lineNumber++) {
+    const text = stripInlineComment(document.lineAt(lineNumber).text);
+    if (headerPattern.test(text) && (!current || !current.opened)) {
+      current = {
+        startLine: lineNumber,
+        depth: 0,
+        opened: false
+      };
+    }
+
+    if (!current) {
+      continue;
+    }
+
+    const delta = braceDelta(text);
+    if (!current.opened) {
+      if (!hasOpeningBrace(text)) {
+        continue;
+      }
+      current.opened = true;
+    }
+
+    current.depth += delta;
+    if (current.depth <= 0) {
+      if (lineNumber > current.startLine) {
+        ranges.push(new vscode.FoldingRange(current.startLine, lineNumber));
+      }
+      current = undefined;
+    }
+  }
+
+  return ranges;
+}
+
+function createFoldingRangeProvider(language) {
+  return {
+    provideFoldingRanges(document) {
+      return collectBlockFoldingRanges(document, language);
+    }
+  };
+}
+
 function lookupOwner(owner, language, docLookup, sourceLookup) {
   if (!owner) {
     return undefined;
@@ -1020,6 +1131,13 @@ function activate(context) {
     vscode.languages.registerHoverProvider("moos", createHoverProvider("moos", moosLookup, moosDocLookup, moosSourceLookup, diagnosticSchema)),
     vscode.languages.registerHoverProvider("ivp-behavior", createHoverProvider("ivp-behavior", bhvLookup, bhvDocLookup, bhvSourceLookup, diagnosticSchema))
   ];
+
+  if (vscode.languages.registerFoldingRangeProvider) {
+    subscriptions.push(
+      vscode.languages.registerFoldingRangeProvider("moos", createFoldingRangeProvider("moos")),
+      vscode.languages.registerFoldingRangeProvider("ivp-behavior", createFoldingRangeProvider("ivp-behavior"))
+    );
+  }
 
   if (
     vscode.languages.registerDocumentSemanticTokensProvider
