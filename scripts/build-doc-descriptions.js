@@ -6,6 +6,8 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 const MOOS_ROOT = process.env.MOOS_IVP_ROOT || "/Users/charlesbenjamin/moos-ivp";
 const SRC_ROOT = path.join(MOOS_ROOT, "ivp", "src");
 const PDF_INDEX = "https://oceanai.mit.edu/ivpman/pdfs/";
+const APP_DOC_BASE = "https://oceanai.mit.edu/ivpman/apps/";
+const BEHAVIOR_DOC_BASE = "https://oceanai.mit.edu/ivpman/bhvs/";
 const CACHE_DIR = path.join(REPO_ROOT, ".cache", "ivpman-pdfs");
 const inactiveAppFamilyMembers = new Set([
   "pMarinePID",
@@ -76,6 +78,17 @@ const behaviorDocAliases = {
   BHV_TaskConvoy: "BHV_Convoy"
 };
 
+const docUrlOverrides = {
+  app_psearchgrid: "https://oceanai.mit.edu/ivpman/pmwiki/pmwiki.php?n=IvPTools.PSearchGrid",
+  app_pspoofnode: "https://oceanai.mit.edu/ivpman/pmwiki/pmwiki.php?n=IvPTools.PSpoofNode",
+  app_ufld_voronoi: "https://oceanai.mit.edu/ivpman/apps/uFldObstacleSim/",
+  bhv_avoid_obstacle: "https://oceanai.mit.edu/ivpman/pmwiki/pmwiki.php?n=BHV.AvoidObstacleV24",
+  bhv_convoy: "https://oceanai.mit.edu/ivpman/pmwiki/pmwiki.php?n=BHV.Convoy",
+  bhv_fixedturn: "https://oceanai.mit.edu/ivpman/pmwiki/pmwiki.php?n=BHV.FixedTurn",
+  bhv_testfail: "https://oceanai.mit.edu/ivpman/pmwiki/pmwiki.php?n=BHV.TestFail",
+  bhv_zigzag: "https://oceanai.mit.edu/ivpman/pmwiki/pmwiki.php?n=BHV.ZigZag"
+};
+
 function run(command, args, options = {}) {
   return execFileSync(command, args, {
     encoding: "utf8",
@@ -117,6 +130,13 @@ function slugToBehavior(slug) {
   return `BHV_${slug.replace(/^bhv_/, "").split("_").map((part) => (
     part ? part[0].toUpperCase() + part.slice(1) : part
   )).join("")}`;
+}
+
+function docUrlForPdf(pdfName, kind, itemName) {
+  const slug = pdfName.replace(/\.pdf$/, "");
+  if (docUrlOverrides[slug]) return docUrlOverrides[slug];
+  if (kind === "app") return `${APP_DOC_BASE}${itemName}/`;
+  return `${BEHAVIOR_DOC_BASE}${itemName.replace(/^BHV_/, "")}/`;
 }
 
 function normalizeParamName(name) {
@@ -348,7 +368,6 @@ function buildDocs(kind, pdfNames) {
   const parameters = {};
 
   for (const pdfName of pdfNames) {
-    const docUrl = `${PDF_INDEX}${pdfName}`;
     let text;
     try {
       text = pdfText(pdfName);
@@ -357,6 +376,7 @@ function buildDocs(kind, pdfNames) {
     }
 
     const itemName = guessItemName(pdfName, kind, text);
+    const docUrl = docUrlForPdf(pdfName, kind, itemName);
     const item = items[itemName] || { doc: docUrl, parameters: {} };
     const description = extractItemDescription(text, itemName, kind);
     if (description && (!item.description || description.length > item.description.length)) {
@@ -384,7 +404,8 @@ function buildDocs(kind, pdfNames) {
 
   return {
     generatedFrom: {
-      index: PDF_INDEX
+      index: PDF_INDEX,
+      docBase: kind === "app" ? APP_DOC_BASE : BEHAVIOR_DOC_BASE
     },
     items: Object.fromEntries(Object.entries(items).sort(([a], [b]) => a.localeCompare(b))),
     parameters: Object.fromEntries(Object.entries(parameters).sort(([a], [b]) => a.localeCompare(b)))
