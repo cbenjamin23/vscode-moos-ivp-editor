@@ -7,6 +7,8 @@
       "parameters": [
         "AppTick",
         "CommsTick",
+        "ExecutablePath",
+        "GentleKill",
         "MSBetweenLaunches",
         "NewConsole",
         "Run"
@@ -70,50 +72,6 @@
         "../moos-ivp/editor-modes/moos-apps.el",
         "../moos-ivp/ivp/src/pAutoPoke",
         "../moos-ivp/ivp/src/pAutoPoke/AutoPoke_Info.cpp"
-      ],
-      "sourceKinds": [
-        "local-ivp-source"
-      ],
-      "sourceStatus": "local-ivp-source"
-    },
-    "pBasicContactMgr": {
-      "parameters": [
-        "AppTick",
-        "CommsTick",
-        "alert",
-        "alert_range_color",
-        "alert_verbose",
-        "app_logging",
-        "contact_local_coords",
-        "contact_max_age",
-        "contacts_recap_interval",
-        "cpa_range_color",
-        "decay",
-        "default_alert_range",
-        "default_alert_range_color",
-        "default_cpa_range",
-        "default_cpa_range_color",
-        "display_radii",
-        "display_radii_id",
-        "eval_range_far",
-        "eval_range_near",
-        "ignore_group",
-        "ignore_region",
-        "ignore_type",
-        "match_group",
-        "match_region",
-        "match_type",
-        "max_appcast_events",
-        "max_retired_history",
-        "post_closest_range",
-        "range_report_timeout",
-        "reject_range",
-        "strict_ignore"
-      ],
-      "sources": [
-        "../moos-ivp/editor-modes/moos-apps.el",
-        "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "../moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp"
       ],
       "sourceKinds": [
         "local-ivp-source"
@@ -1532,18 +1490,15 @@
       "pMarinePIDV22"
     ],
     "alert": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "alert_range": [
       "pObstacleMgr"
     ],
     "alert_range_color": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "alert_verbose": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "allow_color_change": [
@@ -1569,7 +1524,6 @@
     ],
     "app_logging": [
       "iSay",
-      "pBasicContactMgr",
       "pContactMgrV20",
       "pDeadManPost",
       "pEchoVar",
@@ -1622,7 +1576,6 @@
       "iBlinkStick",
       "iSay",
       "pAutoPoke",
-      "pBasicContactMgr",
       "pContactMgrV20",
       "pDeadManPost",
       "pEchoVar",
@@ -1920,7 +1873,6 @@
       "iBlinkStick",
       "iSay",
       "pAutoPoke",
-      "pBasicContactMgr",
       "pContactMgrV20",
       "pDeadManPost",
       "pEchoVar",
@@ -1979,16 +1931,11 @@
       "uTimerScript"
     ],
     "contact_local_coords": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "contact_max_age": [
-      "pBasicContactMgr",
       "pContactMgrV20",
       "pHelmIvP"
-    ],
-    "contacts_recap_interval": [
-      "pBasicContactMgr"
     ],
     "content_mode": [
       "pMarineViewer",
@@ -1999,7 +1946,6 @@
       "pNodeReporter"
     ],
     "cpa_range_color": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "critical_range": [
@@ -2021,17 +1967,10 @@
       "pDeadManPost"
     ],
     "decay": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "default": [
       "uFldBeaconRangeSensor"
-    ],
-    "default_alert_range": [
-      "pBasicContactMgr"
-    ],
-    "default_alert_range_color": [
-      "pBasicContactMgr"
     ],
     "default_beacon_color": [
       "uFldBeaconRangeSensor"
@@ -2056,12 +1995,6 @@
     ],
     "default_color": [
       "pSpoofNode"
-    ],
-    "default_cpa_range": [
-      "pBasicContactMgr"
-    ],
-    "default_cpa_range_color": [
-      "pBasicContactMgr"
     ],
     "default_duration": [
       "pSpoofNode"
@@ -2138,11 +2071,9 @@
       "uFldContactRangeSensor"
     ],
     "display_radii": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "display_radii_id": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "display_source": [
@@ -2229,11 +2160,9 @@
       "uFldCollisionDetect"
     ],
     "eval_range_far": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "eval_range_near": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "event": [
@@ -2241,6 +2170,9 @@
     ],
     "ewarn_radii_color": [
       "pContactMgrV20"
+    ],
+    "ExecutablePath": [
+      "ANTLER"
     ],
     "expunge_var": [
       "pObstacleMgr"
@@ -2302,6 +2234,9 @@
     ],
     "general_alert": [
       "pObstacleMgr"
+    ],
+    "GentleKill": [
+      "ANTLER"
     ],
     "given_max_duration": [
       "pObstacleMgr"
@@ -2389,7 +2324,6 @@
       "uMemWatch"
     ],
     "ignore_group": [
-      "pBasicContactMgr",
       "pContactMgrV20",
       "uFldCollObDetect",
       "uFldCollisionDetect"
@@ -2403,11 +2337,9 @@
       "pObstacleMgr"
     ],
     "ignore_region": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "ignore_type": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "INCOMING_VAR": [
@@ -2515,7 +2447,6 @@
       "pLogger"
     ],
     "match_group": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "match_name": [
@@ -2524,11 +2455,9 @@
       "pSearchGrid"
     ],
     "match_region": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "match_type": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "max_acceleration": [
@@ -2539,7 +2468,6 @@
     ],
     "max_appcast_events": [
       "iSay",
-      "pBasicContactMgr",
       "pContactMgrV20",
       "pDeadManPost",
       "pEchoVar",
@@ -2593,7 +2521,6 @@
       "pObstacleMgr"
     ],
     "max_retired_history": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "max_rudder_degs_per_sec": [
@@ -2923,7 +2850,6 @@
       "pContactMgrV20"
     ],
     "post_closest_range": [
-      "pBasicContactMgr",
       "pContactMgrV20",
       "uFldCollisionDetect"
     ],
@@ -3011,7 +2937,6 @@
       "pContactMgrV20"
     ],
     "range_report_timeout": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "rate_frame": [
@@ -3084,7 +3009,6 @@
       "uFldCollisionDetect"
     ],
     "reject_range": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "relcast_interval": [
@@ -3307,7 +3231,6 @@
       "uFldMessageHandler"
     ],
     "strict_ignore": [
-      "pBasicContactMgr",
       "pContactMgrV20"
     ],
     "summary_interval": [

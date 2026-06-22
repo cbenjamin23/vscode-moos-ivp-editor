@@ -81,100 +81,6 @@
       },
       "description": "The pAutoPoke application is a tool to enable an automatic poke to the MOOSDB with one or more configured publications.  Typically this is in service of conducting headless, auto-tested missions, where there is no user to kick off a mission by hitting a ”DEPLOY” button on a command and control GUI, such as apppMarineViewer"
     },
-    "pBasicContactMgr": {
-      "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-      "parameters": {
-        "alert": {
-          "description": "Defines one contact-alert rule. Alert entries may set the posted flag, alert range, CPA range, display colors, and match/ignore filters; multiple lines with the same alert id combine into one alert definition.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-          "example": "alert = id=say, var=SAY_MOOS, val=\"$(VNAME) sees $([VNAME])\"",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pcmanager.pdf: Section 4.1, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:115"
-        },
-        "contact_local_coords": {
-          "description": "Selects the policy for filling local x/y coordinates in incoming node reports from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-          "default": "verbatim",
-          "defaultSource": "manual review",
-          "example": "contact_local_coords = verbatim",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP contact-manager documentation/source review"
-        },
-        "default_alert_range": {
-          "description": "Sets the default alert range, in meters, used by alert rules that do not specify their own alert_range. Contacts inside this range can trigger the alert posting.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-          "default": "1000",
-          "defaultSource": "manual review",
-          "example": "default_alert_range = 1000",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
-        },
-        "default_cpa_range": {
-          "description": "Sets the default CPA range, in meters, used by alert rules that do not specify their own cpa_range. A contact can trigger when its closest point of approach falls inside this range.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-          "default": "1000",
-          "defaultSource": "manual review",
-          "example": "default_cpa_range = 1000",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
-        },
-        "default_alert_range_color": {
-          "description": "Sets the default display color for alert range circles when an alert rule does not provide its own color. The source example uses gray65.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-          "default": "gray65",
-          "defaultSource": "manual review",
-          "example": "default_alert_range_color = gray65",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:310, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:104"
-        },
-        "default_cpa_range_color": {
-          "description": "Sets the default display color for CPA range circles when an alert rule does not provide its own color. The source example uses gray35.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-          "default": "gray35",
-          "defaultSource": "manual review",
-          "example": "default_cpa_range_color = gray35",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:320, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:105"
-        },
-        "contact_max_age": {
-          "description": "Sets how many seconds may pass without a fresh contact report before the contact is dropped from the active contact list. This bounds stale contact state in the manager.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-          "default": "600",
-          "defaultSource": "manual review",
-          "example": "contact_max_age = 600",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:57"
-        },
-        "contact_max_age_history": {
-          "description": "Sets how long a retired contact remains in contact-manager memory and retired-contact postings after it leaves the active list. This guards against unbounded retired-contact history.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-          "default": "60",
-          "defaultSource": "manual review",
-          "example": "contact_max_age_history = 60",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
-        },
-        "display_radii": {
-          "description": "Enables posting visual range circles for configured alert and CPA radii. This affects viewer output and does not change alert triggering.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-          "default": "false",
-          "defaultSource": "manual review",
-          "example": "display_radii = true",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
-        },
-        "post_closest_range": {
-          "description": "Posts the range to the closest current contact, rounded to the nearest meter. This is a reporting option and does not affect alert logic.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-          "default": "false",
-          "defaultSource": "manual review",
-          "example": "post_closest_range = true",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_pcmanager.pdf: closest-contact reporting"
-        }
-      },
-      "description": "The pBasicContactMgr app has been replaced by pContactMgrV20.  Users of the latest code releases where pContactMgrV20 is available, are encouraged to use this instead."
-    },
     "pContactMgrV20": {
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
       "parameters": {
@@ -446,7 +352,7 @@
           "reviewSource": "MOOS-IvP app_pcmanager_v20.pdf: configuration parameters, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:246"
         }
       },
-      "description": "Note: The pContactMgrV20 app is a substantially re-written version of its predecessor, pBasicContactMgr.  The new version is meant to be largely backward compatible with the previous version."
+      "description": "The pContactMgrV20 app manages contact alerts, contact filtering, range reports, and contact visualization settings."
     },
     "pDeadManPost": {
       "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pdeadmanpost.pdf",
@@ -2995,21 +2901,22 @@
           "exampleSource": "manual review",
           "reviewSource": "MOOS-IvP app_uhelmscope.pdf and moos-ivp/ivp/src/uHelmScope"
         },
-        "tuncated_output": {
-          "description": "Misspelled legacy spelling for truncated_output; controls whether long MOOS-scope and behavior-scope output is truncated.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uhelmscope.pdf",
-          "default": "false",
-          "defaultSource": "manual review",
-          "example": "tuncated_output = false",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_uhelmscope.pdf and moos-ivp/ivp/src/uHelmScope"
-        },
         "var": {
           "description": "Adds a MOOS variable to the MOOS-scope section. Multiple var lines may be supplied.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uhelmscope.pdf",
           "example": "var = NAV_X, NAV_Y, NAV_SPEED",
           "exampleSource": "manual review",
           "reviewSource": "MOOS-IvP app_uhelmscope.pdf and moos-ivp/ivp/src/uHelmScope"
+        },
+        "truncated_output": {
+          "description": "Misspelled legacy spelling for truncated_output; controls whether long MOOS-scope and behavior-scope output is truncated.",
+          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uhelmscope.pdf",
+          "default": "false",
+          "defaultSource": "manual review",
+          "example": "truncated_output = true",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS-IvP app_uhelmscope.pdf and moos-ivp/ivp/src/uHelmScope",
+          "name": "truncated_output"
         }
       },
       "description": ", the pHelmIvP process.  The helm produces a few key MOOS variables on each iteration that pack in a substantial amount of information about what happened during a particular iteration."
@@ -3122,12 +3029,12 @@
         },
         "realmcast_show_community": {
           "description": "Controls whether the Community column is shown in realmcast output.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_appcasting_umactools.pdf",
           "default": "true",
           "defaultSource": "manual review",
           "example": "realmcast_show_community = true",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_appcasting_umactools.pdf and moos-ivp/ivp/src/uMACView"
+          "reviewSource": "MOOS-IvP app_appcasting_umactools.pdf and moos-ivp/ivp/src/uMACView",
+          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_appcasting_umactools.pdf"
         },
         "realmcast_show_subscriptions": {
           "description": "Controls whether the Subscriptions block is shown in realmcast output.",
@@ -3844,15 +3751,6 @@
           "exampleSource": "manual review",
           "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.6; moos-ivp/ivp/src/uXMS"
         },
-        "term_report_interval": {
-          "description": "Sets the minimum time, in seconds, between uXMS terminal report updates. Accepted values are clipped to the supported range.",
-          "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-          "default": "0.6",
-          "defaultSource": "manual review",
-          "example": "term_report_interval = 0.6",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.7; moos-ivp/ivp/src/uXMS/XMS_Info.cpp:149"
-        },
         "trunc_data": {
           "description": "Sets the maximum number of characters shown for long string values before uXMS truncates them and appends an ellipsis. A value of 0 disables truncation.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
@@ -3925,14 +3823,6 @@
       }
     ],
     "alert": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Defines one contact-alert rule. Alert entries may set the posted flag, alert range, CPA range, display colors, and match/ignore filters; multiple lines with the same alert id combine into one alert definition.",
-        "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-        "example": "alert = id=say, var=SAY_MOOS, val=\"$(VNAME) sees $([VNAME])\"",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pcmanager.pdf: Section 4.1, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:115"
-      },
       {
         "owner": "pContactMgrV20",
         "description": "Defines one contact-alert rule. Alert entries may set the posted flag, alert range, CPA range, visual display options, early-warning behavior, and match/ignore filters; multiple lines with the same id combine into one alert definition.",
@@ -4518,16 +4408,6 @@
     ],
     "contact_local_coords": [
       {
-        "owner": "pBasicContactMgr",
-        "description": "Selects the policy for filling local x/y coordinates in incoming node reports from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
-        "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-        "default": "verbatim",
-        "defaultSource": "manual review",
-        "example": "contact_local_coords = verbatim",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP contact-manager documentation/source review"
-      },
-      {
         "owner": "pContactMgrV20",
         "description": "Selects the policy for filling local x/y coordinates in incoming node reports from latitude/longitude. Legal modes include verbatim, lazy_lat_lon, and force_lat_lon; verbatim leaves incoming reports unchanged.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
@@ -4540,16 +4420,6 @@
     ],
     "contact_max_age": [
       {
-        "owner": "pBasicContactMgr",
-        "description": "Sets how many seconds may pass without a fresh contact report before the contact is dropped from the active contact list. This bounds stale contact state in the manager.",
-        "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-        "default": "600",
-        "defaultSource": "manual review",
-        "example": "contact_max_age = 600",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:57"
-      },
-      {
         "owner": "pContactMgrV20",
         "description": "Sets how many seconds may pass without a fresh contact report before the contact is retired and dropped from the active contact list. The current pContactMgrV20 source initializes this to 60 seconds.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
@@ -4558,18 +4428,6 @@
         "example": "contact_max_age = 60",
         "exampleSource": "manual review",
         "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:57, MOOS-IvP app_pcmanager_v20.pdf: configuration parameters"
-      }
-    ],
-    "contact_max_age_history": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Sets how long a retired contact remains in contact-manager memory and retired-contact postings after it leaves the active list. This guards against unbounded retired-contact history.",
-        "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-        "default": "60",
-        "defaultSource": "manual review",
-        "example": "contact_max_age_history = 60",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
       }
     ],
     "content_mode": [
@@ -4742,30 +4600,6 @@
         "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:62, moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp:611"
       }
     ],
-    "default_alert_range": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Sets the default alert range, in meters, used by alert rules that do not specify their own alert_range. Contacts inside this range can trigger the alert posting.",
-        "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-        "default": "1000",
-        "defaultSource": "manual review",
-        "example": "default_alert_range = 1000",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
-      }
-    ],
-    "default_alert_range_color": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Sets the default display color for alert range circles when an alert rule does not provide its own color. The source example uses gray65.",
-        "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-        "default": "gray65",
-        "defaultSource": "manual review",
-        "example": "default_alert_range_color = gray65",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:310, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:104"
-      }
-    ],
     "default_beacon_color": [
       {
         "owner": "uFldBeaconRangeSensor",
@@ -4848,30 +4682,6 @@
         "example": "default_color = purple",
         "exampleSource": "manual review",
         "reviewSource": "MOOS-IvP app_pspoofnode.pdf and moos-ivp/ivp/src/pSpoofNode"
-      }
-    ],
-    "default_cpa_range": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Sets the default CPA range, in meters, used by alert rules that do not specify their own cpa_range. A contact can trigger when its closest point of approach falls inside this range.",
-        "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-        "default": "1000",
-        "defaultSource": "manual review",
-        "example": "default_cpa_range = 1000",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
-      }
-    ],
-    "default_cpa_range_color": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Sets the default display color for CPA range circles when an alert rule does not provide its own color. The source example uses gray35.",
-        "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-        "default": "gray35",
-        "defaultSource": "manual review",
-        "example": "default_cpa_range_color = gray35",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:320, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:105"
       }
     ],
     "default_duration": [
@@ -5133,16 +4943,6 @@
       }
     ],
     "display_radii": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Enables posting visual range circles for configured alert and CPA radii. This affects viewer output and does not change alert triggering.",
-        "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-        "default": "false",
-        "defaultSource": "manual review",
-        "example": "display_radii = true",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pcmanager.pdf: configuration parameters"
-      },
       {
         "owner": "pContactMgrV20",
         "description": "Enables posting visual range circles for configured alert and CPA radii. This affects viewer output and does not change alert triggering.",
@@ -7062,16 +6862,6 @@
     ],
     "post_closest_range": [
       {
-        "owner": "pBasicContactMgr",
-        "description": "Posts the range to the closest current contact, rounded to the nearest meter. This is a reporting option and does not affect alert logic.",
-        "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager.pdf",
-        "default": "false",
-        "defaultSource": "manual review",
-        "example": "post_closest_range = true",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_pcmanager.pdf: closest-contact reporting"
-      },
-      {
         "owner": "pContactMgrV20",
         "description": "Posts the range to the closest current contact, rounded to the nearest meter. This is a reporting option and does not affect alert logic.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_pcmanager_v20.pdf",
@@ -8218,18 +8008,6 @@
         "reviewSource": "MOOS-IvP app_phostinfo.pdf: Listing 2.1 and 2.2; moos-ivp/ivp/src/pHostInfo/HostInfo.cpp:147"
       }
     ],
-    "term_report_interval": [
-      {
-        "owner": "uXMS",
-        "description": "Sets the minimum time, in seconds, between uXMS terminal report updates. Accepted values are clipped to the supported range.",
-        "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uxms.pdf",
-        "default": "0.6",
-        "defaultSource": "manual review",
-        "example": "term_report_interval = 0.6",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_uxms.pdf: Section 4.7; moos-ivp/ivp/src/uXMS/XMS_Info.cpp:149"
-      }
-    ],
     "terse_reports": [
       {
         "owner": "pNodeReporter",
@@ -8436,6 +8214,18 @@
         "reviewSource": "MOOS-IvP app_prealm.pdf: Listing 2.1"
       }
     ],
+    "truncated_output": [
+      {
+        "owner": "uHelmScope",
+        "description": "Misspelled legacy spelling for truncated_output; controls whether long MOOS-scope and behavior-scope output is truncated.",
+        "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uhelmscope.pdf",
+        "default": "false",
+        "defaultSource": "manual review",
+        "example": "truncated_output = true",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS-IvP app_uhelmscope.pdf and moos-ivp/ivp/src/uHelmScope"
+      }
+    ],
     "try_shore_host": [
       {
         "owner": "uFldNodeBroker",
@@ -8454,18 +8244,6 @@
         "example": "try_vnode = 192.168.4.24:9200",
         "exampleSource": "manual review",
         "reviewSource": "MOOS-IvP app_ufld_shorebroker.pdf: Listing 5.2"
-      }
-    ],
-    "tuncated_output": [
-      {
-        "owner": "uHelmScope",
-        "description": "Misspelled legacy spelling for truncated_output; controls whether long MOOS-scope and behavior-scope output is truncated.",
-        "doc": "https://oceanai.mit.edu/ivpman/pdfs/app_uhelmscope.pdf",
-        "default": "false",
-        "defaultSource": "manual review",
-        "example": "tuncated_output = false",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_uhelmscope.pdf and moos-ivp/ivp/src/uHelmScope"
       }
     ],
     "turn_loss": [

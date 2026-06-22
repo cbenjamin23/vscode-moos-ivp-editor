@@ -170,7 +170,7 @@
           "default": "200",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp:65",
-          "example": "nm_radius                    = 10",
+          "example": "nm_radius                    = 1",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp nonmonotonic radius review"
         },
@@ -350,7 +350,7 @@
           "default": "none",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:78",
-          "example": "avoid_mode                   = normal",
+          "example": "avoid_mode                   = none",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp mode review"
         },
@@ -989,7 +989,7 @@
           "default": "0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:83",
-          "example": "turn_radius                  = 10",
+          "example": "turn_radius                  = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
         },
@@ -2967,7 +2967,7 @@
           "default": "150",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:67",
-          "example": "max_mark_range               = 10",
+          "example": "max_mark_range               = 1",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
         },
@@ -2989,7 +2989,7 @@
           "default": "20",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:59",
-          "example": "nm_radius                    = 10",
+          "example": "nm_radius                    = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:86-95"
         },
@@ -3415,7 +3415,7 @@
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_CutRange.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "giveup_range                 = 10",
+          "example": "giveup_range                 = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_CutRange.cpp"
         },
@@ -3760,7 +3760,7 @@
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_FixedTurn.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "radius_rep_var               = EXAMPLE_VAR",
+          "example": "radius_rep_var               = example",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_FixedTurn.cpp"
         },
@@ -5012,7 +5012,7 @@
           "default": "-1",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_HeadingChange.cpp:54",
-          "example": "turn_speed                   = 1.2",
+          "example": "turn_speed                   = 1",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_HeadingChange.cpp"
         },
@@ -5154,7 +5154,7 @@
           "default": "DESIRED_HEADING_UNFILTERED",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_HeadingHysteresis.cpp:56",
-          "example": "filter_var                   = EXAMPLE_VAR",
+          "example": "filter_var                   = example",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_HeadingHysteresis.cpp"
         },
@@ -6543,7 +6543,7 @@
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "nm_radius                    = 10",
+          "example": "nm_radius                    = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp nonmonotonic radius review"
         },
@@ -7945,7 +7945,7 @@
           "default": "0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:51",
-          "example": "buffer_dist                  = 10",
+          "example": "buffer_dist                  = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
         },
@@ -8036,7 +8036,7 @@
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "dynamic_region_var           = op_region",
+          "example": "dynamic_region_var           = example",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
         },
@@ -8115,7 +8115,7 @@
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "opregion_poly_var            = op_region",
+          "example": "opregion_poly_var            = example",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
         },
@@ -8154,7 +8154,7 @@
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "reset_var                    = EXAMPLE_VAR",
+          "example": "reset_var                    = example",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
         },
@@ -8353,7 +8353,7 @@
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "dynamic_region_var           = op_region",
+          "example": "dynamic_region_var           = example",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp"
         },
@@ -8376,7 +8376,7 @@
           "default": "-1",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:57",
-          "example": "halt_dist                    = 10",
+          "example": "halt_dist                    = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp"
         },
@@ -8474,7 +8474,7 @@
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "recover_speed                = 1.2",
+          "example": "recover_speed                = 1",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp"
         },
@@ -8517,7 +8517,7 @@
           "default": "-1",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:56",
-          "example": "save_dist                    = 10",
+          "example": "save_dist                    = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp"
         },
@@ -9826,7 +9826,7 @@
           "default": "2.0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_RStationKeep.cpp:58",
-          "example": "extra_speed                  = 1.2",
+          "example": "extra_speed                  = 1",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_RStationKeep.cpp"
         },
@@ -10262,7 +10262,7 @@
           "default": "0",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:49",
-          "example": "pwt_outer_dist               = 100",
+          "example": "pwt_outer_dist               = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:66-67,145-160"
         },
@@ -10436,7 +10436,7 @@
           "default": "2.5",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:61",
-          "example": "extra_speed                  = 1.2",
+          "example": "extra_speed                  = 1",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp"
         },
@@ -11261,7 +11261,7 @@
           "default": "TIMER_IDLE",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:36",
-          "example": "var_status_idle              = EXAMPLE_VAR",
+          "example": "var_status_idle              = example",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:36,46-47,68-71,80-83"
         },
@@ -11274,7 +11274,7 @@
           "default": "TIMER_RUNNING",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:37",
-          "example": "var_status_running           = EXAMPLE_VAR",
+          "example": "var_status_running           = example",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:37,49-50,68-71,80-83"
         }
@@ -11631,7 +11631,7 @@
           "default": "CYCLE_INDEX",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:70",
-          "example": "cycle_index_var              = EXAMPLE_VAR",
+          "example": "cycle_index_var              = example",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp waypoint index/status review"
         },
@@ -11768,7 +11768,7 @@
           "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "nm_radius                    = 10",
+          "example": "nm_radius                    = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp nonmonotonic radius review"
         },
@@ -12275,7 +12275,7 @@
           "default": "false",
           "defaultSource": "source initializer for parsed parameter",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:77",
-          "example": "spd_on_active                = 1.2",
+          "example": "spd_on_active                = false",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:111"
         },
@@ -12826,7 +12826,7 @@
         "default": "none",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:78",
-        "example": "avoid_mode                   = normal",
+        "example": "avoid_mode                   = none",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp mode review"
       }
@@ -13115,7 +13115,7 @@
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp:51",
-        "example": "buffer_dist                  = 10",
+        "example": "buffer_dist                  = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
       }
@@ -14934,7 +14934,7 @@
         "default": "CYCLE_INDEX",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp:70",
-        "example": "cycle_index_var              = EXAMPLE_VAR",
+        "example": "cycle_index_var              = example",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp waypoint index/status review"
       }
@@ -16174,7 +16174,7 @@
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "dynamic_region_var           = op_region",
+        "example": "dynamic_region_var           = example",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
       },
@@ -16184,7 +16184,7 @@
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "dynamic_region_var           = op_region",
+        "example": "dynamic_region_var           = example",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp"
       }
@@ -16733,7 +16733,7 @@
         "default": "2.0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_RStationKeep.cpp:58",
-        "example": "extra_speed                  = 1.2",
+        "example": "extra_speed                  = 1",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_RStationKeep.cpp"
       },
@@ -16746,7 +16746,7 @@
         "default": "2.5",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:61",
-        "example": "extra_speed                  = 1.2",
+        "example": "extra_speed                  = 1",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp"
       }
@@ -16787,7 +16787,7 @@
         "default": "DESIRED_HEADING_UNFILTERED",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_HeadingHysteresis.cpp:56",
-        "example": "filter_var                   = EXAMPLE_VAR",
+        "example": "filter_var                   = example",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_HeadingHysteresis.cpp"
       }
@@ -16799,7 +16799,7 @@
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_CutRange.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "giveup_range                 = 10",
+        "example": "giveup_range                 = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_CutRange.cpp"
       }
@@ -16828,7 +16828,7 @@
         "default": "-1",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:57",
-        "example": "halt_dist                    = 10",
+        "example": "halt_dist                    = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp"
       }
@@ -18281,7 +18281,7 @@
         "default": "150",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:67",
-        "example": "max_mark_range               = 10",
+        "example": "max_mark_range               = 1",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp"
       }
@@ -18869,7 +18869,7 @@
         "default": "200",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp:65",
-        "example": "nm_radius                    = 10",
+        "example": "nm_radius                    = 1",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp nonmonotonic radius review"
       },
@@ -18882,7 +18882,7 @@
         "default": "20",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:59",
-        "example": "nm_radius                    = 10",
+        "example": "nm_radius                    = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Convoy.cpp:86-95"
       },
@@ -18892,7 +18892,7 @@
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "nm_radius                    = 10",
+        "example": "nm_radius                    = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp nonmonotonic radius review"
       },
@@ -18902,7 +18902,7 @@
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "nm_radius                    = 10",
+        "example": "nm_radius                    = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp nonmonotonic radius review"
       }
@@ -19562,7 +19562,7 @@
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "opregion_poly_var            = op_region",
+        "example": "opregion_poly_var            = example",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
       }
@@ -20777,7 +20777,7 @@
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:49",
-        "example": "pwt_outer_dist               = 100",
+        "example": "pwt_outer_dist               = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Shadow.cpp:66-67,145-160"
       }
@@ -20821,7 +20821,7 @@
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_FixedTurn.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "radius_rep_var               = EXAMPLE_VAR",
+        "example": "radius_rep_var               = example",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_FixedTurn.cpp"
       }
@@ -20869,7 +20869,7 @@
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "recover_speed                = 1.2",
+        "example": "recover_speed                = 1",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp"
       }
@@ -20895,7 +20895,7 @@
         "source": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "reset_var                    = EXAMPLE_VAR",
+        "example": "reset_var                    = example",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionRecover.cpp"
       }
@@ -22208,7 +22208,7 @@
         "default": "-1",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:56",
-        "example": "save_dist                    = 10",
+        "example": "save_dist                    = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp"
       }
@@ -23558,7 +23558,7 @@
         "default": "false",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:77",
-        "example": "spd_on_active                = 1.2",
+        "example": "spd_on_active                = false",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:111"
       }
@@ -24061,7 +24061,7 @@
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:83",
-        "example": "turn_radius                  = 10",
+        "example": "turn_radius                  = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp"
       },
@@ -24086,7 +24086,7 @@
         "default": "-1",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_HeadingChange.cpp:54",
-        "example": "turn_speed                   = 1.2",
+        "example": "turn_speed                   = 1",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_HeadingChange.cpp"
       }
@@ -24541,7 +24541,7 @@
         "default": "TIMER_IDLE",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:36",
-        "example": "var_status_idle              = EXAMPLE_VAR",
+        "example": "var_status_idle              = example",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:36,46-47,68-71,80-83"
       }
@@ -24556,7 +24556,7 @@
         "default": "TIMER_RUNNING",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:37",
-        "example": "var_status_running           = EXAMPLE_VAR",
+        "example": "var_status_running           = example",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Timer.cpp:37,49-50,68-71,80-83"
       }

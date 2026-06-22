@@ -2,8 +2,97 @@
   "generatedFrom": {
     "moosIvP": "/Users/charlesbenjamin/moos-ivp"
   },
-  "generatedPairs": 288,
+  "generatedPairs": 275,
   "items": {
+    "ANTLER": {
+      "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler",
+      "description": "The pAntler launch block. Its Run lines start the MOOS apps in a mission community.",
+      "sourceStatus": "local-moos-source",
+      "parameters": {
+        "apptick": {
+          "name": "AppTick",
+          "description": "Sets the target Iterate() rate for the ANTLER process, in Hertz. This controls pAntler itself, not the apps launched by Run lines.",
+          "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler",
+          "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+          "sourceStatus": "local-moos-source",
+          "default": "4",
+          "defaultSource": "manual review",
+          "example": "AppTick = 4",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS app framework default configuration"
+        },
+        "commstick": {
+          "name": "CommsTick",
+          "description": "Sets the target MOOS communications processing rate for the ANTLER process, in Hertz. This controls pAntler's own mail handling.",
+          "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler",
+          "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+          "sourceStatus": "local-moos-source",
+          "default": "4",
+          "defaultSource": "manual review",
+          "example": "CommsTick = 4",
+          "exampleSource": "manual review",
+          "reviewSource": "MOOS app framework default configuration"
+        },
+        "executablepath": {
+          "name": "ExecutablePath",
+          "description": "Sets the default directory used to locate executables launched by ANTLER. SYSTEMPATH means launched processes are resolved from the system path.",
+          "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:395-396",
+          "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+          "sourceStatus": "local-moos-source",
+          "default": "SYSTEMPATH",
+          "defaultSource": "manual review",
+          "example": "ExecutablePath = SYSTEMPATH",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:394-407"
+        },
+        "gentlekill": {
+          "name": "GentleKill",
+          "description": "Controls whether ANTLER attempts a gentle shutdown of launched processes before stronger process termination.",
+          "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:415-420",
+          "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+          "sourceStatus": "local-moos-source",
+          "default": "true on non-Windows, false on Windows",
+          "defaultSource": "manual review",
+          "example": "GentleKill = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:415-420,1034"
+        },
+        "msbetweenlaunches": {
+          "name": "MSBetweenLaunches",
+          "description": "Sets the delay, in milliseconds, between successive processes launched from the ANTLER block.",
+          "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:391-392",
+          "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+          "sourceStatus": "local-moos-source",
+          "default": "1000",
+          "defaultSource": "manual review",
+          "example": "MSBetweenLaunches = 100",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:391-392 and Antler.h:35"
+        },
+        "newconsole": {
+          "name": "NewConsole",
+          "description": "Run option that starts the launched process in a separate console when true. It is normally written after the Run entry's @ options.",
+          "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:721-723",
+          "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+          "sourceStatus": "local-moos-source",
+          "default": "false",
+          "defaultSource": "manual review",
+          "example": "Run = pHelmIvP @ NewConsole = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:721-723"
+        },
+        "run": {
+          "name": "Run",
+          "description": "Adds one process for ANTLER to launch. The value starts with the executable name and may include @ launch options and an optional ~ MOOS name.",
+          "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:432,594,721-804",
+          "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+          "sourceStatus": "local-moos-source",
+          "example": "Run = pHelmIvP @ NewConsole = false",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:432,594,721-804"
+        }
+      }
+    },
     "iBlinkStick": {
       "source": "../moos-ivp/ivp/src/iBlinkStick",
       "description": "The iBlinkStick app works with the BlinkStick LED device.  The color and state of the LED can be controlled by posting a message, parsed by iBlinkStick.",
@@ -64,238 +153,9 @@
         }
       }
     },
-    "pBasicContactMgr": {
-      "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-      "description": "The pBasicContactMgr app has been replaced by pContactMgrV20.  Users of the latest code releases where pContactMgrV20 is available, are encouraged to use this instead.",
-      "sourceStatus": "local-ivp-source",
-      "parameters": {
-        "alert_range_color": {
-          "name": "alert_range_color",
-          "description": "Sets the display color for the VIEW_CIRCLE used to render an alert range. This is normally used with display_radii so the configured alert radius is visible in a viewer.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "example": "alert_range_color = gray65",
-          "exampleSource": "manual review",
-          "default": "gray65",
-          "defaultSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:310, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:104"
-        },
-        "alert_verbose": {
-          "name": "alert_verbose",
-          "description": "Enables verbose debugging output for contact-alert evaluation. This is useful when tuning alert logic and filters, but it can make the MOOSDB output noisier.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "default": "false",
-          "defaultSource": "manual review",
-          "example": "alert_verbose = false",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:62, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:304"
-        },
-        "app_logging": {
-          "name": "app_logging",
-          "description": "Enables AppCastingMOOSApp logging for pBasicContactMgr. This records app-level diagnostics and is separate from contact alert or range-report postings.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "default": "disabled",
-          "defaultSource": "manual review",
-          "example": "app_logging = true",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS AppCastingMOOSApp configuration"
-        },
-        "contacts_recap_interval": {
-          "name": "contacts_recap_interval",
-          "description": "Sets the minimum time, in seconds, between CONTACTS_RECAP postings. Increase this or turn recap posting off when recap output is too verbose for logging.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "default": "1",
-          "defaultSource": "manual review",
-          "example": "contacts_recap_interval = 1",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:58, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:277"
-        },
-        "cpa_range_color": {
-          "name": "cpa_range_color",
-          "description": "Sets the display color for the VIEW_CIRCLE used to render a CPA range. This is normally used with display_radii so the configured closest-point-of-approach radius is visible in a viewer.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "example": "cpa_range_color = gray35",
-          "exampleSource": "manual review",
-          "default": "gray35",
-          "defaultSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:320, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:105"
-        },
-        "decay": {
-          "name": "decay",
-          "description": "Controls extrapolation of stale contact reports as start,end seconds. Before the start time the last reported speed/heading are used, between start and end the speed decays toward zero, and 0,0 disables extrapolation.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "default": "15,30",
-          "defaultSource": "manual review",
-          "example": "decay = 15,30",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:63, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:208"
-        },
-        "display_radii_id": {
-          "name": "display_radii_id",
-          "description": "Selects which configured alert id should have its alert/CPA radii rendered when display_radii is enabled. This matters when multiple alert definitions are present.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "example": "display_radii_id = say",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:319"
-        },
-        "eval_range_far": {
-          "name": "eval_range_far",
-          "description": "Sets the far threshold used when evaluating the closest approach of contacts. Contacts whose closest range falls inside this threshold are classified as a near encounter in summary metrics.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "default": "20",
-          "defaultSource": "manual review",
-          "example": "eval_range_far = 20",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:66, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:1019"
-        },
-        "eval_range_near": {
-          "name": "eval_range_near",
-          "description": "Sets the near threshold used when evaluating closest approach of contacts. Contacts whose closest range falls inside this tighter threshold are classified as a very near encounter.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "default": "10",
-          "defaultSource": "manual review",
-          "example": "eval_range_near = 10",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:67, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:1019"
-        },
-        "ignore_group": {
-          "name": "ignore_group",
-          "description": "Adds a contact group to the global ignore filter. Contacts in ignored groups are excluded from contact-manager alert/range processing unless another rule overrides the filtering.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "example": "ignore_group = alpha",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
-        },
-        "ignore_region": {
-          "name": "ignore_region",
-          "description": "Adds a polygon region where contacts are ignored by the global filter. Use this to suppress alerts for contacts inside a known safe or irrelevant operating area.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "example": "ignore_region = pts={0,0:50,0:50,50:0,50}",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
-        },
-        "ignore_type": {
-          "name": "ignore_type",
-          "description": "Adds a contact type to the global ignore filter. Contacts reporting one of these types are excluded from contact-manager alert/range processing.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "example": "ignore_type = kayak",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
-        },
-        "match_group": {
-          "name": "match_group",
-          "description": "Adds a contact group to the global match filter. When match filters are configured, contacts must match the accepted group criteria to be processed.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "example": "match_group = alpha",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
-        },
-        "match_region": {
-          "name": "match_region",
-          "description": "Adds a polygon region that contacts must match to pass the global filter. Contacts outside the matched region are ignored for contact-manager processing.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "example": "match_region = pts={0,0:50,0:50,50:0,50}",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
-        },
-        "match_type": {
-          "name": "match_type",
-          "description": "Adds a contact type to the global match filter. When configured, only contacts with accepted types pass this part of contact-manager filtering.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "example": "match_type = kayak",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
-        },
-        "max_appcast_events": {
-          "name": "max_appcast_events",
-          "description": "Limits how many appcast events pBasicContactMgr retains for diagnostic reporting. This affects appcast history, not contact alert decisions.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "example": "max_appcast_events = 8",
-          "exampleSource": "manual review",
-          "reviewSource": "MOOS AppCastingMOOSApp configuration"
-        },
-        "max_retired_history": {
-          "name": "max_retired_history",
-          "description": "Limits how many retired contacts remain in the CONTACTS_RETIRED history. Values are clamped to the supported history range.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "default": "5",
-          "defaultSource": "manual review",
-          "example": "max_retired_history = 5",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:70, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:242"
-        },
-        "range_report_timeout": {
-          "name": "range_report_timeout",
-          "description": "Sets how long range-report data remains fresh before it is removed from range reports. This prevents stale contact ranges from lingering in posted summaries.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "default": "10",
-          "defaultSource": "manual review",
-          "example": "range_report_timeout = 10",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:73, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:226"
-        },
-        "reject_range": {
-          "name": "reject_range",
-          "description": "Sets a range, in meters, beyond which new contacts are rejected and existing contacts may be dropped. This is a guard against tracking unbounded distant contacts.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "default": "2000",
-          "defaultSource": "manual review",
-          "example": "reject_range = 2000",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:75, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:472"
-        },
-        "strict_ignore": {
-          "name": "strict_ignore",
-          "description": "Controls how strictly group/type ignore filters treat contacts that omit those fields. When true, missing group or type information can cause a contact to be rejected by an ignore filter.",
-          "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "example": "strict_ignore = true",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp"
-        }
-      }
-    },
     "pContactMgrV20": {
       "source": "../moos-ivp/ivp/src/pContactMgrV20",
-      "description": "Note: The pContactMgrV20 app is a substantially re-written version of its predecessor, pBasicContactMgr.  The new version is meant to be largely backward compatible with the previous version.",
+      "description": "The pContactMgrV20 app manages contact alerts, contact filtering, range reports, and contact visualization settings.",
       "sourceStatus": "local-ivp-source",
       "parameters": {
         "app_logging": {
@@ -591,7 +451,7 @@
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "hold_on_app = pBasicContactMgr",
+          "example": "hold_on_app = pContactMgrV20",
           "exampleSource": "manual review",
           "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1308, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1522"
         },
@@ -601,7 +461,7 @@
           "source": "../moos-ivp/ivp/src/pHelmIvP",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "hold_on_apps = pBasicContactMgr, pTaskManager",
+          "example": "hold_on_apps = pContactMgrV20, pTaskManager",
           "exampleSource": "manual review",
           "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:130, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1522"
         },
@@ -2264,9 +2124,9 @@
           "sourceStatus": "local-ivp-source",
           "example": "ping_wait = 30",
           "exampleSource": "manual review",
-          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.4; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:44,152",
           "default": "30",
-          "defaultSource": "manual review"
+          "defaultSource": "manual review",
+          "reviewSource": "MOOS-IvP app_ufld_beacon_rsensor.pdf: Section 4.4; moos-ivp/ivp/src/uFldBeaconRangeSensor/BRS_App.cpp:44,152"
         },
         "reach_distance": {
           "name": "reach_distance",
@@ -2910,25 +2770,12 @@
       "parameters": {
         "behaviors_consise": {
           "name": "behaviors_consise",
-          "description": "Legacy misspelled alias for behaviors_concise. Controls whether idle and completed behaviors are reported compactly.",
+          "description": "Uses the compact behavior-summary display in uHelmScope output.",
           "source": "../moos-ivp/ivp/src/uHelmScope",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "behaviors_consise = true",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uHelmScope"
-        },
-        "truncated_output": {
-          "name": "truncated_output",
-          "description": "Controls whether long MOOS-scope and behavior-scope output is truncated.",
-          "source": "../moos-ivp/ivp/src/uHelmScope",
-          "basis": "generated from local MOOS-IvP ivp/src source inventory",
-          "sourceStatus": "local-ivp-source",
-          "example": "truncated_output = false",
-          "exampleSource": "manual review",
-          "default": "false",
-          "defaultSource": "manual review",
-          "reviewSource": "MOOS-IvP app_uhelmscope.pdf and moos-ivp/ivp/src/uHelmScope"
+          "example": "behaviors_consise            = example",
+          "exampleSource": "generated coverage fixture"
         }
       }
     },
@@ -3000,15 +2847,15 @@
         },
         "realmcast_show_communinity": {
           "name": "realmcast_show_communinity",
-          "description": "Legacy misspelled alias for realmcast_show_community. Controls whether the Community column is shown in realmcast output.",
+          "description": "Sets the realmcast show communinity option for uMACView.",
           "source": "../moos-ivp/ivp/src/uMACView",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
           "default": "true",
-          "defaultSource": "manual review",
-          "example": "realmcast_show_communinity = true",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uMACView"
+          "defaultSource": "source example comment",
+          "defaultReference": "../moos-ivp/ivp/src/uMACView/UMV_Info.cpp",
+          "example": "realmcast_show_communinity   = example",
+          "exampleSource": "generated coverage fixture"
         },
         "watch_cluster": {
           "name": "watch_cluster",
@@ -3153,13 +3000,12 @@
       "parameters": {
         "halt_condition": {
           "name": "halt_condition",
-          "description": "Stops uQueryDB when the given MOOS logic condition evaluates true. Use this to make a query session terminate after a mission state or variable condition is reached.",
+          "description": "Stops uQueryDB when the named MOOS logic condition becomes true.",
           "source": "../moos-ivp/ivp/src/uQueryDB",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "halt_condition = DEPLOY = true",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uQueryDB"
+          "example": "halt_condition               = DEPLOY = true",
+          "exampleSource": "generated coverage fixture"
         },
         "halt_max_time": {
           "name": "halt_max_time",
@@ -3173,13 +3019,12 @@
         },
         "max_time": {
           "name": "max_time",
-          "description": "Sets the maximum time uQueryDB should run before exiting. This is an alias-style timeout used to keep query runs finite.",
+          "description": "Sets the maximum time uQueryDB waits before halting.",
           "source": "../moos-ivp/ivp/src/uQueryDB",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "max_time = 30",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uQueryDB"
+          "example": "max_time                     = 5",
+          "exampleSource": "generated coverage fixture"
         }
       }
     },
@@ -3443,13 +3288,24 @@
         },
         "paused": {
           "name": "paused",
-          "description": "Starts or keeps the uXMS display in a paused state when supported by the app's display loop. This affects live display updating, not whether uXMS receives MOOS mail.",
+          "description": "Starts or keeps uXMS paused when the app supports pausing.",
           "source": "../moos-ivp/ivp/src/uXMS",
           "basis": "generated from local MOOS-IvP ivp/src source inventory",
           "sourceStatus": "local-ivp-source",
-          "example": "paused = false",
-          "exampleSource": "manual review",
-          "reviewSource": "moos-ivp/ivp/src/uXMS"
+          "default": "events",
+          "defaultSource": "source initializer for parsed parameter",
+          "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:55",
+          "example": "paused                       = example",
+          "exampleSource": "generated coverage fixture"
+        },
+        "term_report_interval": {
+          "name": "term_report_interval",
+          "description": "Sets how often pHelmIvP writes terminal status reports.",
+          "source": "../moos-ivp/ivp/src/uXMS",
+          "basis": "generated from local MOOS-IvP ivp/src source inventory",
+          "sourceStatus": "local-ivp-source",
+          "example": "term_report_interval         = 5",
+          "exampleSource": "generated coverage fixture"
         }
       }
     }
@@ -3481,34 +3337,6 @@
         "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 11, moos-ivp/ivp/src/pMarineViewer/PMV_MOOSApp.cpp:860"
       }
     ],
-    "alert_range_color": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Sets the display color for the VIEW_CIRCLE used to render an alert range. This is normally used with display_radii so the configured alert radius is visible in a viewer.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "default": "gray65",
-        "defaultSource": "manual review",
-        "example": "alert_range_color = gray65",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:310, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:104"
-      }
-    ],
-    "alert_verbose": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Enables verbose debugging output for contact-alert evaluation. This is useful when tuning alert logic and filters, but it can make the MOOSDB output noisier.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "default": "false",
-        "defaultSource": "manual review",
-        "example": "alert_verbose = false",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:62, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:304"
-      }
-    ],
     "allow_park": [
       {
         "owner": "pHelmIvP",
@@ -3535,18 +3363,6 @@
         "example": "app_logging = true",
         "exampleSource": "manual review",
         "reviewSource": "moos-ivp/ivp/src/iSay/Sayer_Info.cpp:106"
-      },
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Enables AppCastingMOOSApp logging for pBasicContactMgr. This records app-level diagnostics and is separate from contact alert or range-report postings.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "default": "disabled",
-        "defaultSource": "manual review",
-        "example": "app_logging = true",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS AppCastingMOOSApp configuration"
       },
       {
         "owner": "pContactMgrV20",
@@ -3889,6 +3705,20 @@
         "reviewSource": "MOOS-IvP app_pmviewer.pdf: Section 7.2"
       }
     ],
+    "apptick": [
+      {
+        "owner": "ANTLER",
+        "description": "Sets the target Iterate() rate for the ANTLER process, in Hertz. This controls pAntler itself, not the apps launched by Run lines.",
+        "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler",
+        "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+        "sourceStatus": "local-moos-source",
+        "default": "4",
+        "defaultSource": "manual review",
+        "example": "AppTick = 4",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS app framework default configuration"
+      }
+    ],
     "auto_bridg_mhash": [
       {
         "owner": "uFldShoreBroker",
@@ -3942,13 +3772,12 @@
     "behaviors_consise": [
       {
         "owner": "uHelmScope",
-        "description": "Legacy misspelled alias for behaviors_concise. Controls whether idle and completed behaviors are reported compactly.",
+        "description": "Uses the compact behavior-summary display in uHelmScope output.",
         "source": "../moos-ivp/ivp/src/uHelmScope",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "behaviors_consise = true",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uHelmScope"
+        "example": "behaviors_consise            = example",
+        "exampleSource": "generated coverage fixture"
       }
     ],
     "bhv_dir_not_found_ok": [
@@ -4459,6 +4288,20 @@
         "reviewSource": "moos-ivp/ivp/src/uFldGenericSensor"
       }
     ],
+    "commstick": [
+      {
+        "owner": "ANTLER",
+        "description": "Sets the target MOOS communications processing rate for the ANTLER process, in Hertz. This controls pAntler's own mail handling.",
+        "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler",
+        "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+        "sourceStatus": "local-moos-source",
+        "default": "4",
+        "defaultSource": "manual review",
+        "example": "CommsTick = 4",
+        "exampleSource": "manual review",
+        "reviewSource": "MOOS app framework default configuration"
+      }
+    ],
     "compressalogs": [
       {
         "owner": "pLogger",
@@ -4485,34 +4328,6 @@
         "example": "contact_max_age = 45",
         "exampleSource": "manual review",
         "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1268, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1312"
-      }
-    ],
-    "contacts_recap_interval": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Sets the minimum time, in seconds, between CONTACTS_RECAP postings. Increase this or turn recap posting off when recap output is too verbose for logging.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "default": "1",
-        "defaultSource": "manual review",
-        "example": "contacts_recap_interval = 1",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:58, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:277"
-      }
-    ],
-    "cpa_range_color": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Sets the display color for the VIEW_CIRCLE used to render a CPA range. This is normally used with display_radii so the configured closest-point-of-approach radius is visible in a viewer.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "default": "gray35",
-        "defaultSource": "manual review",
-        "example": "cpa_range_color = gray35",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:320, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr_Info.cpp:105"
       }
     ],
     "cross_fill_policy": [
@@ -4555,20 +4370,6 @@
         "example": "datum_viewable_labels = true",
         "exampleSource": "manual review",
         "reviewSource": "MOOS-IvP app_pmviewer.pdf: rendering configuration parameters"
-      }
-    ],
-    "decay": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Controls extrapolation of stale contact reports as start,end seconds. Before the start time the last reported speed/heading are used, between start and end the speed decays toward zero, and 0,0 disables extrapolation.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "default": "15,30",
-        "defaultSource": "manual review",
-        "example": "decay = 15,30",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:63, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:208"
       }
     ],
     "default": [
@@ -4637,18 +4438,6 @@
         "example": "display_pulses = true",
         "exampleSource": "manual review",
         "reviewSource": "moos-ivp/ivp/src/uFldContactRangeSensor"
-      }
-    ],
-    "display_radii_id": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Selects which configured alert id should have its alert/CPA radii rendered when display_radii is enabled. This matters when multiple alert definitions are present.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "example": "display_radii_id = say",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:319"
       }
     ],
     "doubleprecision": [
@@ -4751,18 +4540,6 @@
     ],
     "eval_range_far": [
       {
-        "owner": "pBasicContactMgr",
-        "description": "Sets the far threshold used when evaluating the closest approach of contacts. Contacts whose closest range falls inside this threshold are classified as a near encounter in summary metrics.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "default": "20",
-        "defaultSource": "manual review",
-        "example": "eval_range_far = 20",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:66, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:1019"
-      },
-      {
         "owner": "pContactMgrV20",
         "description": "Sets the far threshold used when evaluating closest approach of contacts. Contacts whose closest range falls inside this threshold are counted as near encounters in summary metrics.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
@@ -4775,18 +4552,6 @@
     ],
     "eval_range_near": [
       {
-        "owner": "pBasicContactMgr",
-        "description": "Sets the near threshold used when evaluating closest approach of contacts. Contacts whose closest range falls inside this tighter threshold are classified as a very near encounter.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "default": "10",
-        "defaultSource": "manual review",
-        "example": "eval_range_near = 10",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:67, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:1019"
-      },
-      {
         "owner": "pContactMgrV20",
         "description": "Sets the near threshold used when evaluating closest approach of contacts. Contacts whose closest range falls inside this tighter threshold are counted as very near encounters.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
@@ -4795,6 +4560,20 @@
         "example": "eval_range_near = 10",
         "exampleSource": "manual review",
         "reviewSource": "moos-ivp/ivp/src/pContactMgrV20/ContactMgrV20.cpp"
+      }
+    ],
+    "executablepath": [
+      {
+        "owner": "ANTLER",
+        "description": "Sets the default directory used to locate executables launched by ANTLER. SYSTEMPATH means launched processes are resolved from the system path.",
+        "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:395-396",
+        "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+        "sourceStatus": "local-moos-source",
+        "default": "SYSTEMPATH",
+        "defaultSource": "manual review",
+        "example": "ExecutablePath = SYSTEMPATH",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:394-407"
       }
     ],
     "expunge_var": [
@@ -4915,6 +4694,20 @@
         "reviewSource": "moos-ivp/ivp/src/pObstacleMgr"
       }
     ],
+    "gentlekill": [
+      {
+        "owner": "ANTLER",
+        "description": "Controls whether ANTLER attempts a gentle shutdown of launched processes before stronger process termination.",
+        "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:415-420",
+        "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+        "sourceStatus": "local-moos-source",
+        "default": "true on non-Windows, false on Windows",
+        "defaultSource": "manual review",
+        "example": "GentleKill = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:415-420,1034"
+      }
+    ],
     "given_max_duration": [
       {
         "owner": "pObstacleMgr",
@@ -5026,13 +4819,12 @@
     "halt_condition": [
       {
         "owner": "uQueryDB",
-        "description": "Stops uQueryDB when the given MOOS logic condition evaluates true. Use this to make a query session terminate after a mission state or variable condition is reached.",
+        "description": "Stops uQueryDB when the named MOOS logic condition becomes true.",
         "source": "../moos-ivp/ivp/src/uQueryDB",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "halt_condition = DEPLOY = true",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uQueryDB"
+        "example": "halt_condition               = DEPLOY = true",
+        "exampleSource": "generated coverage fixture"
       }
     ],
     "halt_max_time": [
@@ -5106,7 +4898,7 @@
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "hold_on_app = pBasicContactMgr",
+        "example": "hold_on_app = pContactMgrV20",
         "exampleSource": "manual review",
         "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1308, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1522"
       }
@@ -5118,7 +4910,7 @@
         "source": "../moos-ivp/ivp/src/pHelmIvP",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "hold_on_apps = pBasicContactMgr, pTaskManager",
+        "example": "hold_on_apps = pContactMgrV20, pTaskManager",
         "exampleSource": "manual review",
         "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:130, moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1522"
       }
@@ -5133,18 +4925,6 @@
         "example": "ignore = pMarineViewer",
         "exampleSource": "manual review",
         "reviewSource": "moos-ivp/ivp/src/uMemWatch"
-      }
-    ],
-    "ignore_group": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Adds a contact group to the global ignore filter. Contacts in ignored groups are excluded from contact-manager alert/range processing unless another rule overrides the filtering.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "example": "ignore_group = alpha",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
       }
     ],
     "ignore_name": [
@@ -5167,30 +4947,6 @@
         "example": "ignore_name = abe",
         "exampleSource": "manual review",
         "reviewSource": "MOOS-IvP app_psearchgrid.pdf and moos-ivp/ivp/src/pSearchGrid"
-      }
-    ],
-    "ignore_region": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Adds a polygon region where contacts are ignored by the global filter. Use this to suppress alerts for contacts inside a known safe or irrelevant operating area.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "example": "ignore_region = pts={0,0:50,0:50,50:0,50}",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
-      }
-    ],
-    "ignore_type": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Adds a contact type to the global ignore filter. Contacts reporting one of these types are excluded from contact-manager alert/range processing.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "example": "ignore_type = kayak",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
       }
     ],
     "incoming_var": [
@@ -5417,18 +5173,6 @@
         "reviewSource": "MOOS-IvP app_plogger.pdf and local MOOS pLogger source"
       }
     ],
-    "match_group": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Adds a contact group to the global match filter. When match filters are configured, contacts must match the accepted group criteria to be processed.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "example": "match_group = alpha",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
-      }
-    ],
     "match_name": [
       {
         "owner": "pMarineViewer",
@@ -5451,45 +5195,11 @@
         "reviewSource": "MOOS-IvP app_psearchgrid.pdf and moos-ivp/ivp/src/pSearchGrid"
       }
     ],
-    "match_region": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Adds a polygon region that contacts must match to pass the global filter. Contacts outside the matched region are ignored for contact-manager processing.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "example": "match_region = pts={0,0:50,0:50,50:0,50}",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
-      }
-    ],
-    "match_type": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Adds a contact type to the global match filter. When configured, only contacts with accepted types pass this part of contact-manager filtering.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "example": "match_type = kayak",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:202"
-      }
-    ],
     "max_appcast_events": [
       {
         "owner": "iSay",
         "description": "Limits how many appcast events iSay retains in its appcast report history. This affects diagnostic reporting, not which utterances are spoken.",
         "source": "../moos-ivp/ivp/src/iSay",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "example": "max_appcast_events = 8",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS AppCastingMOOSApp configuration"
-      },
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Limits how many appcast events pBasicContactMgr retains for diagnostic reporting. This affects appcast history, not contact alert decisions.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "example": "max_appcast_events = 8",
@@ -5767,18 +5477,6 @@
     ],
     "max_retired_history": [
       {
-        "owner": "pBasicContactMgr",
-        "description": "Limits how many retired contacts remain in the CONTACTS_RETIRED history. Values are clamped to the supported history range.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "default": "5",
-        "defaultSource": "manual review",
-        "example": "max_retired_history = 5",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:70, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:242"
-      },
-      {
         "owner": "pContactMgrV20",
         "description": "Limits how many retired contacts remain in the CONTACTS_RETIRED history. Values are clamped to the supported history range, and retired contacts are still reported at least once.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
@@ -5808,13 +5506,12 @@
     "max_time": [
       {
         "owner": "uQueryDB",
-        "description": "Sets the maximum time uQueryDB should run before exiting. This is an alias-style timeout used to keep query runs finite.",
+        "description": "Sets the maximum time uQueryDB waits before halting.",
         "source": "../moos-ivp/ivp/src/uQueryDB",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "max_time = 30",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uQueryDB"
+        "example": "max_time                     = 5",
+        "exampleSource": "generated coverage fixture"
       }
     ],
     "max_trim_delay": [
@@ -5885,6 +5582,20 @@
         "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
       }
     ],
+    "msbetweenlaunches": [
+      {
+        "owner": "ANTLER",
+        "description": "Sets the delay, in milliseconds, between successive processes launched from the ANTLER block.",
+        "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:391-392",
+        "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+        "sourceStatus": "local-moos-source",
+        "default": "1000",
+        "defaultSource": "manual review",
+        "example": "MSBetweenLaunches = 100",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:391-392 and Antler.h:35"
+      }
+    ],
     "msg_max_history": [
       {
         "owner": "pRealm",
@@ -5937,6 +5648,20 @@
         "example": "new_obs_flag = NEW_OBSTACLE = $[LABEL]",
         "exampleSource": "manual review",
         "reviewSource": "MOOS-IvP app_pobstaclemgr.pdf and moos-ivp/ivp/src/pObstacleMgr"
+      }
+    ],
+    "newconsole": [
+      {
+        "owner": "ANTLER",
+        "description": "Run option that starts the launched process in a separate console when true. It is normally written after the Run entry's @ options.",
+        "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:721-723",
+        "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+        "sourceStatus": "local-moos-source",
+        "default": "false",
+        "defaultSource": "manual review",
+        "example": "Run = pHelmIvP @ NewConsole = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:721-723"
       }
     ],
     "node_pulse_viewable_all": [
@@ -6120,13 +5845,15 @@
     "paused": [
       {
         "owner": "uXMS",
-        "description": "Starts or keeps the uXMS display in a paused state when supported by the app's display loop. This affects live display updating, not whether uXMS receives MOOS mail.",
+        "description": "Starts or keeps uXMS paused when the app supports pausing.",
         "source": "../moos-ivp/ivp/src/uXMS",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
-        "example": "paused = false",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uXMS"
+        "default": "events",
+        "defaultSource": "source initializer for parsed parameter",
+        "defaultReference": "../moos-ivp/ivp/src/uXMS/XMS.cpp:55",
+        "example": "paused                       = example",
+        "exampleSource": "generated coverage fixture"
       }
     ],
     "ping_wait": [
@@ -6361,18 +6088,6 @@
     ],
     "range_report_timeout": [
       {
-        "owner": "pBasicContactMgr",
-        "description": "Sets how long range-report data remains fresh before it is removed from range reports. This prevents stale contact ranges from lingering in posted summaries.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "default": "10",
-        "defaultSource": "manual review",
-        "example": "range_report_timeout = 10",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:73, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:226"
-      },
-      {
         "owner": "pContactMgrV20",
         "description": "Sets how long range-report data remains fresh before it is removed from range reports. This prevents stale contact ranges from lingering in posted summaries.",
         "source": "../moos-ivp/ivp/src/pContactMgrV20",
@@ -6438,15 +6153,15 @@
     "realmcast_show_communinity": [
       {
         "owner": "uMACView",
-        "description": "Legacy misspelled alias for realmcast_show_community. Controls whether the Community column is shown in realmcast output.",
+        "description": "Sets the realmcast show communinity option for uMACView.",
         "source": "../moos-ivp/ivp/src/uMACView",
         "basis": "generated from local MOOS-IvP ivp/src source inventory",
         "sourceStatus": "local-ivp-source",
         "default": "true",
-        "defaultSource": "manual review",
-        "example": "realmcast_show_communinity = true",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/uMACView"
+        "defaultSource": "source example comment",
+        "defaultReference": "../moos-ivp/ivp/src/uMACView/UMV_Info.cpp",
+        "example": "realmcast_show_communinity   = example",
+        "exampleSource": "generated coverage fixture"
       }
     ],
     "region_vert_color": [
@@ -6461,20 +6176,6 @@
         "example": "region_vert_color = white",
         "exampleSource": "manual review",
         "reviewSource": "MOOS-IvP app_ufld_obsim.pdf and moos-ivp/ivp/src/uFldObstacleSim"
-      }
-    ],
-    "reject_range": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Sets a range, in meters, beyond which new contacts are rejected and existing contacts may be dropped. This is a guard against tracking unbounded distant contacts.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "default": "2000",
-        "defaultSource": "manual review",
-        "example": "reject_range = 2000",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:75, moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp:472"
       }
     ],
     "report_deltas": [
@@ -6557,6 +6258,18 @@
         "example": "rows = north-south, degs=80",
         "exampleSource": "manual review",
         "reviewSource": "moos-ivp/ivp/src/pMarineViewer/PMV_Info.cpp:175"
+      }
+    ],
+    "run": [
+      {
+        "owner": "ANTLER",
+        "description": "Adds one process for ANTLER to launch. The value starts with the executable name and may include @ launch options and an optional ~ MOOS name.",
+        "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:432,594,721-804",
+        "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+        "sourceStatus": "local-moos-source",
+        "example": "Run = pHelmIvP @ NewConsole = false",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:432,594,721-804"
       }
     ],
     "scope_set": [
@@ -6771,18 +6484,6 @@
         "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:1295"
       }
     ],
-    "strict_ignore": [
-      {
-        "owner": "pBasicContactMgr",
-        "description": "Controls how strictly group/type ignore filters treat contacts that omit those fields. When true, missing group or type information can cause a contact to be rejected by an ignore filter.",
-        "source": "../moos-ivp/ivp/src/dep_pBasicContactMgr",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "example": "strict_ignore = true",
-        "exampleSource": "manual review",
-        "reviewSource": "moos-ivp/ivp/src/dep_pBasicContactMgr/BasicContactMgr.cpp"
-      }
-    ],
     "synclog": [
       {
         "owner": "pLogger",
@@ -6807,6 +6508,15 @@
         "example": "term_report_interval = 5",
         "exampleSource": "manual review",
         "reviewSource": "moos-ivp/ivp/src/pHelmIvP"
+      },
+      {
+        "owner": "uXMS",
+        "description": "Sets how often pHelmIvP writes terminal status reports.",
+        "source": "../moos-ivp/ivp/src/uXMS",
+        "basis": "generated from local MOOS-IvP ivp/src source inventory",
+        "sourceStatus": "local-ivp-source",
+        "example": "term_report_interval         = 5",
+        "exampleSource": "generated coverage fixture"
       }
     ],
     "trim_tolerance": [
@@ -6821,20 +6531,6 @@
         "example": "trim_tolerance = 5",
         "exampleSource": "manual review",
         "reviewSource": "moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:51, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:384"
-      }
-    ],
-    "truncated_output": [
-      {
-        "owner": "uHelmScope",
-        "description": "Controls whether long MOOS-scope and behavior-scope output is truncated.",
-        "source": "../moos-ivp/ivp/src/uHelmScope",
-        "basis": "generated from local MOOS-IvP ivp/src source inventory",
-        "sourceStatus": "local-ivp-source",
-        "default": "false",
-        "defaultSource": "manual review",
-        "example": "truncated_output = false",
-        "exampleSource": "manual review",
-        "reviewSource": "MOOS-IvP app_uhelmscope.pdf and moos-ivp/ivp/src/uHelmScope"
       }
     ],
     "turn_spd_map_full_rate": [

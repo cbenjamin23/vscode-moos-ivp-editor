@@ -9,7 +9,7 @@
         "completed_dist": {
           "description": "Range to contact outside of which the behavior completes and dies.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf",
-          "example": "completed_dist               = 10",
+          "example": "completed_dist               = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf",
           "default": "100",
@@ -19,7 +19,7 @@
         "max_util_cpa_dist": {
           "description": "Range to contact outside which a considered maneuver will have max utility.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf",
-          "example": "max_util_cpa_dist            = 10",
+          "example": "max_util_cpa_dist            = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf",
           "default": "10",
@@ -29,7 +29,7 @@
         "giveway_bow_dist": {
           "description": "In the giveway consideration, when determining if ok to cross the contact’s bow, this range to contact at time of crossing from contact’s port to starboard, must be met in order for ownship to consider crossing the contact's bow. This is a new option in V19 of this behavior. If left unspecified, it will revert to the criteria used in previous versions.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf",
-          "example": "giveway_bow_dist             = 10",
+          "example": "giveway_bow_dist             = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf",
           "default": "10",
@@ -39,7 +39,7 @@
         "min_util_cpa_dist": {
           "description": "Range to contact within which a considered maneuver will have min utility.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf",
-          "example": "min_util_cpa_dist            = 10",
+          "example": "min_util_cpa_dist            = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf",
           "default": "10",
@@ -67,7 +67,7 @@
         "pwt_inner_dist": {
           "description": "Range to contact within which the behavior has maximum priority weight.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf",
-          "example": "pwt_inner_dist               = 100",
+          "example": "pwt_inner_dist               = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf",
           "default": "90",
@@ -77,7 +77,7 @@
         "pwt_outer_dist": {
           "description": "Range to contact outside which the behavior has zero priority weight.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf",
-          "example": "pwt_outer_dist               = 100",
+          "example": "pwt_outer_dist               = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf",
           "default": "100",
@@ -384,7 +384,7 @@
         "completed_dist": {
           "description": "Range to contact outside of which the behavior completes and dies. The default is 500 meters.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "completed_dist               = 10",
+          "example": "completed_dist               = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
           "default": "500",
@@ -394,7 +394,7 @@
         "max_util_cpa_dist": {
           "description": "Range to contact outside which a considered maneuver will have max utility. The default is 75 meters",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "max_util_cpa_dist            = 10",
+          "example": "max_util_cpa_dist            = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
           "default": "10",
@@ -404,7 +404,7 @@
         "min_util_cpa_dist": {
           "description": "Range to contact within which a considered maneuver will have min utility. The default is 10 meters.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "min_util_cpa_dist            = 10",
+          "example": "min_util_cpa_dist            = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
           "default": "10",
@@ -432,7 +432,7 @@
         "pwt_inner_dist": {
           "description": "Range to contact within which the behavior has maximum priority weight. The default is 50 meters.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "pwt_inner_dist               = 100",
+          "example": "pwt_inner_dist               = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
           "default": "50",
@@ -442,7 +442,7 @@
         "pwt_outer_dist": {
           "description": "Range to contact outside which the behavior has zero priority weight. The default is 200 meters.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
-          "example": "pwt_outer_dist               = 100",
+          "example": "pwt_outer_dist               = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf",
           "default": "50",
@@ -615,7 +615,7 @@
         "completed_dist": {
           "description": "Range to contact outside of which the behavior completes and dies. The default is 500 meters.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
-          "example": "completed_dist               = 10",
+          "example": "completed_dist               = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
           "default": "500",
@@ -624,7 +624,7 @@
         "max_util_cpa_dist": {
           "description": "Range to contact outside which a considered maneuver will have max utility. The default is 75 meters",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
-          "example": "max_util_cpa_dist            = 10",
+          "example": "max_util_cpa_dist            = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
           "default": "75",
@@ -633,7 +633,7 @@
         "min_util_cpa_dist": {
           "description": "Range to contact within which a considered maneuver will have min utility. The default is 10 meters.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
-          "example": "min_util_cpa_dist            = 10",
+          "example": "min_util_cpa_dist            = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
           "default": "10",
@@ -642,7 +642,7 @@
         "pwt_inner_dist": {
           "description": "Range to contact within which the behavior has maximum priority weight. The default is 50 meters.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
-          "example": "pwt_inner_dist               = 100",
+          "example": "pwt_inner_dist               = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
           "default": "50",
@@ -651,7 +651,7 @@
         "pwt_outer_dist": {
           "description": "Range to contact outside which the behavior has zero priority weight. The default is 200 meters.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
-          "example": "pwt_outer_dist               = 100",
+          "example": "pwt_outer_dist               = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
           "default": "200",
@@ -876,7 +876,7 @@
         "depth": {
           "description": "Sets the single target depth, in meters, that the behavior tries to hold. Negative values are clipped to zero by the local source.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_depth.pdf",
-          "example": "depth                        = 5",
+          "example": "depth                        = 10",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantDepth.cpp:73-76,113",
           "default": "0",
@@ -1294,7 +1294,7 @@
         "speed": {
           "description": "Sets the target speed, in meters per second, that BHV_ConstantSpeed tries to maintain.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_const_speed.pdf",
-          "example": "speed                        = 1.2",
+          "example": "speed                        = 10",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantSpeed.cpp:71-74,106-114",
           "default": "0",
@@ -1710,7 +1710,7 @@
         "giveup_dist": {
           "description": "Range to contact, in meters, outside which the behavior will give up (become inactive). Default is zero.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-          "example": "giveup_dist                  = 10",
+          "example": "giveup_dist                  = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
           "default": "0",
@@ -1743,7 +1743,7 @@
         "pwt_outer_dist": {
           "description": "Range to contact outside which the behavior has maximum priority.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-          "example": "pwt_outer_dist               = 100",
+          "example": "pwt_outer_dist               = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
           "default": "0",
@@ -1753,7 +1753,7 @@
         "pwt_inner_dist": {
           "description": "Range to contact within which the behavior has zero priority.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
-          "example": "pwt_inner_dist               = 100",
+          "example": "pwt_inner_dist               = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf",
           "default": "0",
@@ -1794,7 +1794,7 @@
         "speed": {
           "description": "The default speed for any turn that does not specify a turn speed. The default value is 1 meter per second.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_fixedturn.pdf",
-          "example": "speed                        = 1.2",
+          "example": "speed                        = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_fixedturn.pdf",
           "default": "1",
@@ -2326,7 +2326,7 @@
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_legrun.pdf",
           "default": "false",
           "defaultSource": "source initializer for parsed parameter",
-          "example": "lead                         = 10",
+          "example": "lead                         = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp:120",
           "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp:86"
@@ -2687,7 +2687,7 @@
         "acquire_dist": {
           "description": "Distance to polygon outside which the behavior will be in ”acquire” mode.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
-          "example": "acquire_dist                 = 10",
+          "example": "acquire_dist                 = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
           "default": "10",
@@ -2697,7 +2697,7 @@
         "capture_radius": {
           "description": "The radius tolerance, in meters, for satisfying the arrival at a point.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
-          "example": "capture_radius               = 10",
+          "example": "capture_radius               = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf"
         },
@@ -2752,7 +2752,7 @@
         "slip_radius": {
           "description": "An ”outer” capture radius. Arrival declared when the vehicle is in this range and the distance to the point begins to increase.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
-          "example": "slip_radius                  = 10",
+          "example": "slip_radius                  = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf"
         },
@@ -2782,7 +2782,7 @@
         "use_alt_speed": {
           "description": "If true then attempt to use the alternate speed set with the speed alt parameter, if that speed is set to a non-negative value. The default is false.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
-          "example": "use_alt_speed                = true",
+          "example": "use_alt_speed                = false",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
           "default": "false",
@@ -3335,7 +3335,7 @@
         "turn_range": {
           "description": "The range of heading values deviating from the current heading average outside of which the behavior reflects sharp penalty in its objective function. The default value is -1, indicating that the parameter is un-set. In this case the behavior will not produce an objective function.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_mem_turnlimit.pdf",
-          "example": "turn_range                   = 10",
+          "example": "turn_range                   = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_mem_turnlimit.pdf",
           "default": "-1",
@@ -3365,8 +3365,8 @@
         "breached_poly_flag": {
           "description": "A MOOS variable-value pair to be posted when or if the vehicle breaches the convex polygon op area limit set by this behavior.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-          "example": "breached_poly_flag           = EXAMPLE_FLAG = true",
-          "exampleSource": "generated coverage fixture",
+          "example": "breached_poly_flag = EXAMPLE_FLAG = true",
+          "exampleSource": "generated from parameter name",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf"
         },
         "breached_time_flag": {
@@ -3593,7 +3593,7 @@
         "recover_spd": {
           "description": "The preferred speed for the vehicle when it is out of the save polygon, attempting to maneuver back in. The speed should be high enough to enable a turn, but likely slower than normal in case an exit is inevitable for other reasons. The default value is 0.8 meters per second.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-          "example": "recover_spd                  = 1.2",
+          "example": "recover_spd                  = 1",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
           "default": "0.8",
@@ -3838,7 +3838,7 @@
         "period_speed": {
           "description": "Sets the target speed, in meters per second, used during the busy/running phase of the periodic-speed objective.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_speed.pdf",
-          "example": "period_speed                 = 1.2",
+          "example": "period_speed                 = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:91-96",
           "default": "0",
@@ -4037,7 +4037,7 @@
         "ascent_speed": {
           "description": "Desired speed of the vehicle during the ascent mode.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf",
-          "example": "ascent_speed                 = 1.2",
+          "example": "ascent_speed                 = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf"
         },
@@ -4592,7 +4592,7 @@
         "hibernation_radius": {
           "description": "Sets the passive station-keeping radius used for low-power hibernation behavior around the station point.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
-          "example": "hibernation_radius           = 10",
+          "example": "hibernation_radius           = 1",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:123-126,445-451,609-612",
           "default": "disabled",
@@ -4602,7 +4602,7 @@
         "inner_radius": {
           "description": "Sets the distance from the station point within which the target speed is zero and the behavior considers ownship close enough to hold station.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
-          "example": "inner_radius                 = 10",
+          "example": "inner_radius                 = 1",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58-60,155-159,275-285",
           "default": "4",
@@ -4612,7 +4612,7 @@
         "outer_radius": {
           "description": "Sets the distance from the station point where the return-to-station speed reaches outer_speed; inside this radius speed ramps down toward zero at inner_radius.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
-          "example": "outer_radius                 = 10",
+          "example": "outer_radius                 = 1",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58-60,147-151,275-285",
           "default": "15",
@@ -4622,7 +4622,7 @@
         "outer_speed": {
           "description": "Sets the target speed at the outer station-keeping radius. Between inner_radius and outer_radius, target speed ramps from zero up to this value.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_stationkeep.pdf",
-          "example": "outer_speed                  = 1.2",
+          "example": "outer_speed                  = 1",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58-60,163-169,275-285",
           "default": "1.2",
@@ -5265,7 +5265,7 @@
         "nm_radius": {
           "description": "If in this range to contact and ahead of it, slow down. The default is 20 meters.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-          "example": "nm_radius                    = 10",
+          "example": "nm_radius                    = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
           "default": "20",
@@ -5294,7 +5294,7 @@
         "pwt_outer_dist": {
           "description": "Range to contact outside which the behavior has zero priority.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-          "example": "pwt_outer_dist               = 100",
+          "example": "pwt_outer_dist               = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
           "default": "0",
@@ -5304,7 +5304,7 @@
         "radius": {
           "description": "If outside this radius to the contact, head to nm radius ahead of trail point. The default is 5 meters.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-          "example": "radius                       = 10",
+          "example": "radius                       = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
           "default": "5",
@@ -5332,7 +5332,7 @@
         "trail_range": {
           "description": "Relative distance to the contact to set the trail-point. The default is 50 meters.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
-          "example": "trail_range                  = 10",
+          "example": "trail_range                  = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf",
           "default": "50",
@@ -5496,7 +5496,7 @@
         "capture_radius": {
           "description": "The radius tolerance, in meters, for satisfying the arrival at a waypoint. The default is 3.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
-          "example": "capture_radius               = 10",
+          "example": "capture_radius               = 1",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
           "default": "3",
@@ -5597,7 +5597,7 @@
         "post_suffix": {
           "description": "A suffix tagged onto the WPT STATUS, WPT INDEX and CYCLE INDEX variables.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
-          "example": "post_suffix                  = 1",
+          "example": "post_suffix                  = example",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf"
         },
@@ -5620,7 +5620,7 @@
         "slip_radius": {
           "description": "An ”outer” capture radius. Arrival declared when the vehicle is in this range and the distance to the next waypoint begins to increase. The default is 15 meters.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
-          "example": "slip_radius                  = 10",
+          "example": "slip_radius                  = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
           "default": "15",
@@ -5629,7 +5629,7 @@
         "speed": {
           "description": "Sets the non-negative target transit speed, in meters per second, for moving through the waypoint list. The local source defaults this to zero until configured.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
-          "example": "speed                        = 1.2",
+          "example": "speed                        = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp speed parameter review",
           "default": "0",
@@ -5709,7 +5709,7 @@
         "mod_speed": {
           "description": "Apply a delta speed modification to the prevailing speed value. Typically applied during a mission rather than at mission startup.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
-          "example": "mod_speed                    = 1.2",
+          "example": "mod_speed                    = 10",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
           "default": "false",
@@ -5737,7 +5737,7 @@
         "speed": {
           "description": "Speed in m/s to maintain during zig zag maneuvers. Default value is zero (must be set).",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
-          "example": "speed                        = 1.2",
+          "example": "speed                        = 0",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
           "default": "0",
@@ -5747,7 +5747,7 @@
         "speed_on_active": {
           "description": "The goal speed is set to the current ownship speed when the behavior becomes active. Default is false.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
-          "example": "speed_on_active              = true",
+          "example": "speed_on_active              = false",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
           "default": "false",
@@ -5765,7 +5765,7 @@
         "stem_on_active": {
           "description": "Stem heading is set to ownship heading when the behavior becomes active. Default is false.",
           "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
-          "example": "stem_on_active               = true",
+          "example": "stem_on_active               = false",
           "exampleSource": "generated coverage fixture",
           "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
           "default": "false",
@@ -5825,7 +5825,7 @@
         "default": "10",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:68",
-        "example": "acquire_dist                 = 10",
+        "example": "acquire_dist                 = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf"
       }
@@ -6014,7 +6014,7 @@
         "owner": "BHV_PeriodicSurface",
         "description": "Desired speed of the vehicle during the ascent mode.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf",
-        "example": "ascent_speed                 = 1.2",
+        "example": "ascent_speed                 = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_periodic_surface.pdf"
       }
@@ -6178,8 +6178,8 @@
         "owner": "BHV_OpRegionRecover",
         "description": "A MOOS variable-value pair to be posted when or if the vehicle breaches the convex polygon op area limit set by this behavior.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
-        "example": "breached_poly_flag           = EXAMPLE_FLAG = true",
-        "exampleSource": "generated coverage fixture",
+        "example": "breached_poly_flag = EXAMPLE_FLAG = true",
+        "exampleSource": "generated from parameter name",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf",
         "aliasOf": "BHV_OpRegionV24"
       },
@@ -6279,7 +6279,7 @@
         "owner": "BHV_Loiter",
         "description": "The radius tolerance, in meters, for satisfying the arrival at a point.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
-        "example": "capture_radius               = 10",
+        "example": "capture_radius               = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf"
       },
@@ -6289,7 +6289,7 @@
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
         "default": "3",
         "defaultSource": "documentation text",
-        "example": "capture_radius               = 10",
+        "example": "capture_radius               = 1",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf"
       }
@@ -6360,7 +6360,7 @@
         "default": "100",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:75",
-        "example": "completed_dist               = 10",
+        "example": "completed_dist               = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf"
       },
@@ -6371,7 +6371,7 @@
         "default": "500",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp:58",
-        "example": "completed_dist               = 10",
+        "example": "completed_dist               = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf"
       },
@@ -6381,7 +6381,7 @@
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
         "default": "500",
         "defaultSource": "documentation text",
-        "example": "completed_dist               = 10",
+        "example": "completed_dist               = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
         "aliasOf": "BHV_AvoidObstacle"
@@ -6681,7 +6681,7 @@
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantDepth.cpp:48",
-        "example": "depth                        = 5",
+        "example": "depth                        = 10",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantDepth.cpp:73-76,113"
       },
@@ -7860,7 +7860,7 @@
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_CutRange.cpp:57",
-        "example": "giveup_dist                  = 10",
+        "example": "giveup_dist                  = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf"
       }
@@ -7883,7 +7883,7 @@
         "default": "10",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:63",
-        "example": "giveway_bow_dist             = 10",
+        "example": "giveway_bow_dist             = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf"
       }
@@ -7973,7 +7973,7 @@
         "default": "disabled",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:78",
-        "example": "hibernation_radius           = 10",
+        "example": "hibernation_radius           = 1",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:123-126,445-451,609-612"
       }
@@ -8466,7 +8466,7 @@
         "default": "4",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:59",
-        "example": "inner_radius                 = 10",
+        "example": "inner_radius                 = 1",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58-60,155-159,275-285"
       }
@@ -8501,7 +8501,7 @@
         "default": "false",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp:86",
-        "example": "lead                         = 10",
+        "example": "lead                         = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_LegRun.cpp:120"
       },
@@ -8970,7 +8970,7 @@
         "default": "10",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:63",
-        "example": "max_util_cpa_dist            = 10",
+        "example": "max_util_cpa_dist            = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf"
       },
@@ -8981,7 +8981,7 @@
         "default": "10",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp:61",
-        "example": "max_util_cpa_dist            = 10",
+        "example": "max_util_cpa_dist            = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf"
       },
@@ -8991,7 +8991,7 @@
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
         "default": "75",
         "defaultSource": "documentation text",
-        "example": "max_util_cpa_dist            = 10",
+        "example": "max_util_cpa_dist            = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
         "aliasOf": "BHV_AvoidObstacle"
@@ -9096,7 +9096,7 @@
         "default": "10",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:63",
-        "example": "min_util_cpa_dist            = 10",
+        "example": "min_util_cpa_dist            = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf"
       },
@@ -9107,7 +9107,7 @@
         "default": "10",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp:61",
-        "example": "min_util_cpa_dist            = 10",
+        "example": "min_util_cpa_dist            = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf"
       },
@@ -9117,7 +9117,7 @@
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
         "default": "10",
         "defaultSource": "documentation text",
-        "example": "min_util_cpa_dist            = 10",
+        "example": "min_util_cpa_dist            = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
         "aliasOf": "BHV_AvoidObstacle"
@@ -9143,7 +9143,7 @@
         "default": "false",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:77",
-        "example": "mod_speed                    = 1.2",
+        "example": "mod_speed                    = 10",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf"
       }
@@ -9312,7 +9312,7 @@
         "default": "20",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Trail.cpp:51",
-        "example": "nm_radius                    = 10",
+        "example": "nm_radius                    = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf"
       }
@@ -9559,7 +9559,7 @@
         "default": "15",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58",
-        "example": "outer_radius                 = 10",
+        "example": "outer_radius                 = 1",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58-60,147-151,275-285"
       }
@@ -9572,7 +9572,7 @@
         "default": "1.2",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:60",
-        "example": "outer_speed                  = 1.2",
+        "example": "outer_speed                  = 1",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_StationKeep.cpp:58-60,163-169,275-285"
       }
@@ -9722,7 +9722,7 @@
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:54",
-        "example": "period_speed                 = 1.2",
+        "example": "period_speed                 = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_PeriodicSpeed.cpp:91-96"
       }
@@ -10148,7 +10148,7 @@
         "owner": "BHV_Waypoint",
         "description": "A suffix tagged onto the WPT STATUS, WPT INDEX and CYCLE INDEX variables.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
-        "example": "post_suffix                  = 1",
+        "example": "post_suffix                  = example",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf"
       }
@@ -10518,7 +10518,7 @@
         "default": "90",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:62",
-        "example": "pwt_inner_dist               = 100",
+        "example": "pwt_inner_dist               = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf"
       },
@@ -10529,7 +10529,7 @@
         "default": "50",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp:60",
-        "example": "pwt_inner_dist               = 100",
+        "example": "pwt_inner_dist               = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf"
       },
@@ -10539,7 +10539,7 @@
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
         "default": "50",
         "defaultSource": "documentation text",
-        "example": "pwt_inner_dist               = 100",
+        "example": "pwt_inner_dist               = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
         "aliasOf": "BHV_AvoidObstacle"
@@ -10551,7 +10551,7 @@
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_CutRange.cpp:53",
-        "example": "pwt_inner_dist               = 100",
+        "example": "pwt_inner_dist               = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf"
       }
@@ -10564,7 +10564,7 @@
         "default": "100",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-colregs/BHV_AvdColregsV22.cpp:61",
-        "example": "pwt_outer_dist               = 100",
+        "example": "pwt_outer_dist               = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_colregs.pdf"
       },
@@ -10575,7 +10575,7 @@
         "default": "50",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_AvoidCollision.cpp:60",
-        "example": "pwt_outer_dist               = 100",
+        "example": "pwt_outer_dist               = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avdcol.pdf"
       },
@@ -10585,7 +10585,7 @@
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
         "default": "200",
         "defaultSource": "documentation text",
-        "example": "pwt_outer_dist               = 100",
+        "example": "pwt_outer_dist               = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_avoid_obstacle.pdf",
         "aliasOf": "BHV_AvoidObstacle"
@@ -10597,7 +10597,7 @@
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_CutRange.cpp:53",
-        "example": "pwt_outer_dist               = 100",
+        "example": "pwt_outer_dist               = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_cutrange.pdf"
       },
@@ -10608,7 +10608,7 @@
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Trail.cpp:52",
-        "example": "pwt_outer_dist               = 100",
+        "example": "pwt_outer_dist               = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf"
       }
@@ -10639,7 +10639,7 @@
         "default": "5",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Trail.cpp:50",
-        "example": "radius                       = 10",
+        "example": "radius                       = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf"
       },
@@ -10671,7 +10671,7 @@
         "default": "0.8",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_OpRegionV24.cpp:90",
-        "example": "recover_spd                  = 1.2",
+        "example": "recover_spd                  = 1",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_opregion_v24.pdf"
       }
@@ -10978,7 +10978,7 @@
         "owner": "BHV_Loiter",
         "description": "An ”outer” capture radius. Arrival declared when the vehicle is in this range and the distance to the point begins to increase.",
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf",
-        "example": "slip_radius                  = 10",
+        "example": "slip_radius                  = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf"
       },
@@ -10988,7 +10988,7 @@
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
         "default": "15",
         "defaultSource": "documentation text",
-        "example": "slip_radius                  = 10",
+        "example": "slip_radius                  = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf"
       }
@@ -11323,7 +11323,7 @@
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantSpeed.cpp:48",
-        "example": "speed                        = 1.2",
+        "example": "speed                        = 10",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_ConstantSpeed.cpp:71-74,106-114"
       },
@@ -11334,7 +11334,7 @@
         "default": "1",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_FixedTurn.cpp:67",
-        "example": "speed                        = 1.2",
+        "example": "speed                        = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_fixedturn.pdf"
       },
@@ -11360,7 +11360,7 @@
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_waypoint.pdf",
         "default": "0",
         "defaultSource": "documentation text",
-        "example": "speed                        = 1.2",
+        "example": "speed                        = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_Waypoint.cpp speed parameter review"
       },
@@ -11371,7 +11371,7 @@
         "default": "0",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:75",
-        "example": "speed                        = 1.2",
+        "example": "speed                        = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf"
       }
@@ -11428,7 +11428,7 @@
         "doc": "https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf",
         "default": "false",
         "defaultSource": "documentation text",
-        "example": "speed_on_active              = true",
+        "example": "speed_on_active              = false",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf"
       }
@@ -11498,7 +11498,7 @@
         "default": "false",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_ZigZag.cpp:81",
-        "example": "stem_on_active               = true",
+        "example": "stem_on_active               = false",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_zigzag.pdf"
       }
@@ -11892,7 +11892,7 @@
         "default": "50",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Trail.cpp:48",
-        "example": "trail_range                  = 10",
+        "example": "trail_range                  = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_trail.pdf"
       }
@@ -12126,7 +12126,7 @@
         "default": "-1",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_MemoryTurnLimit.cpp:57",
-        "example": "turn_range                   = 10",
+        "example": "turn_range                   = 0",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_mem_turnlimit.pdf"
       }
@@ -12469,7 +12469,7 @@
         "default": "false",
         "defaultSource": "source initializer for parsed parameter",
         "defaultReference": "../moos-ivp/ivp/src/lib_behaviors-marine/BHV_Loiter.cpp:71",
-        "example": "use_alt_speed                = true",
+        "example": "use_alt_speed                = false",
         "exampleSource": "generated coverage fixture",
         "reviewSource": "MOOS-IvP documentation https://oceanai.mit.edu/ivpman/pdfs/bhv_loiter.pdf"
       },
