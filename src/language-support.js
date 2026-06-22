@@ -741,6 +741,67 @@ const MOOS_COMMON_PARAMETER_HOVERS = new Map([
   }]
 ]);
 
+const BEHAVIOR_CONDITION_NOTE = "**Note:** Multiple `condition = ...` lines are combined as AND; every condition must be true before the behavior can run. To express OR, use `or` inside a single condition expression, e.g. `condition = (MODE = LOITERING) or (MODE = RETURNING)`.";
+const BEHAVIOR_FLAG_NOTE = "**Note:** Add `[if] <logic condition>` to post this flag only when the condition is true, e.g. `runflag = REPORT=true [if] DEPLOY=true`.";
+const PMISSION_EVAL_CONDITION_NOTE = "**Note:** Multiple `lead_condition` and `pass_condition` lines are combined as AND; all must be true. Multiple `fail_condition` lines are combined as OR; any true fail condition causes failure.";
+const BEHAVIOR_UPDATES_DESCRIPTION_SUFFIX = " Post update strings to that variable, such as `speed=2.0 # radius=8` or `name=survey # speed=2.0`.";
+
+const BEHAVIOR_FLAG_PARAMETERS = new Set([
+  "active_flag",
+  "activeflag",
+  "config_flag",
+  "configflag",
+  "end_flag",
+  "endflag",
+  "idle_flag",
+  "idleflag",
+  "inactive_flag",
+  "inactiveflag",
+  "run_flag",
+  "runflag",
+  "runx_flag",
+  "runxflag",
+  "spawn_flag",
+  "spawnflag",
+  "spawnx_flag",
+  "spawnxflag"
+]);
+
+const PMISSION_EVAL_CONDITION_PARAMETERS = new Set([
+  "fail_condition",
+  "lead_condition",
+  "pass_condition"
+]);
+
+function parameterNote(language, item) {
+  const name = normalizedName(item.name);
+  const owner = lower(item.owner || "");
+
+  if (language === "ivp-behavior") {
+    if (name === "condition") {
+      return BEHAVIOR_CONDITION_NOTE;
+    }
+    if (BEHAVIOR_FLAG_PARAMETERS.has(name)) {
+      return BEHAVIOR_FLAG_NOTE;
+    }
+  }
+
+  if (language === "moos"
+    && owner === "pmissioneval"
+    && PMISSION_EVAL_CONDITION_PARAMETERS.has(name)) {
+    return PMISSION_EVAL_CONDITION_NOTE;
+  }
+
+  return undefined;
+}
+
+function parameterDescription(language, item) {
+  if (language === "ivp-behavior" && normalizedName(item.name) === "updates") {
+    return `${item.description}${BEHAVIOR_UPDATES_DESCRIPTION_SUFFIX}`;
+  }
+  return item.description;
+}
+
 function commonMoosParameterHover(word, language) {
   if (language !== "moos") {
     return undefined;
@@ -1235,7 +1296,7 @@ function createHoverProvider(language, lookup, docLookup, sourceLookup, diagnost
 
       const markdown = new vscode.MarkdownString();
       markdown.appendMarkdown(`**${item.name}**`);
-      markdown.appendMarkdown(`\n\n${item.description}`);
+      markdown.appendMarkdown(`\n\n${parameterDescription(language, item)}`);
       const defaultValue = item.default !== undefined && item.default !== ""
         ? item.default
         : schemaDefault(schemaEntry);
@@ -1244,6 +1305,10 @@ function createHoverProvider(language, lookup, docLookup, sourceLookup, diagnost
       }
       if (item.example) {
         markdown.appendMarkdown(`\n\n**Example:** \`${item.example}\``);
+      }
+      const note = parameterNote(language, item);
+      if (note) {
+        markdown.appendMarkdown(`\n\n${note}`);
       }
       if (item.aliasOf) {
         markdown.appendMarkdown(`\n\n_Using documentation for ${item.aliasOf}._`);
