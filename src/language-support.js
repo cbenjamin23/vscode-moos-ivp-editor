@@ -744,7 +744,7 @@ const MOOS_COMMON_PARAMETER_HOVERS = new Map([
 const BEHAVIOR_CONDITION_NOTE = "**Note:** Multiple `condition = ...` lines are combined as AND; every condition must be true before the behavior can run. To express OR, use `or` inside a single condition expression, e.g. `condition = (MODE = LOITERING) or (MODE = RETURNING)`.";
 const BEHAVIOR_FLAG_NOTE = "**Note:** Add `[if] <logic condition>` to post this flag only when the condition is true, e.g. `runflag = REPORT=true [if] DEPLOY=true`.";
 const PMISSION_EVAL_CONDITION_NOTE = "**Note:** Multiple `lead_condition` and `pass_condition` lines are combined as AND; all must be true. Multiple `fail_condition` lines are combined as OR; any true fail condition causes failure.";
-const BEHAVIOR_UPDATES_DESCRIPTION_SUFFIX = " Post update strings to that variable, such as `speed=2.0 # radius=8` or `name=survey # speed=2.0`.";
+const BEHAVIOR_UPDATES_NOTE = "**Note:** At runtime, post behavior parameter updates to the named MOOS variable. Use `#` to combine multiple assignments, e.g. `SURVEY_UPDATES = speed=2.0 # radius=8`.";
 
 const BEHAVIOR_FLAG_PARAMETERS = new Set([
   "active_flag",
@@ -781,6 +781,9 @@ function parameterNote(language, item) {
     if (name === "condition") {
       return BEHAVIOR_CONDITION_NOTE;
     }
+    if (name === "updates") {
+      return BEHAVIOR_UPDATES_NOTE;
+    }
     if (BEHAVIOR_FLAG_PARAMETERS.has(name)) {
       return BEHAVIOR_FLAG_NOTE;
     }
@@ -795,12 +798,6 @@ function parameterNote(language, item) {
   return undefined;
 }
 
-function parameterDescription(language, item) {
-  if (language === "ivp-behavior" && normalizedName(item.name) === "updates") {
-    return `${item.description}${BEHAVIOR_UPDATES_DESCRIPTION_SUFFIX}`;
-  }
-  return item.description;
-}
 
 function commonMoosParameterHover(word, language) {
   if (language !== "moos") {
@@ -1296,7 +1293,7 @@ function createHoverProvider(language, lookup, docLookup, sourceLookup, diagnost
 
       const markdown = new vscode.MarkdownString();
       markdown.appendMarkdown(`**${item.name}**`);
-      markdown.appendMarkdown(`\n\n${parameterDescription(language, item)}`);
+      markdown.appendMarkdown(`\n\n${item.description}`);
       const defaultValue = item.default !== undefined && item.default !== ""
         ? item.default
         : schemaDefault(schemaEntry);
