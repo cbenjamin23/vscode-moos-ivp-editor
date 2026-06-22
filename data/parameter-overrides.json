@@ -7661,30 +7661,17 @@
     "BHV_AbortToPoint": {
       "reviewStatus": "manual-reviewed",
       "reviewSource": "MOOS-IvP behavior docs/source audit",
+      "excludedParameters": [
+        "desired_speed",
+        "osx",
+        "osy",
+        "ptx",
+        "pty"
+      ],
       "parameters": {
-        "desired_speed": {
-          "description": "Sets the desired transit speed for this BHV_AbortToPoint behavior.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp"
-        },
         "nm_radius": {
           "description": "Sets the nonmonotonic arrival radius. Within this radius, the waypoint engine may declare arrival/no-more progress even if range is no longer monotonically decreasing.",
           "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp nonmonotonic radius review"
-        },
-        "osx": {
-          "description": "Sets the ownship x-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
-        },
-        "osy": {
-          "description": "Sets the ownship y-coordinate used by the behavior's geometry and objective-function calculations, normally supplied from NAV_X/NAV_Y during runtime.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
-        },
-        "ptx": {
-          "description": "Sets the target point x-coordinate used by the behavior's target-point geometry and objective-function calculations.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
-        },
-        "pty": {
-          "description": "Sets the target point y-coordinate used by the behavior's target-point geometry and objective-function calculations.",
-          "reviewSource": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp geometry/AOF parameter review"
         },
         "radius": {
           "description": "Sets the arrival radius, in meters, used to decide when the abort-to-point destination has been reached.",

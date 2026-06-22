@@ -80,6 +80,130 @@ function displaySourcePath(source) {
   return normalized.replace(/^(\.\.\/)+/, "");
 }
 
+function schemaParameterEntry(container, word) {
+  if (!container || !container.parameters) {
+    return undefined;
+  }
+
+  return container.parameters[word]
+    || container.parameters[lower(word)]
+    || container.parameters[normalizedName(word)];
+}
+
+function diagnosticSchemaEntry(owner, word, language, schema) {
+  if (!owner || !schema || language !== "ivp-behavior") {
+    return undefined;
+  }
+
+  for (const variant of ownerVariants(owner, language)) {
+    const item = schema.behaviors && schema.behaviors[variant];
+    const entry = schemaParameterEntry(item, word);
+    if (entry) {
+      return entry;
+    }
+  }
+
+  return schemaParameterEntry(schema.shared && schema.shared.ivpBehavior, word);
+}
+
+function schemaDefault(entry) {
+  if (!entry || entry.default === undefined || entry.default === "") {
+    return undefined;
+  }
+  if (/sentinel/i.test(entry.defaultKind || "")) {
+    return undefined;
+  }
+  return entry.default;
+}
+
+function isNumberLiteral(value) {
+  return /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(value.trim());
+}
+
+function stripValue(value) {
+  return value.trim().replace(/^["']|["']$/g, "");
+}
+
+function expectedDescription(entry) {
+  const constraints = entry.constraints || {};
+  if (entry.valueType === "enum") {
+    return `one of: ${(constraints.enum || []).join(", ")}`;
+  }
+  if (entry.valueType === "boolean-token") {
+    return `one of: ${(constraints.enum || []).join(", ")}`;
+  }
+  if (entry.valueType === "number-or-enum") {
+    const number = constraints.number || {};
+    const comparison = number.minimumExclusive ? ">" : ">=";
+    return `a number ${comparison} ${number.minimum}, or one of: ${(constraints.enum || []).join(", ")}`;
+  }
+  if (entry.valueType === "number") {
+    const comparison = constraints.minimumExclusive ? ">" : ">=";
+    return `a number ${comparison} ${constraints.minimum}`;
+  }
+  return entry.valueType || "a valid value";
+}
+
+function validateSchemaValue(value, entry) {
+  if (!entry || entry.diagnostic !== true) {
+    return undefined;
+  }
+
+  const raw = stripValue(value);
+  const normalized = entry.constraints && entry.constraints.caseInsensitive
+    ? lower(raw)
+    : raw;
+
+  if (entry.valueType === "enum" || entry.valueType === "boolean-token") {
+    const allowed = (entry.constraints.enum || []).map((item) => (
+      entry.constraints.caseInsensitive ? lower(item) : item
+    ));
+    return allowed.includes(normalized) ? undefined : expectedDescription(entry);
+  }
+
+  if (entry.valueType === "number") {
+    if (!isNumberLiteral(raw)) {
+      return expectedDescription(entry);
+    }
+    const number = Number(raw);
+    const constraints = entry.constraints || {};
+    if (constraints.minimum !== undefined) {
+      if (constraints.minimumExclusive && !(number > constraints.minimum)) {
+        return expectedDescription(entry);
+      }
+      if (!constraints.minimumExclusive && !(number >= constraints.minimum)) {
+        return expectedDescription(entry);
+      }
+    }
+    return undefined;
+  }
+
+  if (entry.valueType === "number-or-enum") {
+    const allowed = (entry.constraints.enum || []).map((item) => (
+      entry.constraints.caseInsensitive ? lower(item) : item
+    ));
+    if (allowed.includes(normalized)) {
+      return undefined;
+    }
+    if (!isNumberLiteral(raw)) {
+      return expectedDescription(entry);
+    }
+    const number = Number(raw);
+    const numberConstraints = entry.constraints.number || {};
+    if (numberConstraints.minimum !== undefined) {
+      if (numberConstraints.minimumExclusive && !(number > numberConstraints.minimum)) {
+        return expectedDescription(entry);
+      }
+      if (!numberConstraints.minimumExclusive && !(number >= numberConstraints.minimum)) {
+        return expectedDescription(entry);
+      }
+    }
+    return undefined;
+  }
+
+  return undefined;
+}
+
 function buildInventoryLookup(inventory, itemKind, parameterKind, relationLabel) {
   const lookup = new Map();
 
@@ -326,9 +450,15 @@ function sharedBlockParameterLookup(owner, word, language, lookup) {
 }
 
 function blockParameterLookup(owner, word, language, lookup, docLookup, sourceLookup) {
+  const inventoryItem = inventoryScopedLookup(owner, word, language, lookup);
+  const sharedItem = sharedBlockParameterLookup(owner, word, language, lookup);
+  if (!inventoryItem && !sharedItem) {
+    return undefined;
+  }
+
   return scopedLookup(owner, word, language, docLookup, sourceLookup)
-    || inventoryScopedLookup(owner, word, language, lookup)
-    || sharedBlockParameterLookup(owner, word, language, lookup);
+    || inventoryItem
+    || sharedItem;
 }
 
 function assignmentKeyAtPosition(document, position, range) {
@@ -380,21 +510,45 @@ const MOOS_COMMON_APP_PARAMETERS = new Set([
 ]);
 
 const BEHAVIOR_INHERITED_PARAMETERS = new Set([
-  "name",
-  "pwt",
-  "condition",
-  "updates",
-  "runflag",
-  "endflag",
-  "inactiveflag",
+  "active_flag",
   "activeflag",
-  "idleflag",
-  "perpetual",
-  "duration_status",
-  "duration_reset",
+  "build_info",
+  "comms_policy",
+  "condition",
+  "config_flag",
+  "configflag",
+  "descriptor",
   "duration",
   "duration_idle_decay",
-  "templating"
+  "duration_reset",
+  "duration_status",
+  "end_flag",
+  "endflag",
+  "idle_flag",
+  "idleflag",
+  "inactive_flag",
+  "inactiveflag",
+  "max_spawnings",
+  "name",
+  "no_starve",
+  "nostarve",
+  "perpetual",
+  "post_mapping",
+  "precision",
+  "priority",
+  "priwt",
+  "pwt",
+  "run_flag",
+  "runflag",
+  "runx_flag",
+  "runxflag",
+  "spawn_flag",
+  "spawnflag",
+  "spawnx_flag",
+  "spawnxflag",
+  "templating",
+  "updates",
+  "us"
 ]);
 
 function lower(value) {
@@ -507,11 +661,6 @@ function parameterModifiers(owner, name, language, docLookup, sourceLookup, inve
   }
 
   if (language === "ivp-behavior" && BEHAVIOR_INHERITED_PARAMETERS.has(normalized)) {
-    return ["parameter"];
-  }
-
-  const scoped = scopedLookup(owner, name, language, docLookup, sourceLookup);
-  if (scoped) {
     return ["parameter"];
   }
 
@@ -695,7 +844,7 @@ function createSemanticTokensProvider(language, docLookup, sourceLookup, invento
   };
 }
 
-function createHoverProvider(language, lookup, docLookup, sourceLookup) {
+function createHoverProvider(language, lookup, docLookup, sourceLookup, diagnosticSchema) {
   const wordPattern = /[A-Za-z_][A-Za-z0-9_+:-]*/;
 
   return {
@@ -709,6 +858,7 @@ function createHoverProvider(language, lookup, docLookup, sourceLookup) {
       const owner = findCurrentOwner(document, position, language);
       const assignmentKey = assignmentKeyAtPosition(document, position, range);
       const blockItem = blockParameterLookup(owner, word, language, lookup, docLookup, sourceLookup);
+      const schemaEntry = diagnosticSchemaEntry(owner, word, language, diagnosticSchema);
       if (owner && assignmentKey && !blockItem) {
         return undefined;
       }
@@ -727,8 +877,11 @@ function createHoverProvider(language, lookup, docLookup, sourceLookup) {
       const markdown = new vscode.MarkdownString();
       markdown.appendMarkdown(`**${item.name}**`);
       markdown.appendMarkdown(`\n\n${item.description}`);
-      if (item.default !== undefined && item.default !== "") {
-        markdown.appendMarkdown(`\n\n**Default:** \`${item.default}\``);
+      const defaultValue = item.default !== undefined && item.default !== ""
+        ? item.default
+        : schemaDefault(schemaEntry);
+      if (defaultValue !== undefined) {
+        markdown.appendMarkdown(`\n\n**Default:** \`${defaultValue}\``);
       }
       if (item.example) {
         markdown.appendMarkdown(`\n\n**Example:** \`${item.example}\``);
@@ -747,6 +900,95 @@ function createHoverProvider(language, lookup, docLookup, sourceLookup) {
   };
 }
 
+function createDiagnostic(document, lineNumber, valueStart, valueText, message) {
+  const valueEnd = Math.max(valueStart + valueText.length, valueStart + 1);
+  const range = new vscode.Range(lineNumber, valueStart, lineNumber, valueEnd);
+  const diagnostic = new vscode.Diagnostic(
+    range,
+    message,
+    vscode.DiagnosticSeverity.Warning
+  );
+  diagnostic.source = "MOOS-IvP";
+  return diagnostic;
+}
+
+function collectBehaviorDiagnostics(document, diagnosticSchema) {
+  const diagnostics = [];
+  const state = {
+    owner: undefined,
+    kind: undefined,
+    pendingOwner: undefined,
+    pendingKind: undefined
+  };
+
+  for (let lineNumber = 0; lineNumber < document.lineCount; lineNumber++) {
+    const rawLine = document.lineAt(lineNumber).text;
+    const text = stripInlineComment(rawLine);
+
+    const header = text.match(/^(\s*)(Behavior)(\s*=\s*)([A-Za-z_][A-Za-z0-9_]*)/);
+    if (header) {
+      state.pendingOwner = header[4];
+      state.pendingKind = "behavior";
+      applyBlockState(text, state);
+      continue;
+    }
+
+    if (state.owner) {
+      const assignment = text.match(/^(\s*)([A-Za-z_][A-Za-z0-9_+:-]*)(\s*=\s*)(.*?)\s*$/);
+      if (assignment) {
+        const name = assignment[2];
+        const value = assignment[4];
+        const entry = diagnosticSchemaEntry(state.owner, name, "ivp-behavior", diagnosticSchema);
+        const expected = validateSchemaValue(value, entry);
+        if (expected) {
+          const valueStart = assignment[1].length + name.length + assignment[3].length;
+          diagnostics.push(createDiagnostic(
+            document,
+            lineNumber,
+            valueStart,
+            value,
+            `${name} expects ${expected}.`
+          ));
+        }
+      }
+    }
+
+    applyBlockState(text, state);
+  }
+
+  return diagnostics;
+}
+
+function refreshDiagnostics(document, collection, diagnosticSchema) {
+  if (document.languageId !== "ivp-behavior") {
+    collection.delete(document.uri);
+    return;
+  }
+
+  collection.set(document.uri, collectBehaviorDiagnostics(document, diagnosticSchema));
+}
+
+function registerDiagnostics(context, diagnosticSchema) {
+  const collection = vscode.languages.createDiagnosticCollection("moos-ivp");
+  context.subscriptions.push(collection);
+
+  for (const document of vscode.workspace.textDocuments) {
+    refreshDiagnostics(document, collection, diagnosticSchema);
+  }
+
+  context.subscriptions.push(
+    vscode.workspace.onDidOpenTextDocument((document) => {
+      refreshDiagnostics(document, collection, diagnosticSchema);
+    }),
+    vscode.workspace.onDidChangeTextDocument((event) => {
+      refreshDiagnostics(event.document, collection, diagnosticSchema);
+    }),
+    vscode.workspace.onDidCloseTextDocument((document) => {
+      collection.delete(document.uri);
+    })
+  );
+}
+
 function activate(context) {
   const moosData = loadJson(context, "data/moos-language.json");
   const bhvData = loadJson(context, "data/bhv-language.json");
@@ -756,6 +998,7 @@ function activate(context) {
   const bhvDocs = loadOptionalJson(context, "data/bhv-docs.json");
   const moosSources = loadOptionalJson(context, "data/moos-source.json");
   const bhvSources = loadOptionalJson(context, "data/bhv-source.json");
+  const diagnosticSchema = loadOptionalJson(context, "data/diagnostic-schema.json");
 
   const moosLookup = mergeLookups(
     buildInventoryLookup(moosInventory, "MOOS app", "MOOS parameter", "apps"),
@@ -774,8 +1017,8 @@ function activate(context) {
   const bhvSourceLookup = buildSourceLookup(bhvSources, "IvP behavior", "behavior parameter", "Behavior");
 
   const subscriptions = [
-    vscode.languages.registerHoverProvider("moos", createHoverProvider("moos", moosLookup, moosDocLookup, moosSourceLookup)),
-    vscode.languages.registerHoverProvider("ivp-behavior", createHoverProvider("ivp-behavior", bhvLookup, bhvDocLookup, bhvSourceLookup))
+    vscode.languages.registerHoverProvider("moos", createHoverProvider("moos", moosLookup, moosDocLookup, moosSourceLookup, diagnosticSchema)),
+    vscode.languages.registerHoverProvider("ivp-behavior", createHoverProvider("ivp-behavior", bhvLookup, bhvDocLookup, bhvSourceLookup, diagnosticSchema))
   ];
 
   if (
@@ -802,6 +1045,7 @@ function activate(context) {
   }
 
   context.subscriptions.push(...subscriptions);
+  registerDiagnostics(context, diagnosticSchema);
 }
 
 function deactivate() {}
