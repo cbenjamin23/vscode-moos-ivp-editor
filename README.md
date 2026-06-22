@@ -71,6 +71,10 @@ Example files for grammar and language-feature development are in
 `examples/`. The examples focus on canonical MOOS-IvP authoring and patch
 files: `.moos`, `.bhv`, `.xmoos`, and `.xbhv`.
 
+Use `npm run build:data` after changing inventory, source-description, or
+override inputs. Use `npm run check` before reviewing or committing generated
+metadata and runtime changes.
+
 
 ## Release Notes
 

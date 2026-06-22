@@ -15,7 +15,9 @@ ProcessConfig = ANTLER
 {
   AppTick                      = 4
   CommsTick                    = 4
-  MSBetweenLaunches            = 100
+  ExecutablePath               = ./
+  GentleKill                   = true
+  MSBetweenLaunches            = 10
   NewConsole                   = false
   Run                          = pHelmIvP @ NewConsole = false
 }
@@ -33,15 +35,15 @@ ProcessConfig = iSay
 {
   AppTick                      = 4
   CommsTick                    = 4
-  app_logging                  = true
+  app_logging                  = off
   audio_dir                    = ./
-  default_rate                 = 5
-  default_voice                = default
-  interval_policy              = normal
-  max_appcast_events           = 8
-  min_utter_interval           = 5
-  os_mode                      = normal
-  volume                       = example
+  default_rate                 = 10
+  default_voice                = agnes
+  interval_policy              = from_end
+  max_appcast_events           = 10
+  min_utter_interval           = 10
+  os_mode                      = both
+  volume                       = 10
 }
 
 //----------------------------------------------------
@@ -50,43 +52,7 @@ ProcessConfig = pAutoPoke
   AppTick                      = 4
   CommsTick                    = 4
   flag                         = EXAMPLE_FLAG = true
-  required_nodes               = example
-}
-
-//----------------------------------------------------
-ProcessConfig = pBasicContactMgr
-{
-  AppTick                      = 4
-  CommsTick                    = 4
-  alert                        = example
-  alert_range_color            = yellow
-  alert_verbose                = true
-  app_logging                  = true
-  contact_local_coords         = example
-  contact_max_age              = 5
-  contacts_recap_interval      = 5
-  cpa_range_color              = yellow
-  decay                        = 5
-  default_alert_range          = 10
-  default_alert_range_color    = yellow
-  default_cpa_range            = 10
-  default_cpa_range_color      = yellow
-  display_radii                = true
-  display_radii_id             = example_id
-  eval_range_far               = 10
-  eval_range_near              = 10
-  ignore_group                 = alpha
-  ignore_region                = op_region
-  ignore_type                  = kayak
-  match_group                  = alpha
-  match_region                 = op_region
-  match_type                   = kayak
-  max_appcast_events           = 8
-  max_retired_history          = 1
-  post_closest_range           = true
-  range_report_timeout         = 10
-  reject_range                 = 10
-  strict_ignore                = example
+  required_nodes               = 0
 }
 
 //----------------------------------------------------
@@ -97,26 +63,26 @@ ProcessConfig = pContactMgrV20
   able_flag                    = EXAMPLE_FLAG = true
   alert                        = example
   alert_range_color            = yellow
-  alert_verbose                = true
-  app_logging                  = true
+  alert_verbose                = false
+  app_logging                  = off
   cease_warning_flag           = EXAMPLE_FLAG = true
   contact_local_coords         = example
-  contact_max_age              = 5
+  contact_max_age              = 1
   cpa_range_color              = yellow
-  decay                        = 5
+  decay                        = 0,10
   disable_flag                 = EXAMPLE_FLAG = true
-  disable_var                  = EXAMPLE_VAR
-  display_radii                = true
+  disable_var                  = example
+  display_radii                = false
   display_radii_id             = example_id
   early_warning_flag           = EXAMPLE_FLAG = true
-  early_warning_radii          = true
-  early_warning_time           = 5
+  early_warning_radii          = false
+  early_warning_time           = 0
   enable_flag                  = EXAMPLE_FLAG = true
-  enable_var                   = EXAMPLE_VAR
+  enable_var                   = example
   eval_range_far               = 10
   eval_range_near              = 10
   ewarn_radii_color            = yellow
-  hold_alerts_for_helm         = example
+  hold_alerts_for_helm         = false
   ignore_group                 = alpha
   ignore_name                  = example_name
   ignore_region                = op_region
@@ -125,19 +91,19 @@ ProcessConfig = pContactMgrV20
   match_name                   = example_name
   match_region                 = op_region
   match_type                   = kayak
-  max_appcast_events           = 8
-  max_contacts                 = example
+  max_appcast_events           = 0
+  max_contacts                 = 0
   max_retired_history          = 1
-  ownship_group                = alpha
-  ownship_type                 = kayak
-  post_all_ranges              = true
-  post_closest_range           = true
-  post_closest_relbng          = true
-  range_report_maxsize         = 10
-  range_report_timeout         = 10
-  recap_interval               = 5
-  reject_range                 = 10
-  strict_ignore                = true
+  ownship_group                = example
+  ownship_type                 = example
+  post_all_ranges              = false
+  post_closest_range           = false
+  post_closest_relbng          = false
+  range_report_maxsize         = 0
+  range_report_timeout         = 0
+  recap_interval               = 1
+  reject_range                 = 1
+  strict_ignore                = toggle
 }
 
 //----------------------------------------------------
@@ -146,12 +112,12 @@ ProcessConfig = pDeadManPost
   AppTick                      = 4
   CommsTick                    = 4
   active_at_start              = true
-  app_logging                  = true
+  app_logging                  = off
   deadflag                     = EXAMPLE_FLAG = true
-  heartbeat_var                = EXAMPLE_VAR
-  max_appcast_events           = 8
-  max_noheart                  = example
-  post_policy                  = normal
+  heartbeat_var                = example
+  max_appcast_events           = 0
+  max_noheart                  = 10
+  post_policy                  = once
 }
 
 //----------------------------------------------------
@@ -161,11 +127,11 @@ ProcessConfig = pEchoVar
   CommsTick                    = 4
   Echo                         = example
   FLIP:1                       = source_variable = MVIEWER_LCLICK
-  app_logging                  = true
+  app_logging                  = off
   condition                    = DEPLOY = true
   flip:2                       = source_variable = MVIEWER_LCLICK
   hold_messages                = true
-  max_appcast_events           = 8
+  max_appcast_events           = 0
 }
 
 //----------------------------------------------------
@@ -174,28 +140,28 @@ ProcessConfig = pHelmIvP
   AppTick                      = 4
   CommsTick                    = 4
   allow_park                   = true
-  app_logging                  = true
+  app_logging                  = off
   behaviors                    = meta_vehicle.bhv
-  bhv_dir_not_found_ok         = true
-  contact_max_age              = 5
+  bhv_dir_not_found_ok         = toggle
+  contact_max_age              = 10
   domain                       = course:0:359:360
-  goals_mandatory              = example
-  helm_prefix                  = NAV
+  goals_mandatory              = false
+  helm_prefix                  = example
   hold_on_app                  = example
   hold_on_apps                 = example
   ivp_behavior_dir             = ./
   kcache                       = example
-  max_appcast_events           = 8
-  nav_grace                    = example
+  max_appcast_events           = 10
+  nav_grace                    = 10
   node_skew                    = example
-  ok_skew                      = example
-  other_override_var           = EXAMPLE_VAR
-  park_on_allstop              = example
+  ok_skew                      = 0
+  other_override_var           = example
+  park_on_allstop              = false
   pmgen                        = example
-  start_engaged                = 5
-  start_in_drive               = example
+  start_engaged                = toggle
+  start_in_drive               = toggle
   term_report_interval         = 5
-  verbose                      = true
+  verbose                      = verbose
 }
 
 //----------------------------------------------------
@@ -203,11 +169,11 @@ ProcessConfig = pHostInfo
 {
   AppTick                      = 4
   CommsTick                    = 4
-  app_logging                  = true
+  app_logging                  = off
   default_hostip               = localhost
   default_hostip_force         = localhost
-  prefer_interface             = example
-  temp_file_dir                = results.txt
+  prefer_interface             = wlan0
+  temp_file_dir                = example
 }
 
 //----------------------------------------------------
@@ -231,7 +197,7 @@ ProcessConfig = pLogger
   file                         = results.txt
   filetimestamp                = results.txt
   path                         = ./
-  synclog                      = example
+  synclog                      = true
 }
 
 //----------------------------------------------------
@@ -242,11 +208,11 @@ ProcessConfig = pMapMarkers
   marker_color                 = yellow
   marker_ecolor                = yellow
   marker_lcolor                = yellow
-  marker_shape                 = example
-  marker_size                  = 4
+  marker_shape                 = circle
+  marker_size                  = 0
   opfile                       = results.txt
-  show_markers                 = example
-  show_mlabels                 = example
+  show_markers                 = false
+  show_mlabels                 = true
   show_mlables                 = example
 }
 
@@ -257,39 +223,39 @@ ProcessConfig = pMarinePIDV22
   CommsTick                    = 4
   active_start                 = true
   deprecated                   = false
-  depth_control                = 5
+  depth_control                = true
   max_appcast_events           = 8
   max_sat_dep_debug            = false
   max_sat_hdg_debug            = false
   max_sat_spd_debug            = false
-  maxelevator                  = 100
-  maxpitch                     = 30
-  maxrudder                    = 100
-  maxthrust                    = 100
-  output_suffix                = 1
-  pitch_pid_integral_limit     = 0.0
-  pitch_pid_kd                 = 0.0
-  pitch_pid_ki                 = 0.0
-  pitch_pid_kp                 = 1.0
+  maxelevator                  = 10
+  maxpitch                     = 10
+  maxrudder                    = 10
+  maxthrust                    = 10
+  output_suffix                = example
+  pitch_pid_integral_limit     = 10
+  pitch_pid_kd                 = 10
+  pitch_pid_ki                 = 10
+  pitch_pid_kp                 = 10
   sim_instability              = example
-  speed_factor                 = 1.2
-  speed_pid_integral_limit     = 1.2
-  speed_pid_kd                 = 1.2
-  speed_pid_ki                 = 1.2
+  speed_factor                 = 0
+  speed_pid_integral_limit     = 10
+  speed_pid_kd                 = 10
+  speed_pid_ki                 = 10
   speed_pid_ki_limit           = 1.2
-  speed_pid_kp                 = 1.2
+  speed_pid_kp                 = 10
   tardy_helm_threshold         = 10
   tardy_nav_threshold          = 10
   verbose                      = true
-  yaw_pid_integral_limit       = 0.0
-  yaw_pid_kd                   = 0.0
-  yaw_pid_ki                   = 0.0
-  yaw_pid_ki_limit             = 0.0
-  yaw_pid_kp                   = 1.0
-  z_to_pitch_pid_integral_limit = 0.0
-  z_to_pitch_pid_kd            = 0.0
-  z_to_pitch_pid_ki            = 0.0
-  z_to_pitch_pid_kp            = 1.0
+  yaw_pid_integral_limit       = 10
+  yaw_pid_kd                   = 10
+  yaw_pid_ki                   = 10
+  yaw_pid_ki_limit             = 10
+  yaw_pid_kp                   = 10
+  z_to_pitch_pid_integral_limit = 10
+  z_to_pitch_pid_kd            = 10
+  z_to_pitch_pid_ki            = 10
+  z_to_pitch_pid_kp            = 10
 }
 
 //----------------------------------------------------
@@ -300,13 +266,13 @@ ProcessConfig = pMarineViewer
   action                       = example
   action+                      = DEPLOY=true
   app_logging                  = true
-  appcast_color_scheme         = yellow
-  appcast_font_size            = 4
-  appcast_height               = example
-  appcast_nodes_width          = 4
+  appcast_color_scheme         = dark_indigo
+  appcast_font_size            = medium
+  appcast_height               = 10
+  appcast_nodes_width          = 10
   appcast_viewable             = true
-  appcast_width                = 4
-  bearing_lines                = example
+  appcast_width                = 10
+  bearing_lines                = true
   beat_flag                    = EXAMPLE_FLAG = true
   button_1                     = example
   button_10                    = example
@@ -348,45 +314,45 @@ ProcessConfig = pMarineViewer
   button_twelve                = example
   button_twenty                = example
   button_two                   = example
-  center_view                  = example
+  center_view                  = average
   circle_viewable_all          = true
   circle_viewable_labels       = true
   cmd                          = example
   comms_pulse_viewable_all     = true
-  content_mode                 = normal
+  content_mode                 = appcast
   datum_viewable_all           = true
   datum_viewable_labels        = true
   drop_point_coords            = 0,0
-  drop_point_vertex_size       = 0,0
+  drop_point_vertex_size       = 10
   drop_point_viewable_all      = true
   extrap_policy                = normal
-  full_screen                  = true
+  full_screen                  = false
   grid_opaqueness              = example
   grid_viewable_all            = true
   grid_viewable_labels         = true
-  hash_delta                   = 1
-  hash_shade                   = example
+  hash_delta                   = 10
+  hash_shade                   = 0
   hash_viewable                = true
   ignore_name                  = example_name
-  infocast_font_size           = 4
-  infocast_height              = example
-  infocast_nodes_width         = 4
+  infocast_font_size           = medium
+  infocast_height              = 10
+  infocast_nodes_width         = 10
   infocast_viewable            = true
-  infocast_width               = 4
+  infocast_width               = 10
   label                        = example_label
   log_the_file                 = results.txt
-  log_the_image                = true
+  log_the_image                = false
   marker                       = example
-  marker_scale                 = example
+  marker_scale                 = 10
   marker_viewable_all          = true
   marker_viewable_labels       = true
   match_name                   = example_name
   max_appcast_events           = 8
   mission_hash_display         = example
-  mission_hash_var             = EXAMPLE_VAR
+  mission_hash_var             = example
   node_pulse_viewable_all      = true
-  node_report_unc              = example
-  nodes_font_size              = 4
+  node_report_unc              = true
+  nodes_font_size              = large
   op_vertex                    = example
   oparea_viewable_all          = true
   oparea_viewable_labels       = true
@@ -394,46 +360,46 @@ ProcessConfig = pMarineViewer
   point_viewable_labels        = true
   polygon_viewable_all         = true
   polygon_viewable_labels      = true
-  procs_font_size              = 4
+  procs_font_size              = large
   range_pulse_viewable_all     = true
   realmcast_channel            = example
-  realmcast_color_scheme       = yellow
-  realmcast_show_community     = true
-  realmcast_show_masked        = true
-  realmcast_show_source        = true
-  realmcast_show_subscriptions = true
-  realmcast_time_format_utc    = true
-  realmcast_trunc_content      = true
-  realmcast_wrap_content       = true
-  refresh_mode                 = normal
+  realmcast_color_scheme       = hillside
+  realmcast_show_community     = toggle
+  realmcast_show_masked        = toggle
+  realmcast_show_source        = toggle
+  realmcast_show_subscriptions = toggle
+  realmcast_time_format_utc    = toggle
+  realmcast_trunc_content      = toggle
+  realmcast_wrap_content       = toggle
+  refresh_mode                 = events
   rows                         = example
   scope                        = example
   seglist_viewable_all         = true
   seglist_viewable_labels      = true
-  set_pan_x                    = 0
-  set_pan_y                    = 0
-  show_title_ip                = example
-  show_title_mhash             = example
-  show_title_user              = example
-  stale_remove_thresh          = 10
-  stale_report_thresh          = 10
-  tiff_file                    = results.txt
-  tiff_file_b                  = results.txt
+  set_pan_x                    = 10
+  set_pan_y                    = 10
+  show_title_ip                = toggle
+  show_title_mhash             = toggle
+  show_title_user              = toggle
+  stale_remove_thresh          = 0
+  stale_report_thresh          = 0
+  tiff_file                    = background.tif
+  tiff_file_b                  = background.tif
   trails_color                 = yellow
-  trails_point_size            = 0,0
+  trails_point_size            = 0
   trails_viewable              = true
   vcolor                       = yellow
   vector_viewable_all          = true
   vector_viewable_labels       = true
-  vehicle_shape_scale          = example
+  vehicle_shape_scale          = 0
   vehicles_active_color        = yellow
   vehicles_inactive_color      = yellow
-  vehicles_name_mode           = example_name
-  vehicles_shape_scale         = example
+  vehicles_name_mode           = true
+  vehicles_shape_scale         = 0
   vehicles_viewable            = true
   vname                        = abe
   watch_cluster                = example
-  zoom                         = example
+  zoom                         = 1
 }
 
 //----------------------------------------------------
@@ -453,7 +419,7 @@ ProcessConfig = pMissionEval
   prereport_column             = example
   report_column                = example
   report_file                  = results.txt
-  report_line_format           = example
+  report_line_format           = csp
   result_flag                  = EXAMPLE_FLAG = true
 }
 
@@ -462,8 +428,8 @@ ProcessConfig = pMissionHash
 {
   AppTick                      = 4
   CommsTick                    = 4
-  mhash_short_var              = EXAMPLE_VAR
-  mission_hash_var             = EXAMPLE_VAR
+  mhash_short_var              = example
+  mission_hash_var             = example
 }
 
 //----------------------------------------------------
@@ -471,42 +437,42 @@ ProcessConfig = pNodeReporter
 {
   AppTick                      = 4
   CommsTick                    = 4
-  allow_color_change           = true
-  alt_nav_group                = alpha
+  allow_color_change           = false
+  alt_nav_group                = example
   alt_nav_name                 = example_name
   alt_nav_prefix               = NAV
   app_logging                  = true
-  blackout_interval            = 5
-  blackout_variance            = EXAMPLE_VAR
-  coord_policy_global          = true
-  cross_fill_policy            = normal
-  crossfill_policy             = normal
-  extrap_enabled               = true
+  blackout_interval            = 0
+  blackout_variance            = 0
+  coord_policy_global          = false
+  cross_fill_policy            = literal
+  crossfill_policy             = literal
+  extrap_enabled               = false
   extrap_hdg_thres             = 90
-  extrap_hdg_thresh            = 90
-  extrap_max_gap               = 10
-  extrap_pos_thresh            = 10
+  extrap_hdg_thresh            = 0
+  extrap_max_gap               = 0
+  extrap_pos_thresh            = 0
   group                        = alpha
-  hdg_error                    = 90
-  json_report                  = true
+  hdg_error                    = 1
+  json_report                  = example
   max_appcast_events           = 8
-  nav_grace_period             = example
+  nav_grace_period             = 10
   nav_grace_periode            = example
   node_report_output           = example
-  nohelm_threshold             = 10
-  paused                       = true
+  nohelm_threshold             = 1
+  paused                       = false
   plat_report_input            = example
   plat_report_output           = example
-  platform_aspect              = example
-  platform_beam                = example
+  platform_aspect              = key=value
+  platform_beam                = 0
   platform_color               = yellow
   platform_group               = alpha
-  platform_length              = 4
+  platform_length              = 0
   platform_type                = kayak
   platform_vsource             = example
-  report_cog                   = true
+  report_cog                   = false
   rider                        = example
-  terse_reports                = true
+  terse_reports                = false
   vessel_type                  = kayak
 }
 
@@ -515,28 +481,28 @@ ProcessConfig = pObstacleMgr
 {
   AppTick                      = 4
   CommsTick                    = 4
-  alert_range                  = 10
+  alert_range                  = 1
   app_logging                  = true
-  disable_var                  = EXAMPLE_VAR
-  enable_var                   = EXAMPLE_VAR
-  expunge_var                  = EXAMPLE_VAR
+  disable_var                  = example
+  enable_var                   = example
+  expunge_var                  = example
   general_alert                = example
-  given_max_duration           = 5
+  given_max_duration           = 1
   given_obstacle               = example
-  ignore_range                 = 10
-  lasso                        = true
-  lasso_points                 = 0,0
-  lasso_radius                 = 10
-  max_age_per_point            = 0,0
+  ignore_range                 = 1
+  lasso                        = false
+  lasso_points                 = 3
+  lasso_radius                 = 1
+  max_age_per_point            = 1
   max_appcast_events           = 8
-  max_pts_per_cluster          = 1
-  new_obs_flag                 = EXAMPLE_FLAG = true
+  max_pts_per_cluster          = 0
+  new_obs_flag                 = key=value
   obstacles_color              = yellow
-  point_var                    = EXAMPLE_VAR
-  poly_label_thresh            = 0,0 : 50,0 : 50,-50 : 0,-50
-  poly_shade_thresh            = 0,0 : 50,0 : 50,-50 : 0,-50
-  poly_vertex_thresh           = 0,0 : 50,0 : 50,-50 : 0,-50
-  post_dist_to_polys           = true
+  point_var                    = example
+  poly_label_thresh            = 0
+  poly_shade_thresh            = 0
+  poly_vertex_thresh           = 0
+  post_dist_to_polys           = close
   post_view_polys              = true
 }
 
@@ -546,15 +512,15 @@ ProcessConfig = pRealm
   AppTick                      = 4
   CommsTick                    = 4
   app_logging                  = true
-  hist_var                     = EXAMPLE_VAR
+  hist_var                     = example
   max_appcast_events           = 8
-  msg_max_hist                 = example
+  msg_max_hist                 = 1
   msg_max_history              = 1
-  relcast_interval             = 5
+  relcast_interval             = 0.4
   scope_set                    = example
-  summary_interval             = 5
-  trunc_length                 = 4
-  wrap_length                  = 4
+  summary_interval             = 1
+  trunc_length                 = 1
+  wrap_length                  = 1
 }
 
 //----------------------------------------------------
@@ -563,12 +529,12 @@ ProcessConfig = pSearchGrid
   AppTick                      = 4
   CommsTick                    = 4
   grid_config                  = label=example
-  grid_label                   = example_label
-  grid_var_name                = EXAMPLE_VAR
+  grid_label                   = example
+  grid_var_name                = example
   ignore_name                  = example_name
   match_name                   = example_name
   max_appcast_events           = 8
-  report_deltas                = 1
+  report_deltas                = true
 }
 
 //----------------------------------------------------
@@ -587,14 +553,14 @@ ProcessConfig = pSpoofNode
   AppTick                      = 4
   CommsTick                    = 4
   default_color                = yellow
-  default_duration             = 5
-  default_group                = alpha
-  default_hdg                  = 90
-  default_length               = 4
-  default_spd                  = 1.2
+  default_duration             = 0
+  default_group                = example
+  default_hdg                  = 10
+  default_length               = 1
+  default_spd                  = 1
   default_vsource              = example
   default_vtype                = kayak
-  refresh_interval             = 5
+  refresh_interval             = 0
   spoof                        = example
 }
 
@@ -627,17 +593,17 @@ ProcessConfig = uFldBeaconRangeSensor
   default_beacon_pull_dist     = 10
   default_beacon_push_dist     = 10
   default_beacon_report_range  = 10
-  default_beacon_shape         = example
-  default_beacon_width         = 4
+  default_beacon_shape         = circle
+  default_beacon_width         = 0
   ground_truth                 = true
   node_pull_dist               = 10
   node_push_dist               = 10
-  ping_payments                = true
+  ping_payments                = upon_response
   ping_wait                    = example
   reach_distance               = 10
-  report_vars                  = EXAMPLE_VAR
+  report_vars                  = short
   rn_algorithm                 = example
-  verbose                      = true
+  verbose                      = false
 }
 
 //----------------------------------------------------
@@ -647,17 +613,17 @@ ProcessConfig = uFldCollObDetect
   CommsTick                    = 4
   app_logging                  = true
   bin_delta                    = 1
-  bin_min_val                  = example
-  collision_dist               = 10
-  collision_flag               = EXAMPLE_FLAG = true
+  bin_min_val                  = 0
+  collision_dist               = 0
+  collision_flag               = key=value
   collision_range              = 10
-  encounter_dist               = 10
-  encounter_flag               = EXAMPLE_FLAG = true
+  encounter_dist               = 0
+  encounter_flag               = key=value
   encounter_range              = 10
   ignore_group                 = alpha
   max_appcast_events           = 8
-  near_miss_dist               = 10
-  near_miss_flag               = EXAMPLE_FLAG = true
+  near_miss_dist               = 0
+  near_miss_flag               = key=value
   near_miss_range              = 10
   reject_group                 = alpha
 }
@@ -669,24 +635,24 @@ ProcessConfig = uFldCollisionDetect
   CommsTick                    = 4
   app_logging                  = true
   collision_dist               = 10
-  collision_flag               = EXAMPLE_FLAG = true
-  collision_range              = 10
+  collision_flag               = key=value
+  collision_range              = 0
   condition                    = DEPLOY = true
   encounter_dist               = 10
-  encounter_flag               = EXAMPLE_FLAG = true
-  encounter_range              = 10
-  encounter_rings              = 4
-  ignore_group                 = alpha
+  encounter_flag               = key=value
+  encounter_range              = 0
+  encounter_rings              = true
+  ignore_group                 = example
   max_appcast_events           = 8
-  near_miss_flag               = EXAMPLE_FLAG = true
-  near_miss_range              = 10
-  post_closest_range           = true
-  pulse_duration               = 5
-  pulse_range                  = 10
+  near_miss_flag               = key=value
+  near_miss_range              = 0
+  post_closest_range           = false
+  pulse_duration               = 0
+  pulse_range                  = 0
   pulse_render                 = true
-  reject_group                 = alpha
-  report_all_encounters        = true
-  verbose                      = true
+  reject_group                 = example
+  report_all_encounters        = false
+  verbose                      = false
 }
 
 //----------------------------------------------------
@@ -695,9 +661,9 @@ ProcessConfig = uFldContactRangeSensor
   AppTick                      = 4
   CommsTick                    = 4
   allow_echo_types             = kayak
-  display_pulses               = example
+  display_pulses               = true
   echo_color                   = yellow
-  ground_truth                 = example
+  ground_truth                 = true
   max_appcast_events           = 8
   ping_color                   = yellow
   ping_wait                    = example
@@ -706,9 +672,9 @@ ProcessConfig = uFldContactRangeSensor
   push_dist                    = 10
   push_distance                = 10
   reply_color                  = yellow
-  report_vars                  = EXAMPLE_VAR
-  rn_gaussian_sigma            = example
-  rn_uniform_pct               = true
+  report_vars                  = short
+  rn_gaussian_sigma            = 10
+  rn_uniform_pct               = 10
   sensor_arc                   = example
   verbose                      = true
 }
@@ -718,7 +684,7 @@ ProcessConfig = uFldDelve
 {
   AppTick                      = 4
   CommsTick                    = 4
-  rate_frame                   = 5
+  rate_frame                   = 1
 }
 
 //----------------------------------------------------
@@ -727,9 +693,9 @@ ProcessConfig = uFldGenericSensor
   AppTick                      = 4
   CommsTick                    = 4
   color_source_pts             = yellow
-  min_reset_interval           = 5
-  min_sensor_interval          = 5
-  scope_transparency           = 0.5
+  min_reset_interval           = 10
+  min_sensor_interval          = 10
+  scope_transparency           = 10
   sensor_config                = label=example
   show_source_pts              = true
   source_point                 = 0,0
@@ -741,12 +707,12 @@ ProcessConfig = uFldMessageHandler
   AppTick                      = 4
   CommsTick                    = 4
   app_logging                  = true
-  appcast_trunc_msg            = example
-  aux_info                     = example
+  appcast_trunc_msg            = 10
+  aux_info                     = node
   bad_msg_flag                 = EXAMPLE_FLAG = true
   max_appcast_events           = 8
   msg_flag                     = EXAMPLE_FLAG = true
-  strict_addressing            = true
+  strict_addressing            = false
 }
 
 //----------------------------------------------------
@@ -770,20 +736,20 @@ ProcessConfig = uFldNodeComms
   CommsTick                    = 4
   app_logging                  = true
   comms_range                  = 10
-  critical_range               = 10
-  drop_percentage              = 5
+  critical_range               = 0
+  drop_percentage              = 1
   earange                      = 10
-  groups                       = true
+  groups                       = false
   max_appcast_events           = 8
-  max_msg_length               = 4
-  min_msg_interval             = 5
-  min_rpt_interval             = 5
+  max_msg_length               = 0
+  min_msg_interval             = 0
+  min_rpt_interval             = 0
   msg_color                    = yellow
-  msg_groups                   = true
+  msg_groups                   = false
   msg_repeat_color             = yellow
-  pulse_duration               = 5
-  shared_node_reports          = true
-  stale_time                   = 5
+  pulse_duration               = 10
+  shared_node_reports          = 0
+  stale_time                   = 10
   stealth                      = example
   verbose                      = true
   view_node_rpt_pulses         = true
@@ -797,27 +763,27 @@ ProcessConfig = uFldObstacleSim
   app_logging                  = true
   draw_region                  = true
   max_appcast_events           = 8
-  max_duration                 = 5
-  min_duration                 = 5
+  max_duration                 = 10
+  min_duration                 = 10
   obstacle_file                = results.txt
-  point_size                   = 0,0
+  point_size                   = 0
   poly_edge_color              = yellow
-  poly_edge_size               = 0,0 : 50,0 : 50,-50 : 0,-50
+  poly_edge_size               = 0
   poly_fill_color              = yellow
   poly_label_color             = yellow
-  poly_transparency            = 0,0 : 50,0 : 50,-50 : 0,-50
+  poly_transparency            = 0
   poly_vert_color              = yellow
-  poly_vert_size               = 0,0 : 50,0 : 50,-50 : 0,-50
-  post_points                  = true
+  poly_vert_size               = 0
+  post_points                  = false
   post_visuals                 = true
-  rate_points                  = 0,0
-  refresh_interval             = 5
+  rate_points                  = 0
+  refresh_interval             = 0
   region_edge_color            = op_region
   region_vert_color            = op_region
-  reset_interval               = 5
-  reset_range                  = 10
+  reset_interval               = 0
+  reset_range                  = 0
   reuse_ids                    = true
-  sensor_range                 = 10
+  sensor_range                 = 0
 }
 
 //----------------------------------------------------
@@ -825,7 +791,7 @@ ProcessConfig = uFldPathCheck
 {
   AppTick                      = 4
   CommsTick                    = 4
-  HISTORY_LENGTH               = 1
+  HISTORY_LENGTH               = 2
 }
 
 //----------------------------------------------------
@@ -851,7 +817,7 @@ ProcessConfig = uFldShoreBroker
   max_appcast_events           = 8
   qbridge                      = example
   try_vnode                    = example
-  warning_on_stale             = true
+  warning_on_stale             = false
 }
 
 //----------------------------------------------------
@@ -866,12 +832,12 @@ ProcessConfig = uHelmScope
 {
   AppTick                      = 4
   CommsTick                    = 4
-  behaviors_concise            = true
+  behaviors_concise            = example
   behaviors_consise            = example
-  display_bhv_posts            = true
-  display_moos_scope           = true
-  display_virgins              = true
-  paused                       = true
+  display_bhv_posts            = example
+  display_moos_scope           = example
+  display_virgins              = example
+  paused                       = example
   truncated_output             = example
   var                          = EXAMPLE_VAR
 }
@@ -882,7 +848,7 @@ ProcessConfig = uLoadWatch
   AppTick                      = 4
   CommsTick                    = 4
   app_logging                  = true
-  breach_trigger               = example
+  breach_trigger               = 0
   max_appcast_events           = 8
   near_breach_thresh           = 10
   thresh                       = 10
@@ -900,24 +866,24 @@ ProcessConfig = uMACView
 {
   AppTick                      = 4
   CommsTick                    = 4
-  appcast_color_scheme         = yellow
-  appcast_font_size            = 4
-  appcast_height               = example
-  content_mode                 = normal
-  infocast_font_size           = 4
-  infocast_height              = example
-  nodes_font_size              = 4
-  procs_font_size              = 4
+  appcast_color_scheme         = dark_indigo
+  appcast_font_size            = medium
+  appcast_height               = 10
+  content_mode                 = appcast
+  infocast_font_size           = medium
+  infocast_height              = 10
+  nodes_font_size              = large
+  procs_font_size              = large
   realmcast_channel            = example
-  realmcast_color_scheme       = yellow
+  realmcast_color_scheme       = hillside
   realmcast_show_communinity   = example
   realmcast_show_masked        = true
   realmcast_show_source        = true
   realmcast_show_subscriptions = true
-  realmcast_time_format_utc    = true
-  realmcast_trunc_content      = true
-  realmcast_wrap_content       = true
-  refresh_mode                 = normal
+  realmcast_time_format_utc    = false
+  realmcast_trunc_content      = false
+  realmcast_wrap_content       = false
+  refresh_mode                 = events
   watch_cluster                = example
 }
 
@@ -927,8 +893,8 @@ ProcessConfig = uMayFinish
   AppTick                      = 4
   CommsTick                    = 4
   finish_val                   = example
-  finish_var                   = EXAMPLE_VAR
-  max_db_uptime                = 5
+  finish_var                   = example
+  max_db_uptime                = 10
 }
 
 //----------------------------------------------------
@@ -936,11 +902,11 @@ ProcessConfig = uMemWatch
 {
   AppTick                      = 4
   CommsTick                    = 4
-  absolute_time_gap            = 5
+  absolute_time_gap            = 1
   app_logging                  = true
-  ignore                       = true
+  ignore                       = alpha,beta
   max_appcast_events           = 8
-  watch_only                   = true
+  watch_only                   = alpha,beta
 }
 
 //----------------------------------------------------
@@ -964,13 +930,13 @@ ProcessConfig = uProcessWatch
 {
   AppTick                      = 4
   CommsTick                    = 4
-  allow_retractions            = true
+  allow_retractions            = 10
   app_logging                  = true
   max_appcast_events           = 8
-  nowatch                      = example
+  nowatch                      = alpha,beta
   post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
-  summary_wait                 = example
-  watch                        = example
+  summary_wait                 = 10
+  watch                        = alpha,beta
   watch_all                    = true
 }
 
@@ -979,15 +945,15 @@ ProcessConfig = uQueryDB
 {
   AppTick                      = 4
   CommsTick                    = 4
-  check_var                    = EXAMPLE_VAR
-  check_var_format             = EXAMPLE_VAR
+  check_var                    = example
+  check_var_format             = esv
   condition                    = DEPLOY = true
   fail_condition               = DEPLOY = true
   halt_condition               = DEPLOY = true
-  halt_max_time                = 5
+  halt_max_time                = 10
   max_time                     = 5
   pass_condition               = DEPLOY = true
-  wait                         = example
+  wait                         = 10
 }
 
 //----------------------------------------------------
@@ -995,57 +961,57 @@ ProcessConfig = uSimMarineV22
 {
   AppTick                      = 4
   CommsTick                    = 4
-  buoyancy_rate                = 5
-  default_water_depth          = 5
-  depth_control                = 5
-  drift_vector                 = example
-  drift_x                      = 0
-  drift_y                      = 0
-  dual_state                   = example
-  max_acceleration             = 0.5
+  buoyancy_rate                = 10
+  default_water_depth          = 0
+  depth_control                = true
+  drift_vector                 = 1,1
+  drift_x                      = 10
+  drift_y                      = 10
+  dual_state                   = false
+  max_acceleration             = 0
   max_appcast_events           = 8
-  max_deceleration             = 0.5
-  max_depth_rate               = 5
-  max_depth_rate_speed         = 1.2
-  max_rudder_degs_per_sec      = 100
-  max_speed                    = 1.2
-  max_trim_delay               = 5
-  maxrudder                    = 100
-  maxthrust                    = 100
+  max_deceleration             = 0
+  max_depth_rate               = 10
+  max_depth_rate_speed         = 10
+  max_rudder_degs_per_sec      = 0
+  max_speed                    = 1
+  max_trim_delay               = 10
+  maxrudder                    = 10
+  maxthrust                    = 10
   polar_plot                   = example
-  post_des_rudder              = 100
-  post_des_thrust              = 100
-  post_navpos_summary          = true
-  prefix                       = NAV
-  rotate_speed                 = 1.2
-  sim_pause                    = true
-  speed_factor                 = 1.2
-  speed_pid_integral_limit     = 1.2
-  speed_pid_kd                 = 1.2
-  speed_pid_ki                 = 1.2
-  speed_pid_kp                 = 1.2
-  start_depth                  = 5
-  start_heading                = 90
+  post_des_rudder              = example
+  post_des_thrust              = example
+  post_navpos_summary          = false
+  prefix                       = example
+  rotate_speed                 = 10
+  sim_pause                    = false
+  speed_factor                 = 0
+  speed_pid_integral_limit     = 10
+  speed_pid_kd                 = 10
+  speed_pid_ki                 = 10
+  speed_pid_kp                 = 10
+  start_depth                  = 0
+  start_heading                = 10
   start_pos                    = example
-  start_speed                  = 1.2
-  start_x                      = 0
-  start_y                      = 0
-  thrust_factor                = 100
+  start_speed                  = 10
+  start_x                      = 10
+  start_y                      = 10
+  thrust_factor                = 0
   thrust_map                   = 100
-  thrust_reflect               = true
+  thrust_reflect               = false
   trim_tolerance               = 10
-  turn_rate                    = 5
-  turn_spd_loss                = 1.2
-  turn_spd_map_full_rate       = 1.2
-  turn_spd_map_full_speed      = 1.2
-  turn_spd_map_null_rate       = 1.2
-  turn_spd_map_null_speed      = 1.2
+  turn_rate                    = 10
+  turn_spd_loss                = 0
+  turn_spd_map_full_rate       = 1
+  turn_spd_map_full_speed      = 1
+  turn_spd_map_null_rate       = 0
+  turn_spd_map_null_speed      = 1
   wind_conditions              = DEPLOY = true
   wormhole                     = example
-  yaw_pid_integral_limit       = 0.0
-  yaw_pid_kd                   = 0.0
-  yaw_pid_ki                   = 0.0
-  yaw_pid_kp                   = 1.0
+  yaw_pid_integral_limit       = 10
+  yaw_pid_kd                   = 10
+  yaw_pid_ki                   = 10
+  yaw_pid_kp                   = 10
 }
 
 //----------------------------------------------------
@@ -1062,29 +1028,29 @@ ProcessConfig = uTimerScript
   AppTick                      = 4
   CommsTick                    = 4
   app_logging                  = true
-  block_on                     = example
+  block_on                     = alpha,beta
   condition                    = DEPLOY = true
-  delay_reset                  = 5
-  delay_start                  = 5
+  delay_reset                  = 0:0
+  delay_start                  = 0:0
   event                        = var=EXAMPLE, val=true, time=1
-  forward_var                  = EXAMPLE_VAR
-  forward_variable             = EXAMPLE_VAR
+  forward_var                  = example
+  forward_variable             = example
   max_appcast_events           = 8
-  pause_var                    = EXAMPLE_VAR
-  pause_variable               = EXAMPLE_VAR
-  paused                       = true
+  pause_var                    = example
+  pause_variable               = example
+  paused                       = false
   rand_var                     = EXAMPLE_VAR
   randvar                      = EXAMPLE_VAR
-  reset_max                    = example
-  reset_time                   = 5
-  reset_var                    = EXAMPLE_VAR
-  script_atomic                = true
+  reset_max                    = 0
+  reset_time                   = 1
+  reset_var                    = example
+  script_atomic                = false
   script_name                  = example_name
   shuffle                      = true
-  status_var                   = EXAMPLE_VAR
-  time_warp                    = 5
+  status_var                   = example
+  time_warp                    = 1:1
   time_zero                    = 5
-  upon_awake                   = example
+  upon_awake                   = n/a
   verbose                      = true
 }
 
@@ -1096,21 +1062,21 @@ ProcessConfig = uXMS
   app_logging                  = true
   color_map                    = yellow
   colormap                     = yellow
-  content_mode                 = normal
-  display_all                  = true
-  display_aux_source           = true
+  content_mode                 = scoping
+  display_all                  = false
+  display_aux_source           = false
   display_community            = true
   display_source               = true
   display_time                 = true
   display_virgins              = true
-  history_var                  = EXAMPLE_VAR
+  history_var                  = example
   paused                       = example
-  refresh_mode                 = normal
-  source                       = example
+  refresh_mode                 = events
+  source                       = alpha,beta
   term_report_interval         = 5
   trunc_data                   = true
-  var                          = EXAMPLE_VAR
-  wrap_data                    = true
-  wrap_data_len                = example
+  var                          = alpha,beta
+  wrap_data                    = false
+  wrap_data_len                = 0
 }
 
