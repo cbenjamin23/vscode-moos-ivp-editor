@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "policy": {
+    "groundTruth": "local MOOS-IvP source",
+    "resolution": "Owner-specific parameter schemas take precedence. Shared schemas are only for parameters parsed by a shared base class, such as IvPBehavior. Parameters with the same name in different apps or behaviors should be treated as block-specific unless they share the same parser.",
+    "diagnostics": "Only emit diagnostics for constraints with source-enforced or source-parsed confidence. Do not infer legal values or ranges from examples alone.",
+    "unknowns": "Use diagnostic=false when source accepts broad/opaque strings, has complex parser behavior, or coerces values instead of rejecting them."
+  },
+  "shared": {
+    "ivpBehavior": {
+      "pwt": {
+        "valueType": "number",
+        "constraints": {
+          "minimum": 0,
+          "minimumExclusive": false
+        },
+        "default": "100",
+        "defaultKind": "source initializer",
+        "diagnostic": true,
+        "confidence": "source-enforced",
+        "source": [
+          "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:54",
+          "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:192-199"
+        ]
+      },
+      "priority": {
+        "aliasOf": "pwt",
+        "valueType": "number",
+        "constraints": {
+          "minimum": 0,
+          "minimumExclusive": false
+        },
+        "default": "100",
+        "defaultKind": "source initializer",
+        "diagnostic": true,
+        "confidence": "source-enforced",
+        "source": [
+          "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:54",
+          "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:192-199"
+        ]
+      },
+      "duration": {
+        "valueType": "number-or-enum",
+        "constraints": {
+          "number": {
+            "minimum": 0,
+            "minimumExclusive": false
+          },
+          "enum": [
+            "no-time-limit",
+            "-1"
+          ]
+        },
+        "default": "-1",
+        "defaultKind": "source initializer",
+        "diagnostic": true,
+        "confidence": "source-enforced",
+        "source": [
+          "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:69",
+          "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:284-295"
+        ]
+      },
+      "duration_idle_decay": {
+        "valueType": "boolean-token",
+        "constraints": {
+          "enum": [
+            "toggle",
+            "on",
+            "true",
+            "yes",
+            "off",
+            "false",
+            "no"
+          ],
+          "caseInsensitive": true
+        },
+        "default": "true",
+        "defaultKind": "source initializer",
+        "diagnostic": true,
+        "confidence": "source-enforced",
+        "source": [
+          "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:78",
+          "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:231-233",
+          "moos-ivp/ivp/src/lib_mbutil/MBUtils.cpp:2074-2086"
+        ]
+      },
+      "perpetual": {
+        "valueType": "boolean-like",
+        "constraints": {
+          "trueToken": "true",
+          "caseInsensitive": true,
+          "otherValuesCoerceTo": "false"
+        },
+        "default": "false",
+        "defaultKind": "source initializer",
+        "diagnostic": false,
+        "confidence": "source-coerced",
+        "source": [
+          "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:60",
+          "moos-ivp/ivp/src/lib_behaviors/IvPBehavior.cpp:278-281"
+        ],
+        "notes": "The source does not reject non-boolean values; it only sets true for the token true and treats other values as false."
+      }
+    }
+  },
+  "behaviors": {
+    "BHV_AbortToPoint": {
+      "source": "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp",
+      "parameters": {
+        "speed": {
+          "valueType": "number",
+          "constraints": {
+            "minimum": 0,
+            "minimumExclusive": true
+          },
+          "default": "0",
+          "defaultKind": "source initializer",
+          "diagnostic": true,
+          "confidence": "source-enforced",
+          "source": [
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp:54",
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp:92-98"
+          ]
+        },
+        "radius": {
+          "valueType": "number",
+          "constraints": {
+            "minimum": 0,
+            "minimumExclusive": true
+          },
+          "default": "25",
+          "defaultKind": "source initializer",
+          "diagnostic": true,
+          "confidence": "source-enforced",
+          "source": [
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp:64",
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp:105-110"
+          ]
+        },
+        "nm_radius": {
+          "valueType": "number",
+          "constraints": {
+            "minimum": 0,
+            "minimumExclusive": true
+          },
+          "default": "200",
+          "defaultKind": "source initializer",
+          "diagnostic": true,
+          "confidence": "source-enforced",
+          "source": [
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp:65",
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp:112-117"
+          ]
+        },
+        "ipf-type": {
+          "valueType": "enum",
+          "constraints": {
+            "enum": [
+              "zaic",
+              "roc",
+              "rate_of_closure"
+            ],
+            "caseInsensitive": true
+          },
+          "default": "zaic",
+          "defaultKind": "source initializer",
+          "diagnostic": true,
+          "confidence": "source-enforced",
+          "source": [
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp:55",
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp:99-104"
+          ]
+        },
+        "point": {
+          "valueType": "point",
+          "constraints": {
+            "formats": [
+              "x,y",
+              "x:y",
+              "x=<number>,y=<number>",
+              "abbreviated XYPoint string"
+            ]
+          },
+          "default": "-1,-1",
+          "defaultKind": "source initializer sentinel",
+          "diagnostic": false,
+          "confidence": "source-parser-complex",
+          "source": [
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp:61-62",
+            "moos-ivp/ivp/src/lib_behaviors-marine/BHV_AbortToPoint.cpp:84-90",
+            "moos-ivp/ivp/src/lib_geometry/XYFormatUtilsPoint.cpp:41-67"
+          ],
+          "notes": "Source rejects invalid point strings, but detailed point syntax diagnostics are intentionally deferred."
+        }
+      }
+    }
+  }
+}
