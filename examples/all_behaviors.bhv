@@ -15,7 +15,6 @@ Behavior = BHV_AbortToPoint
 {
   activeflag                   = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
-  desired_speed                = 1.2
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
@@ -23,13 +22,10 @@ Behavior = BHV_AbortToPoint
   ipf-type                     = zaic
   name                         = aborttopoint
   nm_radius                    = 10
-  osx                          = 0
-  osy                          = 0
   perpetual                    = false
   point                        = 0,0
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
-  ptx                          = 0
-  pty                          = 0
   pwt                          = 100
   radius                       = 10
   runflag                      = EXAMPLE_FLAG = true
@@ -37,39 +33,35 @@ Behavior = BHV_AbortToPoint
   speed                        = 1.2
   templating                   = false
   updates                      = BHV_ABORTTOPOINT_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
 Behavior = BHV_AvdColregsV22
 {
   activeflag                   = EXAMPLE_FLAG = true
-  all_clear_distance           = 10
   avoid_mode                   = normal
   avoid_submode                = normal
   bearing_line_config          = label=example
   bearing_line_label_show      = example
   bearing_line_show            = example
-  build_info                   = false
+  bearing_lines                = example
   can_disable                  = true
   check_plateaus               = true
   check_validity               = true
-  collision_distance           = 10
+  cnflag                       = EXAMPLE_FLAG = true
   completed_dist               = 10
   condition                    = DEPLOY = true
   contact                      = abe
   contact_type_required        = kayak
   decay                        = 5
-  descriptor                   = example_label
+  decay_end                    = 5
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   eval_tol                     = example
-  exit_on_filter_group         = alpha
-  exit_on_filter_region        = op_region
-  exit_on_filter_vname         = abe
-  exit_on_filter_vtype         = kayak
+  exit_on_filter_group         = true
+  exit_on_filter_region        = true
+  exit_on_filter_vtype         = true
   extrapolate                  = true
-  full_avoid_mode              = normal
   giveway_bow_dist             = 10
   headon_only                  = true
   idleflag                     = EXAMPLE_FLAG = true
@@ -87,12 +79,8 @@ Behavior = BHV_AvdColregsV22
   name                         = avdcolregsv22
   no_alert_request             = true
   on_no_contact_ok             = true
-  osh                          = 90
-  osv                          = 1.2
-  passing_side                 = example
   pcheck_thresh                = 10
   perpetual                    = false
-  plateau_region               = op_region
   post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   post_per_contact_info        = true
   post_status_info_on_idle     = example
@@ -104,56 +92,47 @@ Behavior = BHV_AvdColregsV22
   pwt_outer_dist               = 100
   runflag                      = EXAMPLE_FLAG = true
   spawnx_flag                  = EXAMPLE_FLAG = true
+  strict_ignore                = example
   templating                   = false
-  tol                          = 10
+  time_on_leg                  = 5
   turn_radius                  = 10
   updates                      = BHV_AVDCOLREGSV22_UPDATES
   use_refinery                 = true
   velocity_filter              = example
   verbose                      = true
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
 Behavior = BHV_AvoidCollision
 {
   activeflag                   = EXAMPLE_FLAG = true
-  all_clear_distance           = 10
   bearing_line_config          = label=example
   bearing_line_label_show      = example
-  bearing_lines                = true
-  build_info                   = false
+  bearing_line_show            = example
+  bearing_lines                = example
   can_disable                  = true
   check_plateaus               = true
   check_validity               = true
-  cnh                          = example
-  cnv                          = example
-  cnx                          = 0
-  cny                          = 0
+  cnflag                       = EXAMPLE_FLAG = true
   collision_depth              = 5
-  collision_distance           = 10
   completed_dist               = 10
   condition                    = DEPLOY = true
   contact                      = abe
   contact_type_required        = kayak
   decay                        = 5
   decay_end                    = 5
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   exit_on_filter_group         = true
   exit_on_filter_region        = true
-  exit_on_filter_vname         = abe
   exit_on_filter_vtype         = true
   extrapolate                  = true
   idleflag                     = EXAMPLE_FLAG = true
-  ignore_contact_group         = alpha
   ignore_group                 = alpha
   ignore_name                  = example_name
   ignore_region                = op_region
   ignore_type                  = kayak
   inactiveflag                 = EXAMPLE_FLAG = true
-  match_contact_group          = alpha
   match_group                  = alpha
   match_name                   = example_name
   match_region                 = op_region
@@ -163,13 +142,8 @@ Behavior = BHV_AvoidCollision
   name                         = avoidcollision
   no_alert_request             = true
   on_no_contact_ok             = true
-  osh                          = 90
-  osv                          = 1.2
-  osx                          = 0
-  osy                          = 0
   pcheck_thresh                = 10
   perpetual                    = false
-  plateau_region               = op_region
   post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   post_per_contact_info        = true
   priority                     = 100
@@ -177,36 +151,28 @@ Behavior = BHV_AvoidCollision
   pwt_grade                    = 100
   pwt_inner_dist               = 100
   pwt_outer_dist               = 100
-  refine_piece                 = example
-  refine_region                = op_region
   roc_max_dampen               = example
   roc_max_heighten             = example
   runflag                      = EXAMPLE_FLAG = true
   spawnx_flag                  = EXAMPLE_FLAG = true
+  strict_ignore                = example
   templating                   = false
-  them                         = abe
   time_on_leg                  = 5
-  tol                          = 10
-  uniform_amount               = true
   updates                      = BHV_AVOIDCOLLISION_UPDATES
   use_refinery                 = true
   verbose                      = true
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
 Behavior = BHV_AvoidObstacleV24
 {
-  action                       = example
   activeflag                   = EXAMPLE_FLAG = true
   allowable_ttc                = true
   allstop_on_breach            = true
-  basin_region                 = op_region
   can_disable                  = true
   completed_dist               = 10
   condition                    = DEPLOY = true
   cpa_flag                     = EXAMPLE_FLAG = true
-  descriptor                   = example_label
   draw_buff_max_poly           = true
   draw_buff_min_poly           = true
   duration                     = 5
@@ -218,12 +184,8 @@ Behavior = BHV_AvoidObstacleV24
   max_util_cpa_dist            = 10
   min_util_cpa_dist            = 10
   name                         = avoidobstaclev24
-  no_alert_request             = true
   obid                         = example
-  obstacle_id                  = example_id
-  obstacle_key                 = example
   perpetual                    = false
-  plateau_region               = op_region
   poly                         = 0,0 : 50,0 : 50,-50 : 0,-50
   polygon                      = 0,0 : 50,0 : 50,-50 : 0,-50
   post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
@@ -239,12 +201,9 @@ Behavior = BHV_AvoidObstacleV24
   templating                   = false
   turn_model_degs              = 30
   turn_radius                  = 10
-  uniform_grid                 = true
-  uniform_piece                = true
   updates                      = BHV_AVOIDOBSTACLEV24_UPDATES
   use_refinery                 = true
   visual_hints                 = vertex_size=3, edge_color=gray
-  vsource                      = example
 }
 
 //----------------------------------------------------
@@ -253,7 +212,6 @@ Behavior = BHV_BearingLine
   activeflag                   = EXAMPLE_FLAG = true
   bearing_point                = 0,0
   condition                    = DEPLOY = true
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
@@ -261,6 +219,7 @@ Behavior = BHV_BearingLine
   line_pct                     = 0.5
   name                         = bearingline
   perpetual                    = false
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   runflag                      = EXAMPLE_FLAG = true
@@ -268,7 +227,6 @@ Behavior = BHV_BearingLine
   spawnx_flag                  = EXAMPLE_FLAG = true
   templating                   = false
   updates                      = BHV_BEARINGLINE_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -279,7 +237,6 @@ Behavior = BHV_ConstantDepth
   condition                    = DEPLOY = true
   depth                        = 5
   depth_mismatch_var           = EXAMPLE_VAR
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
@@ -295,7 +252,6 @@ Behavior = BHV_ConstantDepth
   summitdelta                  = 1
   templating                   = false
   updates                      = BHV_CONSTANTDEPTH_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -305,7 +261,6 @@ Behavior = BHV_ConstantHeading
   basewidth                    = 4
   complete_thresh              = 10
   condition                    = DEPLOY = true
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   heading                      = 90
@@ -323,7 +278,6 @@ Behavior = BHV_ConstantHeading
   summitdelta                  = 1
   templating                   = false
   updates                      = BHV_CONSTANTHEADING_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -332,7 +286,6 @@ Behavior = BHV_ConstantSpeed
   activeflag                   = EXAMPLE_FLAG = true
   basewidth                    = 4
   condition                    = DEPLOY = true
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
@@ -350,25 +303,43 @@ Behavior = BHV_ConstantSpeed
   summitdelta                  = 1
   templating                   = false
   updates                      = BHV_CONSTANTSPEED_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
 Behavior = BHV_Convoy
 {
   activeflag                   = EXAMPLE_FLAG = true
+  bearing_line_config          = label=example
+  bearing_line_label_show      = example
+  bearing_line_show            = example
+  bearing_lines                = example
+  cnflag                       = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
   contact                      = abe
   cruise_speed                 = 1.2
-  descriptor                   = example_label
+  decay                        = 5
+  decay_end                    = 5
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
+  exit_on_filter_group         = true
+  exit_on_filter_region        = true
+  exit_on_filter_vtype         = true
+  extrapolate                  = true
   idleflag                     = EXAMPLE_FLAG = true
+  ignore_group                 = alpha
+  ignore_name                  = example_name
+  ignore_region                = op_region
+  ignore_type                  = kayak
   inactiveflag                 = EXAMPLE_FLAG = true
   inter_mark_range             = 10
+  match_group                  = alpha
+  match_name                   = example_name
+  match_region                 = op_region
+  match_type                   = kayak
   max_mark_range               = 10
   name                         = convoy
   nm_radius                    = 10
+  on_no_contact_ok             = true
   perpetual                    = false
   post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   post_per_contact_info        = true
@@ -387,9 +358,10 @@ Behavior = BHV_Convoy
   spd_faster                   = 1.2
   spd_max                      = 1.2
   spd_slower                   = 1.2
+  strict_ignore                = example
   templating                   = false
+  time_on_leg                  = 5
   updates                      = BHV_CONVOY_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -397,21 +369,18 @@ Behavior = BHV_CutRange
 {
   activeflag                   = EXAMPLE_FLAG = true
   bearing_line_config          = label=example
-  build_info                   = false
-  cncrs                        = 90
-  cnlat                        = 42.358
-  cnlon                        = -71.087
-  cnspd                        = 1.2
+  bearing_line_label_show      = example
+  bearing_line_show            = example
+  bearing_lines                = example
+  cnflag                       = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
   contact                      = abe
   decay                        = 5
   decay_end                    = 5
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   exit_on_filter_group         = true
   exit_on_filter_region        = true
-  exit_on_filter_vname         = abe
   exit_on_filter_vtype         = true
   extrapolate                  = true
   giveup_dist                  = 10
@@ -430,8 +399,6 @@ Behavior = BHV_CutRange
   max_patience                 = 1.0
   name                         = cutrange
   on_no_contact_ok             = true
-  oslat                        = 42.358
-  oslon                        = -71.087
   patience                     = 1.0
   perpetual                    = false
   post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
@@ -443,12 +410,10 @@ Behavior = BHV_CutRange
   pwt_outer_dist               = 100
   runflag                      = EXAMPLE_FLAG = true
   spawnx_flag                  = EXAMPLE_FLAG = true
+  strict_ignore                = example
   templating                   = false
-  them                         = abe
   time_on_leg                  = 5
-  tol                          = 10
   updates                      = BHV_CUTRANGE_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -456,7 +421,6 @@ Behavior = BHV_FixedTurn
 {
   activeflag                   = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   fix_turn                     = 180
@@ -465,6 +429,7 @@ Behavior = BHV_FixedTurn
   mod_hdg                      = 20
   name                         = fixedturn
   perpetual                    = false
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   radius_rep_var               = EXAMPLE_VAR
@@ -488,7 +453,6 @@ Behavior = BHV_FullStop
   activeflag                   = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
   delay_complete               = 5
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
@@ -497,6 +461,7 @@ Behavior = BHV_FullStop
   mark_flag                    = EXAMPLE_FLAG = true
   name                         = fullstop
   perpetual                    = false
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   runflag                      = EXAMPLE_FLAG = true
@@ -532,47 +497,6 @@ Behavior = BHV_GoToDepth
   spawnx_flag                  = EXAMPLE_FLAG = true
   templating                   = false
   updates                      = BHV_GOTODEPTH_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
-}
-
-//----------------------------------------------------
-Behavior = BHV_Guide
-{
-  activeflag                   = EXAMPLE_FLAG = true
-  condition                    = DEPLOY = true
-  duration                     = 5
-  endflag                      = EXAMPLE_FLAG = true
-  idleflag                     = EXAMPLE_FLAG = true
-  inactiveflag                 = EXAMPLE_FLAG = true
-  name                         = guide
-  perpetual                    = false
-  priority                     = 100
-  pwt                          = 100
-  runflag                      = EXAMPLE_FLAG = true
-  spawnx_flag                  = EXAMPLE_FLAG = true
-  templating                   = false
-  updates                      = BHV_GUIDE_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
-}
-
-//----------------------------------------------------
-Behavior = BHV_Guide_Info
-{
-  activeflag                   = EXAMPLE_FLAG = true
-  condition                    = DEPLOY = true
-  duration                     = 5
-  endflag                      = EXAMPLE_FLAG = true
-  idleflag                     = EXAMPLE_FLAG = true
-  inactiveflag                 = EXAMPLE_FLAG = true
-  name                         = guide_info
-  perpetual                    = false
-  priority                     = 100
-  pwt                          = 100
-  runflag                      = EXAMPLE_FLAG = true
-  spawnx_flag                  = EXAMPLE_FLAG = true
-  templating                   = false
-  updates                      = BHV_GUIDE_INFO_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -580,7 +504,6 @@ Behavior = BHV_HSLine
 {
   activeflag                   = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
@@ -595,7 +518,6 @@ Behavior = BHV_HSLine
   templating                   = false
   time_on_leg                  = 5
   updates                      = BHV_HSLINE_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -604,20 +526,19 @@ Behavior = BHV_HeadingBias
   activeflag                   = EXAMPLE_FLAG = true
   bias                         = 10
   condition                    = DEPLOY = true
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
   inactiveflag                 = EXAMPLE_FLAG = true
   name                         = headingbias
   perpetual                    = false
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   runflag                      = EXAMPLE_FLAG = true
   spawnx_flag                  = EXAMPLE_FLAG = true
   templating                   = false
   updates                      = BHV_HEADINGBIAS_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -632,6 +553,7 @@ Behavior = BHV_HeadingChange
   inactiveflag                 = EXAMPLE_FLAG = true
   name                         = headingchange
   perpetual                    = false
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   runflag                      = EXAMPLE_FLAG = true
@@ -640,7 +562,6 @@ Behavior = BHV_HeadingChange
   turn_speed                   = 1.2
   turn_type                    = kayak
   updates                      = BHV_HEADINGCHANGE_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -648,7 +569,6 @@ Behavior = BHV_HeadingHysteresis
 {
   activeflag                   = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   filter_var                   = EXAMPLE_VAR
@@ -657,13 +577,13 @@ Behavior = BHV_HeadingHysteresis
   memory_time                  = 5
   name                         = headinghysteresis
   perpetual                    = false
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   runflag                      = EXAMPLE_FLAG = true
   spawnx_flag                  = EXAMPLE_FLAG = true
   templating                   = false
   updates                      = BHV_HEADINGHYSTERESIS_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -671,7 +591,6 @@ Behavior = BHV_Hysteresis
 {
   activeflag                   = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
@@ -682,13 +601,13 @@ Behavior = BHV_Hysteresis
   min_heading_window           = 90
   name                         = hysteresis
   perpetual                    = false
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   runflag                      = EXAMPLE_FLAG = true
   spawnx_flag                  = EXAMPLE_FLAG = true
   templating                   = false
   updates                      = BHV_HYSTERESIS_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -698,10 +617,9 @@ Behavior = BHV_LegRun
   capture_line                 = true
   capture_radius               = 10
   condition                    = DEPLOY = true
-  cycleflag                    = EXAMPLE_FLAG = true
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
-  full_leg                     = example
+  id                           = example_id
   idleflag                     = EXAMPLE_FLAG = true
   inactiveflag                 = EXAMPLE_FLAG = true
   init_leg_mode                = normal
@@ -712,30 +630,32 @@ Behavior = BHV_LegRun
   leg1_endflag                 = EXAMPLE_FLAG = true
   leg2_end_flag                = EXAMPLE_FLAG = true
   leg2_endflag                 = EXAMPLE_FLAG = true
+  leg_ang                      = example
+  leg_ang_mod                  = example
   leg_end_flag                 = EXAMPLE_FLAG = true
   leg_endflag                  = EXAMPLE_FLAG = true
-  leg_length                   = 4
-  leg_length_mod               = 4
+  leg_len                      = example
+  leg_len_mod                  = example
   leg_spds                     = 1.2
   leg_spds_onturn              = 1.2
-  leg_spds_repeat              = true
+  leg_spds_repeat              = 1.2
   mid_leg_flag                 = EXAMPLE_FLAG = true
   mid_leg_pct                  = 0.5
   mid_turn_flag                = EXAMPLE_FLAG = true
   mid_turn_pct                 = 0.5
-  midflag                      = EXAMPLE_FLAG = true
   midlegflag                   = EXAMPLE_FLAG = true
-  midpct                       = 0.5
   midturnflag                  = EXAMPLE_FLAG = true
   name                         = legrun
+  p1                           = example
+  p2                           = example
   patience                     = 1.0
   perpetual                    = false
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   radius                       = 10
   repeat                       = true
   runflag                      = EXAMPLE_FLAG = true
-  shift_point                  = 0,0
   shift_pt                     = 0,0
   slip_radius                  = 10
   spawnx_flag                  = EXAMPLE_FLAG = true
@@ -746,6 +666,8 @@ Behavior = BHV_LegRun
   turn1_dir                    = port
   turn1_end_flag               = EXAMPLE_FLAG = true
   turn1_endflag                = EXAMPLE_FLAG = true
+  turn1_ext                    = example
+  turn1_ext_mod                = example
   turn1_rad                    = 10
   turn1_rad_mod                = 10
   turn2_bias                   = 10
@@ -753,21 +675,25 @@ Behavior = BHV_LegRun
   turn2_dir                    = port
   turn2_end_flag               = EXAMPLE_FLAG = true
   turn2_endflag                = EXAMPLE_FLAG = true
+  turn2_ext                    = example
+  turn2_ext_mod                = example
   turn2_rad                    = 10
   turn2_rad_mod                = 10
+  turn_bias                    = 10
   turn_bias_mod                = 10
+  turn_dir                     = port
   turn_end_flag                = EXAMPLE_FLAG = true
   turn_endflag                 = EXAMPLE_FLAG = true
+  turn_ext                     = example
+  turn_ext_mod                 = example
   turn_pt_gap                  = 10
+  turn_rad                     = 10
   turn_rad_min                 = 10
   turn_rad_mod                 = 10
   updates                      = BHV_LEGRUN_UPDATES
   visual_hints                 = vertex_size=3, edge_color=gray
   vx1                          = example
   vx2                          = example
-  warn_overshoot               = true
-  wpt_status_var               = EXAMPLE_VAR
-  wptflag                      = EXAMPLE_FLAG = true
 }
 
 //----------------------------------------------------
@@ -779,24 +705,16 @@ Behavior = BHV_Loiter
   capture_radius               = 10
   center_activate              = true
   center_assign                = example
-  clockwise                    = true
+  clockwise                    = example
   condition                    = DEPLOY = true
   duration                     = 5
-  edge_color                   = yellow
-  edge_size                    = 4
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
   inactiveflag                 = EXAMPLE_FLAG = true
   ipf-type                     = zaic
   ipf_type                     = zaic
-  label                        = example_label
-  label_color                  = yellow
-  lcolor                       = yellow
   mod_poly_rad                 = 0,0 : 50,0 : 50,-50 : 0,-50
   name                         = loiter
-  nextpt_color                 = yellow
-  nextpt_lcolor                = yellow
-  nextpt_vertex_size           = 4
   nm_radius                    = 10
   patience                     = 1.0
   perpetual                    = false
@@ -816,8 +734,6 @@ Behavior = BHV_Loiter
   templating                   = false
   updates                      = BHV_LOITER_UPDATES
   use_alt_speed                = true
-  vertex_color                 = yellow
-  vertex_size                  = 4
   visual_hints                 = vertex_size=3, edge_color=gray
   xcenter_assign               = example
   ycenter_assign               = example
@@ -837,6 +753,7 @@ Behavior = BHV_MaintainHeading
   name                         = maintainheading
   peakwidth                    = 4
   perpetual                    = false
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   runflag                      = EXAMPLE_FLAG = true
@@ -844,7 +761,6 @@ Behavior = BHV_MaintainHeading
   summitdelta                  = 1
   templating                   = false
   updates                      = BHV_MAINTAINHEADING_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -854,7 +770,6 @@ Behavior = BHV_MaxDepth
   basewidth                    = 4
   condition                    = DEPLOY = true
   depth_slack_var              = EXAMPLE_VAR
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
@@ -870,7 +785,6 @@ Behavior = BHV_MaxDepth
   templating                   = false
   tolerance                    = 10
   updates                      = BHV_MAXDEPTH_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -879,7 +793,6 @@ Behavior = BHV_MaxSpeed
   activeflag                   = EXAMPLE_FLAG = true
   basewidth                    = 4
   condition                    = DEPLOY = true
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
@@ -896,7 +809,6 @@ Behavior = BHV_MaxSpeed
   templating                   = false
   tolerance                    = 10
   updates                      = BHV_MAXSPEED_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -919,7 +831,6 @@ Behavior = BHV_MemoryTurnLimit
   templating                   = false
   turn_range                   = 10
   updates                      = BHV_MEMORYTURNLIMIT_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -935,30 +846,26 @@ Behavior = BHV_MinAltitudeX
   missing_altitude_critical    = 5
   name                         = minaltitudex
   perpetual                    = false
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   runflag                      = EXAMPLE_FLAG = true
   spawnx_flag                  = EXAMPLE_FLAG = true
   templating                   = false
   updates                      = BHV_MINALTITUDEX_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
 Behavior = BHV_OpRegionRecover
 {
   activeflag                   = EXAMPLE_FLAG = true
-  breached_poly_flag           = EXAMPLE_FLAG = true
   buffer_dist                  = 10
   condition                    = DEPLOY = true
   duration                     = 5
   dynamic_region_var           = op_region
-  edge_color                   = yellow
-  edge_size                    = 4
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
   inactiveflag                 = EXAMPLE_FLAG = true
-  label_color                  = yellow
   name                         = opregionrecover
   opregion_poly_var            = op_region
   perpetual                    = false
@@ -973,8 +880,6 @@ Behavior = BHV_OpRegionRecover
   trigger_entry_time           = 5
   trigger_exit_time            = 5
   updates                      = BHV_OPREGIONRECOVER_UPDATES
-  vertex_color                 = yellow
-  vertex_size                  = 4
   visual_hints                 = vertex_size=3, edge_color=gray
 }
 
@@ -988,9 +893,8 @@ Behavior = BHV_OpRegionV24
   breached_time_flag           = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
   core_poly                    = 0,0 : 50,0 : 50,-50 : 0,-50
-  draw_halt_status             = true
-  draw_save_statue             = example
-  draw_save_status             = true
+  draw_halt_status             = example
+  draw_save_status             = example
   duration                     = 5
   dynamic_region_var           = op_region
   endflag                      = EXAMPLE_FLAG = true
@@ -1003,12 +907,12 @@ Behavior = BHV_OpRegionV24
   min_altitude                 = 5
   name                         = opregionv24
   perpetual                    = false
-  polygon                      = 0,0 : 50,0 : 50,-50 : 0,-50
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   recover_spd                  = 1.2
   recover_speed                = 1.2
-  reset                        = true
+  reset                        = example
   runflag                      = EXAMPLE_FLAG = true
   save_dist                    = 10
   save_flag                    = EXAMPLE_FLAG = true
@@ -1018,7 +922,7 @@ Behavior = BHV_OpRegionV24
   templating                   = false
   trigger_entry_time           = 5
   trigger_exit_time            = 5
-  trigger_on_poly_entry        = true
+  trigger_on_poly_entry        = 0,0 : 50,0 : 50,-50 : 0,-50
   updates                      = BHV_OPREGIONV24_UPDATES
   visual_hints                 = vertex_size=3, edge_color=gray
 }
@@ -1028,7 +932,6 @@ Behavior = BHV_PModelView
 {
   activeflag                   = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
-  descriptor                   = example_label
   duration                     = 5
   edge_color                   = yellow
   endflag                      = EXAMPLE_FLAG = true
@@ -1036,6 +939,7 @@ Behavior = BHV_PModelView
   inactiveflag                 = EXAMPLE_FLAG = true
   name                         = pmodelview
   perpetual                    = false
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   runflag                      = EXAMPLE_FLAG = true
@@ -1044,7 +948,6 @@ Behavior = BHV_PModelView
   updates                      = BHV_PMODELVIEW_UPDATES
   vertex_color                 = yellow
   vertex_size                  = 4
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -1057,7 +960,7 @@ Behavior = BHV_PeriodicSpeed
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
   inactiveflag                 = EXAMPLE_FLAG = true
-  initially_busy               = true
+  initially_busy               = example
   name                         = periodicspeed
   peakwidth                    = 4
   period_basewidth             = 4
@@ -1069,13 +972,12 @@ Behavior = BHV_PeriodicSpeed
   post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
-  reset_upon_running           = true
+  reset_upon_running           = example
   runflag                      = EXAMPLE_FLAG = true
   spawnx_flag                  = EXAMPLE_FLAG = true
   summit_delta                 = 1
   templating                   = false
   updates                      = BHV_PERIODICSPEED_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
   zaic_basewidth               = 4
   zaic_peakwidth               = 4
   zaic_summit_delta            = 1
@@ -1091,7 +993,6 @@ Behavior = BHV_PeriodicSurface
   atsurface_status_var         = EXAMPLE_VAR
   atsurface_status_variable    = EXAMPLE_VAR
   condition                    = DEPLOY = true
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
@@ -1111,7 +1012,6 @@ Behavior = BHV_PeriodicSurface
   speed_to_surface             = 1.2
   templating                   = false
   updates                      = BHV_PERIODICSURFACE_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
   zero_speed_depth             = 1.2
 }
 
@@ -1122,7 +1022,6 @@ Behavior = BHV_RStationKeep
   center_activate              = example
   condition                    = DEPLOY = true
   contact                      = abe
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   extra_speed                  = 1.2
@@ -1133,6 +1032,7 @@ Behavior = BHV_RStationKeep
   outer_radius                 = 10
   outer_speed                  = 1.2
   perpetual                    = false
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   rstation_position            = present_position
@@ -1141,7 +1041,6 @@ Behavior = BHV_RStationKeep
   templating                   = false
   them                         = abe
   updates                      = BHV_RSTATIONKEEP_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -1149,20 +1048,19 @@ Behavior = BHV_RangePulse
 {
   activeflag                   = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
   inactiveflag                 = EXAMPLE_FLAG = true
   name                         = rangepulse
   perpetual                    = false
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   runflag                      = EXAMPLE_FLAG = true
   spawnx_flag                  = EXAMPLE_FLAG = true
   templating                   = false
   updates                      = BHV_RANGEPULSE_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -1170,16 +1068,18 @@ Behavior = BHV_Shadow
 {
   activeflag                   = EXAMPLE_FLAG = true
   bearing_line_config          = label=example
+  bearing_line_label_show      = example
+  bearing_line_show            = example
+  bearing_lines                = example
+  cnflag                       = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
   contact                      = abe
   decay                        = 5
   decay_end                    = 5
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   exit_on_filter_group         = true
   exit_on_filter_region        = true
-  exit_on_filter_vname         = abe
   exit_on_filter_vtype         = true
   extrapolate                  = true
   hdg_basewidth                = 90
@@ -1210,11 +1110,10 @@ Behavior = BHV_Shadow
   spd_peakwidth                = 1.2
   speed_basewidth              = 1.2
   speed_peakwidth              = 1.2
+  strict_ignore                = example
   templating                   = false
-  them                         = abe
   time_on_leg                  = 5
   updates                      = BHV_SHADOW_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -1224,15 +1123,12 @@ Behavior = BHV_StationKeep
   center_activate              = true
   condition                    = DEPLOY = true
   duration                     = 5
-  edge_color                   = yellow
-  edge_size                    = 4
   endflag                      = EXAMPLE_FLAG = true
   extra_speed                  = 1.2
   hibernation_radius           = 10
   idleflag                     = EXAMPLE_FLAG = true
   inactiveflag                 = EXAMPLE_FLAG = true
   inner_radius                 = 10
-  label_color                  = yellow
   name                         = stationkeep
   outer_radius                 = 10
   outer_speed                  = 1.2
@@ -1248,8 +1144,6 @@ Behavior = BHV_StationKeep
   templating                   = false
   transit_speed                = 1.2
   updates                      = BHV_STATIONKEEP_UPDATES
-  vertex_color                 = yellow
-  vertex_size                  = 4
   visual_hints                 = vertex_size=3, edge_color=gray
 }
 
@@ -1258,7 +1152,6 @@ Behavior = BHV_TestFailure
 {
   activeflag                   = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   failure_type                 = kayak
@@ -1273,7 +1166,6 @@ Behavior = BHV_TestFailure
   spawnx_flag                  = EXAMPLE_FLAG = true
   templating                   = false
   updates                      = BHV_TESTFAILURE_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -1281,7 +1173,6 @@ Behavior = BHV_TimeOut
 {
   activeflag                   = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   idleflag                     = EXAMPLE_FLAG = true
@@ -1289,13 +1180,13 @@ Behavior = BHV_TimeOut
   max_time                     = 5
   name                         = timeout
   perpetual                    = false
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
   runflag                      = EXAMPLE_FLAG = true
   spawnx_flag                  = EXAMPLE_FLAG = true
   templating                   = false
   updates                      = BHV_TIMEOUT_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -1319,7 +1210,6 @@ Behavior = BHV_Timer
   updates                      = BHV_TIMER_UPDATES
   var_status_idle              = EXAMPLE_VAR
   var_status_running           = EXAMPLE_VAR
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -1327,34 +1217,36 @@ Behavior = BHV_Trail
 {
   activeflag                   = EXAMPLE_FLAG = true
   bearing_line_config          = label=example
-  build_info                   = false
-  cncrs                        = 90
-  cnlat                        = 42.358
-  cnlon                        = -71.087
-  cnspd                        = 1.2
+  bearing_line_label_show      = example
+  bearing_line_show            = example
+  bearing_lines                = example
+  cnflag                       = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
   contact                      = abe
   decay                        = 5
   decay_end                    = 5
-  descriptor                   = example_label
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   exit_on_filter_group         = true
   exit_on_filter_region        = true
-  exit_on_filter_vname         = abe
   exit_on_filter_vtype         = true
   extrapolate                  = true
   idleflag                     = EXAMPLE_FLAG = true
+  ignore_group                 = alpha
+  ignore_name                  = example_name
+  ignore_region                = op_region
+  ignore_type                  = kayak
   inactiveflag                 = EXAMPLE_FLAG = true
+  match_group                  = alpha
+  match_name                   = example_name
+  match_region                 = op_region
+  match_type                   = kayak
   mod_trail_range              = 10
   mod_trail_range_pct          = 10
-  n_alert_request              = example
   name                         = trail
   nm_radius                    = 10
   no_alert_request             = true
   on_no_contact_ok             = true
-  oslat                        = 42.358
-  oslon                        = -71.087
   perpetual                    = false
   post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   post_per_contact_info        = true
@@ -1365,15 +1257,13 @@ Behavior = BHV_Trail
   radius                       = 10
   runflag                      = EXAMPLE_FLAG = true
   spawnx_flag                  = EXAMPLE_FLAG = true
+  strict_ignore                = example
   templating                   = false
-  them                         = abe
   time_on_leg                  = 5
-  tol                          = 10
   trail_angle                  = example
   trail_angle_type             = kayak
   trail_range                  = 10
   updates                      = BHV_TRAIL_UPDATES
-  visual_hints                 = vertex_size=3, edge_color=gray
 }
 
 //----------------------------------------------------
@@ -1387,8 +1277,7 @@ Behavior = BHV_Waypoint
   currix                       = 1
   cycle_index_var              = EXAMPLE_VAR
   cycleflag                    = EXAMPLE_FLAG = true
-  desired_speed                = 1.2
-  draw_path_loop               = ./
+  draw_path_loop               = true
   duration                     = 5
   eager_prev_index_flag        = EXAMPLE_FLAG = true
   efficiency_measure           = example
@@ -1402,13 +1291,11 @@ Behavior = BHV_Waypoint
   lead                         = 10
   lead_condition               = DEPLOY = true
   lead_damper                  = 10
-  lead_to_start                = true
+  lead_to_start                = 10
   name                         = waypoint
   newpt                        = 0,0
   nm_radius                    = 10
   order                        = example
-  osx                          = 0
-  osy                          = 0
   patience                     = 1.0
   perpetual                    = false
   point                        = 0,0
@@ -1417,8 +1304,6 @@ Behavior = BHV_Waypoint
   post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   post_suffix                  = 1
   priority                     = 100
-  ptx                          = 0
-  pty                          = 0
   pwt                          = 100
   radius                       = 10
   repeat                       = true
@@ -1426,13 +1311,10 @@ Behavior = BHV_Waypoint
   runflag                      = EXAMPLE_FLAG = true
   shortest_tour                = example
   slip_radius                  = 10
-  slow_dist                    = 10
   spawnx_flag                  = EXAMPLE_FLAG = true
   speed                        = 1.2
   speed_alt                    = 1.2
-  stop_dist                    = 10
   templating                   = false
-  uniform_piece                = true
   updates                      = BHV_WAYPOINT_UPDATES
   use_alt_speed                = true
   visual_hints                 = vertex_size=3, edge_color=gray
@@ -1453,16 +1335,12 @@ Behavior = BHV_ZigZag
   activeflag                   = EXAMPLE_FLAG = true
   condition                    = DEPLOY = true
   delta_heading                = 1
-  descriptor                   = example_label
-  draw_req_hdg                 = 90
-  draw_set_hdg                 = 90
   duration                     = 5
   endflag                      = EXAMPLE_FLAG = true
   fierce_zigging               = example
   hdg_thresh                   = 90
   idleflag                     = EXAMPLE_FLAG = true
   inactiveflag                 = EXAMPLE_FLAG = true
-  max_stem_dist                = 10
   max_stem_odo                 = example
   max_zig_legs                 = example
   max_zig_zags                 = example
@@ -1471,11 +1349,10 @@ Behavior = BHV_ZigZag
   perpetual                    = false
   portflag                     = EXAMPLE_FLAG = true
   portflagx                    = EXAMPLE_FLAG = true
+  post_mapping                 = source=EXAMPLE_STATUS,dest=EXAMPLE_STATUS_ALT
   priority                     = 100
   pwt                          = 100
-  req_hdg_color                = yellow
   runflag                      = EXAMPLE_FLAG = true
-  set_hdg_color                = yellow
   spawnx_flag                  = EXAMPLE_FLAG = true
   spd_on_active                = 1.2
   speed                        = 1.2
