@@ -1,0 +1,42 @@
+//------------------------------------------------------------
+// FILE: geometry_diagnostics_observe.moos
+// NOTE: Intentional good/bad geometry examples for observing diagnostics.
+//       This is not a runnable mission file.
+//------------------------------------------------------------
+
+ServerHost   = localhost
+ServerPort   = 9000
+Community    = geometry_observe
+
+//------------------------------------------------------------
+// pContactMgrV20 contact filter regions
+//------------------------------------------------------------
+ProcessConfig = pContactMgrV20
+{
+  AppTick       = 4
+  CommsTick     = 4
+
+  // Good: convex filter regions.
+  match_region  = pts={0,0:100,0:100,100:0,100}
+  ignore_region = 10,10:90,10:90,90:10,90
+
+  // Bad: malformed and non-convex regions; each should produce a diagnostic.
+  match_region  = pts={0,0:abc,0}
+  ignore_region = pts={0,0:100,0:50,50:100,100:0,100}
+
+  // Skipped for now: source-supported generated polygon syntax.
+  match_region  = radial: x=0, y=0, radius=40, pts=8
+}
+
+//------------------------------------------------------------
+// Block-specific guardrail
+//------------------------------------------------------------
+ProcessConfig = pHelmIvP
+{
+  AppTick       = 4
+  CommsTick     = 4
+
+  // Not pHelmIvP parameters, so contact geometry diagnostics should not fire.
+  match_region  = pts={0,0:abc,0}
+  ignore_region = pts={0,0:100,0:50,50:100,100:0,100}
+}

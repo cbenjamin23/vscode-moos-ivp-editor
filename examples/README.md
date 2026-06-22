@@ -34,3 +34,13 @@ Broad coverage fixtures:
 
 The broad coverage fixtures are useful for syntax and hover review, but they
 are not runnable missions.
+
+Diagnostic observation fixtures:
+
+- `geometry_diagnostics_observe.bhv`: paired good, bad, skipped, and
+  block-specific IvP behavior geometry examples.
+- `geometry_diagnostics_observe.moos`: paired good, bad, skipped, and
+  block-specific MOOS app geometry examples.
+
+The observation fixtures intentionally contain bad values so diagnostics can be
+seen in VS Code. They are excluded from the normal zero-diagnostic example gate.

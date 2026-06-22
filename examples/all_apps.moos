@@ -85,11 +85,11 @@ ProcessConfig = pContactMgrV20
   hold_alerts_for_helm         = false
   ignore_group                 = alpha
   ignore_name                  = example_name
-  ignore_region                = op_region
+  ignore_region                = pts={0,0:100,0:100,100:0,100}
   ignore_type                  = kayak
   match_group                  = alpha
   match_name                   = example_name
-  match_region                 = op_region
+  match_region                 = pts={0,0:100,0:100,100:0,100}
   match_type                   = kayak
   max_appcast_events           = 0
   max_contacts                 = 0
@@ -1079,4 +1079,3 @@ ProcessConfig = uXMS
   wrap_data                    = false
   wrap_data_len                = 0
 }
-

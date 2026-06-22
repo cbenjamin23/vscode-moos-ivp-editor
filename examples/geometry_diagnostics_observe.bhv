@@ -1,0 +1,127 @@
+//------------------------------------------------------------
+// FILE: geometry_diagnostics_observe.bhv
+// NOTE: Intentional good/bad geometry examples for observing diagnostics.
+//       This is not a runnable behavior file.
+//------------------------------------------------------------
+
+//------------------------------------------------------------
+// Convex polygon behavior parameters
+//------------------------------------------------------------
+Behavior = BHV_Loiter
+{
+  name     = loiter_geometry_observe
+  pwt      = 100
+
+  // Good: simple convex polygon.
+  polygon  = pts={0,0:100,0:100,100:0,100}
+
+  // Bad: non-convex polygon; should produce a diagnostic.
+  polygon  = pts={0,0:100,0:50,50:100,100:0,100}
+
+  // Skipped for now: source-supported generated polygon syntax.
+  polygon  = radial: x=0, y=0, radius=40, pts=8
+}
+
+Behavior = BHV_AvoidObstacleV24
+{
+  name     = avoid_obstacle_geometry_observe
+  pwt      = 100
+
+  // Good: convex gut polygon.
+  polygon  = 0,0:120,0:120,80:0,80
+
+  // Bad: non-convex gut polygon; should produce a diagnostic.
+  polygon  = 0,0:120,0:60,40:120,80:0,80
+
+  // Bad: same rule through the poly alias.
+  poly     = 0,0:120,0:60,40:120,80:0,80
+}
+
+Behavior = BHV_OpRegionRecover
+{
+  name     = op_region_recover_geometry_observe
+  pwt      = 100
+
+  // Good: convex polygon.
+  polygon  = pts={0,0:100,0:100,100:0,100}
+
+  // Bad: too few points for a polygon; should produce a diagnostic.
+  polygon  = pts={0,0:100,0}
+}
+
+Behavior = BHV_OpRegionV24
+{
+  name      = op_region_v24_geometry_observe
+  pwt       = 100
+
+  // Good: convex operational regions.
+  core_poly = pts={0,0:100,0:100,100:0,100}
+  save_poly = 10,10:90,10:90,90:10,90
+  halt_poly = pts={20,20:80,20:80,80:20,80}
+
+  // Bad: each should produce a diagnostic.
+  core_poly = pts={0,0:100,0:50,50:100,100:0,100}
+  save_poly = pts={0,0:abc,0:100,100}
+  halt_poly = pts={0,0:100,0}
+}
+
+//------------------------------------------------------------
+// Waypoint path parameters
+//------------------------------------------------------------
+Behavior = BHV_Waypoint
+{
+  name     = waypoint_geometry_observe
+  pwt      = 100
+
+  // Good: source accepts these special values.
+  points   = empty
+  xpoints  = start
+
+  // Good: simple seglist and polygon-like point list.
+  points   = 0,0:100,0
+  polygon  = pts={0,0:100,0:100,100:0,100}
+
+  // Bad: malformed point lists; each should produce a diagnostic.
+  points   = pts={0,0:abc,0}
+  // Bad: semicolon is not a point separator in the modeled source-backed form.
+  points   = 0,0;2,2:
+  xpoints  = pts={0,0:100,0
+
+  // Skipped for now: source-supported generated seglist syntax.
+  points   = lawnmower: x=0, y=0, height=20, width=50, swath=5
+}
+
+//------------------------------------------------------------
+// Contact behavior match/ignore region parameters
+//------------------------------------------------------------
+Behavior = BHV_AvoidCollision
+{
+  name          = contact_geometry_observe
+  pwt           = 100
+  contact       = abe
+
+  // Good: convex filter regions inherited from IvPContactBehavior.
+  match_region  = pts={0,0:100,0:100,100:0,100}
+  ignore_region = 10,10:90,10:90,90:10,90
+
+  // Bad: should produce diagnostics.
+  match_region  = pts={0,0:abc,0}
+  ignore_region = pts={0,0:100,0:50,50:100,100:0,100}
+
+  // Skipped for now: source-supported generated polygon syntax.
+  match_region  = ellipse: x=0, y=0, major=50, minor=20, pts=16
+}
+
+//------------------------------------------------------------
+// Block-specific guardrail
+//------------------------------------------------------------
+Behavior = BHV_AbortToPoint
+{
+  name          = block_specific_geometry_observe
+  pwt           = 100
+
+  // Not a BHV_AbortToPoint parameter, so geometry diagnostics should not fire.
+  match_region  = pts={0,0:abc,0}
+  ignore_region = pts={0,0:100,0:50,50:100,100:0,100}
+  polygon       = pts={0,0:100,0:50,50:100,100:0,100}
+}
