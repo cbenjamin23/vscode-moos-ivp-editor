@@ -14,6 +14,64 @@ const inactiveBehaviorFamilyMembers = new Set([
   "BHV_AvdColregsV19",
   "BHV_OpRegion"
 ]);
+const behaviorParameterExclusions = {
+  BHV_AbortToPoint: new Set([
+    "desired_speed",
+    "osx",
+    "osy",
+    "ptx",
+    "pty"
+  ]),
+  BHV_AvdColregsV22: new Set([
+    "exit_on_filter_vname"
+  ]),
+  BHV_AvoidCollision: new Set([
+    "exit_on_filter_vname",
+    "ignore_contact_group",
+    "match_contact_group",
+    "them"
+  ]),
+  BHV_AvoidObstacleV24: new Set([
+    "no_alert_request",
+    "obstacle_key"
+  ]),
+  BHV_CutRange: new Set([
+    "exit_on_filter_vname",
+    "them"
+  ]),
+  BHV_LegRun: new Set([
+    "cycleflag",
+    "full_leg",
+    "leg_length",
+    "leg_length_mod",
+    "midflag",
+    "midpct",
+    "shift_point",
+    "warn_overshoot",
+    "wpt_status_var",
+    "wptflag"
+  ]),
+  BHV_OpRegionV24: new Set([
+    "draw_save_statue",
+    "polygon"
+  ]),
+  BHV_OpRegionRecover: new Set([
+    "breached_poly_flag"
+  ]),
+  BHV_Shadow: new Set([
+    "exit_on_filter_vname",
+    "them"
+  ]),
+  BHV_Trail: new Set([
+    "exit_on_filter_vname",
+    "n_alert_request",
+    "them"
+  ]),
+  BHV_ZigZag: new Set([
+    "max_stem_dist"
+  ])
+};
+const behaviorBaseKinds = {};
 
 function walk(dir, predicate = () => true) {
   if (!fs.existsSync(dir)) return [];
@@ -47,6 +105,7 @@ function addToSetMap(map, key, value) {
 
 function addParamToOwner(map, owner, param, replaceCase = false) {
   if (!owner || !param) return;
+  if (behaviorParameterExclusions[owner]?.has(param)) return;
   if (!map[owner]) map[owner] = new Set();
   const lower = param.toLowerCase();
   for (const existing of map[owner]) {
@@ -169,19 +228,57 @@ function extractInfoConfigParams(file) {
 function extractSetParamParams(file) {
   const text = readText(file);
   const params = new Set();
+  const name = path.basename(file, ".cpp");
+  const body = extractClassMethodBody(text, name, "setParam");
+  if (!body) return params;
+
   const regexes = [
-    /param\s*==\s*"([^"]+)"/g,
-    /\(\s*param\s*==\s*"([^"]+)"/g,
-    /setParam\(\s*"([^"]+)"/g
+    /\b(?:param|param_low|g_param)\s*==\s*"([^"]+)"/g,
+    /"([^"]+)"\s*==\s*\b(?:param|param_low|g_param)\b/g,
+    /\b(?:IvPBehavior|IvPContactBehavior|this)\s*(?:::|->)\s*setParam\s*\(\s*"([^"]+)"/g
   ];
   for (const regex of regexes) {
     let match;
-    while ((match = regex.exec(text)) !== null) {
+    while ((match = regex.exec(body)) !== null) {
       const param = match[1];
       if (isValidParameterToken(param)) params.add(param);
     }
   }
   return params;
+}
+
+function findMatchingBrace(text, openIndex) {
+  let depth = 0;
+  for (let i = openIndex; i < text.length; i++) {
+    if (text[i] === "{") depth++;
+    if (text[i] === "}") depth--;
+    if (depth === 0) return i;
+  }
+  return -1;
+}
+
+function extractClassMethodBody(text, className, methodName) {
+  const regex = new RegExp(`\\b(?:bool|void|string|IvPFunction\\s*\\*)\\s+${className}::${methodName}\\s*\\([^)]*\\)\\s*\\{`, "m");
+  const match = regex.exec(text);
+  if (!match) return "";
+  const openIndex = text.indexOf("{", match.index);
+  const closeIndex = findMatchingBrace(text, openIndex);
+  return closeIndex === -1 ? "" : text.slice(openIndex + 1, closeIndex);
+}
+
+function behaviorBaseKind(cppFile) {
+  const dir = path.dirname(cppFile);
+  const name = path.basename(cppFile, ".cpp");
+  const header = path.join(dir, `${name}.h`);
+  if (!fs.existsSync(header)) return "";
+  const text = readText(header);
+  const match = text.match(new RegExp(`class\\s+${name}\\s*:\\s*public\\s+([A-Za-z0-9_]+)`));
+  return match ? match[1] : "";
+}
+
+function isConfigurableBehaviorFile(file) {
+  const base = behaviorBaseKind(file);
+  return base === "IvPBehavior" || base === "IvPContactBehavior";
 }
 
 const moosDocs = loadOptionalJson("data/moos-docs.json");
@@ -351,9 +448,11 @@ if (fs.existsSync(SRC_ROOT)) {
   const behaviorFiles = walk(SRC_ROOT, (file) => /BHV_[A-Za-z0-9_]+\.cpp$/.test(file));
   for (const file of behaviorFiles) {
     if (file.includes(`${path.sep}lib_dep_behaviors${path.sep}`)) continue;
+    if (!isConfigurableBehaviorFile(file)) continue;
     const name = path.basename(file, ".cpp");
     if (inactiveBehaviorFamilyMembers.has(name)) continue;
     allowedBehaviors.add(name);
+    behaviorBaseKinds[name] = behaviorBaseKind(file);
     if (!behaviorParams[name]) behaviorParams[name] = new Set();
     addSourceKind(behaviorSourceKinds, name, "local-ivp-source");
   }
@@ -405,6 +504,7 @@ if (fs.existsSync(SRC_ROOT)) {
   const behaviorFiles = walk(SRC_ROOT, (file) => /BHV_[A-Za-z0-9_]+\.cpp$/.test(file));
   for (const file of behaviorFiles) {
     if (file.includes(`${path.sep}lib_dep_behaviors${path.sep}`)) continue;
+    if (!isConfigurableBehaviorFile(file)) continue;
     const name = path.basename(file, ".cpp");
     if (inactiveBehaviorFamilyMembers.has(name)) continue;
     if (!allowedBehaviors.has(name)) continue;
@@ -420,12 +520,49 @@ if (fs.existsSync(SRC_ROOT)) {
 });
 
 const inheritedBehaviorParams = [
-  "name", "pwt", "priority", "condition", "updates", "runflag", "endflag",
-  "activeflag", "inactiveflag", "idleflag", "duration", "perpetual",
-  "templating", "spawnx_flag", "visual_hints"
+  "name", "descriptor", "us", "pwt", "priwt", "priority", "condition",
+  "comms_policy", "duration_status", "duration_reset", "duration_idle_decay",
+  "post_mapping", "spawnflag", "spawn_flag", "runxflag", "runx_flag",
+  "spawnxflag", "spawnx_flag", "runflag", "run_flag", "activeflag",
+  "active_flag", "inactiveflag", "inactive_flag", "idleflag", "idle_flag",
+  "endflag", "end_flag", "configflag", "config_flag", "no_starve",
+  "nostarve", "duration", "perpetual", "build_info", "updates",
+  "precision", "templating", "max_spawnings"
 ];
+const contactBehaviorParams = [
+  "contact", "extrapolate", "post_per_contact_info", "match_name",
+  "ignore_name", "match_group", "ignore_group", "match_type", "ignore_type",
+  "match_region", "ignore_region", "strict_ignore", "exit_on_filter_vtype",
+  "exit_on_filter_group", "exit_on_filter_region", "cnflag", "decay",
+  "on_no_contact_ok", "decay_end", "time_on_leg",
+  "bearing_line_label_show", "bearing_line_show", "bearing_line_config",
+  "bearing_lines"
+];
+const delegatedBehaviorParams = {
+  BHV_LegRun: [
+    "p1", "p2", "vx1", "vx2", "leg", "leg_len", "leg_len_mod",
+    "leg_ang", "leg_ang_mod", "shift_pt", "turn1_bias",
+    "turn2_bias", "turn_bias", "turn1_bias_mod", "turn2_bias_mod",
+    "turn_bias_mod", "turn1_ext", "turn2_ext", "turn_ext",
+    "turn1_ext_mod", "turn2_ext_mod", "turn_ext_mod", "turn1_rad",
+    "turn2_rad", "turn_rad", "turn_rad_min", "turn1_rad_mod",
+    "turn2_rad_mod", "turn_rad_mod", "turn_pt_gap", "turn1_dir",
+    "turn2_dir", "turn_dir", "id"
+  ]
+};
+const behaviorExampleOmitParams = new Set([
+  "active_flag", "build_info", "comms_policy", "config_flag", "configflag",
+  "descriptor", "duration_idle_decay", "duration_reset", "duration_status",
+  "end_flag", "idle_flag", "inactive_flag", "max_spawnings", "no_starve",
+  "nostarve", "precision", "priwt", "run_flag", "runx_flag", "runxflag",
+  "spawn_flag", "spawnflag", "spawnxflag", "us"
+]);
 for (const behavior of Object.keys(behaviorParams)) {
   inheritedBehaviorParams.forEach((param) => addParamToOwner(behaviorParams, behavior, param));
+  if (behaviorBaseKinds[behavior] === "IvPContactBehavior") {
+    contactBehaviorParams.forEach((param) => addParamToOwner(behaviorParams, behavior, param));
+  }
+  (delegatedBehaviorParams[behavior] || []).forEach((param) => addParamToOwner(behaviorParams, behavior, param));
 }
 
 function buildInventory(paramMap, sourceMap, sourceKindMap) {
@@ -517,7 +654,7 @@ for (const [behavior, data] of Object.entries(bhvInventory.items)) {
   }
   bhvLines.push(`Behavior = ${behavior}`);
   bhvLines.push("{");
-  for (const param of data.parameters) {
+  for (const param of data.parameters.filter((param) => !behaviorExampleOmitParams.has(param))) {
     bhvLines.push(`  ${param.padEnd(28)} = ${sampleValue(behavior, param, "bhv")}`);
   }
   bhvLines.push("}");
