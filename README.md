@@ -87,26 +87,13 @@ Format Document command.
 
 Open the Command Palette with `Cmd+Shift+P` on macOS or `Ctrl+Shift+P` on
 Windows/Linux, then run `MOOS-IvP: Configure Features` to turn extension
-features on or off. You can also open VS Code Settings, search `MOOS-IvP`, or
-set the same values in `settings.json`.
+features on or off.
 
 ![MOOS-IvP configure features command](images/feature-toggles-command.png)
 
 Select the features to keep enabled, then confirm with `OK`.
 
 ![MOOS-IvP feature toggle checklist](images/feature-toggles-menu.png)
-
-```json
-{
-  "moosIvpEditor.diagnostics.enabled": true,
-  "moosIvpEditor.diagnostics.geometry.enabled": true,
-  "moosIvpEditor.folding.enabled": true,
-  "moosIvpEditor.formatting.enabled": true,
-  "moosIvpEditor.formatting.diagnostics.enabled": true,
-  "moosIvpEditor.hover.enabled": true,
-  "moosIvpEditor.semanticHighlighting.enabled": true
-}
-```
 
 ## Requirements
 
