@@ -462,7 +462,7 @@ function sampleValue(owner, param, kind) {
   if (lower.startsWith("warn") || lower.startsWith("no_") || lower.startsWith("can_") || lower.includes("validity")) return "true";
   if (lower.includes("addr") || lower.includes("hostip")) return "localhost";
   if (lower === "port" || lower.endsWith("_port")) return "9000";
-  if (lower.includes("region")) return "op_region";
+  if (lower.includes("region")) return "0,0 : 50,0 : 50,-50 : 0,-50";
   if (lower.includes("config")) return "label=example";
   if (lower.includes("extrapolate") || lower.includes("plateau") || lower.includes("uniform_")) return "true";
   if (lower.includes("var")) return "EXAMPLE_VAR";

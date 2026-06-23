@@ -26,15 +26,6 @@ ProcessConfig = ANTLER
 }
 
 //----------------------------------------------------
-ProcessConfig = pShare
-{
-  AppTick   = 4
-  CommsTick = 4
-
-  input = route = localhost:$(PSHARE_PORT)
-}
-
-//----------------------------------------------------
 ProcessConfig = pLogger
 {
   AppTick   = 5
@@ -45,6 +36,16 @@ ProcessConfig = pLogger
   AsyncLog        = true
   FileTimeStamp   = true
   WildCardLogging = true
+  max_speed       = 2
+}
+
+//----------------------------------------------------
+ProcessConfig = pShare
+{
+  AppTick   = 4
+  CommsTick = 4
+
+  input = route = localhost:$(PSHARE_PORT)
 }
 
 //----------------------------------------------------

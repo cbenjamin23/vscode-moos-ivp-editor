@@ -48,6 +48,7 @@ function main() {
     ["convex-polygon", "pts={0,0:100,0", "invalid", "malformed-standard-points"],
     ["convex-polygon", "pts={0,0:abc,0:100,100}", "invalid", "malformed-point-list"],
     ["convex-polygon", "pts={0,0:100,0}", "invalid", "too-few-polygon-points"],
+    ["convex-polygon", "pts={0,0:100,100:0,100:100,0}", "invalid", "self-intersecting-polygon"],
     ["convex-polygon", "pts={0,0:100,0:50,50:100,100:0,100}", "invalid", "non-convex-polygon"],
     ["convex-polygon", "radial: x=0, y=0, radius=10, pts=8", "skipped", "unsupported-source-backed-syntax"],
     ["convex-polygon", "pts={0,0:100,0:100,100:0,100},label=alpha", "skipped", "unsupported-source-backed-syntax"],
@@ -66,6 +67,7 @@ function main() {
     ["contact-filter-region", "pts={0,0:100,0:100,100:0,100}", "valid"],
     ["contact-filter-region", "0,0:100,0:100,100:0,100", "valid"],
     ["contact-filter-region", "pts={0,0:100,0}", "invalid", "too-few-polygon-points"],
+    ["contact-filter-region", "pts={0,0:100,100:0,100:100,0}", "invalid", "self-intersecting-polygon"],
     ["contact-filter-region", "pts={0,0:100,0:50,50:100,100:0,100}", "invalid", "non-convex-polygon"],
     ["contact-filter-region", "ellipse: x=0, y=0, major=10, minor=5, pts=16", "skipped", "unsupported-source-backed-syntax"]
   ];

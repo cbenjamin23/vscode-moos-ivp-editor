@@ -65,16 +65,29 @@ function assertDiagnosticCount(languageSupport, schema, name, language, text, ex
   }
 }
 
+function assertDiagnosticMessageIncludes(languageSupport, schema, name, language, text, expectedText) {
+  const collect = language === "moos"
+    ? languageSupport.collectMoosDiagnostics
+    : languageSupport.collectBehaviorDiagnostics;
+  const diagnostics = collect(documentFromText(text), schema);
+  if (!diagnostics.some((diagnostic) => diagnostic.message.includes(expectedText))) {
+    const details = diagnostics.map((diagnostic) => diagnostic.message).join("; ");
+    throw new Error(`${name} expected diagnostic containing "${expectedText}", got: ${details}`);
+  }
+}
+
 function main() {
   const languageSupport = loadLanguageSupport();
   const schema = JSON.parse(fs.readFileSync(path.join(REPO_ROOT, "data", "diagnostic-schema.json"), "utf8"));
 
   const validConvex = "0,0:100,0:100,100:0,100";
+  const invalidSelfCrossing = "0,0:100,100:0,100:100,0";
   const invalidNonConvex = "0,0:100,0:50,50:100,100:0,100";
   const deferredGenerated = "radial: x=0, y=0, radius=10, pts=8";
 
   const cases = [
     ["BHV_Loiter valid polygon", `Behavior = BHV_Loiter\n{\n  polygon = ${validConvex}\n}`, 0],
+    ["BHV_Loiter self-crossing polygon", `Behavior = BHV_Loiter\n{\n  polygon = ${invalidSelfCrossing}\n}`, 1],
     ["BHV_Loiter non-convex polygon", `Behavior = BHV_Loiter\n{\n  polygon = ${invalidNonConvex}\n}`, 1],
     ["BHV_Loiter deferred generated polygon", `Behavior = BHV_Loiter\n{\n  polygon = ${deferredGenerated}\n}`, 0],
     ["BHV_AvoidObstacleV24 non-convex polygon", `Behavior = BHV_AvoidObstacleV24\n{\n  polygon = ${invalidNonConvex}\n}`, 1],
@@ -94,6 +107,7 @@ function main() {
     ["Unrelated block points stays block-specific", "Behavior = BHV_AbortToPoint\n{\n  points = pts={0,0:abc,0}\n}", 0],
     ["Contact behavior accepts match_region", `Behavior = BHV_AvoidCollision\n{\n  match_region = ${validConvex}\n}`, 0],
     ["Contact behavior rejects malformed match_region", "Behavior = BHV_AvoidCollision\n{\n  match_region = pts={0,0:abc,0}\n}", 1],
+    ["Contact behavior rejects self-crossing ignore_region", `Behavior = BHV_AvoidCollision\n{\n  ignore_region = ${invalidSelfCrossing}\n}`, 1],
     ["Contact behavior rejects non-convex ignore_region", `Behavior = BHV_AvoidCollision\n{\n  ignore_region = ${invalidNonConvex}\n}`, 1],
     ["Contact behavior skips deferred generated region", `Behavior = BHV_AvoidCollision\n{\n  match_region = ${deferredGenerated}\n}`, 0],
     ["Unrelated behavior region stays block-specific", `Behavior = BHV_Loiter\n{\n  match_region = ${invalidNonConvex}\n}`, 0],
@@ -106,7 +120,19 @@ function main() {
     assertDiagnosticCount(languageSupport, schema, name, language, text, expectedCount);
   });
 
-  console.log(`geometry diagnostic fixtures: ${cases.length} passed`);
+  const messageCases = [
+    ["malformed standard points", "Behavior = BHV_Loiter\n{\n  polygon = pts={0,0:100,0\n}", "has malformed pts={...} syntax"],
+    ["malformed point list", "Behavior = BHV_Loiter\n{\n  polygon = pts={0,0:abc,0:100,100}\n}", "has a malformed point list"],
+    ["too few polygon points", "Behavior = BHV_Loiter\n{\n  polygon = pts={0,0:100,0}\n}", "has too few points for a polygon"],
+    ["self-crossing polygon", `Behavior = BHV_Loiter\n{\n  polygon = ${invalidSelfCrossing}\n}`, "is self-intersecting"],
+    ["non-convex polygon", `Behavior = BHV_Loiter\n{\n  polygon = ${invalidNonConvex}\n}`, "is not convex"]
+  ];
+
+  messageCases.forEach(([name, text, expectedText]) => {
+    assertDiagnosticMessageIncludes(languageSupport, schema, name, "ivp-behavior", text, expectedText);
+  });
+
+  console.log(`geometry diagnostic fixtures: ${cases.length + messageCases.length} passed`);
 }
 
 main();

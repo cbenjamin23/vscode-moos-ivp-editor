@@ -67,12 +67,12 @@ Behavior = BHV_AvdColregsV22
   idleflag                     = EXAMPLE_FLAG = true
   ignore_group                 = alpha
   ignore_name                  = example_name
-  ignore_region                = pts={0,0:100,0:100,100:0,100}
+  ignore_region                = 0,0 : 50,0 : 50,-50 : 0,-50
   ignore_type                  = kayak
   inactiveflag                 = EXAMPLE_FLAG = true
   match_group                  = alpha
   match_name                   = example_name
-  match_region                 = pts={0,0:100,0:100,100:0,100}
+  match_region                 = 0,0 : 50,0 : 50,-50 : 0,-50
   match_type                   = kayak
   max_util_cpa_dist            = 0
   min_util_cpa_dist            = 0
@@ -130,12 +130,12 @@ Behavior = BHV_AvoidCollision
   idleflag                     = EXAMPLE_FLAG = true
   ignore_group                 = alpha
   ignore_name                  = example_name
-  ignore_region                = pts={0,0:100,0:100,100:0,100}
+  ignore_region                = 0,0 : 50,0 : 50,-50 : 0,-50
   ignore_type                  = kayak
   inactiveflag                 = EXAMPLE_FLAG = true
   match_group                  = alpha
   match_name                   = example_name
-  match_region                 = pts={0,0:100,0:100,100:0,100}
+  match_region                 = 0,0 : 50,0 : 50,-50 : 0,-50
   match_type                   = kayak
   max_util_cpa_dist            = 0
   min_util_cpa_dist            = 0
@@ -328,13 +328,13 @@ Behavior = BHV_Convoy
   idleflag                     = EXAMPLE_FLAG = true
   ignore_group                 = alpha
   ignore_name                  = example_name
-  ignore_region                = pts={0,0:100,0:100,100:0,100}
+  ignore_region                = 0,0 : 50,0 : 50,-50 : 0,-50
   ignore_type                  = kayak
   inactiveflag                 = EXAMPLE_FLAG = true
   inter_mark_range             = 1
   match_group                  = alpha
   match_name                   = example_name
-  match_region                 = pts={0,0:100,0:100,100:0,100}
+  match_region                 = 0,0 : 50,0 : 50,-50 : 0,-50
   match_type                   = kayak
   max_mark_range               = 1
   name                         = convoy
@@ -389,12 +389,12 @@ Behavior = BHV_CutRange
   idleflag                     = EXAMPLE_FLAG = true
   ignore_group                 = alpha
   ignore_name                  = example_name
-  ignore_region                = pts={0,0:100,0:100,100:0,100}
+  ignore_region                = 0,0 : 50,0 : 50,-50 : 0,-50
   ignore_type                  = kayak
   inactiveflag                 = EXAMPLE_FLAG = true
   match_group                  = alpha
   match_name                   = example_name
-  match_region                 = pts={0,0:100,0:100,100:0,100}
+  match_region                 = 0,0 : 50,0 : 50,-50 : 0,-50
   match_type                   = kayak
   max_patience                 = 0
   name                         = cutrange
@@ -1089,12 +1089,12 @@ Behavior = BHV_Shadow
   idleflag                     = EXAMPLE_FLAG = true
   ignore_group                 = alpha
   ignore_name                  = example_name
-  ignore_region                = pts={0,0:100,0:100,100:0,100}
+  ignore_region                = 0,0 : 50,0 : 50,-50 : 0,-50
   ignore_type                  = kayak
   inactiveflag                 = EXAMPLE_FLAG = true
   match_group                  = alpha
   match_name                   = example_name
-  match_region                 = pts={0,0:100,0:100,100:0,100}
+  match_region                 = 0,0 : 50,0 : 50,-50 : 0,-50
   match_type                   = kayak
   name                         = shadow
   on_no_contact_ok             = true
@@ -1234,12 +1234,12 @@ Behavior = BHV_Trail
   idleflag                     = EXAMPLE_FLAG = true
   ignore_group                 = alpha
   ignore_name                  = example_name
-  ignore_region                = pts={0,0:100,0:100,100:0,100}
+  ignore_region                = 0,0 : 50,0 : 50,-50 : 0,-50
   ignore_type                  = kayak
   inactiveflag                 = EXAMPLE_FLAG = true
   match_group                  = alpha
   match_name                   = example_name
-  match_region                 = pts={0,0:100,0:100,100:0,100}
+  match_region                 = 0,0 : 50,0 : 50,-50 : 0,-50
   match_type                   = kayak
   mod_trail_range              = 10
   mod_trail_range_pct          = 10

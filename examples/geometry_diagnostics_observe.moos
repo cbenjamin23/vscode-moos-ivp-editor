@@ -20,8 +20,9 @@ ProcessConfig = pContactMgrV20
   match_region  = pts={0,0:100,0:100,100:0,100}
   ignore_region = 10,10:90,10:90,90:10,90
 
-  // Bad: malformed and non-convex regions; each should produce a diagnostic.
+  // Bad: malformed, self-crossing, and non-convex regions; each should produce a diagnostic.
   match_region  = pts={0,0:abc,0}
+  match_region  = pts={0,0:100,100:0,100:100,0}
   ignore_region = pts={0,0:100,0:50,50:100,100:0,100}
 
   // Skipped for now: source-supported generated polygon syntax.
