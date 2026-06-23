@@ -3,8 +3,9 @@
 [![CI/CD](https://github.com/moos-ivp/vscode-moos-ivp-editor/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/moos-ivp/vscode-moos-ivp-editor/actions/workflows/ci-cd.yml)
 
 The MOOS-IvP Editor extension for Visual Studio Code adds syntax highlighting,
-hover descriptions, semantic highlighting, and conservative diagnostics for
-MOOS mission files, IvP behavior files, and MOOS-IvP patch files.
+semantic highlighting, hover descriptions, folding, formatting, and
+conservative diagnostics for MOOS mission files, IvP behavior files, and
+MOOS-IvP patch files.
 
 It supports `.moos`, `.xmoos`, `.bhv`, and `.xbhv` files. The `.xmoos` and
 `.xbhv` modes cover patch inputs commonly used with `nspatch`; `plug_*.moos`
@@ -64,6 +65,15 @@ complex app-specific semantics that are not modeled from source evidence.
 
 ![Diagnostics example](images/diagnostics.png)
 
+### Formatting And Folding
+
+MOOS and IvP behavior blocks can be folded from their `ProcessConfig` or
+`Behavior` headers.
+
+The formatter normalizes indentation, assignment spacing, blank lines, and
+trailing whitespace. Formatting diagnostics can be fixed with the
+`Format MOOS-IvP document` quick fix or the normal VS Code format command.
+
 ## Requirements
 
 - Visual Studio Code `1.32` or later.
@@ -91,8 +101,9 @@ Reload VS Code after installing or replacing the extension.
 
 ## Development
 
-See [COVERAGE_GUIDE.md](COVERAGE_GUIDE.md) for adding apps, parameters, hover
-descriptions, and diagnostics.
+See [CONTRIBUTING.md](https://github.com/moos-ivp/vscode-moos-ivp-editor/blob/main/CONTRIBUTING.md)
+for local development, architecture, metadata updates, diagnostics,
+validation, and release workflow.
 
 ## Links
 

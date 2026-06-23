@@ -8,5 +8,4 @@ DEVELOPMENT_PLAN.md
 examples/**
 scripts/**
 vsc-extension-quickstart.md
-CONTRIBUTING.md
 *.vsix

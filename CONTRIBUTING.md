@@ -1,61 +1,128 @@
 # Contributing to MOOS-IvP Editor
 
-Thank you for your interest in contributing to the MOOS-IvP Editor extension for Visual Studio Code!
-
-## CI/CD Pipeline
-
-This repository uses GitHub Actions for continuous integration and deployment. The workflow automatically:
-
-1. **Builds and packages** the extension on every push and pull request
-2. **Publishes to the VSCode Marketplace** when a new release is created
-
-### Setting Up for Publishing
-
-To enable automatic publishing to the Visual Studio Code Marketplace, a repository secret needs to be configured:
-
-#### Required Secret: `VSCE_PAT`
-
-1. **Create a Personal Access Token (PAT)**:
-   - Go to [Azure DevOps](https://dev.azure.com/)
-   - Navigate to User Settings → Personal Access Tokens
-   - Create a new token with the following settings:
-     - Organization: All accessible organizations
-     - Scopes: Marketplace → Acquire, Manage
-   - Copy the generated token
-
-2. **Add the secret to GitHub**:
-   - Go to repository Settings → Secrets and variables → Actions
-   - Click "New repository secret"
-   - Name: `VSCE_PAT`
-   - Value: Paste the token from step 1
-   - Click "Add secret"
-
-### Publisher Setup
-
-The extension is configured to publish under the `moos-ivp` publisher. Ensure:
-- The publisher `moos-ivp` exists in the VSCode Marketplace
-- The PAT has permissions to publish under this publisher
-
-### Creating a Release
-
-To publish a new version:
-
-1. Update the version in `package.json`
-2. Commit the changes
-3. Create a new tag: `git tag v0.0.3`
-4. Push the tag: `git push origin v0.0.3`
-5. Create a GitHub Release from the tag
-6. The CI/CD workflow will automatically publish to the marketplace
+This guide covers local development, coverage changes, validation, and releases.
 
 ## Development
 
-This is a syntax highlighting extension without build dependencies. To develop:
+1. Clone the repository.
+2. Open it in VS Code.
+3. Press `F5` to launch the Extension Development Host.
+4. Test with `.moos`, `.xmoos`, `.bhv`, and `.xbhv` files.
+5. Run `npm run check` before committing.
 
-1. Clone the repository
-2. Open in VSCode
-3. Press F5 to launch the Extension Development Host
-4. Test your changes with `.moos`, `.bhv`, `.plug`, or `.meta` files
+There is no compile step for normal extension development.
+
+## Architecture
+
+Keep feature logic in the focused module:
+
+- `src/language-support.js`: VS Code provider registration and API glue.
+- `src/scanner.js`: comments, block matching, assignments, and owner state.
+- `src/registry.js`: metadata loading and lookup construction.
+- `src/hover.js`: hover content.
+- `src/semantic-tokens.js`: semantic highlighting.
+- `src/folding.js`: block folding.
+- `src/formatter.js`: formatting and formatting diagnostics.
+- `src/diagnostics.js`: document diagnostic collection.
+- `src/validators.js`: general schema value validation.
+- `src/geometry.js`: geometry parsing and geometry validation.
+
+Avoid adding feature logic to `src/language-support.js` unless the change needs
+direct VS Code API wiring.
+
+## Metadata
+
+The bundled MOOS-IvP metadata is a reviewed snapshot. Prefer targeted fixes for
+small hover, highlighting, diagnostic, or formatting changes.
+
+Use `npm run build:data` only when intentionally refreshing generated metadata
+from source or docs. Review generated diffs carefully, especially:
+
+- `data/*-docs.json`
+- `data/*-source.json`
+- broad example fixtures
+
+Use `data/parameter-overrides.json` for curated human-reviewed corrections that
+should survive regeneration: descriptions, examples, defaults, aliases, and
+false-positive fixes.
+
+## Expanding Coverage
+
+Use local MOOS-IvP source as ground truth for diagnostics. Prefer source or MIT
+docs for hover text. Do not write guesses.
+
+Keep diagnostics block-specific and conservative. Do not warn on syntax that may
+be valid but is not fully modeled.
+
+### Add An App Or Behavior
+
+1. Confirm it exists in local MOOS-IvP source.
+2. Add or update manual metadata in `data/parameter-overrides.json` if generated
+   inventory is missing or weak.
+3. Use `moos` for MOOS apps and `ivp-behavior` for IvP behaviors.
+4. Add `reviewStatus`, `reviewSource`, and `parameters`.
+5. Run `npm run build:data && npm run check`.
+
+### Add A Hover Description
+
+Edit `data/parameter-overrides.json`.
+
+Use lowercase parameter keys. Preserve the real spelling in examples. Include a
+short description, default/example when known, and a source or docs reference.
+
+Then run `npm run build:data && npm run check`.
+
+### Add A Diagnostic
+
+Edit `data/diagnostic-schema.json`.
+
+Use owner-specific entries unless the parameter is parsed by a shared base
+class. Set `diagnostic: false` when source coerces values, accepts broad
+strings, or uses a complex parser that is not modeled.
+
+For new value types:
+
+1. Add general validation in `src/validators.js`.
+2. Add geometry-specific parsing or validation in `src/geometry.js`.
+3. Update `src/diagnostics.js` only if traversal or schema lookup changes.
+4. Touch `src/language-support.js` only for new VS Code API wiring.
+5. Add focused fixtures under `scripts/`.
+6. Wire new fixture scripts into `package.json`.
+7. Run `npm run check`.
+
+## Validation
+
+Minimum validation before committing:
+
+```sh
+npm run check
+npx @vscode/vsce package --out /tmp/moos-ivp-editor-check.vsix
+```
+
+Run `npm run build:data` first when intentionally changing generated metadata.
+
+Intentional diagnostics are allowed in observation fixtures. Diagnostics must
+stay at zero for `examples/all_apps.moos` and `examples/all_behaviors.bhv`.
+
+## Releases
+
+GitHub Actions builds and packages the extension on pushes and pull requests.
+It publishes to the VS Code Marketplace when a GitHub Release is created.
+
+Publishing requires a repository secret named `VSCE_PAT`. Create it in Azure
+DevOps with Marketplace `Acquire` and `Manage` scopes, then add it under GitHub
+Actions secrets.
+
+To release:
+
+1. Update the version in `package.json`.
+2. Commit the change.
+3. Create and push a tag, for example `git tag v1.0.1 && git push origin v1.0.1`.
+4. Create a GitHub Release from the tag.
+
+The extension publishes under the `moos-ivp` Marketplace publisher.
 
 ## Code Style
 
-Please maintain consistency with the existing code style in the repository.
+Prefer focused changes, source-backed metadata, and targeted validation over
+broad rewrites.
