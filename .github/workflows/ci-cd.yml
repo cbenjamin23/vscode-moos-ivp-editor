@@ -30,6 +30,9 @@ jobs:
     - name: Install vsce
       run: npm install -g @vscode/vsce
 
+    - name: Run checks
+      run: npm run check
+
     - name: Package extension
       run: vsce package
 

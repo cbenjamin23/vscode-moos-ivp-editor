@@ -1,7 +1,7 @@
 {
     "name": "moos-ivp-editor",
     "displayName": "MOOS-IvP Editor",
-    "description": "Syntax highlighting, hover help, semantic highlighting, and conservative diagnostics for MOOS-IvP configuration files.",
+    "description": "Editor support for MOOS-IvP mission, behavior, and patch files with syntax highlighting, hover descriptions, semantic highlighting, and conservative diagnostics.",
     "version": "1.0.0",
     "license": "MIT",
     "publisher": "moos-ivp",
