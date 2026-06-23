@@ -2,9 +2,6 @@
 
 VS Code language support for MOOS-IvP mission, behavior, and patch files.
 
-This extension is intentionally static. It ships bundled MOOS-IvP metadata and
-does not call an AI model at runtime.
-
 ## Features
 
 - TextMate syntax highlighting for MOOS and IvP behavior file structure.
