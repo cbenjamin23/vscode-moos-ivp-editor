@@ -24,7 +24,7 @@ behaviors, and parameters. Parameter highlighting is block-aware, so a
 parameter is only classified as known when it belongs to the current
 `ProcessConfig` or `Behavior` block.
 
-<!-- TODO: Add syntax highlighting example image. -->
+![Syntax highlighting example](images/syntax-highlighting.png)
 
 ### Hover Descriptions
 
@@ -36,7 +36,7 @@ overrides.
 Where available, hovers include examples, defaults, source references, and
 documentation links.
 
-<!-- TODO: Add hover description example image. -->
+![Hover description example](images/hover-descriptions.png)
 
 ### Diagnostics
 
@@ -48,7 +48,7 @@ Diagnostics are intentionally conservative. If the MOOS-IvP source accepts a
 broad value, coerces invalid input, or uses syntax the extension has not fully
 modeled, the extension skips the warning instead of guessing.
 
-<!-- TODO: Add diagnostics example image. -->
+![Diagnostics example](images/diagnostics.png)
 
 ## Requirements
 
