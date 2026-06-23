@@ -53,61 +53,32 @@ modeled, the extension skips the warning instead of guessing.
 ## Requirements
 
 - Visual Studio Code `1.32` or later.
-- No runtime MOOS-IvP install is required for the extension to load.
-- A local MOOS-IvP checkout is useful for development and for expanding bundled
-  metadata.
+- No runtime MOOS-IvP install is required.
+- Contributors expanding coverage should have Node.js and a local MOOS-IvP
+  checkout.
 
 ## Install
 
-Build a local VSIX:
+Install from VS Code:
+
+1. Open the Extensions view with `Cmd+Shift+X` on macOS or `Ctrl+Shift+X` on
+   Windows/Linux.
+2. Search for `MOOS-IvP Editor`.
+3. Install the extension and reload VS Code if prompted.
+
+Install from a local VSIX:
 
 ```sh
 npx @vscode/vsce package
-```
-
-Install it:
-
-```sh
 code --install-extension moos-ivp-editor-1.0.0.vsix
 ```
 
 Reload VS Code after installing or replacing the extension.
 
-## Examples
-
-The `examples/` directory contains canonical `.moos`, `.bhv`, `.xmoos`, and
-`.xbhv` files for review.
-
-Diagnostic observation files intentionally contain good, bad, skipped, and
-wrong-block examples:
-
-- `examples/geometry_diagnostics_observe.bhv`
-- `examples/geometry_diagnostics_observe.moos`
-
-These observation files are not runnable missions.
-
 ## Development
 
-Run checks:
-
-```sh
-npm run check
-```
-
-Regenerate bundled metadata after changing source inventory or hover override
-inputs:
-
-```sh
-npm run build:data
-```
-
-Main files:
-
-- `src/language-support.js`: semantic tokens, hover providers, diagnostics.
-- `syntaxes/*.tmLanguage.json`: baseline TextMate grammars.
-- `data/parameter-overrides.json`: manual hover/description overrides.
-- `data/diagnostic-schema.json`: source-backed diagnostic contracts.
-- `COVERAGE_GUIDE.md`: concise instructions for adding coverage.
+See [COVERAGE_GUIDE.md](COVERAGE_GUIDE.md) for adding apps, parameters, hover
+descriptions, and diagnostics.
 
 ## Links
 
