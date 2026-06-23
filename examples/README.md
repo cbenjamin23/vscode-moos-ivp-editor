@@ -41,6 +41,8 @@ Diagnostic observation fixtures:
   block-specific IvP behavior geometry examples.
 - `geometry_diagnostics_observe.moos`: paired good, bad, skipped, and
   block-specific MOOS app geometry examples.
+- `formatting_linter_demo.moos`: intentionally messy spacing and indentation
+  for observing formatting diagnostics, Quick Fix, and Format Document.
 
 The observation fixtures intentionally contain bad values so diagnostics can be
 seen in VS Code. They are excluded from the normal zero-diagnostic example gate.

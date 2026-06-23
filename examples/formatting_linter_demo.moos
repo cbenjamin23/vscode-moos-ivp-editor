@@ -1,0 +1,28 @@
+//-------------------------------------------------
+// FILE: formatting_linter_demo.moos
+// NOTE: Intentionally messy formatting for formatter/linter testing.
+//-------------------------------------------------
+
+ServerHost = localhost
+ServerPort = 9000
+Community = demo
+MOOSTimeWarp = 1
+
+ProcessConfig = pHelmIvP
+{
+  AppTick   = 4 // Quick Fix should preserve this comment
+  CommsTick = 4
+
+  verbose   = true
+  behaviors = meta_vehicle.bhv
+}
+
+ProcessConfig = pMarineViewer
+{
+  AppTick      = 4
+  CommsTick    = 4
+  tiff_file    = viewer_back.tif
+
+  // Full-line comments keep their text, but indentation is normalized.
+  left_context = x=0,y=0,scale=1.0
+}
