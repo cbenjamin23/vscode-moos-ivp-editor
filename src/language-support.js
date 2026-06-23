@@ -43,16 +43,77 @@ const {
   createFoldingRangeProvider: createVscodeFoldingRangeProvider
 } = require(path.join(__dirname, "folding"));
 
+function extensionConfiguration() {
+  return vscode.workspace && vscode.workspace.getConfiguration
+    ? vscode.workspace.getConfiguration("moosIvpEditor")
+    : undefined;
+}
+
+function extensionSetting(name, defaultValue = true) {
+  const config = extensionConfiguration();
+  return config && config.get ? config.get(name, defaultValue) : defaultValue;
+}
+
+function diagnosticsEnabled() {
+  return extensionSetting("diagnostics.enabled", true);
+}
+
+function geometryDiagnosticsEnabled() {
+  return extensionSetting("diagnostics.geometry.enabled", true);
+}
+
+function foldingEnabled() {
+  return extensionSetting("folding.enabled", true);
+}
+
+function formattingEnabled() {
+  return extensionSetting("formatting.enabled", true);
+}
+
+function formattingDiagnosticsEnabled() {
+  return extensionSetting("formatting.diagnostics.enabled", true);
+}
+
+function hoverEnabled() {
+  return extensionSetting("hover.enabled", true);
+}
+
+function semanticHighlightingEnabled() {
+  return extensionSetting("semanticHighlighting.enabled", true);
+}
+
 function createFoldingRangeProvider(language) {
-  return createVscodeFoldingRangeProvider(vscode, language);
+  const provider = createVscodeFoldingRangeProvider(vscode, language);
+  return {
+    provideFoldingRanges(document, context, token) {
+      return foldingEnabled()
+        ? provider.provideFoldingRanges(document, context, token)
+        : [];
+    }
+  };
 }
 
 function createSemanticTokensProvider(language, docLookup, sourceLookup, inventoryLookup, semanticTokenLegend) {
-  return createVscodeSemanticTokensProvider(vscode, language, docLookup, sourceLookup, inventoryLookup, semanticTokenLegend);
+  const provider = createVscodeSemanticTokensProvider(vscode, language, docLookup, sourceLookup, inventoryLookup, semanticTokenLegend);
+  return {
+    provideDocumentSemanticTokens(document, token) {
+      if (!semanticHighlightingEnabled()) {
+        return new vscode.SemanticTokensBuilder(semanticTokenLegend).build();
+      }
+      return provider.provideDocumentSemanticTokens(document, token);
+    }
+  };
 }
 
 function createHoverProvider(language, lookup, docLookup, sourceLookup, diagnosticSchema) {
-  return createVscodeHoverProvider(vscode, language, lookup, docLookup, sourceLookup, diagnosticSchema);
+  const provider = createVscodeHoverProvider(vscode, language, lookup, docLookup, sourceLookup, diagnosticSchema);
+  return {
+    provideHover(document, position, token) {
+      return hoverEnabled()
+        ? provider.provideHover(document, position, token)
+        : undefined;
+    }
+  };
 }
 
 function createDiagnostic(document, lineNumber, valueStart, valueText, message) {
@@ -97,8 +158,8 @@ function collectFormattingDiagnostics(document, language, options = {}) {
   ));
 }
 
-function collectConfigDiagnostics(document, diagnosticSchema, language) {
-  return collectConfigDiagnosticRecords(document, diagnosticSchema, language)
+function collectConfigDiagnostics(document, diagnosticSchema, language, options = {}) {
+  return collectConfigDiagnosticRecords(document, diagnosticSchema, language, options)
     .map((record) => createDiagnostic(
       document,
       record.lineNumber,
@@ -127,19 +188,13 @@ function workspaceFormattingOptions() {
   });
 }
 
-function formattingDiagnosticsEnabled() {
-  if (!vscode.workspace || !vscode.workspace.getConfiguration) {
-    return true;
-  }
-
-  return vscode.workspace
-    .getConfiguration("moosIvpEditor.formatting")
-    .get("diagnostics.enabled", true);
-}
-
 function diagnosticsForDocument(document, diagnosticSchema, language) {
-  const diagnostics = collectConfigDiagnostics(document, diagnosticSchema, language);
-  if (formattingDiagnosticsEnabled()) {
+  const diagnostics = diagnosticsEnabled()
+    ? collectConfigDiagnostics(document, diagnosticSchema, language, {
+      geometryEnabled: geometryDiagnosticsEnabled()
+    })
+    : [];
+  if (formattingEnabled() && formattingDiagnosticsEnabled()) {
     diagnostics.push(...collectFormattingDiagnostics(document, language, workspaceFormattingOptions()));
   }
   return diagnostics;
@@ -175,7 +230,7 @@ function registerDiagnostics(context, diagnosticSchema) {
       refreshDiagnostics(event.document, collection, diagnosticSchema);
     }),
     vscode.workspace.onDidChangeConfiguration((event) => {
-      if (event.affectsConfiguration && !event.affectsConfiguration("moosIvpEditor.formatting")) {
+      if (event.affectsConfiguration && !event.affectsConfiguration("moosIvpEditor")) {
         return;
       }
       for (const document of vscode.workspace.textDocuments) {
@@ -191,6 +246,10 @@ function registerDiagnostics(context, diagnosticSchema) {
 function createDocumentFormattingProvider(language) {
   return {
     provideDocumentFormattingEdits(document) {
+      if (!formattingEnabled()) {
+        return [];
+      }
+
       const original = documentText(document);
       const formatted = formatMoosIvpText(original, language, workspaceFormattingOptions()).text;
       if (formatted === original) {
@@ -206,6 +265,10 @@ function createDocumentFormattingProvider(language) {
 function createFormattingCodeActionProvider(language) {
   return {
     provideCodeActions(document, range, context) {
+      if (!formattingEnabled() || !formattingDiagnosticsEnabled()) {
+        return [];
+      }
+
       const formattingDiagnostics = (context.diagnostics || []).filter((diagnostic) => (
         diagnostic.source === "MOOS-IvP Format"
       ));

@@ -3,6 +3,14 @@ const {
   validateGeometryValue
 } = require("./geometry");
 
+const GEOMETRY_VALUE_TYPES = new Set([
+  "convex-polygon",
+  "contact-filter-region",
+  "seglist",
+  "seglist-or-polygon",
+  "waypoint-segment-list-or-polygon"
+]);
+
 function lower(value) {
   return value.toLowerCase();
 }
@@ -148,8 +156,16 @@ function numberSatisfiesConstraints(number, constraints) {
   return true;
 }
 
-function validateSchemaValue(value, entry) {
+function isGeometryValueType(valueType) {
+  return GEOMETRY_VALUE_TYPES.has(valueType);
+}
+
+function validateSchemaValue(value, entry, options = {}) {
   if (!entry || entry.diagnostic !== true) {
+    return undefined;
+  }
+
+  if (options.geometryEnabled === false && isGeometryValueType(entry.valueType)) {
     return undefined;
   }
 
@@ -319,5 +335,6 @@ function validateSchemaValue(value, entry) {
 
 module.exports = {
   diagnosticMessage,
+  isGeometryValueType,
   validateSchemaValue
 };

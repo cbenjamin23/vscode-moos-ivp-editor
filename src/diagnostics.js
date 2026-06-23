@@ -83,7 +83,7 @@ function diagnosticSchemaEntry(owner, word, language, schema) {
   return schemaParameterEntry(schema.shared && schema.shared.ivpBehavior, word);
 }
 
-function collectConfigDiagnosticRecords(document, diagnosticSchema, language) {
+function collectConfigDiagnosticRecords(document, diagnosticSchema, language, options = {}) {
   const diagnostics = [];
   const state = createBlockState();
 
@@ -107,7 +107,7 @@ function collectConfigDiagnosticRecords(document, diagnosticSchema, language) {
         const name = assignment[2];
         const value = assignment[4];
         const entry = diagnosticSchemaEntry(state.owner, name, language, diagnosticSchema);
-        const expected = validateSchemaValue(value, entry);
+        const expected = validateSchemaValue(value, entry, options);
         if (expected) {
           diagnostics.push({
             lineNumber,
@@ -125,12 +125,12 @@ function collectConfigDiagnosticRecords(document, diagnosticSchema, language) {
   return diagnostics;
 }
 
-function collectBehaviorDiagnosticRecords(document, diagnosticSchema) {
-  return collectConfigDiagnosticRecords(document, diagnosticSchema, "ivp-behavior");
+function collectBehaviorDiagnosticRecords(document, diagnosticSchema, options = {}) {
+  return collectConfigDiagnosticRecords(document, diagnosticSchema, "ivp-behavior", options);
 }
 
-function collectMoosDiagnosticRecords(document, diagnosticSchema) {
-  return collectConfigDiagnosticRecords(document, diagnosticSchema, "moos");
+function collectMoosDiagnosticRecords(document, diagnosticSchema, options = {}) {
+  return collectConfigDiagnosticRecords(document, diagnosticSchema, "moos", options);
 }
 
 module.exports = {

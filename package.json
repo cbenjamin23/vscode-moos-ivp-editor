@@ -8,7 +8,7 @@
     "main": "./src/extension.js",
     "scripts": {
         "build:data": "node scripts/build-inventory.js && node scripts/build-source-descriptions.js && node scripts/build-hover-metadata.js",
-        "check": "node --check src/extension.js && node --check src/scanner.js && node --check src/folding.js && node --check src/formatter.js && node --check src/geometry.js && node --check src/validators.js && node --check src/diagnostics.js && node --check src/registry.js && node --check src/hover.js && node --check src/semantic-tokens.js && node --check src/language-support.js && node --check scripts/build-inventory.js && node --check scripts/build-source-descriptions.js && node --check scripts/build-hover-metadata.js && node --check scripts/audit-diagnostic-schema.js && node --check scripts/check-example-diagnostics.js && node --check scripts/check-geometry-parser-fixtures.js && node --check scripts/check-geometry-diagnostics.js && node --check scripts/check-formatting.js && node scripts/audit-diagnostic-schema.js && node scripts/check-example-diagnostics.js && node scripts/check-geometry-parser-fixtures.js && node scripts/check-geometry-diagnostics.js && node scripts/check-formatting.js"
+        "check": "node --check src/extension.js && node --check src/scanner.js && node --check src/folding.js && node --check src/formatter.js && node --check src/geometry.js && node --check src/validators.js && node --check src/diagnostics.js && node --check src/registry.js && node --check src/hover.js && node --check src/semantic-tokens.js && node --check src/language-support.js && node --check scripts/build-inventory.js && node --check scripts/build-source-descriptions.js && node --check scripts/build-hover-metadata.js && node --check scripts/audit-diagnostic-schema.js && node --check scripts/check-example-diagnostics.js && node --check scripts/check-geometry-parser-fixtures.js && node --check scripts/check-geometry-diagnostics.js && node --check scripts/check-formatting.js && node --check scripts/check-feature-toggles.js && node scripts/audit-diagnostic-schema.js && node scripts/check-example-diagnostics.js && node scripts/check-geometry-parser-fixtures.js && node scripts/check-geometry-diagnostics.js && node scripts/check-formatting.js && node scripts/check-feature-toggles.js"
     },
     "activationEvents": [
         "onLanguage:moos",
@@ -150,6 +150,26 @@
         "configuration": {
             "title": "MOOS-IvP Editor",
             "properties": {
+                "moosIvpEditor.diagnostics.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Show source-backed MOOS-IvP configuration diagnostics."
+                },
+                "moosIvpEditor.diagnostics.geometry.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Show source-backed geometry diagnostics for modeled polygon and point-list values."
+                },
+                "moosIvpEditor.folding.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable MOOS-IvP block folding for ProcessConfig and Behavior blocks."
+                },
+                "moosIvpEditor.formatting.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable MOOS-IvP document formatting and formatting quick fixes."
+                },
                 "moosIvpEditor.formatting.diagnostics.enabled": {
                     "type": "boolean",
                     "default": true,
@@ -160,6 +180,16 @@
                     "default": 2,
                     "minimum": 1,
                     "description": "Number of spaces per indentation level used by the MOOS-IvP formatter."
+                },
+                "moosIvpEditor.hover.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Show MOOS-IvP hover descriptions for known apps, behaviors, and parameters."
+                },
+                "moosIvpEditor.semanticHighlighting.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable MOOS-IvP semantic highlighting for known apps, behaviors, and parameters."
                 }
             }
         }

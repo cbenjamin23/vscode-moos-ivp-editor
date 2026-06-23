@@ -83,6 +83,23 @@ Format Document command.
 
 ![Format MOOS-IvP quick fix](images/formatting-quick-fix.png)
 
+## Feature Toggles
+
+Open VS Code Settings and search `MOOS-IvP`, or set these in `settings.json`.
+All toggles default to `true`.
+
+```json
+{
+  "moosIvpEditor.diagnostics.enabled": true,
+  "moosIvpEditor.diagnostics.geometry.enabled": true,
+  "moosIvpEditor.folding.enabled": true,
+  "moosIvpEditor.formatting.enabled": true,
+  "moosIvpEditor.formatting.diagnostics.enabled": true,
+  "moosIvpEditor.hover.enabled": true,
+  "moosIvpEditor.semanticHighlighting.enabled": true
+}
+```
+
 ## Requirements
 
 - Visual Studio Code `1.32` or later.
