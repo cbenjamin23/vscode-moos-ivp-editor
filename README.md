@@ -126,7 +126,13 @@ See [CONTRIBUTING.md](https://github.com/moos-ivp/vscode-moos-ivp-editor/blob/ma
 for local development, architecture, metadata updates, diagnostics,
 validation, and release workflow.
 
-## Links
+## Resources
 
-- [MOOS-IvP homepage](https://oceanai.mit.edu/moos-ivp)
-- [pAntler documentation](https://oceanai.mit.edu/ivpman/pmwiki/pmwiki.php?n=IvPTools.PAntler)
+- [MOOS-IvP homepage](https://oceanai.mit.edu/moos-ivp/) - project overview,
+  downloads, and support.
+- [MOOS-IvP documentation](https://oceanai.mit.edu/ivpman/) - IvP Helm,
+  apps, behaviors, and utilities.
+- [MOOS-IvP source](https://github.com/moos-ivp/moos-ivp) - upstream source
+  used as reference for diagnostics and hover metadata.
+- [Extension issues](https://github.com/moos-ivp/vscode-moos-ivp-editor/issues)
+  - bug reports and feature requests.
