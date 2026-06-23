@@ -71,8 +71,17 @@ MOOS and IvP behavior blocks can be folded from their `ProcessConfig` or
 `Behavior` headers.
 
 The formatter normalizes indentation, assignment spacing, blank lines, and
-trailing whitespace. Formatting diagnostics can be fixed with the
-`Format MOOS-IvP document` quick fix or the normal VS Code format command.
+trailing whitespace while preserving comments.
+
+| Before formatting | After formatting |
+| --- | --- |
+| ![Formatting before example](images/formatting-before.png) | ![Formatting after example](images/formatting-after.png) |
+
+When formatting diagnostics are enabled, use the lightbulb menu on a highlighted
+line and choose `Format MOOS-IvP document`. You can also run VS Code's normal
+Format Document command.
+
+![Format MOOS-IvP quick fix](images/formatting-quick-fix.png)
 
 ## Requirements
 
