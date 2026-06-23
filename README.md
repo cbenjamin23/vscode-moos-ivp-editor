@@ -28,25 +28,39 @@ parameter is only classified as known when it belongs to the current
 
 ### Hover Descriptions
 
-Hover text provides concise descriptions for known apps, behaviors, and
-parameters. Descriptions are bundled with the extension and are derived from
-MIT MOOS-IvP documentation, local MOOS-IvP source, and reviewed manual
-overrides.
+Hover text is available for known apps, behaviors, and parameters. Parameter
+hovers are block-aware, so shared names such as `condition` or `radius` use
+the description for the current `ProcessConfig` or `Behavior` block.
 
-Where available, hovers include examples, defaults, source references, and
-documentation links.
+A parameter hover is structured as:
+
+- parameter name
+- concise description
+- example line, when available
+- default value, when known from documentation or source
+- source reference or MOOS-IvP documentation link, when available
+
+Descriptions are bundled with the extension and are derived from MIT MOOS-IvP
+documentation, local MOOS-IvP source, and reviewed manual overrides.
 
 ![Hover description example](images/hover-descriptions.png)
 
 ### Diagnostics
 
-Diagnostics warn on selected source-backed configuration mistakes, including
-some type/range errors, convex polygon errors, waypoint path syntax errors, and
-contact filter region errors.
+Diagnostics warn on selected source-backed configuration mistakes. Current
+coverage includes:
 
-Diagnostics are intentionally conservative. If the MOOS-IvP source accepts a
-broad value, coerces invalid input, or uses syntax the extension has not fully
-modeled, the extension skips the warning instead of guessing.
+- known parameters used in the wrong `ProcessConfig` or `Behavior` block
+- simple type checks for booleans, numbers, non-negative numbers, and enums
+- simple range checks where the MOOS-IvP source gives a clear bound
+- convex polygon checks for supported `pts={...}` values
+- waypoint path syntax checks for supported point-list values
+- contact filter region checks for supported polygon region values
+
+Diagnostics intentionally skip cases where the extension would have to guess.
+Skipped areas include full MOOS expression evaluation, runtime variable
+existence, generated polygon forms such as `radial: ...`, geometry aliases, and
+complex app-specific semantics that are not modeled from source evidence.
 
 ![Diagnostics example](images/diagnostics.png)
 
