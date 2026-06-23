@@ -1,65 +1,63 @@
-# MOOS-IvP Editor
+# MOOS-IvP Editor for VS Code
 
-VS Code language support for MOOS-IvP mission, behavior, and patch files.
+[![CI/CD](https://github.com/moos-ivp/vscode-moos-ivp-editor/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/moos-ivp/vscode-moos-ivp-editor/actions/workflows/ci-cd.yml)
+
+The MOOS-IvP Editor extension for Visual Studio Code adds syntax highlighting,
+hover descriptions, semantic highlighting, and conservative diagnostics for
+MOOS mission files, IvP behavior files, and MOOS-IvP patch files.
+
+It supports `.moos`, `.xmoos`, `.bhv`, and `.xbhv` files. The `.xmoos` and
+`.xbhv` modes cover patch inputs commonly used with `nspatch`; `plug_*.moos`
+and `meta_*.moos`/`meta_*.bhv` files are handled by their normal `.moos` and
+`.bhv` extensions.
 
 ## Features
 
-- TextMate syntax highlighting for MOOS and IvP behavior file structure.
-- Semantic highlighting for known apps, behaviors, directives, and parameters.
-- Block-aware parameter classification inside `ProcessConfig = ...` and
-  `Behavior = ...` blocks.
-- Hover help for known apps, behaviors, and parameters.
-- Conservative diagnostics for source-backed value mistakes.
-- Support for MOOS-IvP patch conventions used by `nspatch`.
+### Syntax Highlighting
 
-## File Types
+Baseline TextMate grammars highlight MOOS and IvP behavior file structure:
+comments, block headers, assignments, braces, directives, and common language
+forms.
 
-| Extension | Language mode | Notes |
-| --- | --- | --- |
-| `.moos` | MOOS | Mission/config files, `meta_*.moos`, `plug_*.moos`, generated target files. |
-| `.xmoos` | MOOS | MOOS patch input files for `nspatch`. |
-| `.bhv` | IvP Behavior | Behavior files, `meta_*.bhv`, generated target files. |
-| `.xbhv` | IvP Behavior | Behavior patch input files for `nspatch`. |
+Semantic highlighting adds MOOS-IvP-aware classification for known apps,
+behaviors, and parameters. Parameter highlighting is block-aware, so a
+parameter is only classified as known when it belongs to the current
+`ProcessConfig` or `Behavior` block.
 
-The extension does not register separate `.plug` or `.meta` extensions. In
-MOOS-IvP missions those are normally prefix conventions, such as
-`plug_pMarineViewer.moos` and `meta_vehicle.bhv`.
+<!-- TODO: Add syntax highlighting example image. -->
 
-## Diagnostics
+### Hover Descriptions
 
-Diagnostics are deliberately conservative.
+Hover text provides concise descriptions for known apps, behaviors, and
+parameters. Descriptions are bundled with the extension and are derived from
+MIT MOOS-IvP documentation, local MOOS-IvP source, and reviewed manual
+overrides.
 
-The extension warns only when the bundled schema is backed by local MOOS-IvP
-source behavior. If a value may be valid but the parser is not fully modeled,
-the extension skips it instead of warning.
+Where available, hovers include examples, defaults, source references, and
+documentation links.
 
-Current diagnostic coverage includes:
+<!-- TODO: Add hover description example image. -->
 
-- Block-specific type/range checks for selected source-backed parameters.
-- Convex polygon checks for selected behavior polygon parameters.
-- Waypoint path syntax checks for selected `BHV_Waypoint` parameters.
-- Contact filter region checks for selected behavior and `pContactMgrV20`
-  parameters.
+### Diagnostics
 
-Known limitation: advanced/generated geometry syntax such as `radial:`,
-`ellipse:`, `zigzag:`, and `lawnmower:` is accepted/skipped unless a
-source-equivalent parser has been modeled and fixture-tested.
+Diagnostics warn on selected source-backed configuration mistakes, including
+some type/range errors, convex polygon errors, waypoint path syntax errors, and
+contact filter region errors.
 
-## Examples
+Diagnostics are intentionally conservative. If the MOOS-IvP source accepts a
+broad value, coerces invalid input, or uses syntax the extension has not fully
+modeled, the extension skips the warning instead of guessing.
 
-The `examples/` directory contains:
+<!-- TODO: Add diagnostics example image. -->
 
-- Canonical MOOS, behavior, patch, meta, and plug-style examples.
-- Broad coverage fixtures: `all_apps.moos` and `all_behaviors.bhv`.
-- Intentional diagnostic observation fixtures:
-  - `geometry_diagnostics_observe.bhv`
-  - `geometry_diagnostics_observe.moos`
+## Requirements
 
-The observation fixtures are not runnable missions. They intentionally contain
-good, bad, skipped, and wrong-block examples so diagnostics can be reviewed in
-VS Code.
+- Visual Studio Code `1.32` or later.
+- No runtime MOOS-IvP install is required for the extension to load.
+- A local MOOS-IvP checkout is useful for development and for expanding bundled
+  metadata.
 
-## Install From VSIX
+## Install
 
 Build a local VSIX:
 
@@ -70,14 +68,27 @@ npx @vscode/vsce package
 Install it:
 
 ```sh
-code --install-extension moos-ivp-editor-0.0.3.vsix
+code --install-extension moos-ivp-editor-1.0.0.vsix
 ```
 
 Reload VS Code after installing or replacing the extension.
 
+## Examples
+
+The `examples/` directory contains canonical `.moos`, `.bhv`, `.xmoos`, and
+`.xbhv` files for review.
+
+Diagnostic observation files intentionally contain good, bad, skipped, and
+wrong-block examples:
+
+- `examples/geometry_diagnostics_observe.bhv`
+- `examples/geometry_diagnostics_observe.moos`
+
+These observation files are not runnable missions.
+
 ## Development
 
-Run the full local check:
+Run checks:
 
 ```sh
 npm run check
@@ -90,16 +101,15 @@ inputs:
 npm run build:data
 ```
 
-Main runtime files:
+Main files:
 
 - `src/language-support.js`: semantic tokens, hover providers, diagnostics.
+- `syntaxes/*.tmLanguage.json`: baseline TextMate grammars.
 - `data/parameter-overrides.json`: manual hover/description overrides.
 - `data/diagnostic-schema.json`: source-backed diagnostic contracts.
-- `syntaxes/*.tmLanguage.json`: baseline TextMate grammars.
+- `COVERAGE_GUIDE.md`: concise instructions for adding coverage.
 
-Coverage additions are described in `COVERAGE_GUIDE.md`.
-
-## Project Links
+## Links
 
 - [MOOS-IvP homepage](https://oceanai.mit.edu/moos-ivp)
 - [pAntler documentation](https://oceanai.mit.edu/ivpman/pmwiki/pmwiki.php?n=IvPTools.PAntler)
