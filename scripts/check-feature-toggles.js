@@ -1,6 +1,11 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const {
+  FEATURE_TOGGLES,
+  configureFeatures,
+  registerFeatureToggleCommands
+} = require("../src/feature-toggles");
 
 const REPO_ROOT = path.resolve(__dirname, "..");
 
@@ -242,7 +247,78 @@ function assert(condition, message) {
   }
 }
 
-function main() {
+async function assertFeatureCommand() {
+  const commandSettings = {
+    "diagnostics.enabled": true,
+    "diagnostics.geometry.enabled": false,
+    "folding.enabled": true,
+    "formatting.enabled": true,
+    "formatting.diagnostics.enabled": false,
+    "hover.enabled": true,
+    "semanticHighlighting.enabled": true
+  };
+  const updates = [];
+  const registered = [];
+
+  const commandVscode = {
+    ConfigurationTarget: { Global: "global" },
+    commands: {
+      registerCommand(command, callback) {
+        registered.push({ command, callback });
+        return { dispose() {} };
+      }
+    },
+    window: {
+      async showQuickPick(items, options) {
+        assert(options.canPickMany === true, "expected multi-select quick pick");
+        assert(items.length === FEATURE_TOGGLES.length, "expected all feature toggles in quick pick");
+        const geometryItem = items.find((item) => item.feature.key === "diagnostics.geometry.enabled");
+        const formattingDiagnosticsItem = items.find((item) => item.feature.key === "formatting.diagnostics.enabled");
+        assert(geometryItem && geometryItem.picked === false, "expected geometry diagnostics to start unchecked");
+        assert(formattingDiagnosticsItem && formattingDiagnosticsItem.picked === false, "expected formatting diagnostics to start unchecked");
+        return items.filter((item) => (
+          item.feature.key === "diagnostics.enabled"
+          || item.feature.key === "formatting.enabled"
+          || item.feature.key === "hover.enabled"
+        ));
+      },
+      showInformationMessage() {}
+    },
+    workspace: {
+      getConfiguration(section) {
+        assert(section === "moosIvpEditor", "expected MOOS-IvP configuration section");
+        return {
+          get(name, fallback) {
+            return Object.prototype.hasOwnProperty.call(commandSettings, name)
+              ? commandSettings[name]
+              : fallback;
+          },
+          update(name, value, target) {
+            updates.push({ name, value, target });
+            commandSettings[name] = value;
+            return Promise.resolve();
+          }
+        };
+      }
+    }
+  };
+
+  const context = { subscriptions: [] };
+  registerFeatureToggleCommands(commandVscode, context);
+  assert(registered.length === 1, "expected configure command registration");
+  assert(registered[0].command === "moosIvpEditor.configureFeatures", "expected configure command id");
+
+  await configureFeatures(commandVscode);
+  assert(updates.length === FEATURE_TOGGLES.length, "expected one update per feature");
+  assert(commandSettings["diagnostics.enabled"] === true, "expected diagnostics enabled by command");
+  assert(commandSettings["formatting.enabled"] === true, "expected formatting enabled by command");
+  assert(commandSettings["hover.enabled"] === true, "expected hover enabled by command");
+  assert(commandSettings["folding.enabled"] === false, "expected unselected folding to be disabled");
+  assert(commandSettings["semanticHighlighting.enabled"] === false, "expected unselected semantic highlighting to be disabled");
+  assert(updates.every((update) => update.target === commandVscode.ConfigurationTarget.Global), "expected global setting updates");
+}
+
+async function main() {
   const languageSupport = loadLanguageSupport();
   const context = {
     extensionPath: REPO_ROOT,
@@ -283,7 +359,12 @@ function main() {
   const semanticProvider = providers.semantic.find((item) => item.language === "moos").provider;
   assert(semanticProvider.provideDocumentSemanticTokens(docs[0]).tokens.length === 0, "expected semantic toggle to suppress semantic tokens");
 
+  await assertFeatureCommand();
+
   console.log("feature toggle fixtures: passed");
 }
 
-main();
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
