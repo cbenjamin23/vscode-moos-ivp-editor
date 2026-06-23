@@ -85,7 +85,8 @@ Format Document command.
 
 ## Feature Toggles
 
-Run `MOOS-IvP: Configure Features` from the Command Palette to turn extension
+Open the Command Palette with `Cmd+Shift+P` on macOS or `Ctrl+Shift+P` on
+Windows/Linux, then run `MOOS-IvP: Configure Features` to turn extension
 features on or off. You can also open VS Code Settings, search `MOOS-IvP`, or
 set the same values in `settings.json`.
 
