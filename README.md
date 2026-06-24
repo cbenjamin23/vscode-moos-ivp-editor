@@ -125,7 +125,7 @@ Install from a local VSIX:
 
 ```sh
 npx @vscode/vsce package
-code --install-extension moos-ivp-editor-1.0.0.vsix
+code --install-extension moos-ivp-editor-1.0.1.vsix
 ```
 
 Reload VS Code after installing or replacing the extension.

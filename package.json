@@ -2,7 +2,7 @@
     "name": "moos-ivp-editor",
     "displayName": "MOOS-IvP Editor",
     "description": "Semantic highlighting, hover descriptions, and conservative diagnostics for MOOS-IvP mission, behavior, and patch files.",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "MIT",
     "publisher": "moos-ivp",
     "main": "./src/extension.js",
