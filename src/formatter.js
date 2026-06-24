@@ -229,6 +229,108 @@ function alignAssignmentsInBlocks(lines) {
   return aligned;
 }
 
+function antlerRunEntry(line) {
+  const parts = splitInlineComment(line);
+  const match = parts.code.match(/^(\s*)Run\s*=\s*([^\s@]+)(?:\s*@\s*(.*?))?\s*$/);
+  if (!match) {
+    return undefined;
+  }
+
+  return {
+    indent: match[1],
+    app: match[2],
+    options: (match[3] || "").trim(),
+    comment: parts.comment
+  };
+}
+
+const ANTLER_RUN_OPTION_PATTERN = /\b(NewConsole|InhibitMOOSParams|Path|ExtraProcessParams|XConfig|Win32Config|AntlerID)\s*=\s*/g;
+
+function formatAntlerRunOptions(options) {
+  return options
+    .replace(ANTLER_RUN_OPTION_PATTERN, "$1 = ")
+    .replace(/[ \t]+/g, " ")
+    .trim();
+}
+
+function antlerBlockRanges(lines) {
+  const ranges = [];
+  let pendingStart = -1;
+  let inAntler = false;
+  let start = -1;
+  let depth = 0;
+
+  for (let index = 0; index < lines.length; index++) {
+    const code = stripInlineComment(lines[index]).trim();
+
+    if (!inAntler && /^ProcessConfig\s*=\s*(?:ANTLER|pAntler)$/i.test(code)) {
+      pendingStart = index;
+      continue;
+    }
+
+    if (!inAntler && pendingStart !== -1 && /^\{\s*$/.test(code)) {
+      inAntler = true;
+      start = pendingStart;
+      pendingStart = -1;
+      depth = 1;
+      continue;
+    }
+
+    if (!inAntler) {
+      if (code !== "") {
+        pendingStart = -1;
+      }
+      continue;
+    }
+
+    if (/^\{\s*$/.test(code)) {
+      depth++;
+    } else if (/^\}\s*$/.test(code)) {
+      depth--;
+      if (depth === 0) {
+        ranges.push({ start, end: index });
+        inAntler = false;
+        start = -1;
+      }
+    }
+  }
+
+  return ranges;
+}
+
+function alignAntlerRunLines(lines) {
+  const aligned = [...lines];
+  antlerBlockRanges(aligned).forEach((range) => {
+    const entries = [];
+    for (let index = range.start + 1; index < range.end; index++) {
+      const entry = antlerRunEntry(aligned[index]);
+      if (entry) {
+        entries.push({ index, entry });
+      }
+    }
+
+    if (!entries.length) {
+      return;
+    }
+
+    const maxPrefixLength = entries.reduce((max, item) => (
+      Math.max(max, `${item.entry.indent}Run = ${item.entry.app}`.length)
+    ), 0);
+
+    entries.forEach((item) => {
+      const entry = item.entry;
+      const prefix = `${entry.indent}Run = ${entry.app}`;
+      const options = formatAntlerRunOptions(entry.options);
+      const code = options
+        ? `${prefix}${" ".repeat(maxPrefixLength - prefix.length + 1)}@ ${options}`
+        : prefix;
+      aligned[item.index] = appendComment(code, entry.comment);
+    });
+  });
+
+  return aligned;
+}
+
 function defaultFormattingOptions(options = {}) {
   const indentSize = Number(options.indentSize);
   return {
@@ -335,7 +437,9 @@ function formatMoosIvpText(text, language, options = {}) {
   }
 
   const normalizedOutput = normalizeBlankLinesBetweenBlocks(output, language, issues);
-  const alignedOutput = alignAssignmentsInBlocks(normalizedOutput);
+  const alignedOutput = language === "moos"
+    ? alignAntlerRunLines(alignAssignmentsInBlocks(normalizedOutput))
+    : alignAssignmentsInBlocks(normalizedOutput);
   const formatted = alignedOutput.join(lineEnding) + (hasFinalNewline ? lineEnding : "");
   return {
     text: formatted,

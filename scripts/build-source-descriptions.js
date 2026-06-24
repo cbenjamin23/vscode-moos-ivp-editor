@@ -209,6 +209,69 @@ const sourceReviewedMoosParameters = {
       exampleSource: "manual review",
       reviewSource: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:721-723"
     },
+    inhibitmoosparams: {
+      name: "InhibitMOOSParams",
+      description: "Run option that suppresses the normal mission-file and MOOSName arguments passed to the launched process.",
+      source: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:725-727",
+      default: "false",
+      defaultSource: "source initializer",
+      defaultReference: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:725-727",
+      example: "Run = pHelmIvP @ InhibitMOOSParams = true",
+      exampleSource: "manual review",
+      reviewSource: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:725-727,869-879,997-999"
+    },
+    path: {
+      name: "Path",
+      description: "Run option that overrides the executable path for this process. Use SYSTEM to force lookup from the system path instead of the ANTLER-wide ExecutablePath.",
+      source: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:729-752",
+      default: "uses ANTLER ExecutablePath",
+      defaultSource: "source behavior",
+      defaultReference: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:729-752",
+      example: "Run = pHelmIvP @ Path = SYSTEM",
+      exampleSource: "manual review",
+      reviewSource: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:729-752"
+    },
+    extraprocessparams: {
+      name: "ExtraProcessParams",
+      description: "Run option naming another mission-file configuration string whose comma-separated values are passed as extra command-line arguments to the launched process.",
+      source: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:570-587",
+      example: "Run = pHelmIvP @ ExtraProcessParams = HELM_ARGS",
+      exampleSource: "manual review",
+      reviewSource: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:570-587,790-793"
+    },
+    xconfig: {
+      name: "XConfig",
+      description: "Run option naming a mission-file configuration string used for Unix/X11 new-console launch parameters.",
+      source: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:592-650",
+      default: "auto-generated xterm geometry/color/title parameters",
+      defaultSource: "source fallback",
+      defaultReference: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:592-650",
+      example: "Run = pHelmIvP @ NewConsole = true XConfig = HELM_XTERM",
+      exampleSource: "manual review",
+      reviewSource: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:592-650,786-787"
+    },
+    win32config: {
+      name: "Win32Config",
+      description: "Run option naming a mission-file configuration string used for Windows new-console launch parameters.",
+      source: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:592-650",
+      default: "auto-generated console color parameters",
+      defaultSource: "source fallback",
+      defaultReference: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:592-650",
+      example: "Run = pHelmIvP @ NewConsole = true Win32Config = HELM_CONSOLE",
+      exampleSource: "manual review",
+      reviewSource: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:592-650,786-787"
+    },
+    antlerid: {
+      name: "AntlerID",
+      description: "Distributed ANTLER Run option selecting which named pAntler instance should launch this process.",
+      source: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:686-714",
+      default: "primary pAntler when omitted",
+      defaultSource: "source behavior",
+      defaultReference: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:686-714",
+      example: "Run = pHelmIvP @ AntlerID = shoreside",
+      exampleSource: "manual review",
+      reviewSource: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:686-714"
+    },
     run: {
       description: "Adds one process for ANTLER to launch. The value starts with the executable name and may include @ launch options and an optional ~ MOOS name.",
       source: "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:432,594,721-804",
@@ -763,6 +826,27 @@ function buildSourceDescriptions(kind) {
         item.sourceStatus || "unknown"
       );
       generatedPairs++;
+    }
+
+    if (isMoos && sourceReviewedMoosParameters[owner]) {
+      for (const [param, reviewed] of Object.entries(sourceReviewedMoosParameters[owner])) {
+        if (outputItem.parameters[normalizeName(param)]) {
+          continue;
+        }
+        const { description, ...extra } = reviewed;
+        addParam(
+          outputItem,
+          parameters,
+          owner,
+          extra.name || param,
+          description,
+          extra.source || source,
+          basis,
+          item.sourceStatus || "unknown",
+          extra
+        );
+        generatedPairs++;
+      }
     }
 
     if (Object.keys(outputItem.parameters).length) {

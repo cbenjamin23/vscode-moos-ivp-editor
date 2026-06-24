@@ -2,7 +2,7 @@
   "generatedFrom": {
     "moosIvP": "/Users/charlesbenjamin/moos-ivp"
   },
-  "generatedPairs": 275,
+  "generatedPairs": 281,
   "items": {
     "ANTLER": {
       "source": "../moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler",
@@ -90,6 +90,76 @@
           "example": "Run = pHelmIvP @ NewConsole = false",
           "exampleSource": "manual review",
           "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:432,594,721-804"
+        },
+        "inhibitmoosparams": {
+          "name": "InhibitMOOSParams",
+          "description": "Run option that suppresses the normal mission-file and MOOSName arguments passed to the launched process.",
+          "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:725-727",
+          "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+          "sourceStatus": "local-moos-source",
+          "default": "false",
+          "defaultSource": "manual review",
+          "example": "Run = pHelmIvP @ InhibitMOOSParams = true",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:725-727, 869-879, 997-999"
+        },
+        "path": {
+          "name": "Path",
+          "description": "Run option that overrides the executable path for this process. Use SYSTEM to force lookup from the system path instead of the ANTLER-wide ExecutablePath.",
+          "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:729-752",
+          "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+          "sourceStatus": "local-moos-source",
+          "default": "uses ANTLER ExecutablePath",
+          "defaultSource": "manual review",
+          "example": "Run = pHelmIvP @ Path = SYSTEM",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:729-752"
+        },
+        "extraprocessparams": {
+          "name": "ExtraProcessParams",
+          "description": "Run option naming another mission-file configuration string whose comma-separated values are passed as extra command-line arguments to the launched process.",
+          "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:570-587",
+          "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+          "sourceStatus": "local-moos-source",
+          "example": "Run = pHelmIvP @ ExtraProcessParams = HELM_ARGS",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:570-587, 790-793"
+        },
+        "xconfig": {
+          "name": "XConfig",
+          "description": "Run option naming a mission-file configuration string used for Unix/X11 new-console launch parameters.",
+          "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:592-650",
+          "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+          "sourceStatus": "local-moos-source",
+          "default": "auto-generated xterm geometry/color/title parameters",
+          "defaultSource": "manual review",
+          "example": "Run = pHelmIvP @ NewConsole = true XConfig = HELM_XTERM",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:592-650, 786-787"
+        },
+        "win32config": {
+          "name": "Win32Config",
+          "description": "Run option naming a mission-file configuration string used for Windows new-console launch parameters.",
+          "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:592-650",
+          "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+          "sourceStatus": "local-moos-source",
+          "default": "auto-generated console color parameters",
+          "defaultSource": "manual review",
+          "example": "Run = pHelmIvP @ NewConsole = true Win32Config = HELM_CONSOLE",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:592-650, 786-787"
+        },
+        "antlerid": {
+          "name": "AntlerID",
+          "description": "Distributed ANTLER Run option selecting which named pAntler instance should launch this process.",
+          "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:686-714",
+          "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+          "sourceStatus": "local-moos-source",
+          "default": "primary pAntler when omitted",
+          "defaultSource": "manual review",
+          "example": "Run = pHelmIvP @ AntlerID = shoreside",
+          "exampleSource": "manual review",
+          "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:686-714"
         }
       }
     },
@@ -3351,6 +3421,20 @@
         "reviewSource": "moos-ivp/ivp/src/pHelmIvP/HelmIvP.cpp:84, moos-ivp/ivp/src/pHelmIvP/HelmIvP_Info.cpp:111"
       }
     ],
+    "antlerid": [
+      {
+        "owner": "ANTLER",
+        "description": "Distributed ANTLER Run option selecting which named pAntler instance should launch this process.",
+        "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:686-714",
+        "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+        "sourceStatus": "local-moos-source",
+        "default": "primary pAntler when omitted",
+        "defaultSource": "manual review",
+        "example": "Run = pHelmIvP @ AntlerID = shoreside",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:686-714"
+      }
+    ],
     "app_logging": [
       {
         "owner": "iSay",
@@ -4616,6 +4700,18 @@
         "reviewSource": "moos-ivp/ivp/src/pMarineViewer"
       }
     ],
+    "extraprocessparams": [
+      {
+        "owner": "ANTLER",
+        "description": "Run option naming another mission-file configuration string whose comma-separated values are passed as extra command-line arguments to the launched process.",
+        "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:570-587",
+        "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+        "sourceStatus": "local-moos-source",
+        "example": "Run = pHelmIvP @ ExtraProcessParams = HELM_ARGS",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:570-587, 790-793"
+      }
+    ],
     "file": [
       {
         "owner": "pLogger",
@@ -4973,6 +5069,20 @@
         "example": "infocast_nodes_width = 30",
         "exampleSource": "manual review",
         "reviewSource": "MOOS-IvP app_pmviewer.pdf and moos-ivp/ivp/src/pMarineViewer"
+      }
+    ],
+    "inhibitmoosparams": [
+      {
+        "owner": "ANTLER",
+        "description": "Run option that suppresses the normal mission-file and MOOSName arguments passed to the launched process.",
+        "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:725-727",
+        "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+        "sourceStatus": "local-moos-source",
+        "default": "false",
+        "defaultSource": "manual review",
+        "example": "Run = pHelmIvP @ InhibitMOOSParams = true",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:725-727, 869-879, 997-999"
       }
     ],
     "ivp_behavior_dir": [
@@ -5817,6 +5927,18 @@
       }
     ],
     "path": [
+      {
+        "owner": "ANTLER",
+        "description": "Run option that overrides the executable path for this process. Use SYSTEM to force lookup from the system path instead of the ANTLER-wide ExecutablePath.",
+        "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:729-752",
+        "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+        "sourceStatus": "local-moos-source",
+        "default": "uses ANTLER ExecutablePath",
+        "defaultSource": "manual review",
+        "example": "Run = pHelmIvP @ Path = SYSTEM",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:729-752"
+      },
       {
         "owner": "pLogger",
         "description": "Sets the directory where pLogger writes log files.",
@@ -6713,6 +6835,20 @@
         "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pLogger/MOOSLogger.cpp:424"
       }
     ],
+    "win32config": [
+      {
+        "owner": "ANTLER",
+        "description": "Run option naming a mission-file configuration string used for Windows new-console launch parameters.",
+        "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:592-650",
+        "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+        "sourceStatus": "local-moos-source",
+        "default": "auto-generated console color parameters",
+        "defaultSource": "manual review",
+        "example": "Run = pHelmIvP @ NewConsole = true Win32Config = HELM_CONSOLE",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:592-650, 786-787"
+      }
+    ],
     "wind_conditions": [
       {
         "owner": "uSimMarineV22",
@@ -6735,6 +6871,20 @@
         "example": "wormhole = tag=one, connection=from_madrid",
         "exampleSource": "manual review",
         "reviewSource": "MOOS-IvP app_usimmarine_v22.pdf: Section 9.2, moos-ivp/ivp/src/uSimMarineV22/USM_MOOSApp.cpp:388"
+      }
+    ],
+    "xconfig": [
+      {
+        "owner": "ANTLER",
+        "description": "Run option naming a mission-file configuration string used for Unix/X11 new-console launch parameters.",
+        "source": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:592-650",
+        "basis": "generated from bundled MOOS source in the local MOOS-IvP checkout",
+        "sourceStatus": "local-moos-source",
+        "default": "auto-generated xterm geometry/color/title parameters",
+        "defaultSource": "manual review",
+        "example": "Run = pHelmIvP @ NewConsole = true XConfig = HELM_XTERM",
+        "exampleSource": "manual review",
+        "reviewSource": "moos-ivp/MOOS_Jul2724/MOOSEssentials/Essentials/pAntler/Antler.cpp:592-650, 786-787"
       }
     ]
   }

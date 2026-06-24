@@ -209,7 +209,7 @@ function parseMoosSemanticLine(tokens, lineNumber, text, state, docLookup, sourc
       const atStart = runLine.index + runLine[0].lastIndexOf("@");
       const optionsStart = atStart + 1;
       const optionsText = text.slice(optionsStart);
-      const optionPattern = /\b(NewConsole|InhibitMOOSParams|Path|ExtraProcessParams|XConfig|Win32Config)\b(\s*=\s*)/g;
+      const optionPattern = /\b(NewConsole|InhibitMOOSParams|Path|ExtraProcessParams|XConfig|Win32Config|AntlerID)\b(\s*=\s*)/g;
       for (const optionMatch of optionsText.matchAll(optionPattern)) {
         const nameStart = optionsStart + optionMatch.index;
         addToken(tokens, lineNumber, nameStart, optionMatch[1], "property", ["parameter"]);

@@ -542,6 +542,61 @@ async function main() {
   settings["hover.enabled"] = false;
   const hoverProvider = providers.hover.find((item) => item.language === "moos").provider;
   assert(hoverProvider.provideHover(docs[0], { line: 0, character: 20 }) === undefined, "expected hover toggle to suppress hover results");
+  settings["hover.enabled"] = true;
+
+  const antlerDoc = documentFromText([
+    "ProcessConfig = ANTLER",
+    "{",
+    "  Run = pLogger @ NewConsole = false Path = SYSTEM",
+    "  Run = pTool @ ExtraProcessParams = TOOL_ARGS AntlerID = shoreside",
+    "}"
+  ].join("\n"), "moos");
+  const pLoggerHover = hoverProvider.provideHover(antlerDoc, { line: 2, character: 10 });
+  assert(
+    pLoggerHover && pLoggerHover.contents.value.includes("**pLogger**"),
+    "expected ANTLER Run app values to provide app hovers"
+  );
+  const newConsoleHover = hoverProvider.provideHover(antlerDoc, { line: 2, character: 22 });
+  assert(
+    newConsoleHover && newConsoleHover.contents.value.includes("separate console"),
+    "expected ANTLER NewConsole option hover"
+  );
+  const pathHover = hoverProvider.provideHover(antlerDoc, { line: 2, character: 39 });
+  assert(
+    pathHover && pathHover.contents.value.includes("overrides the executable path"),
+    "expected ANTLER Path option hover"
+  );
+  const extraParamsHover = hoverProvider.provideHover(antlerDoc, { line: 3, character: 17 });
+  assert(
+    extraParamsHover && extraParamsHover.contents.value.includes("extra command-line arguments"),
+    "expected ANTLER ExtraProcessParams option hover"
+  );
+  const antlerIdHover = hoverProvider.provideHover(antlerDoc, { line: 3, character: 48 });
+  assert(
+    antlerIdHover && antlerIdHover.contents.value.includes("Distributed ANTLER"),
+    "expected ANTLER AntlerID option hover"
+  );
+  assert(
+    hoverProvider.provideHover(antlerDoc, { line: 3, character: 10 }) === undefined,
+    "expected unknown ANTLER Run app values to remain without app hover"
+  );
+
+  const mixedCaseAntlerDoc = documentFromText([
+    "Processconfig = ANTLER",
+    "{",
+    "  Run = pLogger @ NewConsole = false",
+    "}"
+  ].join("\n"), "moos");
+  const mixedCaseOwnerHover = hoverProvider.provideHover(mixedCaseAntlerDoc, { line: 2, character: 10 });
+  assert(
+    mixedCaseOwnerHover && mixedCaseOwnerHover.contents.value.includes("**pLogger**"),
+    "expected ANTLER Run hovers inside mixed-case Processconfig blocks"
+  );
+  const mixedCaseOptionHover = hoverProvider.provideHover(mixedCaseAntlerDoc, { line: 2, character: 22 });
+  assert(
+    mixedCaseOptionHover && mixedCaseOptionHover.contents.value.includes("separate console"),
+    "expected ANTLER option hovers inside mixed-case Processconfig blocks"
+  );
 
   const behaviorSemanticProvider = providers.semantic.find((item) => item.language === "ivp-behavior").provider;
   const unknownBehaviorTokens = behaviorSemanticProvider.provideDocumentSemanticTokens(documentFromText([
@@ -564,8 +619,22 @@ async function main() {
     "expected unknown behavior-specific parameters to remain neutral"
   );
 
-  settings["semanticHighlighting.enabled"] = false;
   const semanticProvider = providers.semantic.find((item) => item.language === "moos").provider;
+  const antlerTokens = semanticProvider.provideDocumentSemanticTokens(antlerDoc).tokens;
+  assert(
+    antlerTokens.some((token) => token.type === "class" && token.range.start.line === 2),
+    "expected known ANTLER Run app values to receive class semantic tokens"
+  );
+  assert(
+    !antlerTokens.some((token) => token.type === "class" && token.range.start.line === 3),
+    "expected unknown ANTLER Run app values to remain semantically neutral"
+  );
+  assert(
+    antlerTokens.some((token) => token.type === "property" && token.range.start.line === 3),
+    "expected ANTLER Run options to receive parameter semantic tokens"
+  );
+
+  settings["semanticHighlighting.enabled"] = false;
   assert(semanticProvider.provideDocumentSemanticTokens(docs[0]).tokens.length === 0, "expected semantic toggle to suppress semantic tokens");
 
   await assertFeatureCommand();

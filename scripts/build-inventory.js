@@ -716,6 +716,14 @@ fs.mkdirSync(path.join(REPO_ROOT, "examples"), { recursive: true });
 fs.writeFileSync(path.join(REPO_ROOT, "data", "moos-inventory.json"), `${JSON.stringify(moosInventory, null, 2)}\n`);
 fs.writeFileSync(path.join(REPO_ROOT, "data", "bhv-inventory.json"), `${JSON.stringify(bhvInventory, null, 2)}\n`);
 
+function generatedText(lines) {
+  const trimmed = lines.slice();
+  while (trimmed[trimmed.length - 1] === "") {
+    trimmed.pop();
+  }
+  return `${trimmed.join("\n")}\n`;
+}
+
 const moosLines = [
   "//-------------------------------------------------",
   "// FILE: all_apps.moos",
@@ -747,7 +755,7 @@ for (const [app, data] of Object.entries(moosInventory.items)) {
   moosLines.push("");
 }
 
-fs.writeFileSync(path.join(REPO_ROOT, "examples", "all_apps.moos"), `${moosLines.join("\n")}\n`);
+fs.writeFileSync(path.join(REPO_ROOT, "examples", "all_apps.moos"), generatedText(moosLines));
 
 const bhvLines = [
   "//-------------------------------------------------",
@@ -779,7 +787,7 @@ for (const [behavior, data] of Object.entries(bhvInventory.items)) {
   bhvLines.push("");
 }
 
-fs.writeFileSync(path.join(REPO_ROOT, "examples", "all_behaviors.bhv"), `${bhvLines.join("\n")}\n`);
+fs.writeFileSync(path.join(REPO_ROOT, "examples", "all_behaviors.bhv"), generatedText(bhvLines));
 
 console.log(`apps=${Object.keys(moosInventory.items).length}`);
 console.log(`appParameters=${Object.keys(moosInventory.parameters).length}`);

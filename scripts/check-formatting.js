@@ -237,6 +237,122 @@ function main() {
     "ivp-behavior"
   );
 
+  const antlerInput = [
+    "ProcessConfig = ANTLER",
+    "{",
+    "  MSBetweenLaunches=200",
+    "",
+    "  Run = MOOSDB @ NewConsole=false",
+    "#ifdef LAUNCH_GUI yes",
+    "  Run=pMarineViewer @ NewConsole = false",
+    "#else",
+    "  Run = pMissionHash@NewConsole=false",
+    "#endif",
+    "",
+    "  Run              = pLogger @ NewConsole=false",
+    "  Run = uFldShoreBroker @ NewConsole=false",
+    "  Run = pShare @ NewConsole=false",
+    "  Run = pXRelay @ NewConsole=true ~ pXRelay_APPLES",
+    "  Run = pTool @ ExtraProcessParams=--mode=a=b",
+    "}"
+  ].join("\n");
+
+  const antlerExpected = [
+    "ProcessConfig = ANTLER",
+    "{",
+    "  MSBetweenLaunches = 200",
+    "",
+    "  Run = MOOSDB          @ NewConsole = false",
+    "#ifdef LAUNCH_GUI yes",
+    "  Run = pMarineViewer   @ NewConsole = false",
+    "#else",
+    "  Run = pMissionHash    @ NewConsole = false",
+    "#endif",
+    "",
+    "  Run = pLogger         @ NewConsole = false",
+    "  Run = uFldShoreBroker @ NewConsole = false",
+    "  Run = pShare          @ NewConsole = false",
+    "  Run = pXRelay         @ NewConsole = true ~ pXRelay_APPLES",
+    "  Run = pTool           @ ExtraProcessParams = --mode=a=b",
+    "}"
+  ].join("\n");
+
+  const antlerFormatted = languageSupport.formatMoosIvpText(antlerInput, "moos").text;
+  assertEqual("ANTLER Run formatting", antlerFormatted, antlerExpected);
+  assertClean(
+    languageSupport,
+    "ANTLER Run formatted output",
+    antlerFormatted,
+    "moos",
+    "moos"
+  );
+
+  const genericallyAlignedAntlerInput = [
+    "ProcessConfig = ANTLER",
+    "{",
+    "  MSBetweenLaunches = 200",
+    "",
+    "  Run                          = MOOSDB @ NewConsole = false",
+    "#ifdef LAUNCH_GUI yes",
+    "  Run                          = pMarineViewer @ NewConsole = false",
+    "#else",
+    "  Run                          = pMissionHash @ NewConsole = false",
+    "#endif",
+    "",
+    "  Run                          = pLogger @ NewConsole = false",
+    "  Run                          = uFldShoreBroker @ NewConsole = false",
+    "}"
+  ].join("\n");
+
+  const genericallyAlignedAntlerExpected = [
+    "ProcessConfig = ANTLER",
+    "{",
+    "  MSBetweenLaunches = 200",
+    "",
+    "  Run = MOOSDB          @ NewConsole = false",
+    "#ifdef LAUNCH_GUI yes",
+    "  Run = pMarineViewer   @ NewConsole = false",
+    "#else",
+    "  Run = pMissionHash    @ NewConsole = false",
+    "#endif",
+    "",
+    "  Run = pLogger         @ NewConsole = false",
+    "  Run = uFldShoreBroker @ NewConsole = false",
+    "}"
+  ].join("\n");
+
+  assertEqual(
+    "ANTLER Run formatting repairs generic assignment alignment",
+    languageSupport.formatMoosIvpText(genericallyAlignedAntlerInput, "moos").text,
+    genericallyAlignedAntlerExpected
+  );
+
+  const nonAntlerRunInput = [
+    "ProcessConfig = pExample",
+    "{",
+    "  Run=example",
+    "  LongerKey=value",
+    "}"
+  ].join("\n");
+
+  const nonAntlerRunExpected = [
+    "ProcessConfig = pExample",
+    "{",
+    "  Run       = example",
+    "  LongerKey = value",
+    "}"
+  ].join("\n");
+
+  const nonAntlerRunFormatted = languageSupport.formatMoosIvpText(nonAntlerRunInput, "moos").text;
+  assertEqual("non-ANTLER Run formatting", nonAntlerRunFormatted, nonAntlerRunExpected);
+  assertClean(
+    languageSupport,
+    "non-ANTLER Run formatted output",
+    nonAntlerRunFormatted,
+    "moos",
+    "moos"
+  );
+
   const ignoredFormattingDiagnostics = languageSupport.collectFormattingDiagnostics(
     documentFromText([
       "ProcessConfig = pHelmIvP",
@@ -256,7 +372,7 @@ function main() {
     "expected unmarked formatting diagnostic to remain"
   );
 
-  console.log("formatting fixtures: 6 passed");
+  console.log("formatting fixtures: 9 passed");
 }
 
 main();

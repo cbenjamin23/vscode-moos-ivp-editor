@@ -135,7 +135,6 @@
 							"name": "keyword.control.moos"
 						},
 						"2": {
-							"name": "constant.language.moos"
 						},
 						"3": {
 							"name": "keyword.control.moos"
@@ -208,7 +207,7 @@
 						},
 						{
 							"name": "keyword.control.moos",
-							"match": "\\s*(NewConsole|InhibitMOOSParams|Path|ExtraProcessParams|XConfig|Win32Config)\\s*"
+							"match": "\\s*(NewConsole|InhibitMOOSParams|Path|ExtraProcessParams|XConfig|Win32Config|AntlerID)\\s*"
 						}
 					]
 				},

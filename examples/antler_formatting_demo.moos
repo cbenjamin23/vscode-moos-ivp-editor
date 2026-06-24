@@ -1,0 +1,35 @@
+//-------------------------------------------------
+// FILE: antler_formatting_demo.moos
+// NOTE: ANTLER Run-line formatting edge case.
+//-------------------------------------------------
+
+ServerHost = localhost
+ServerPort = 9000
+Community = antler_formatting
+MOOSTimeWarp = 1
+
+ProcessConfig = ANTLER
+{
+  MSBetweenLaunches = 200
+
+  Run = MOOSDB          @ NewConsole = false
+#ifdef LAUNCH_GUI yes
+  Run = pMarineViewer   @ NewConsole = false
+#else
+  Run = pMissionHash    @ NewConsole = false
+#endif
+
+  Run = pLogger         @ NewConsole = false
+  Run = pShare          @ NewConsole = false
+  Run = pHostInfo       @ NewConsole = false
+  Run = uProcessWatch   @ NewConsole = false
+  Run = uFldShoreBroker @ NewConsole = false
+  Run = uFldNodeComms   @ NewConsole = false
+  Run = uFldRescueMgr   @ NewConsole = false
+  Run = pMissionEval    @ NewConsole = false
+  Run = pXRelay         @ NewConsole = true ~ pXRelay_APPLES
+  Run = pTool           @ ExtraProcessParams = --mode=a=b
+#ifdef AUTO_LAUNCHED yes
+  Run = pAutoPoke       @ NewConsole = false
+#endif
+}

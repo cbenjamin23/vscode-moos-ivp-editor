@@ -252,6 +252,83 @@ function commonMoosParameterHover(word, language) {
   return MOOS_COMMON_PARAMETER_HOVERS.get(lower(word));
 }
 
+function isAntlerOwner(owner) {
+  return owner && (lower(owner) === "antler" || lower(owner) === "pantler");
+}
+
+function runAppAtPosition(document, position, range) {
+  const line = document.lineAt(position.line).text;
+  const match = line.match(/^(\s*)Run\s*=\s*([^\s@]+)(?:\s*@.*)?$/);
+  if (!match) {
+    return undefined;
+  }
+
+  const start = match[1].length + line.slice(match[1].length).indexOf(match[2]);
+  const end = start + match[2].length;
+  return range.start.character === start && range.end.character === end
+    ? match[2]
+    : undefined;
+}
+
+function runOptionAtPosition(document, position, range) {
+  const line = document.lineAt(position.line).text;
+  const atIndex = line.indexOf("@");
+  if (atIndex === -1 || range.start.character <= atIndex) {
+    return undefined;
+  }
+
+  const optionsText = line.slice(atIndex + 1);
+  const optionPattern = /\b(NewConsole|InhibitMOOSParams|Path|ExtraProcessParams|XConfig|Win32Config|AntlerID)\b/g;
+  for (const match of optionsText.matchAll(optionPattern)) {
+    const start = atIndex + 1 + match.index;
+    const end = start + match[1].length;
+    if (range.start.character === start && range.end.character === end) {
+      return match[1];
+    }
+  }
+
+  return undefined;
+}
+
+function ownerHoverItem(word, lookup, docLookup, sourceLookup) {
+  return docLookup.ownerLookup.get(word.toLowerCase())
+    || sourceLookup.ownerLookup.get(word.toLowerCase())
+    || lookup.get(word.toLowerCase());
+}
+
+function renderHover(vscode, item, schemaEntry, range, language) {
+  if (!item) {
+    return undefined;
+  }
+
+  const markdown = new vscode.MarkdownString();
+  markdown.appendMarkdown(`**${item.name}**`);
+  markdown.appendMarkdown(`\n\n${item.description}`);
+  const defaultValue = item.default !== undefined && item.default !== ""
+    ? item.default
+    : schemaDefault(schemaEntry);
+  if (defaultValue !== undefined) {
+    markdown.appendMarkdown(`\n\n**Default:** \`${defaultValue}\``);
+  }
+  if (item.example) {
+    markdown.appendMarkdown(`\n\n**Example:** \`${item.example}\``);
+  }
+  const note = parameterNote(language, item);
+  if (note) {
+    markdown.appendMarkdown(`\n\n${note}`);
+  }
+  if (item.aliasOf) {
+    markdown.appendMarkdown(`\n\n_Using documentation for ${item.aliasOf}._`);
+  }
+  if (item.doc) {
+    markdown.appendMarkdown(`\n\n[MOOS-IvP documentation](${item.doc})`);
+  }
+  if (item.source) {
+    markdown.appendMarkdown(`\n\n**Source:** \`${displaySourcePath(item.source)}\``);
+  }
+  return new vscode.Hover(markdown, range);
+}
+
 function createHoverProvider(vscode, language, lookup, docLookup, sourceLookup, diagnosticSchema) {
   const wordPattern = /[A-Za-z_][A-Za-z0-9_+:-]*/;
 
@@ -266,6 +343,20 @@ function createHoverProvider(vscode, language, lookup, docLookup, sourceLookup, 
       const owner = findCurrentOwner(document, position, language);
       const assignmentKey = assignmentKeyAtPosition(document, position, range);
       const headerOwner = blockOwnerAtPosition(document, position, range, language);
+      if (language === "moos" && isAntlerOwner(owner)) {
+        const runApp = runAppAtPosition(document, position, range);
+        if (runApp) {
+          return renderHover(vscode, ownerHoverItem(runApp, lookup, docLookup, sourceLookup), undefined, range, language);
+        }
+
+        const runOption = runOptionAtPosition(document, position, range);
+        if (runOption) {
+          const item = blockParameterLookup("ANTLER", runOption, language, lookup, docLookup, sourceLookup);
+          const schemaEntry = diagnosticSchemaEntry("ANTLER", runOption, language, diagnosticSchema);
+          return renderHover(vscode, item, schemaEntry, range, language);
+        }
+      }
+
       if (!assignmentKey && !headerOwner) {
         return undefined;
       }
@@ -291,32 +382,7 @@ function createHoverProvider(vscode, language, lookup, docLookup, sourceLookup, 
         return undefined;
       }
 
-      const markdown = new vscode.MarkdownString();
-      markdown.appendMarkdown(`**${item.name}**`);
-      markdown.appendMarkdown(`\n\n${item.description}`);
-      const defaultValue = item.default !== undefined && item.default !== ""
-        ? item.default
-        : schemaDefault(schemaEntry);
-      if (defaultValue !== undefined) {
-        markdown.appendMarkdown(`\n\n**Default:** \`${defaultValue}\``);
-      }
-      if (item.example) {
-        markdown.appendMarkdown(`\n\n**Example:** \`${item.example}\``);
-      }
-      const note = parameterNote(language, item);
-      if (note) {
-        markdown.appendMarkdown(`\n\n${note}`);
-      }
-      if (item.aliasOf) {
-        markdown.appendMarkdown(`\n\n_Using documentation for ${item.aliasOf}._`);
-      }
-      if (item.doc) {
-        markdown.appendMarkdown(`\n\n[MOOS-IvP documentation](${item.doc})`);
-      }
-      if (item.source) {
-        markdown.appendMarkdown(`\n\n**Source:** \`${displaySourcePath(item.source)}\``);
-      }
-      return new vscode.Hover(markdown, range);
+      return renderHover(vscode, item, schemaEntry, range, language);
     }
   };
 }

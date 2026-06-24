@@ -26,6 +26,8 @@ Representative fixtures:
   convention.
 - `patch_shoreside.xmoos`: MOOS patch input for `nspatch`.
 - `patch_vehicle.xbhv`: behavior patch input for `nspatch`.
+- `antler_formatting_demo.moos`: ANTLER `Run` line formatting edge case with
+  app names and launch options aligned as a launch table.
 
 Broad coverage fixtures:
 

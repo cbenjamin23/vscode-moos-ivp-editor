@@ -121,7 +121,7 @@ function assignmentMatcher() {
 
 function findCurrentOwner(document, position, language) {
   const headerPattern = language === "moos"
-    ? /^\s*ProcessConfig\s*=\s*([A-Za-z_][A-Za-z0-9_]*)/
+    ? /^\s*ProcessConfig\s*=\s*([A-Za-z_][A-Za-z0-9_]*)/i
     : /^\s*Behavior\s*=\s*([A-Za-z_][A-Za-z0-9_]*)/;
   let owner;
   let pendingOwner;
@@ -166,7 +166,7 @@ function assignmentKeyAtPosition(document, position, range) {
 function blockOwnerAtPosition(document, position, range, language) {
   const line = stripInlineComment(document.lineAt(position.line).text);
   const match = language === "moos"
-    ? line.match(/^(\s*)(ProcessConfig)(\s*=\s*)([A-Za-z_][A-Za-z0-9_]*)/)
+    ? line.match(/^(\s*)(ProcessConfig)(\s*=\s*)([A-Za-z_][A-Za-z0-9_]*)/i)
     : line.match(/^(\s*)(Behavior)(\s*=\s*)([A-Za-z_][A-Za-z0-9_]*)/);
   if (!match) {
     return undefined;
