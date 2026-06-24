@@ -84,7 +84,7 @@ this line`. Temporary ignores clear when the document changes. For a persistent
 line-level suppression, add `// moos-ivp-format-ignore` to the line. You can
 also run VS Code's normal Format Document command.
 
-![Format MOOS-IvP quick fix](images/formatting-quick-fix.png)
+![Format MOOS-IvP quick fix](images/formatting-quick-fix-ignore.png)
 
 ### Folding
 
