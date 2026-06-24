@@ -68,6 +68,12 @@ function assertEqual(name, actual, expected) {
   }
 }
 
+function assert(condition, message) {
+  if (!condition) {
+    throw new Error(message);
+  }
+}
+
 function assertClean(languageSupport, name, text, language, languageId) {
   const diagnostics = languageSupport.collectFormattingDiagnostics(
     documentFromText(text, languageId),
@@ -164,7 +170,93 @@ function main() {
     "ivp-behavior"
   );
 
-  console.log("formatting fixtures: 3 passed");
+  const preprocessorInput = [
+    "ProcessConfig = pHelmIvP",
+    "{",
+    "  #ifdef SIM",
+    "  AppTick=4",
+    "  #else",
+    "  AppTick=10",
+    "  #endif",
+    "}"
+  ].join("\n");
+
+  const preprocessorExpected = [
+    "ProcessConfig = pHelmIvP",
+    "{",
+    "#ifdef SIM",
+    "  AppTick = 4",
+    "#else",
+    "  AppTick = 10",
+    "#endif",
+    "}"
+  ].join("\n");
+
+  const preprocessorFormatted = languageSupport.formatMoosIvpText(preprocessorInput, "moos").text;
+  assertEqual("MOOS preprocessor formatting", preprocessorFormatted, preprocessorExpected);
+  assertClean(
+    languageSupport,
+    "MOOS preprocessor formatted output",
+    preprocessorFormatted,
+    "moos",
+    "moos"
+  );
+
+  const behaviorPreprocessorInput = [
+    "Behavior = BHV_Waypoint",
+    "{",
+    "  #ifndef SIM",
+    "  speed=1.5",
+    "  #endif",
+    "}"
+  ].join("\n");
+
+  const behaviorPreprocessorExpected = [
+    "Behavior = BHV_Waypoint",
+    "{",
+    "#ifndef SIM",
+    "  speed = 1.5",
+    "#endif",
+    "}"
+  ].join("\n");
+
+  const behaviorPreprocessorFormatted = languageSupport.formatMoosIvpText(
+    behaviorPreprocessorInput,
+    "ivp-behavior"
+  ).text;
+  assertEqual(
+    "behavior preprocessor formatting",
+    behaviorPreprocessorFormatted,
+    behaviorPreprocessorExpected
+  );
+  assertClean(
+    languageSupport,
+    "behavior preprocessor formatted output",
+    behaviorPreprocessorFormatted,
+    "ivp-behavior",
+    "ivp-behavior"
+  );
+
+  const ignoredFormattingDiagnostics = languageSupport.collectFormattingDiagnostics(
+    documentFromText([
+      "ProcessConfig = pHelmIvP",
+      "{",
+      "  AppTick=4 // moos-ivp-format-ignore",
+      "  CommsTick=4",
+      "}"
+    ].join("\n"), "moos"),
+    "moos"
+  );
+  assert(
+    ignoredFormattingDiagnostics.length === 1,
+    "expected ignore marker to suppress only the marked line"
+  );
+  assert(
+    ignoredFormattingDiagnostics[0].range.start.line === 3,
+    "expected unmarked formatting diagnostic to remain"
+  );
+
+  console.log("formatting fixtures: 6 passed");
 }
 
 main();

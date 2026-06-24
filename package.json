@@ -71,9 +71,6 @@
                     "class.moosApp": [
                         "entity.name.type.moos"
                     ],
-                    "class.unknown": [
-                        "invalid.illegal.moos"
-                    ],
                     "keyword.block": [
                         "keyword.control.moos"
                     ],
@@ -90,9 +87,6 @@
                 "scopes": {
                     "class.behavior": [
                         "entity.name.type.bhv"
-                    ],
-                    "class.unknown": [
-                        "invalid.illegal.bhv"
                     ],
                     "keyword.block": [
                         "keyword.control.bhv"
@@ -174,7 +168,7 @@
                 },
                 "moosIvpEditor.formatting.enabled": {
                     "type": "boolean",
-                    "default": true,
+                    "default": false,
                     "description": "Enable MOOS-IvP document formatting and formatting quick fixes."
                 },
                 "moosIvpEditor.formatting.diagnostics.enabled": {

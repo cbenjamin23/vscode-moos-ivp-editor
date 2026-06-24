@@ -98,9 +98,6 @@
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.bhv"
-				},
-				"2": {
-					"name": "entity.name.type.bhv"
 				}
 			},
 			"patterns": [

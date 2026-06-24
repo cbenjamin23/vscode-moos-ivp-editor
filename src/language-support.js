@@ -67,7 +67,7 @@ function foldingEnabled() {
 }
 
 function formattingEnabled() {
-  return extensionSetting("formatting.enabled", true);
+  return extensionSetting("formatting.enabled", false);
 }
 
 function formattingDiagnosticsEnabled() {
@@ -152,10 +152,114 @@ function createFormattingDiagnostic(document, issue) {
   return diagnostic;
 }
 
+const temporaryFormattingIgnores = new Map();
+
+function documentKey(uri) {
+  return uri && typeof uri.toString === "function" ? uri.toString() : String(uri);
+}
+
+function documentLineText(document, lineNumber) {
+  if (lineNumber < 0 || lineNumber >= document.lineCount) {
+    return undefined;
+  }
+  return document.lineAt(lineNumber).text || "";
+}
+
+function temporaryFormattingIgnoreRecords(document) {
+  const key = documentKey(document.uri);
+  if (!temporaryFormattingIgnores.has(key)) {
+    temporaryFormattingIgnores.set(key, []);
+  }
+  return temporaryFormattingIgnores.get(key);
+}
+
+function addTemporaryFormattingIgnore(document, lineNumber) {
+  const text = documentLineText(document, lineNumber);
+  if (text === undefined) {
+    return;
+  }
+
+  const records = temporaryFormattingIgnoreRecords(document);
+  if (!records.some((record) => record.lineNumber === lineNumber && record.text === text)) {
+    records.push({ lineNumber, text });
+  }
+}
+
+function clearTemporaryFormattingIgnores(document) {
+  temporaryFormattingIgnores.delete(documentKey(document.uri));
+}
+
+function isTemporarilyIgnoredFormattingIssue(document, issue) {
+  const records = temporaryFormattingIgnores.get(documentKey(document.uri));
+  if (!records) {
+    return false;
+  }
+
+  const text = documentLineText(document, issue.lineNumber);
+  return records.some((record) => record.lineNumber === issue.lineNumber && record.text === text);
+}
+
+function closestMatchingLine(document, record, usedLines) {
+  let matchedLine = -1;
+  let matchedDistance = Number.POSITIVE_INFINITY;
+  for (let lineNumber = 0; lineNumber < document.lineCount; lineNumber++) {
+    if (usedLines.has(lineNumber) || documentLineText(document, lineNumber) !== record.text) {
+      continue;
+    }
+
+    const distance = Math.abs(lineNumber - record.lineNumber);
+    if (distance < matchedDistance) {
+      matchedLine = lineNumber;
+      matchedDistance = distance;
+    }
+  }
+  return matchedLine;
+}
+
+function remapTemporaryFormattingIgnores(document) {
+  const records = temporaryFormattingIgnores.get(documentKey(document.uri));
+  if (!records || records.length === 0) {
+    return;
+  }
+
+  const usedLines = new Set();
+  const remapped = [];
+  records.forEach((record) => {
+    if (documentLineText(document, record.lineNumber) === record.text) {
+      usedLines.add(record.lineNumber);
+      remapped.push(record);
+      return;
+    }
+
+    const matchedLine = closestMatchingLine(document, record, usedLines);
+
+    if (matchedLine !== -1) {
+      usedLines.add(matchedLine);
+      remapped.push({ lineNumber: matchedLine, text: record.text });
+    }
+  });
+
+  if (remapped.length === 0) {
+    clearTemporaryFormattingIgnores(document);
+    return;
+  }
+
+  temporaryFormattingIgnores.set(documentKey(document.uri), remapped);
+}
+
+function suppressesFormattingDiagnostic(document, issue) {
+  const line = Math.min(issue.lineNumber, Math.max(0, document.lineCount - 1));
+  const lineText = document.lineAt(line).text || "";
+  return /\bmoos-ivp-format-ignore\b/.test(lineText)
+    || isTemporarilyIgnoredFormattingIssue(document, issue);
+}
+
 function collectFormattingDiagnostics(document, language, options = {}) {
-  return formatDocument(document, language, options).issues.map((issue) => (
-    createFormattingDiagnostic(document, issue)
-  ));
+  return formatDocument(document, language, options).issues
+    .filter((issue) => !suppressesFormattingDiagnostic(document, issue))
+    .map((issue) => (
+      createFormattingDiagnostic(document, issue)
+    ));
 }
 
 function collectConfigDiagnostics(document, diagnosticSchema, language, options = {}) {
@@ -214,6 +318,14 @@ function refreshDiagnostics(document, collection, diagnosticSchema) {
   collection.delete(document.uri);
 }
 
+function documentMatchesUri(document, uri) {
+  return documentKey(document.uri) === documentKey(uri);
+}
+
+function hasDocumentContentChanges(event) {
+  return Array.isArray(event.contentChanges) && event.contentChanges.length > 0;
+}
+
 function registerDiagnostics(context, diagnosticSchema) {
   const collection = vscode.languages.createDiagnosticCollection("moos-ivp");
   context.subscriptions.push(collection);
@@ -223,10 +335,25 @@ function registerDiagnostics(context, diagnosticSchema) {
   }
 
   context.subscriptions.push(
+    vscode.commands && vscode.commands.registerCommand
+      ? vscode.commands.registerCommand("moosIvpEditor.ignoreFormattingLine", (uri, lineNumber) => {
+        const document = (vscode.workspace.textDocuments || []).find((item) => (
+          documentMatchesUri(item, uri)
+        ));
+        if (!document || !Number.isInteger(lineNumber)) {
+          return;
+        }
+        addTemporaryFormattingIgnore(document, lineNumber);
+        refreshDiagnostics(document, collection, diagnosticSchema);
+      })
+      : { dispose() {} },
     vscode.workspace.onDidOpenTextDocument((document) => {
       refreshDiagnostics(document, collection, diagnosticSchema);
     }),
     vscode.workspace.onDidChangeTextDocument((event) => {
+      if (hasDocumentContentChanges(event)) {
+        remapTemporaryFormattingIgnores(event.document);
+      }
       refreshDiagnostics(event.document, collection, diagnosticSchema);
     }),
     vscode.workspace.onDidChangeConfiguration((event) => {
@@ -238,6 +365,7 @@ function registerDiagnostics(context, diagnosticSchema) {
       }
     }),
     vscode.workspace.onDidCloseTextDocument((document) => {
+      clearTemporaryFormattingIgnores(document);
       collection.delete(document.uri);
     })
   );
@@ -276,10 +404,35 @@ function createFormattingCodeActionProvider(language) {
         return [];
       }
 
+      const actions = [];
+      const ignoredLines = new Set();
+      formattingDiagnostics.forEach((diagnostic) => {
+        const line = diagnostic.range && diagnostic.range.start
+          ? diagnostic.range.start.line
+          : undefined;
+        if (!Number.isInteger(line) || ignoredLines.has(line)) {
+          return;
+        }
+        ignoredLines.add(line);
+        const ignoreAction = new vscode.CodeAction(
+          "Ignore MOOS-IvP formatting on this line",
+          vscode.CodeActionKind.QuickFix
+        );
+        ignoreAction.diagnostics = formattingDiagnostics.filter((item) => (
+          item.range && item.range.start && item.range.start.line === line
+        ));
+        ignoreAction.command = {
+          command: "moosIvpEditor.ignoreFormattingLine",
+          title: "Ignore MOOS-IvP formatting on this line",
+          arguments: [document.uri, line]
+        };
+        actions.push(ignoreAction);
+      });
+
       const original = documentText(document);
       const formatted = formatMoosIvpText(original, language, workspaceFormattingOptions()).text;
       if (formatted === original) {
-        return [];
+        return actions;
       }
 
       const action = new vscode.CodeAction(
@@ -290,7 +443,7 @@ function createFormattingCodeActionProvider(language) {
       action.isPreferred = true;
       action.edit = new vscode.WorkspaceEdit();
       action.edit.replace(document.uri, fullDocumentRange(document), formatted);
-      return [action];
+      return [action, ...actions];
     }
   };
 }

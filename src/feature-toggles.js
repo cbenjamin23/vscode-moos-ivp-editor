@@ -17,7 +17,8 @@ const FEATURE_TOGGLES = [
   {
     key: "formatting.enabled",
     label: "Formatting",
-    detail: "Format Document support and formatting quick fixes."
+    detail: "Format Document support and formatting quick fixes.",
+    defaultValue: false
   },
   {
     key: "formatting.diagnostics.enabled",
@@ -37,7 +38,7 @@ const FEATURE_TOGGLES = [
 ];
 
 function featureItem(config, feature) {
-  const enabled = config.get(feature.key, true);
+  const enabled = config.get(feature.key, feature.defaultValue !== false);
   return {
     label: feature.label,
     description: enabled ? "On" : "Off",

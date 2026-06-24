@@ -108,8 +108,7 @@ function ownerModifiers(owner, language, docLookup, sourceLookup, inventoryLooku
     return uniqueModifiers(modifiers);
   }
 
-  modifiers.push("unknown");
-  return uniqueModifiers(modifiers);
+  return undefined;
 }
 
 function parameterModifiers(owner, name, language, docLookup, sourceLookup, inventoryLookup) {
@@ -157,6 +156,13 @@ function addAssignmentTokens(tokens, lineNumber, text, match, owner, language, d
   }
 }
 
+function addOwnerToken(tokens, lineNumber, start, owner, language, docLookup, sourceLookup, inventoryLookup) {
+  const modifiers = ownerModifiers(owner, language, docLookup, sourceLookup, inventoryLookup);
+  if (modifiers) {
+    addToken(tokens, lineNumber, start, owner, "class", modifiers);
+  }
+}
+
 function addPreprocessorTokens(tokens, lineNumber, text) {
   const match = text.match(/^(\s*)(#(?:include|ifdef|elseifdef|endif|else|define|ifndef)\b)(.*)$/);
   if (!match) {
@@ -177,7 +183,7 @@ function parseMoosSemanticLine(tokens, lineNumber, text, state, docLookup, sourc
     const keywordStart = header[1].length;
     const ownerStart = keywordStart + header[2].length + header[3].length;
     addToken(tokens, lineNumber, keywordStart, header[2], "keyword", ["block"]);
-    addToken(tokens, lineNumber, ownerStart, header[4], "class", ownerModifiers(header[4], "moos", docLookup, sourceLookup, inventoryLookup));
+    addOwnerToken(tokens, lineNumber, ownerStart, header[4], "moos", docLookup, sourceLookup, inventoryLookup);
 
     state.pendingOwner = header[4];
     state.pendingKind = lower(header[4]) === "antler" || lower(header[4]) === "pantler" ? "antler" : "app";
@@ -197,7 +203,7 @@ function parseMoosSemanticLine(tokens, lineNumber, text, state, docLookup, sourc
     const keyStart = runLine[1].length;
     const ownerStart = keyStart + runLine[2].length + runLine[3].length;
     addToken(tokens, lineNumber, keyStart, runLine[2], "keyword", []);
-    addToken(tokens, lineNumber, ownerStart, runLine[4], "class", ownerModifiers(runLine[4], "moos", docLookup, sourceLookup, inventoryLookup));
+    addOwnerToken(tokens, lineNumber, ownerStart, runLine[4], "moos", docLookup, sourceLookup, inventoryLookup);
 
     if (runLine[5]) {
       const atStart = runLine.index + runLine[0].lastIndexOf("@");
@@ -228,7 +234,7 @@ function parseBehaviorSemanticLine(tokens, lineNumber, text, state, docLookup, s
     const keywordStart = header[1].length;
     const ownerStart = keywordStart + header[2].length + header[3].length;
     addToken(tokens, lineNumber, keywordStart, header[2], "keyword", ["block"]);
-    addToken(tokens, lineNumber, ownerStart, header[4], "class", ownerModifiers(header[4], "ivp-behavior", docLookup, sourceLookup, inventoryLookup));
+    addOwnerToken(tokens, lineNumber, ownerStart, header[4], "ivp-behavior", docLookup, sourceLookup, inventoryLookup);
 
     state.pendingOwner = header[4];
     state.pendingKind = "behavior";

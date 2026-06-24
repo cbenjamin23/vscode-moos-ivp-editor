@@ -13,7 +13,6 @@ const settings = {
   "diagnostics.enabled": true,
   "diagnostics.geometry.enabled": true,
   "folding.enabled": true,
-  "formatting.enabled": true,
   "formatting.diagnostics.enabled": true,
   "hover.enabled": true,
   "semanticHighlighting.enabled": true
@@ -21,11 +20,13 @@ const settings = {
 
 const providers = {
   codeActions: [],
+  commands: [],
   diagnostics: [],
   folding: [],
   formatting: [],
   hover: [],
-  semantic: []
+  semantic: [],
+  textChangeListener: undefined
 };
 
 class Range {
@@ -102,13 +103,21 @@ class WorkspaceEdit {
 }
 
 function documentFromText(text, languageId) {
-  const lines = text.split(/\r?\n/);
+  let content = text;
+  let lines = content.split(/\r?\n/);
+  function setText(nextText) {
+    content = nextText;
+    lines = content.split(/\r?\n/);
+  }
   return {
     uri: `${languageId}-feature-toggle-fixture`,
     languageId,
-    lineCount: lines.length,
+    setText,
+    get lineCount() {
+      return lines.length;
+    },
     getText() {
-      return text;
+      return content;
     },
     getWordRangeAtPosition(position, pattern) {
       const line = lines[position.line] || "";
@@ -123,7 +132,7 @@ function documentFromText(text, languageId) {
     },
     getText(range) {
       if (!range) {
-        return text;
+        return content;
       }
       const line = lines[range.start.line] || "";
       return line.slice(range.start.character, range.end.character);
@@ -161,6 +170,12 @@ const vscode = {
     }
   },
   WorkspaceEdit,
+  commands: {
+    registerCommand(command, callback) {
+      providers.commands.push({ command, callback });
+      return { dispose() {} };
+    }
+  },
   languages: {
     createDiagnosticCollection() {
       return {
@@ -209,7 +224,8 @@ const vscode = {
       providers.configurationListener = listener;
       return { dispose() {} };
     },
-    onDidChangeTextDocument() {
+    onDidChangeTextDocument(listener) {
+      providers.textChangeListener = listener;
       return { dispose() {} };
     },
     onDidCloseTextDocument() {
@@ -252,7 +268,6 @@ async function assertFeatureCommand() {
     "diagnostics.enabled": true,
     "diagnostics.geometry.enabled": false,
     "folding.enabled": true,
-    "formatting.enabled": true,
     "formatting.diagnostics.enabled": false,
     "hover.enabled": true,
     "semanticHighlighting.enabled": true
@@ -273,8 +288,10 @@ async function assertFeatureCommand() {
         assert(options.canPickMany === true, "expected multi-select quick pick");
         assert(items.length === FEATURE_TOGGLES.length, "expected all feature toggles in quick pick");
         const geometryItem = items.find((item) => item.feature.key === "diagnostics.geometry.enabled");
+        const formattingItem = items.find((item) => item.feature.key === "formatting.enabled");
         const formattingDiagnosticsItem = items.find((item) => item.feature.key === "formatting.diagnostics.enabled");
         assert(geometryItem && geometryItem.picked === false, "expected geometry diagnostics to start unchecked");
+        assert(formattingItem && formattingItem.picked === false, "expected formatting to default unchecked");
         assert(formattingDiagnosticsItem && formattingDiagnosticsItem.picked === false, "expected formatting diagnostics to start unchecked");
         return items.filter((item) => (
           item.feature.key === "diagnostics.enabled"
@@ -351,9 +368,201 @@ async function main() {
   const codeActionProvider = providers.codeActions.find((item) => item.language === "moos").provider;
   assert(codeActionProvider.provideCodeActions(docs[0], undefined, { diagnostics: [{ source: "MOOS-IvP Format" }] }).length === 0, "expected formatting toggle to suppress quick fixes");
 
+  settings["diagnostics.enabled"] = false;
+  settings["formatting.enabled"] = true;
+  settings["formatting.diagnostics.enabled"] = true;
+  providers.diagnostics.length = 0;
+  providers.configurationListener({ affectsConfiguration: (name) => name === "moosIvpEditor" });
+  const formattingDiagnostics = providers.diagnostics[0].diagnostics.filter((diagnostic) => (
+    diagnostic.source === "MOOS-IvP Format"
+  ));
+  const appTickDiagnostics = formattingDiagnostics.filter((diagnostic) => (
+    diagnostic.range.start.line === 3
+  ));
+  assert(appTickDiagnostics.length > 0, "expected AppTick formatting diagnostic before temporary ignore");
+  const formattingActions = codeActionProvider.provideCodeActions(docs[0], undefined, {
+    diagnostics: formattingDiagnostics
+  });
+  const ignoreAction = formattingActions.find((action) => (
+    action.command && action.command.command === "moosIvpEditor.ignoreFormattingLine"
+  ));
+  assert(ignoreAction, "expected temporary formatting ignore quick fix");
+  const ignoreCommand = providers.commands.find((item) => item.command === "moosIvpEditor.ignoreFormattingLine");
+  assert(ignoreCommand, "expected temporary formatting ignore command registration");
+  ignoreCommand.callback(...ignoreAction.command.arguments);
+  const ignoredDiagnostics = providers.diagnostics[providers.diagnostics.length - 1].diagnostics.filter((diagnostic) => (
+    diagnostic.source === "MOOS-IvP Format"
+  ));
+  assert(
+    ignoredDiagnostics.every((diagnostic) => diagnostic.range.start.line !== 3),
+    "expected temporary ignore to suppress the selected line"
+  );
+  providers.diagnostics.length = 0;
+  providers.configurationListener({ affectsConfiguration: (name) => name === "moosIvpEditor" });
+  const persistedDiagnostics = providers.diagnostics[0].diagnostics.filter((diagnostic) => (
+    diagnostic.source === "MOOS-IvP Format"
+  ));
+  assert(
+    persistedDiagnostics.every((diagnostic) => diagnostic.range.start.line !== 3),
+    "expected temporary ignore to persist across diagnostic refreshes"
+  );
+  providers.diagnostics.length = 0;
+  providers.textChangeListener({ document: docs[0], contentChanges: [] });
+  const emptyChangeDiagnostics = providers.diagnostics[0].diagnostics.filter((diagnostic) => (
+    diagnostic.source === "MOOS-IvP Format"
+  ));
+  assert(
+    emptyChangeDiagnostics.every((diagnostic) => diagnostic.range.start.line !== 3),
+    "expected empty document change events to preserve temporary formatting ignores"
+  );
+
+  docs[0].setText([
+    "ProcessConfig = pContactMgrV20",
+    "{",
+    "  match_region = pts={0,0:100,100:0,100:100,0}",
+    "  inserted = true",
+    "  AppTick=4",
+    "}"
+  ].join("\n"));
+  providers.diagnostics.length = 0;
+  providers.textChangeListener({ document: docs[0], contentChanges: [{ text: "x" }] });
+  const afterShiftDiagnostics = providers.diagnostics[0].diagnostics.filter((diagnostic) => (
+    diagnostic.source === "MOOS-IvP Format"
+  ));
+  assert(
+    afterShiftDiagnostics.every((diagnostic) => diagnostic.range.start.line !== 4),
+    "expected temporary ignore to follow an unchanged line when it moves"
+  );
+
+  docs[0].setText([
+    "ProcessConfig = pContactMgrV20",
+    "{",
+    "  match_region = pts={0,0:100,100:0,100:100,0}",
+    "  inserted = true",
+    "  AppTick=5",
+    "}"
+  ].join("\n"));
+  providers.diagnostics.length = 0;
+  providers.textChangeListener({ document: docs[0], contentChanges: [{ text: "x" }] });
+  const afterEditDiagnostics = providers.diagnostics[0].diagnostics.filter((diagnostic) => (
+    diagnostic.source === "MOOS-IvP Format"
+  ));
+  assert(
+    afterEditDiagnostics.some((diagnostic) => diagnostic.range.start.line === 4),
+    "expected edits to the ignored line to clear its temporary ignore"
+  );
+
+  const duplicateDoc = documentFromText([
+    "ProcessConfig = pContactMgrV20",
+    "{",
+    "  AppTick=4",
+    "  CommsTick=4",
+    "  AppTick=4",
+    "}"
+  ].join("\n"), "moos");
+  duplicateDoc.uri = "moos-duplicate-feature-toggle-fixture";
+  vscode.workspace.textDocuments.push(duplicateDoc);
+  providers.diagnostics.length = 0;
+  providers.textChangeListener({ document: duplicateDoc, contentChanges: [{ text: "open" }] });
+  const duplicateInitialDiagnostics = providers.diagnostics[0].diagnostics.filter((diagnostic) => (
+    diagnostic.source === "MOOS-IvP Format"
+  ));
+  const duplicateActions = codeActionProvider.provideCodeActions(duplicateDoc, undefined, {
+    diagnostics: duplicateInitialDiagnostics.filter((diagnostic) => diagnostic.range.start.line === 4)
+  });
+  const duplicateIgnoreAction = duplicateActions.find((action) => (
+    action.command && action.command.command === "moosIvpEditor.ignoreFormattingLine"
+  ));
+  assert(duplicateIgnoreAction, "expected duplicate-line temporary ignore quick fix");
+  ignoreCommand.callback(...duplicateIgnoreAction.command.arguments);
+  duplicateDoc.setText([
+    "ProcessConfig = pContactMgrV20",
+    "{",
+    "  AppTick=4",
+    "  CommsTick=4",
+    "  inserted = true",
+    "  AppTick=4",
+    "}"
+  ].join("\n"));
+  providers.diagnostics.length = 0;
+  providers.textChangeListener({ document: duplicateDoc, contentChanges: [{ text: "x" }] });
+  const duplicateShiftDiagnostics = providers.diagnostics[0].diagnostics.filter((diagnostic) => (
+    diagnostic.source === "MOOS-IvP Format"
+  ));
+  assert(
+    duplicateShiftDiagnostics.some((diagnostic) => diagnostic.range.start.line === 2),
+    "expected earlier duplicate formatting line to remain diagnosed"
+  );
+  assert(
+    duplicateShiftDiagnostics.every((diagnostic) => diagnostic.range.start.line !== 5),
+    "expected temporary ignore to follow the nearest matching duplicate line"
+  );
+
+  const multiIgnoreDoc = documentFromText([
+    "ProcessConfig = pContactMgrV20",
+    "{",
+    "  AppTick=4",
+    "  CommsTick=4",
+    "}"
+  ].join("\n"), "moos");
+  multiIgnoreDoc.uri = "moos-multi-ignore-feature-toggle-fixture";
+  vscode.workspace.textDocuments.push(multiIgnoreDoc);
+  providers.diagnostics.length = 0;
+  providers.textChangeListener({ document: multiIgnoreDoc, contentChanges: [{ text: "open" }] });
+  const multiDiagnostics = providers.diagnostics[0].diagnostics.filter((diagnostic) => (
+    diagnostic.source === "MOOS-IvP Format"
+  ));
+  multiDiagnostics.forEach((diagnostic) => {
+    const action = codeActionProvider.provideCodeActions(multiIgnoreDoc, undefined, {
+      diagnostics: [diagnostic]
+    }).find((candidate) => (
+      candidate.command && candidate.command.command === "moosIvpEditor.ignoreFormattingLine"
+    ));
+    assert(action, "expected temporary ignore action for each formatting diagnostic");
+    ignoreCommand.callback(...action.command.arguments);
+  });
+  multiIgnoreDoc.setText([
+    "ProcessConfig = pContactMgrV20",
+    "{",
+    "  inserted = true",
+    "  AppTick=4",
+    "  CommsTick=4",
+    "}"
+  ].join("\n"));
+  providers.diagnostics.length = 0;
+  providers.textChangeListener({ document: multiIgnoreDoc, contentChanges: [{ text: "x" }] });
+  const multiShiftDiagnostics = providers.diagnostics[0].diagnostics.filter((diagnostic) => (
+    diagnostic.source === "MOOS-IvP Format"
+  ));
+  assert(
+    multiShiftDiagnostics.every((diagnostic) => diagnostic.range.start.line !== 3 && diagnostic.range.start.line !== 4),
+    "expected multiple temporary ignores to follow their moved lines independently"
+  );
+
   settings["hover.enabled"] = false;
   const hoverProvider = providers.hover.find((item) => item.language === "moos").provider;
   assert(hoverProvider.provideHover(docs[0], { line: 0, character: 20 }) === undefined, "expected hover toggle to suppress hover results");
+
+  const behaviorSemanticProvider = providers.semantic.find((item) => item.language === "ivp-behavior").provider;
+  const unknownBehaviorTokens = behaviorSemanticProvider.provideDocumentSemanticTokens(documentFromText([
+    "Behavior = BHV_CustomLocal",
+    "{",
+    "  name = local_custom",
+    "  custom_param = true",
+    "}"
+  ].join("\n"), "ivp-behavior")).tokens;
+  assert(
+    !unknownBehaviorTokens.some((token) => token.type === "class" && token.range.start.line === 0),
+    "expected unknown behavior owner to remain neutral"
+  );
+  assert(
+    unknownBehaviorTokens.some((token) => token.type === "property" && token.range.start.line === 2),
+    "expected inherited behavior parameters to stay highlighted in unknown behavior blocks"
+  );
+  assert(
+    !unknownBehaviorTokens.some((token) => token.type === "property" && token.range.start.line === 3),
+    "expected unknown behavior-specific parameters to remain neutral"
+  );
 
   settings["semanticHighlighting.enabled"] = false;
   const semanticProvider = providers.semantic.find((item) => item.language === "moos").provider;

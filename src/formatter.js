@@ -34,6 +34,10 @@ function createFormattingIssue(lineNumber, message, code) {
   };
 }
 
+function isPreprocessorDirectiveLine(line) {
+  return /^#(?:include|ifdef|elseifdef|endif|else|define|ifndef)\b/.test(line.trim());
+}
+
 function isBlockHeaderLine(line, language) {
   return blockHeaderMatcher(language).test(stripInlineComment(line).trimEnd());
 }
@@ -278,8 +282,11 @@ function formatMoosIvpText(text, language, options = {}) {
 
     const parts = splitInlineComment(trailingTrimmed);
     const trimmedCode = parts.code.trim();
+    const isPreprocessorDirective = isPreprocessorDirectiveLine(trimmedCode);
     const isClosingBrace = trimmedCode.startsWith("}");
-    const lineIndentLevel = isClosingBrace ? Math.max(0, indentLevel - 1) : indentLevel;
+    const lineIndentLevel = isPreprocessorDirective
+      ? 0
+      : (isClosingBrace ? Math.max(0, indentLevel - 1) : indentLevel);
     const indent = formatIndent(lineIndentLevel, formatterOptions);
 
     if (leading !== indent) {
@@ -291,7 +298,9 @@ function formatMoosIvpText(text, language, options = {}) {
     }
 
     const headerLines = formatBlockHeaderLine(trimmedCode, parts.comment, indent, lineNumber, language, issues);
-    if (headerLines) {
+    if (isPreprocessorDirective) {
+      output.push(appendComment(trimmedCode, parts.comment));
+    } else if (headerLines) {
       output.push(...headerLines);
     } else if (/^\{\s*$/.test(trimmedCode)) {
       output.push(appendComment(`${indent}{`, parts.comment));
@@ -306,7 +315,7 @@ function formatMoosIvpText(text, language, options = {}) {
       output.push(assignmentLine || appendComment(`${indent}${trimmedCode}`, parts.comment));
     }
 
-    const delta = braceDelta(trimmedCode);
+    const delta = isPreprocessorDirective ? 0 : braceDelta(trimmedCode);
     if (delta < 0 && indentLevel + delta < 0) {
       issues.push(createFormattingIssue(
         lineNumber,

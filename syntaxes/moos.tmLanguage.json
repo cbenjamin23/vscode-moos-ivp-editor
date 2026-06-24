@@ -256,9 +256,6 @@
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.moos"
-				},
-				"2": {
-					"name": "entity.name.type.moos"
 				}
 			},
 			"patterns": [

@@ -10,10 +10,22 @@ MOOSTimeWarp = 1
 
 ProcessConfig = pHelmIvP
 {
+
   AppTick   = 4 // Quick Fix should preserve this comment
   CommsTick = 4
 
-  verbose   = true
+  // Preferred: preprocessor directives stay at column 0.
+#ifdef SIM
+  verbose = true
+#else
+  verbose = false
+#endif
+
+  // Intentionally bad: the formatter should move these directives to column 0.
+  #ifdef DEBUG_VERBOSE
+  verbose_debug = true
+  #endif
+
   behaviors = meta_vehicle.bhv
 }
 
